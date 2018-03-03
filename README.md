@@ -1,1 +1,1 @@
-this is a blog repository!
+Hello, this is my blog!
