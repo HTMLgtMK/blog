@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Github Page + Hexo 建立个人Blog | GT Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录一下我的博客的创建过程。主要步骤：  安装hexo 创建本地博客 部署到github注：github page支持的是静态网页。">
+<meta name="keywords" content="blog,hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github Page + Hexo 建立个人Blog">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="记录一下我的博客的创建过程。主要步骤：  安装hexo 创建本地博客 部署到github注：github page支持的是静态网页。">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/QQ截图20180303211524.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/QQ截图20180303221901.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/QQ截图20180303222000.png">
+<meta property="og:updated_time" content="2018-03-03T14:58:21.784Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github Page + Hexo 建立个人Blog">
+<meta name="twitter:description" content="记录一下我的博客的创建过程。主要步骤：  安装hexo 创建本地博客 部署到github注：github page支持的是静态网页。">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/QQ截图20180303211524.png">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="GT Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">GT Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://htmlgtmk.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-create-hexo-blog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/03/03/create-hexo-blog/" class="article-date">
+  <time datetime="2018-03-03T12:19:07.000Z" itemprop="datePublished">2018-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Github Page + Hexo 建立个人Blog
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一下我的博客的创建过程。<br>主要步骤：</p>
+<ol>
+<li>安装hexo</li>
+<li>创建本地博客</li>
+<li>部署到github<br>注：github page支持的是静态网页。</li>
+</ol>
+<a id="more"></a>
+<p>参考：(建议先看)</p>
+<ol>
+<li><a href="https://www.jianshu.com/p/5e9bd5e39ae6" target="_blank" rel="noopener">最简便的方法搭建Hexo-Github博客-基于Next主题</a></li>
+</ol>
+<p>环境：win10</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="hexo-简介"><a href="#hexo-简介" class="headerlink" title="hexo 简介"></a>hexo 简介</h3><p>hexo 是一个快速、简洁且高效的博客框架。</p>
+<ul>
+<li>需要node.js支持。</li>
+<li>支持Markdown语法<h3 id="hexo-安装"><a href="#hexo-安装" class="headerlink" title="hexo 安装"></a>hexo 安装</h3></li>
+<li>安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js</a>。 <strong>已经安装好的可以跳过</strong><br>windows直接下载镜像安装即可。<br>测试安装成功：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//create_server.js</span></span><br><span class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	res.writeHead(<span class="number">200</span>,&#123;<span class="string">"Content-Type"</span>:<span class="string">"text/plain"</span>&#125;);</span><br><span class="line">	res.end(<span class="string">"hello world!"</span>);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>,<span class="string">'127.0.0.1'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"node.js server running at localhost:8080"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>cmd运行<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node create_server.js # run the script</span><br><span class="line">node.js server running <span class="built_in">at</span> localhost:<span class="number">8080</span></span><br></pre></td></tr></table></figure></p>
+<p>在打开浏览器输入localhost:8080就可以看到hello world!输出。<br>其实，<strong>安装node.js主要是后面要用到npm命令。</strong>    </p>
+<ul>
+<li>安装<a href="https://hexo.io/" target="_blank" rel="noopener">hexo</a><br>windows下cmd运行:<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g # -g表示全局安装，否则只用于当前项目</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>到这里，hexo就安装完成了。</p>
+<h2 id="创建本地博客-local-blog"><a href="#创建本地博客-local-blog" class="headerlink" title="创建本地博客(local blog)"></a>创建本地博客(local blog)</h2><p>cmd运行 (提前进入选定要建立blog的目录)<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt; # 这里&lt;folder&gt;替换成你的Blog Project Name</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p>这个过程需要联网，会下载一些资源。命令执行结束后,<folder>目录下文件如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml 	# 站点的配置文件</span><br><span class="line">├── package.json	# 依赖配置</span><br><span class="line">├── scaffolds		# 模板文件夹</span><br><span class="line">├── source			# 存放用户资源的地方。</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts		# 存放文章。默认有一篇hello-world.md</span><br><span class="line">└── themes			# 存放主题。默认为landscope，hexo会根据theme生成静态界面。</span><br></pre></td></tr></table></figure></folder></p>
+<h4 id="运行hexo-Server"><a href="#运行hexo-Server" class="headerlink" title="运行hexo Server"></a>运行hexo Server</h4><p>cmd运行(在<folder>内)<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --debug # s是server的简写,debug可去掉</span><br></pre></td></tr></table></figure></folder></p>
+<p>在浏览器输入:localhost:4000,看到界面<br><img src="/blog/2018/03/03/create-hexo-blog/QQ截图20180303211524.png" alt="QQ截图20180303211524.png"></p>
+<h3 id="创建新文章-new-post"><a href="#创建新文章-new-post" class="headerlink" title="创建新文章(new post)"></a>创建新文章(new post)</h3><p>cmd下运行(<folder>下)<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new "new-post-name"</span><br></pre></td></tr></table></figure></folder></p>
+<p>new-post-name 替换成文章文件名，文件保存在_posts下，.md表示支持Markdown语法。<br>直接找到文件，用编辑器以文本方式打开编辑，保存。<br>运行hexo server,浏览器下查看最新blog。<br><strong>注：Markdown语法文件后缀为<code>&lt;.md&gt;</code>或者<code>&lt;.markdown&gt;</code></strong><br>Markdown语法参考:<a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener">Mastering Markdown</a></p>
+<h3 id="为Hexo-Blog插入本地图片"><a href="#为Hexo-Blog插入本地图片" class="headerlink" title="为Hexo Blog插入本地图片"></a>为Hexo Blog插入本地图片</h3><p>参考：</p>
+<ol>
+<li><a href="http://blog.csdn.net/sugar_rainbow/article/details/57415705" target="_blank" rel="noopener">hexo生成博文插入图片</a></li>
+</ol>
+<ul>
+<li><p>Markdown 插入图片语法为: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![ImageHint](url) # 注意前面有个 `&lt;感叹号 !&gt;`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改站点配置文件_config.yml</p>
+</li>
+</ul>
+<ol>
+<li>修改 <code>post_asset_folder</code> 为 <code>true</code></li>
+<li>cmd运行(hexo blog folder)<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这是下载安装一个可以用来上传本地图片的插件。</p>
+<ol>
+<li><code>hexo new &#39;new-blog&#39;</code>生成新<code>new-blog.md</code>时,会在<code>_posts</code>文件夹下生成一个new-post同名的文件夹new-post。</li>
+<li>new-post.md中要插入的图片先放入new-post文件夹中,在new-post.md中输入:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image-hint](imagename.extension)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><h3 id="创建一个新repository"><a href="#创建一个新repository" class="headerlink" title="创建一个新repository"></a>创建一个新repository</h3><ul>
+<li>创建一个新repository,创建master分支</li>
+<li>开启github page选项<br>  Settings –&gt; GitHub Pages –&gt; Source –&gt; master branch –&gt; Save<br><img src="/blog/2018/03/03/create-hexo-blog/QQ截图20180303221901.png" alt="QQ截图20180303221901.png"><br><img src="/blog/2018/03/03/create-hexo-blog/QQ截图20180303222000.png" alt="QQ截图20180303222000.png">    <h3 id="安装hexo-deployer插件"><a href="#安装hexo-deployer插件" class="headerlink" title="安装hexo deployer插件"></a>安装hexo deployer插件</h3>cmd下运行(hexo blog folder)<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="修改站点配置文件-config-yml"><a href="#修改站点配置文件-config-yml" class="headerlink" title="修改站点配置文件_config.yml"></a>修改站点配置文件_config.yml</h3><p>修改站点名字(title)、描述信息(description)等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://yoursitedomain.com/</span><br><span class="line">root:</span><br></pre></td></tr></table></figure></p>
+<p>修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: http://your_github_username.github.io/your_repository_name</span><br><span class="line">root: /your_repository_name/</span><br></pre></td></tr></table></figure></p>
+<p><strong> 注：这段必须修改，否则部署后会找不到样式资源。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure></p>
+<p>修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git # use github</span><br><span class="line">  repository: git@github_blog:HTMLgtMK/blog.git # use ssh or HTTPS</span><br><span class="line">  branch: master # commit branch</span><br><span class="line">  message: update	# default commit message</span><br></pre></td></tr></table></figure></p>
+<h3 id="部署到github-1"><a href="#部署到github-1" class="headerlink" title="部署到github"></a>部署到github</h3><p>cmd下运行(hexo blog folder)<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d # d or deploy</span><br></pre></td></tr></table></figure></p>
+<h3 id="浏览器查看结果"><a href="#浏览器查看结果" class="headerlink" title="浏览器查看结果"></a>浏览器查看结果</h3><p>访问: <a href="http://htmlgtmk.github.io/blog">http://htmlgtmk.github.io/blog</a><br>http:your_github_username.github.io/your_repository_name</p>
+<h3 id="提交新Post"><a href="#提交新Post" class="headerlink" title="提交新Post"></a>提交新Post</h3><p>cmd下运行<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new 'new-post'</span><br><span class="line">hexo clean # clean hexo cache</span><br><span class="line">hexo g # generate static web page</span><br><span class="line">hexo d # deploy</span><br></pre></td></tr></table></figure></p>
+<p><strong> 建立个人Blog到这里就结束了  </strong></p>
+<hr>
+<p>整理下建站过程所用命令<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#------------install hexo----------</span><br><span class="line">node -v # 判断node.js是否安装成功</span><br><span class="line">npm -v </span><br><span class="line">npm install hexo-cli -g # 安装hexo</span><br><span class="line">#------------create local blog-----</span><br><span class="line">hexo init &lt;folder&gt; # create hexo blog project</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br><span class="line">hexo s # server , <span class="built_in">start</span> hexo server</span><br><span class="line">#------------upload image resource--</span><br><span class="line">npm install hexo-asset-image --save # 安装image上传插件</span><br><span class="line">#------------github deploy----------</span><br><span class="line">npm install hexo-deployer-git --save # github deploy插件</span><br><span class="line">hexo clean</span><br><span class="line">hexo g # generate static web page</span><br><span class="line">hexo d # deploy</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/" data-id="cjectaxaa00006cutorxbh1fz" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/03/04/git-ssh/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          GitHub ssh密钥问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/03/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-server/">git server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-ssh-github/">git ssh github</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/blog-hexo/" style="font-size: 10px;">blog,hexo</a> <a href="/blog/tags/git-server/" style="font-size: 10px;">git server</a> <a href="/blog/tags/git-ssh-github/" style="font-size: 10px;">git ssh github</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-server/">自己搭建git server</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-ssh/">GitHub ssh密钥问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/03/create-hexo-blog/">Github Page + Hexo 建立个人Blog</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/03/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 GT<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

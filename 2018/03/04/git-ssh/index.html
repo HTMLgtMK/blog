@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>GitHub ssh密钥问题 | GT Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这里是笔记迁移，我自己搭建git服务器的时间已经过去了半年了，所以没有图示了。环境：windows10, git bash Github 添加SSH密钥问题这里主要演示如何用ssh关联Github。 创建ssh公钥和密钥 创建ssh公钥和密钥 在 git bash  1ssh-keygen -t rsa -f /c/User/your_username/.ssh/id_rsa_ec  -C &quot;us">
+<meta name="keywords" content="git ssh github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub ssh密钥问题">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/03/04/git-ssh/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="这里是笔记迁移，我自己搭建git服务器的时间已经过去了半年了，所以没有图示了。环境：windows10, git bash Github 添加SSH密钥问题这里主要演示如何用ssh关联Github。 创建ssh公钥和密钥 创建ssh公钥和密钥 在 git bash  1ssh-keygen -t rsa -f /c/User/your_username/.ssh/id_rsa_ec  -C &quot;us">
+<meta property="og:updated_time" content="2018-03-04T12:20:08.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitHub ssh密钥问题">
+<meta name="twitter:description" content="这里是笔记迁移，我自己搭建git服务器的时间已经过去了半年了，所以没有图示了。环境：windows10, git bash Github 添加SSH密钥问题这里主要演示如何用ssh关联Github。 创建ssh公钥和密钥 创建ssh公钥和密钥 在 git bash  1ssh-keygen -t rsa -f /c/User/your_username/.ssh/id_rsa_ec  -C &quot;us">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="GT Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">GT Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://htmlgtmk.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git-ssh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/03/04/git-ssh/" class="article-date">
+  <time datetime="2018-03-04T03:28:57.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GitHub ssh密钥问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里是笔记迁移，我自己搭建git服务器的时间已经过去了半年了，所以没有图示了。<br>环境：windows10, git bash</p>
+<h2 id="Github-添加SSH密钥问题"><a href="#Github-添加SSH密钥问题" class="headerlink" title="Github 添加SSH密钥问题"></a>Github 添加SSH密钥问题</h2><p>这里主要演示如何用ssh关联Github。</p>
+<h3 id="创建ssh公钥和密钥"><a href="#创建ssh公钥和密钥" class="headerlink" title="创建ssh公钥和密钥"></a>创建ssh公钥和密钥</h3><ol>
+<li><p>创建ssh公钥和密钥<br> 在 git bash</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -f /c/User/your_username/.ssh/id_rsa_ec  -C <span class="string">"username"</span></span><br></pre></td></tr></table></figure>
+<p> 注:<br> -t  表示加密类型 rsa<br> -f  表示文件路径<br> -C  注释，，，登陆时使用的用户名？(后面没有用到)</p>
+<p> <strong>id_rsa_ec是私钥文件名</strong></p>
+ <a id="more"></a>
+</li>
+<li><p>添加到ssh-agent(ssh代理)</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent ssh-add ~/.ssh/id_rsa_ec</span><br></pre></td></tr></table></figure>
+<p> <strong>非默认id-rsa文件需要将ssh添加到ssh-agent</strong></p>
+</li>
+<li><p>在~/.ssh/下建立config文件，文件内容：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#user for myself github</span><br><span class="line">Host github_gt</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">#user for ecWeb_github</span><br><span class="line">Host github_ec</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_ec</span><br></pre></td></tr></table></figure>
+<p> <strong>注：可以只有1个，也可以有多个</strong><br> <strong>Host 表示别名，用于区分和确定当前 链接 的gitHub仓库</strong><br> <strong>IdentityFile 表示ssh私钥文件，会用它与之比对</strong></p>
+</li>
+</ol>
+<h3 id="ssh-方式-关联-github仓库"><a href="#ssh-方式-关联-github仓库" class="headerlink" title="ssh 方式 关联 github仓库"></a>ssh 方式 关联 github仓库</h3><ol>
+<li><p>将公钥添加到gitHub后台<br> 可以测试 ssh链接<br> eg:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github_ec</span><br></pre></td></tr></table></figure>
+<p> 显示结果为：Hi 276073970! You’ve successfully authenticated, but GitHub does not provide shell access.<br> 其中，276073970 是 github仓库所有者的用户名</p>
+</li>
+<li><p>初始化本地仓库</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关联本地仓库与远程仓库</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github_ec:276073970/ecWeb.git</span><br></pre></td></tr></table></figure>
+<p> <strong>其中的HOST就是用于git@HOST</strong><br> 注：<br> 关联本地仓库与远程仓库<br> 后面可以修改，在 ./.git/config文件<br> 修改:    url = git@github_ec:276073970/ecWeb.git</p>
+</li>
+<li><p>提交文件</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim newfile</span><br><span class="line">git add newfile</span><br><span class="line">git commit -m <span class="string">"message"</span> newfile</span><br><span class="line">git push -u origin master	<span class="comment">#初次</span></span><br><span class="line"><span class="comment">#git push 非第一次</span></span><br></pre></td></tr></table></figure>
+<p> <strong><br> 注:<br> 第一次push的时候可能需要先pull操作<br> git pull origin master<br> 指定remot分支 
+ </strong><br>SSH方式密钥问题到这里就结束了。</p>
+</li>
+</ol>
+<hr>
+<p>附：</p>
+<p>~/.ssh/config文件 </p>
+<pre><code>#user for myself github
+
+Host github_gt
+
+HostName github.com
+
+User git
+
+IdentityFile ~/.ssh/id_rsa
+
+#user for ecWeb_github
+
+Host github_ec
+
+HostName github.com
+
+User git
+
+IdentityFile ~/.ssh/id_rsa_ec
+
+#user for github_aaa
+
+Host github_aaa
+
+HostName github.com
+
+User git
+
+IdentityFile ~/.ssh/id_rsa_aaa
+</code></pre><p>./.git/config文件</p>
+<p>[core]</p>
+<pre><code>repositoryformatversion = 0
+
+filemode = false
+
+bare = false
+
+logallrefupdates = true
+
+symlinks = false
+
+ignorecase = true
+
+hideDotFiles = dotGitOnly
+</code></pre><p>[remote “origin”]</p>
+<pre><code>url = git@github_ec:276073970/ecWeb.git
+
+fetch = +refs/heads/*:refs/remotes/origin/*
+</code></pre><p>[branch “master”]</p>
+<pre><code>remote = origin
+
+merge = refs/heads/master
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/04/git-ssh/" data-id="cjectaxaa00036cutis079bj0" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git-ssh-github/">git ssh github</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/03/04/git-server/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          自己搭建git server
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/03/03/create-hexo-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Github Page + Hexo 建立个人Blog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-server/">git server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-ssh-github/">git ssh github</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/blog-hexo/" style="font-size: 10px;">blog,hexo</a> <a href="/blog/tags/git-server/" style="font-size: 10px;">git server</a> <a href="/blog/tags/git-ssh-github/" style="font-size: 10px;">git ssh github</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-server/">自己搭建git server</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-ssh/">GitHub ssh密钥问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/03/create-hexo-blog/">Github Page + Hexo 建立个人Blog</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/03/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 GT<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>自己搭建git server | GT Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在自己的云主机搭建git服务器环境：local: Windows10, git bashremote: centOS7 这里是笔记迁移，大约是在半年前搭建的git server,故没有图示。 一、服务器端创建git用户 安装git  12yum -y install git # centOS  apt-get install git #ubuntu  创建git用户并且赋予权限">
+<meta name="keywords" content="git server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己搭建git server">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/03/04/git-server/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="在自己的云主机搭建git服务器环境：local: Windows10, git bashremote: centOS7 这里是笔记迁移，大约是在半年前搭建的git server,故没有图示。 一、服务器端创建git用户 安装git  12yum -y install git # centOS  apt-get install git #ubuntu  创建git用户并且赋予权限">
+<meta property="og:updated_time" content="2018-03-04T13:08:33.623Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己搭建git server">
+<meta name="twitter:description" content="在自己的云主机搭建git服务器环境：local: Windows10, git bashremote: centOS7 这里是笔记迁移，大约是在半年前搭建的git server,故没有图示。 一、服务器端创建git用户 安装git  12yum -y install git # centOS  apt-get install git #ubuntu  创建git用户并且赋予权限">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="GT Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">GT Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://htmlgtmk.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/03/04/git-server/" class="article-date">
+  <time datetime="2018-03-04T12:20:44.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自己搭建git server
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在自己的云主机搭建git服务器"><a href="#在自己的云主机搭建git服务器" class="headerlink" title="在自己的云主机搭建git服务器"></a>在自己的云主机搭建git服务器</h2><p>环境：<br>local: Windows10, git bash<br>remote: centOS7</p>
+<p>这里是笔记迁移，大约是在半年前搭建的git server,故没有图示。</p>
+<h3 id="一、服务器端创建git用户"><a href="#一、服务器端创建git用户" class="headerlink" title="一、服务器端创建git用户"></a>一、服务器端创建git用户</h3><ol>
+<li><p>安装git</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install git <span class="comment"># centOS  </span></span><br><span class="line">apt-get install git <span class="comment">#ubuntu</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建git用户并且赋予权限</p>
+ <a id="more"></a>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adduser git</span><br></pre></td></tr></table></figure>
+<p> 会在/home目录下看到一个git用户目录</p>
+</li>
+<li><p>给git用户分配一个密码</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ passwd git 123456(你的密码)</span><br></pre></td></tr></table></figure>
+<p> 这个密码用在你后面提交代码的时候使用(然而并没有用到。。。)</p>
+</li>
+</ol>
+<h3 id="二、本机创建ssh-key"><a href="#二、本机创建ssh-key" class="headerlink" title="二、本机创建ssh key"></a>二、本机创建ssh key</h3><p>git-bash中创建一个新的 ssh key<br>参考<a href="https://htmlgtmk.github.io/blog/2018/03/04/git-ssh/">GitHub ssh密钥问题</a></p>
+<h3 id="三、服务器上将ssh-public-key-添加到服务器"><a href="#三、服务器上将ssh-public-key-添加到服务器" class="headerlink" title="三、服务器上将ssh public key 添加到服务器"></a>三、服务器上将ssh public key 添加到服务器</h3><ol>
+<li>cd /home/git/<br> git表示用户git</li>
+<li>mkdir .ssh<br> 没有该目录就创建</li>
+<li><p>进入<code>.ssh</code>目录</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> .ssh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建文件<code>authorized_keys</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim authorized_keys</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>将public key串填入</strong><br> 如果有多个，则换行追加<br> 保存退出</p>
+</li>
+<li>新建文件夹testgit测试<br> 在其它目录，比如网站根目录,我的是 /usr/share/nginx/html/,新建文件夹testgit测试 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/share/nginx/html/</span><br><span class="line">$ mkdir testgit</span><br><span class="line">$ <span class="built_in">cd</span> testgit</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="五、服务器端创建仓库-repository-测试"><a href="#五、服务器端创建仓库-repository-测试" class="headerlink" title="五、服务器端创建仓库(repository)测试"></a>五、服务器端创建仓库(repository)测试</h3><ol>
+<li><p>新建git仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare testgit.git</span><br></pre></td></tr></table></figure>
+<p>新建git仓库，一定要是空仓库，–bare参数不能省略</p>
+</li>
+<li><p>修改testgit目录权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$ chmod -R 777 testgit</span><br></pre></td></tr></table></figure>
+<p>修改testgit目录权限<br>也可以使用chown…自由发挥吧<br>如果不修改，那么push的时候会有写入错误</p>
+</li>
+</ol>
+<h3 id="六、本机上使用仓库"><a href="#六、本机上使用仓库" class="headerlink" title="六、本机上使用仓库"></a>六、本机上使用仓库</h3><ol>
+<li><p>创建空仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>在一个空目录里面创建一个空仓库</p>
+</li>
+<li><p>添加远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin \</span><br><span class="line">git@211.159.184.137:/usr/share/nginx/html/testgit/testgit.git</span><br></pre></td></tr></table></figure>
+<p><strong>其中211.159.184.137是云服务器的ip，可以在C:\Users\your_username.ssh\config里面配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#user for my cloud server</span><br><span class="line">Host git_cloud</span><br><span class="line">HostName 211.159.184.137</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_cloude_server</span><br></pre></td></tr></table></figure>
+<p>这时可以用git_cloud替代211.159.184.137</p>
+</li>
+<li><p>提交文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">"message"</span> *</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>提交文件,不出意外能成功</p>
+</li>
+</ol>
+<h3 id="七、使服务器内容自动更新"><a href="#七、使服务器内容自动更新" class="headerlink" title="七、使服务器内容自动更新"></a>七、使服务器内容自动更新</h3><ol>
+<li><p>进入创建的仓库目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/nginx/html/testgit/</span><br></pre></td></tr></table></figure>
+<p>进入创建的仓库目录，这时用ls看不到任何效果，<br>但是确实已经提交了，要解决这个问题需要用到自动同步功能。</p>
+</li>
+<li><p>自动同步功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> testgit.git/hooks</span><br></pre></td></tr></table></figure>
+<p>自动同步功能用到的是 git 的钩子功能<br>这里我们创建post-receive文件</p>
+</li>
+<li><p>新建post-receive文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+<p>新建<code>post-receive</code>文件,填入:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/usr/share/nginx/html/testgit checkout -f</span><br></pre></td></tr></table></figure>
+<p>其中/usr/share/nginx/html/testgit 是自定义的，我放在网站里面可以直接访问</p>
+</li>
+<li><p>修改文件权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x post-receive</span><br></pre></td></tr></table></figure>
+<p>修改文件权限，该文件应该具有可执行权限</p>
+</li>
+<li>再次push就可以在服务器/usr/share/nginx/html/testgit上看到提交的文件了</li>
+</ol>
+<p>参考资料:</p>
+<ol>
+<li><a href="http://www.tangshuang.net/1693.html" target="_blank" rel="noopener">http://www.tangshuang.net/1693.html</a></li>
+<li><a href="http://blog.csdn.net/baidu_30000217/article/details/51327289" target="_blank" rel="noopener">http://blog.csdn.net/baidu_30000217/article/details/51327289</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/04/git-server/" data-id="cjectaxap00046cuto9fpvx58" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git-server/">git server</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/03/04/git-ssh/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">GitHub ssh密钥问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-server/">git server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-ssh-github/">git ssh github</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/blog-hexo/" style="font-size: 10px;">blog,hexo</a> <a href="/blog/tags/git-server/" style="font-size: 10px;">git server</a> <a href="/blog/tags/git-ssh-github/" style="font-size: 10px;">git ssh github</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-server/">自己搭建git server</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-ssh/">GitHub ssh密钥问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/03/create-hexo-blog/">Github Page + Hexo 建立个人Blog</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/03/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 GT<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
