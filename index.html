@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://htmlgtmk.github.io/blog"></form>
@@ -60,6 +60,104 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-git-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/03/04/git-server/" class="article-date">
+  <time datetime="2018-03-04T12:20:44.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/03/04/git-server/">自己搭建git server</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在自己的云主机搭建git服务器"><a href="#在自己的云主机搭建git服务器" class="headerlink" title="在自己的云主机搭建git服务器"></a>在自己的云主机搭建git服务器</h2><p>环境：<br>local: Windows10, git bash<br>remote: centOS7</p>
+<p>这里是笔记迁移，大约是在半年前搭建的git server,故没有图示。</p>
+<h3 id="一、服务器端创建git用户"><a href="#一、服务器端创建git用户" class="headerlink" title="一、服务器端创建git用户"></a>一、服务器端创建git用户</h3><ol>
+<li><p>安装git</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install git <span class="comment"># centOS  </span></span><br><span class="line">apt-get install git <span class="comment">#ubuntu</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建git用户并且赋予权限</p></li></ol>
+        
+          <p class="article-more-link">
+            <a href="/blog/2018/03/04/git-server/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/04/git-server/" data-id="cjectaxap00046cuto9fpvx58" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git-server/">git server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git-ssh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/03/04/git-ssh/" class="article-date">
+  <time datetime="2018-03-04T03:28:57.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/03/04/git-ssh/">GitHub ssh密钥问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里是笔记迁移，我自己搭建git服务器的时间已经过去了半年了，所以没有图示了。<br>环境：windows10, git bash</p>
+<h2 id="Github-添加SSH密钥问题"><a href="#Github-添加SSH密钥问题" class="headerlink" title="Github 添加SSH密钥问题"></a>Github 添加SSH密钥问题</h2><p>这里主要演示如何用ssh关联Github。</p>
+<h3 id="创建ssh公钥和密钥"><a href="#创建ssh公钥和密钥" class="headerlink" title="创建ssh公钥和密钥"></a>创建ssh公钥和密钥</h3><ol>
+<li><p>创建ssh公钥和密钥<br> 在 git bash</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -f /c/User/your_username/.ssh/id_rsa_ec  -C <span class="string">"username"</span></span><br></pre></td></tr></table></figure>
+<p> 注:<br> -t  表示加密类型 rsa<br> -f  表示文件路径<br> -C  注释，，，登陆时使用的用户名？(后面没有用到)</p>
+<p> <strong>id_rsa_ec是私钥文件名</strong></p></li></ol>
+        
+          <p class="article-more-link">
+            <a href="/blog/2018/03/04/git-ssh/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/04/git-ssh/" data-id="cjectaxaa00036cutis079bj0" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/git-ssh-github/">git ssh github</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-create-hexo-blog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -97,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/" data-id="cjebht82f0000ycutsq0ckw0z" class="article-share-link">Share</a>
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/03/create-hexo-blog/" data-id="cjectaxaa00006cutorxbh1fz" class="article-share-link">Teilen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li></ul>
@@ -144,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://htmlgtmk.github.io/blog/2018/03/03/hello-world/" data-id="cjebht8310003ycuth96h61ws" class="article-share-link">Share</a>
+      <a data-url="http://htmlgtmk.github.io/blog/2018/03/03/hello-world/" data-id="cjectaxaa00016cutg0kb99lc" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -167,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/blog-hexo/">blog,hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-server/">git server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/git-ssh-github/">git ssh github</a></li></ul>
     </div>
   </div>
 
@@ -177,14 +275,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/blog/tags/blog-hexo/" style="font-size: 10px;">blog,hexo</a>
+      <a href="/blog/tags/blog-hexo/" style="font-size: 10px;">blog,hexo</a> <a href="/blog/tags/git-server/" style="font-size: 10px;">git server</a> <a href="/blog/tags/git-ssh-github/" style="font-size: 10px;">git ssh github</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">March 2018</a></li></ul>
     </div>
@@ -194,9 +292,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-server/">自己搭建git server</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/03/04/git-ssh/">GitHub ssh密钥问题</a>
+          </li>
         
           <li>
             <a href="/blog/2018/03/03/create-hexo-blog/">Github Page + Hexo 建立个人Blog</a>
