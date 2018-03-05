@@ -15,6 +15,7 @@ tags: C++ basic
 	`#ifndef` 和 `#pragma once`的异同
 	相同：
 	都是为了避免同一个文件被`include`多次。
+	<!-- more -->
 		```C++
 		#ifndef __HEADER_H__
 		#define __HEADER_H__
