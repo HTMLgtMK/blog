@@ -16,6 +16,7 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {}
 };
 ```
+<!-- more -->
 
 1.思路1
 	直接使用两重循环，从0到nums.size()-1一个个判断；
