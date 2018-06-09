@@ -78,6 +78,6 @@ theme: hexo-theme-next-5.1.4
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github_blog:HTMLgtMK/blog.git
+  repository: git@github.com:HTMLgtMK/blog.git
   branch: master
   message: update
