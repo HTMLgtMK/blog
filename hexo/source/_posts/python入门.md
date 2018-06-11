@@ -374,3 +374,405 @@ print 'END'
 3. `break`退出循环
 4. `continue`继续循环
 5. 多重循环
+
+6. for循环n次
+	python中的循环条件和其它语言不一样(真tm难用。。。)，那个循环指定次数怎么搞？
+	使用`range(start, end[, step])`函数，start默认为0， 最后一个元素不包括end，step是步长。
+	```python
+	for i in range(100) :
+		print(i)
+	```
+
+### python中的字典 dict
+dict的作用是建立一组key和一组value的映射关系，dict的key是不能重复的。
+1. 声明字典 `dict`
+	```python
+	d = {
+		'Adam' : 95,
+		'Lisa' : 85,
+		'Bart' : 59
+	}
+	```
+	花括号`{}`表示这是一个dict, 然后按照**key : value**, 写出来即可。
+	最后一个key: value的逗号可以省略。
+	
+2. `len()` 函数可以计算任意集合的大小
+	```python
+	print(len(d));
+	```
+	
+3. dict的访问
+	1. 使用`dict[key]`的形式访问对应的value。	
+	与list访问有区别，list必须使用索引返回对应的元素，而dict使用key。
+	如果key不存在，会直接报错: 
+	>> KeyError : 'key'
+	
+	
+	2. 要避免KeyError的发生，有两种方法:
+	 1. 先判断key是否存在，使用`in`操作符
+	 	```python
+	 	if 'Paul' in d :
+	 		print(d['paul'])
+	 		
+	 	```
+	 	
+	 2. 使用dict本省提供的`get()`方法，当key不存在时，返回`None`
+	 	```python
+	 	print(d.get('Bart'))
+	 	print(d.get('Paul'))
+	 	```
+	 	
+3. python中dict的特点
+	1. 查找速度快，无论dict中有10个元素还是10万个元素，查找速度都一样。
+	而list的查找速度随着元素的增加而逐渐下降。
+	但是dict占用内存较大，还会浪费很多内容。list则相反。
+	
+	2. dict中存储的key-value是没有顺序的。打印的顺序不一定时创建时的顺序。
+	3. dict中作为key的元素必须不可变。python中基本类型如字符串、整数、浮点数、tuple都是不可变的，
+	都可以作为key。但是list是可变的，就不能作为key。不可变的限制仅作用于key，value是否可变无所谓。
+	
+3. python 更新dict
+	使用赋值语句添加/更新dict。
+	1. key-value不存在:
+	```python
+	d['Paul'] = 72
+	```
+	将新同学Paul的成绩添加进去。
+	
+	2. key已经存在:
+	```python
+	d['Paul'] = 60
+	```
+	 如果key已经存在，则赋值语句会用新的value替换掉原来的value.
+	 
+4. python 遍历dict
+	dict也是一个集合，因此可以通过for循环实现遍历dict的key。
+	```python
+	for key in d :
+		print(key, d[key])
+	```
+	
+### python中的set
+`set`持有一系列元素，set中的元素没有重复，而且是无序的。
+1. 声明`set`
+	调用`set()`并传入一个list，list的元素将作为set的元素。
+	```python
+	s = set(['A', 'B', 'C']);
+	```
+	如果传入的list中含有相同的元素，set会算作一个元素。
+	打印set的结果可能跟传入的list中元素顺序不同，因为set中元素是无序的。
+	
+2. python 访问set
+	由于set时无序集合，因此无法通过索引来访问。访问set中的某个元素实际上判断一个元素是否在set中。
+	可以用`in` 操作符判断。
+	```python
+	s = set(['Adam', 'Lisa', 'Bart'])
+	'Bart' in s # 返回True
+	'Bill' in s # 返回False
+	```
+
+3. set的特点
+	set的内部结构和dict很像，唯一区别就是不存储value，因此，判断一个元素是否在set中速度很快。
+	set存储的元素和dict的key类似，必须时不变的对象。
+	set存储的元素也是没有顺序的。
+	
+4. python 遍历set
+	由于set也是一个集合，所以，遍历set和遍历list类似，都可以直接使用for循环实现。
+	```python
+	for name in s :
+		print(name)
+	```
+	
+5. python 更新set
+	由于set存储的是一组不重复的无序元素，因此，更新set主要做两件事。
+	一是把新的元素添加到set中，二是把已有的元素从set中删除。
+	1. 使用`add()`方法添加元素
+	```python
+	s = set([1,2,3,4])
+	s.add(5)
+	print(s)
+	```
+	如果添加的元素已经存在于set中，add()不会报错，但是不会加进去了。
+	
+	2. 使用`update(list)`方法添加批量元素
+	```python
+	s.update([5,6,7])
+	```
+
+	2. 使用`remove()`方法删除set中的元素
+	```python
+	s = set([1,2,3,4])
+	s.remove(4)
+	print(s)
+	```
+	如果删除的元素不存在set中，remove()方法会报错: KeyError
+	
+### python中的函数
+
+1. 内置函数
+	1. 交互式命令行通过`help(abs)`查看`abs`函数的帮助信息
+	2. 比较函数`cmp(x,y)`, 如果x < y,返回-1，如果x = y, 返回0， 如果x > y, 返回1
+	3. * `int(x [,base])`函数将其它数据类型转化成整数。
+	   * `long[x [,base]]`函数将x转换成长整数
+	   * `float(x)`函数将x转换成一个浮点数
+	   * `str(x)`将对象x转换成字符串
+       * `repr(x)`将对象x转换成表达式字符串
+	   * `tuple(x)`将序列x转换成一个元组
+	   * `list(x)`将序列x转换成一个列表
+	   * `chr(x)`将一个整数转换成一个字符
+	   * `unichr(x)`将一个整数转换成Unicode字符
+	   * `hex(x)`将一个整数转换成一个十六进制字符串
+	
+	```python
+	int('123') # str -> int
+	int(123.45) # float -> int
+	int('123.45') # 报错： ValueError: invalid literal for int() with base 10: '123.45'
+	```
+	4. `str()`函数将其他类型转换成字符串。
+	```python
+	str(123.45)
+	```
+	
+2. 定义函数
+	在python中，使用`def`定义函数，格式如下：
+		def 函数名(参数列表) :
+			''' 函数说明，可无 '''
+			# TODO 函数体
+			return # return None 可以简写为 return.
+	eg:
+	```python
+	def square_of_sum(L) :
+		'''计算一个list中每个元素平方的和'''
+		sum = 0
+		for vo in L :
+			sum += vo * vo
+		return sum
+	print(square_of_sum([1,2,3,4,5]))
+	```
+	
+3. python函数返回多值
+	python的函数可以返回多个值，(go 语言也是可以的，所以这两个语言都很怪。。。)。
+	python返回值本质上是一个tuple。但是，在语法上，返回一个tuple可以省略括号，
+	而多个变量可以同时接收一个tuple，按位置赋给对应的值。
+	```python
+	import math
+	def move(x, y, step, angle) :
+		nx = x + step * math.cos(angle)
+		ny = y + step * math.sin(angle)
+		return nx, ny
+	# 接收返回值方式1, 直接将值赋给x, y
+	x, y = move(100, 100, 60, math.pi/6)
+	print(x, y)
+	# 接收返回值方式2, 使用一个变量接收返回值
+	r = move(100, 100, 60,math.pi/60)
+	print(r)
+	```
+	
+4. python 的递归函数
+	和其它语言相同
+
+5. python中函数的默认参数
+	由于函数的参数按从左到右的顺序匹配，默认参数只能定义在必须参数的后面。
+	`range()`函数的step参数就是默认参数为1。
+	```python
+	def power(x, n=2) :
+		'''计算次数，默认计算平方'''
+		res = 1
+		for i in range(0, n) :
+			res *= x
+			
+		return res
+	
+	power(2)
+	power(2, 3)
+	``
+
+6. python定义可变参数
+	如果想让一个函数接受任意个参数，可以定义一个可变参数。
+	```python
+	def fn(*args) :
+		print(args)
+	```
+	可变参数的名字前面有个`*`号，可以传入0个，1个或多个参数给可变参数。
+	python的解释器把传入的一组参数组装成一个tuple传递给可变参数，
+	因此，在函数内部把变量args看成一个tuple就可以了。
+	```python
+	def average(*args) :
+		l = len(args)
+		if l == 0 :
+			return 0
+		res = 0
+		for vo in args :
+			res += vo
+		return float(res)/l
+		
+	print(average(1,2,3,4))
+	```
+	
+### 对list进行切片
+python提供了切片符`:`，可以取list中指定范围的元素。
+1. 取前n个元素
+```python
+l = ['Adam', 'Lisa', 'Bart', 'Paul']
+slice = l[0:n] # 表示取从第0个元素，不包括第n个元素，共n个元素
+slice = l[:n] # 如果第一个索引是0，可以省略
+```
+	
+2. 取中间的元素
+```python
+l = ['Adam', 'Lisa', 'Bart', 'Paul']
+slice = l[n:m] # 取n-(m-1)之间的元素
+slice = l[n:] # 取从n到末尾的全部元素
+```
+
+3. 取出有步长的切片
+切片的第三个位置可以表示步长，表示每个step个元素取出一个元素。
+```python
+l = ['Adam', 'Lisa', 'Bart', 'Paul']
+slice = l[::2] # 每两个元素取出一个，即隔1个元素取出一个元素
+```
+	
+4. 倒序切片
+```python
+>>> L = ['Adam', 'Lisa', 'Bart', 'Paul']
+>>> L[-2 : ]
+['Bart', 'Paul']
+>>> L[-3:-1]
+['Lisa', 'Bart','Paul']
+```	
+
+5. 对字符串进行切片
+字符串'xxx'和Unicode字符串u'xxx'也可以看成是种list，每个元素就是一个字符。
+因此，字符串可以用切片操作，切片操作结果仍然是字符串。
+```python
+>>> 'ABCDEFG'[:3]
+'ABC'
+>>> 'ABCDEFG'[-3:]
+'EFG'
+>>> 'ABCDEFG'[::2]
+'ACEG'
+```
+其他语言中都有针对字符串的截取函数，而python中没有，对字符串的截取操作就是字符串切片。
+
+### python中的迭代
+1. 在Python中，如果给定一个`list`或`tuple`，我们可以通过`for循环`来遍历这个list或tuple，
+	这种遍历我们成为`迭代（Iteration）`。
+
+	在python中，迭代是通过`for ... in`完成的，而很多语言比如C和Java，
+	是通过下标或者迭代器(`Iterator`)完成迭代。
+
+	python中的for循环不仅可以用在list或tuple上，还可以作用在其他任何可迭代对象上。
+	>> 注意: 集合是指包含一组元素的数据结构，我们已经介绍的包括：
+	>> 1. 有序集合：list，tuple，str和unicode；
+	>> 2. 无序集合：set
+	>> 3. 无序集合并且具有 key-value 对：dict
+
+2. 索引迭代
+	在Python中，迭代永远是取出元素本身，而非元素的索引。
+	对于有序集合，元素确实是有索引的。有的时候有需要在for循环中拿到索引的需求，
+	方法是使用`enumerate()`函数:
+	```python
+	>>> L = ['Adam', 'Lisa', 'Bart', 'Paul']
+	>>> for index, name in enumerate(L) :
+	...		print(index, '-', name)
+	...		
+	0 - Adam
+	1 - Lisa
+	2 - Bart
+	3 - Paul
+	```
+	实际上enumerate()函数返回的是一个tuple。
+
+	python内置函数`zip()`可以将两个list变成一个list：
+	>> zip(seq1 [, seq2 [...]]) -> [(seq1[0], seq2[0] ...), (...)]
+	
+3. 迭代dict的value
+	dict对象本身就是一个可迭代对象，使用for循环可以直接迭代dict，可以每次拿到一个key。
+	
+	如果只希望迭代dict的value值，可以使用dict对象的`values()`方法，
+	可以将dict转换成一个包含所有value的list.
+	```python
+	d = {'Adam': 95, 'Lisa': 85, 'Bart': 72, 'Paul': 59}
+	print(d.values())
+	# [ 85, 95, 72, 59]
+	for vo in d.values() :
+		print(v)
+	```
+	dict处理values()方法外，还有一个`itervalues()`方法，用itervalues()方法代替values()方法效果完全一样。
+	区别：
+	1. values() 方法实际上把一个 dict 转换成了包含 value 的list。
+
+	2. 但是 itervalues() 方法不会转换，它会在迭代过程中依次从 dict 中取出 value，
+	所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
+
+	3. 打印 itervalues() 发现它返回一个 <dictionary-valueiterator> 对象，这说明在Python中，
+	for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，
+	任何可迭代对象都可以作用于for循环，而内部如何迭代我们通常并不用关心。
+	
+4. 迭代dict的key和value
+	使用dict对象的`items()`方法可以同时迭代dict的`key`和`value`值：
+	```python
+	d = {'Adam': 95, 'Lisa': 85, 'Bart': 72, 'Paul': 59}
+	for key , value in d.items() :
+		print(key, ':', value)
+	```	
+	items()方法返回的是一个tuple。dict对象也有`iteritems()`方法。
+	
+	
+### 生成列表
+
+1. 列表生成式 
+	```python
+	>>> [x*x for x in range(1, 11)]
+	[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+	```
+	前面的内容是对每个`v`都需要做的事（可以是一个函数），后面是for循环，有点像JS的eac函数。
+	
+2. 复杂表达式
+	```python
+	d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 }
+	tds = ['<tr><td>%s</td><td>%s</td></tr>' %(name, score) for name, score in d.iteritems() ] 
+	print('<tabele>')
+	print('<tr><th>Name</th><th>Score</th></tr>')
+	print('\n', join(tds))) # join()函数可以将一个list拼接成一个一个字符串
+	print('</table>')
+	```
+	`join()`函数可以将一个list拼接成一个一个字符串， 亲测python3可能没有这个方法。
+	
+3. 条件过滤
+	可以对列表生成式的for循环后面加上`if判断`，过滤for循环。
+	```python
+	>>> [x*x for x in rangge(1,11) if x%2 == 0]
+	[4, 16, 36, 64, 100]
+	```
+	有了 if 条件，只有 if 判断为 True 的时候，才把循环的当前元素添加到列表中。
+	
+	eg:请编写一个函数，它接受一个 list，然后把list中的所有字符串变成大写后返回，非字符串元素将被忽略。
+	1. isinstance(x, str) 可以判断变量 x 是否是字符串；
+	2. 字符串的 upper() 方法可以返回大写的字母
+	```python
+	def toUppers(L):
+    	return [vo.upper() for vo in L if isinstance(vo, str)]
+    
+	print toUppers(['Hello', 'world', 101])
+	```
+	
+4. 多层表达式
+	for循环可以嵌套，因此，在列表生成式中，也可以用多层 for 循环来生成列表。
+	
+	eg: 对于字符串 'ABC' 和 '123'，可以使用两层循环，生成全排列：
+	```python
+	>>> [m+n for m in 'ABC' for n in '123' ]
+	['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+	```
+	翻译成循环代码：
+	```python
+	L = []
+	for m in 'ABC' :
+		for n in '123' :
+			L.append(m+n)
+	```
+	
+-----------------------------------------------------------
+
+完结撒花!!!
