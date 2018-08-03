@@ -382,6 +382,23 @@ print 'END'
 	for i in range(100) :
 		print(i)
 	```
+	
+7. python中的pass语句
+	Python `pass` 是空语句，是为了保持程序结构的完整性。
+	pass不做任何事情，一般用作占位语句。
+	eg:
+	```python
+	#!/usr/bin/python3
+	# -*- coding:UTF-81 -*-
+	for letter in 'Python' :
+		if letter == 'h' :
+			pass
+			print '这是pass语句'
+		print letter
+		pass
+	print 'Good bye!'
+	```
+	输出结果:![QQ截图20180709110353.png](QQ截图20180709110353.png)
 
 ### python中的字典 dict
 dict的作用是建立一组key和一组value的映射关系，dict的key是不能重复的。
@@ -612,47 +629,47 @@ dict的作用是建立一组key和一组value的映射关系，dict的key是不�
 ### 对list进行切片
 python提供了切片符`:`，可以取list中指定范围的元素。
 1. 取前n个元素
-```python
-l = ['Adam', 'Lisa', 'Bart', 'Paul']
-slice = l[0:n] # 表示取从第0个元素，不包括第n个元素，共n个元素
-slice = l[:n] # 如果第一个索引是0，可以省略
-```
+	```python
+	l = ['Adam', 'Lisa', 'Bart', 'Paul']
+	slice = l[0:n] # 表示取从第0个元素，不包括第n个元素，共n个元素
+	slice = l[:n] # 如果第一个索引是0，可以省略
+	```
 	
 2. 取中间的元素
-```python
-l = ['Adam', 'Lisa', 'Bart', 'Paul']
-slice = l[n:m] # 取n-(m-1)之间的元素
-slice = l[n:] # 取从n到末尾的全部元素
-```
+	```python
+	l = ['Adam', 'Lisa', 'Bart', 'Paul']
+	slice = l[n:m] # 取n-(m-1)之间的元素
+	slice = l[n:] # 取从n到末尾的全部元素
+	```
 
 3. 取出有步长的切片
-切片的第三个位置可以表示步长，表示每个step个元素取出一个元素。
-```python
-l = ['Adam', 'Lisa', 'Bart', 'Paul']
-slice = l[::2] # 每两个元素取出一个，即隔1个元素取出一个元素
-```
+	切片的第三个位置可以表示步长，表示每个step个元素取出一个元素。
+	```python
+	l = ['Adam', 'Lisa', 'Bart', 'Paul']
+	slice = l[::2] # 每两个元素取出一个，即隔1个元素取出一个元素
+	```
 	
 4. 倒序切片
-```python
->>> L = ['Adam', 'Lisa', 'Bart', 'Paul']
->>> L[-2 : ]
-['Bart', 'Paul']
->>> L[-3:-1]
-['Lisa', 'Bart','Paul']
-```	
+	```python
+	>>> L = ['Adam', 'Lisa', 'Bart', 'Paul']
+	>>> L[-2 : ]
+	['Bart', 'Paul']
+	>>> L[-3:-1]
+	['Lisa', 'Bart','Paul']
+	```	
 
 5. 对字符串进行切片
-字符串'xxx'和Unicode字符串u'xxx'也可以看成是种list，每个元素就是一个字符。
-因此，字符串可以用切片操作，切片操作结果仍然是字符串。
-```python
->>> 'ABCDEFG'[:3]
-'ABC'
->>> 'ABCDEFG'[-3:]
-'EFG'
->>> 'ABCDEFG'[::2]
-'ACEG'
-```
-其他语言中都有针对字符串的截取函数，而python中没有，对字符串的截取操作就是字符串切片。
+	字符串'xxx'和Unicode字符串u'xxx'也可以看成是种list，每个元素就是一个字符。
+	因此，字符串可以用切片操作，切片操作结果仍然是字符串。
+	```python
+	>>> 'ABCDEFG'[:3]
+	'ABC'
+	>>> 'ABCDEFG'[-3:]
+	'EFG'
+	>>> 'ABCDEFG'[::2]
+	'ACEG'
+	```
+	其他语言中都有针对字符串的截取函数，而python中没有，对字符串的截取操作就是字符串切片。
 
 ### python中的迭代
 1. 在Python中，如果给定一个`list`或`tuple`，我们可以通过`for循环`来遍历这个list或tuple，
@@ -773,6 +790,528 @@ slice = l[::2] # 每两个元素取出一个，即隔1个元素取出一个元�
 			L.append(m+n)
 	```
 	
+### Python 日期和时间
+Python提供了一个`time`和`calendar`模块可以用于格式化日期和时间。
+时间间隔是以`秒`为单位的`浮点小数`。
+每个时间戳都以自从1970年1月1日午夜(历元)经历了多长时间来表示。
+
+1. 用`time`模块获取时间戳
+	```python
+	import time # 引入time模块
+	ticks = time.time()
+	print("当前时间戳为：", ticks)
+	```
+	![QQ截图20180709111444.png](QQ截图20180709111444.png)
+	时间戳单位最适合用于做日期运算，但是1970年之前的日期就无法表示了。
+	太遥远的日期也无法表示，UNIX和Windows只支持到2038年。
+	
+2. 时间元组
+	很多Python函数用一个元组装起来的9组数组来处理时间：
+	|------|-------|--------|------------|
+	| 序号 | 字段  | 属性   |      值    |
+	|------|-------|--------|------------|
+	|  0   |4位数年|tm_year |	2008     |
+	|  1   |月     |tm_mon  |   1到12    |
+	|  2   |日     |tm_mday |   1到31    |
+	|  3   |小时   |tm_hour |   0到23    |
+	|  4   |分钟   |tm_min  |   0到59    |
+	|  5   |秒     |tm_sec  |   0到61(61闰秒)|
+	|  6   |周内日 |tm_wday |   0到6(0是周一) |
+	|  7   |年内日 |tm_yday |   1到366   |
+	|  8   |夏令时 |tm_isdst|   -1,0,1,-1是决定是否为夏令时的旗帜|
+	|------|-------|--------|------------|
+	以上为`struct_time`元组。
+	
+3. 获取当前时间
+	从返回浮点的时间戳方式向时间元组转换，使用`localtime`函数:
+	```python
+	import time
+	localtime = time.localtime(time.time())
+	print localtime
+	```
+	![QQ截图20180709112926.png](QQ截图20180709112926.png)
+	
+4. 获取格式化时间
+	获取最简单的可读取的时间模式的函数是`asctime()`
+	```python
+	import time
+	localtime = time.asctime(time.localtime(time.time()))
+	print(localtime)
+	```
+	![QQ截图20180709115735.png](QQ截图20180709115735.png)
+
+5. 格式化日期
+	可以使用time模块的`strftime`方法来格式化日期：
+	time.strftime(format[, t])
+	```python
+	import time
+	
+	#格式化为2018-07-09 12:00:00形式
+	print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+	#格式化成Sat Mar 28 22:24:24 2016形式
+	print(time.strftime("%a %b %d %H:%M:%S %Y", time.localtime()))
+	# 将格式字符串转换为时间戳
+	a = "Mon Jul 09 12:05:08 2018"
+	print(time.mktime(time.strptime(a, "%a %b %d %H:%M:%S %Y")))
+	```
+	![QQ截图20180709120618.png](QQ截图20180709120618.png)
+	>> python中时间日期格式化符号：
+	%y 两位数的年份表示（00-99）
+	%Y 四位数的年份表示（000-9999）
+	%m 月份（01-12）
+	%d 月内中的一天（0-31）
+	%H 24小时制小时数（0-23）
+	%I 12小时制小时数（01-12）
+	%M 分钟数（00=59）
+	%S 秒（00-59）
+	%a 本地简化星期名称
+	%A 本地完整星期名称
+	%b 本地简化的月份名称
+	%B 本地完整的月份名称
+	%c 本地相应的日期表示和时间表示
+	%j 年内的一天（001-366）
+	%p 本地A.M.或P.M.的等价符
+	%U 一年中的星期数（00-53）星期天为星期的开始
+	%w 星期（0-6），星期天为星期的开始
+	%W 一年中的星期数（00-53）星期一为星期的开始
+	%x 本地相应的日期表示
+	%X 本地相应的时间表示
+	%Z 当前时区的名称
+	%% %号本身
+	
+### Python 模块
+Python `模块(Module)`，是一个 Python 文件，以 `.py` 结尾，包含了 Python 对象定义和Python语句。
+模块让你能够有逻辑地组织你的 Python 代码段。
+把相关的代码分配到一个模块里能让你的代码更好用，更易懂。
+模块能定义函数，类和变量，模块里也能包含可执行的代码。
+eg:
+```python
+# support.py模块
+def print_func(par) :
+	print("Hello:", par)
+	return
+```
+
+1. import语句
+	1. 模块的引入
+	模块定义好后，我们可以使用 `import` 语句来引入模块，语法如下：
+	``import module1[, module2,...,moduleN]``
+	比如要引用模块 math，就可以在文件最开始的地方用 import math 来引入。在调用 math 模块中的函数时，必须这样引用：
+	``模块名.函数名``
+	当解释器遇到 import 语句，如果模块在当前的搜索路径就会被导入。
+	搜索路径是一个解释器会先进行搜索的所有目录的列表。如想要导入模块 support.py，需要把命令放在脚本的顶端：
+	```python
+	# test.py文件代码
+	#!/usr/bin/python3
+	# -*- coding:UTF-8 -*-
+	
+	#导入模块
+	import support
+	
+	#使用模块内的函数
+	support.print_func(" GT")
+	```
+	**一个模块只会被导入一次，不管你执行了多少次import。这样可以防止导入模块被一遍又一遍地执行。**
+2. from...import语句
+	Python 的`from`语句让你从模块中导入一个指定的部分到当前命名空间中。语法如下：
+	``from modname import name1[, name2, ..., nameN]``
+	例如，要导入模块 fib 的 fibonacci 函数，使用如下语句：
+	```python
+	from fib import fibonacci
+	```
+	这个声明不会把整个 fib 模块导入到当前的命名空间中，它只会将 fib 里的 fibonacci 单个引入到执行这个声明的模块的全局符号表。
+	
+3. from...import *语句
+	把一个模块的所有内容全都导入到当前的命名空间也是可行的，只需使用如下声明： 
+	``from modname import *``
+	这提供了一个简单的方法来导入一个模块中的所有项目。然而这种声明不该被过多地使用。 
+	例如我们想一次性引入 math 模块中所有的东西，语句如下：
+	```python
+	from math import *
+	```
+	
+4. 搜索路径
+	当你导入一个模块，Python 解析器对模块位置的搜索顺序是：
+	1. 当前目录
+	2. 如果不在当前目录，Python 则搜索在 shell 变量 PYTHONPATH 下的每个目录。
+	3. 如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。
+	模块搜索路径存储在 system 模块的 sys.path 变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录。
+
+5. 命名空间和作用域
+	变量是拥有匹配对象的名字（标识符）。命名空间是一个包含了变量名称们（键）和它们各自相应的对象们（值）的字典。
+	一个 Python 表达式可以访问局部命名空间和全局命名空间里的变量。如果一个局部变量和一个全局变量重名，则局部变量会覆盖全局变量。
+	每个函数都有自己的命名空间。类的方法的作用域规则和通常函数的一样。
+	Python 会智能地猜测一个变量是局部的还是全局的，它假设任何在函数内赋值的变量都是局部的。
+	因此，如果要给函数内的全局变量赋值，必须使用 global 语句。
+	global VarName 的表达式会告诉 Python， VarName 是一个全局变量，这样 Python 就不会在局部命名空间里寻找这个变量了。
+	```python
+	Money = 2000
+	
+	def addMoney() :
+		# 想要改正代码就取消注释
+		# global Money
+		Money = Money + 1
+	
+	print(Money)
+	addMoney()
+	print(Money)
+	```
+	
+6. dir()函数
+	dir() 函数一个排好序的字符串列表，内容是一个模块里定义过的名字。
+	返回的列表容纳了在一个模块里定义的所有模块，变量和函数。如下一个简单的实例：
+	```python
+	import math
+	print(dir(math))
+	```
+	![QQ截图20180709155822.png](QQ截图20180709155822.png)
+	
+7. globals()和locals()函数
+	根据调用地方的不同，globals() 和 locals() 函数可被用来返回全局和局部命名空间里的名字。
+	如果在函数内部调用 locals()，返回的是所有能在该函数里访问的命名。
+	如果在函数内部调用 globals()，返回的是所有在该函数里能访问的全局名字。
+	两个函数的返回类型都是字典。所以名字们能用 keys() 函数摘取。
+	
+8. reload()函数
+	当一个模块被导入到一个脚本，模块顶层部分的代码只会被执行一次。
+	因此，如果你想重新执行模块里顶层部分的代码，可以用 reload() 函数。该函数会重新导入之前导入过的模块。语法如下：
+	``reload(module_name)``
+	在这里，module_name要直接放模块的名字，而不是一个字符串形式。比如想重载 hello 模块，如下：
+	```python
+	reload(hello)
+	```
+
+9. python中的包
+	包是一个分层次的`文件目录结构`，它定义了一个由模块及子包，和子包下的子包等组成的 Python 的应用环境。
+	简单来说，**包就是文件夹**，但该文件夹下必须存在 `__init__.py` 文件, 该文件的内容可以为空。__init__.py 用于标识当前文件夹是一个包。
+	考虑在一个`package_runoob`目录下的`runoob1.py`,`runoob2.py`,`__init__.py`文件，`test.py`为调用包的测试文件。
+	目录结构如下：
+	|-- test.py
+	|--package_runoob
+	|  |-- __init__.py
+	|  |-- runoob1.py
+	|  |-- runoob2.py
+	源代码如下:
+	```python
+	#!/usr/bin/python3
+	# -*- coding:utf-8 -*-
+	# runoob1.py源代码
+	def runoob1() :
+		print("this is runoob1")
+	```
+	
+	```python
+	#!/usr/bin/python3
+	# -*- coding:utf-8 -*-
+	# runoob2.py源代码
+	def runoob2() :
+		print("this is runoob2")
+	```
+
+	```python
+	#!/usr/bin/python3
+	# -*- coding:utf-8 -*-
+	# __init__.py文件
+	```
+	
+	```python
+	#!/usr/bin/python3
+	# -*- coding:utf-8 -*-
+	# test.py文件源代码
+	from package_runoob.runoob1 import runoob1
+	from package_runoob.runoob2 import runoob2
+	
+	runoob1() # package_runoob.runoob1.runoob1()
+	runoob2() # package_runoob.runoob2.runoob2()
+	```
+
+### python 中异常处理
+异常即是一个事件，它影响了程序的正常执行。
+一般情况下，在Python无法正常处理程序时就会发生一个异常。
+异常是Python对象，表示一个错误。
+当Python脚本发生异常时我们需要捕获处理它，否则程序终止执行。
+
+1. 异常处理
+	捕捉异常可以使用`try/except`语句.
+	try/except语句用来检测try语句块中的错误，从而让except语句捕获异常信息并处理。
+	语法：
+	```python
+	try:
+		<语句> 		# 正常运行的代码
+	except <名字> :
+		<语句>		# 如果引发某种异常
+	except <名字>, <数据> :
+		<语句>		# 如果引发某种异常，获得附加的数据
+	else:
+		<语句>		# 如果没有发生异常
+	```
+	try的工作原理是，当开始一个try语句后，python就在当前程序的上下文中作标记，
+	这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常。 
+	* 如果当try后的语句执行时发生异常，python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句（除非在处理异常时又引发新的异常）。 
+	* 如果在try后的语句里发生了异常，却没有匹配的except子句，异常将被递交到上层的try，或者到程序的最上层（这样将结束程序，并打印缺省的出错信息）。 
+	* 如果在try子句执行时没有发生异常，python将执行else语句后的语句（如果有else的话），然后控制流通过整个try语句。
+	eg:
+	```python
+	#!/usr/bin/python3
+	# -*- coding:utf-8 -*-
+	try:
+		fh = open("testfile", "w")
+		fh.write("这是一个测试文件, 用于测试异常!!")
+	except IOError :
+		print("Error: 没有找到文件或者读取文件失败!")
+	else:
+		print("写入文件成功!")
+		fh.close()
+	```
+	
+2. 捕获多种异常
+	```python
+	try:
+		<语句>
+	except([Exception1, Exception2[,...,ExceptionN]]):
+		<语句> # 发生以上异常中的一个，执行这块代码
+	else:
+		<语句> # 没有异常执行这块代码
+	```
+	
+3. try-finally语句
+	try-finally语句无论是否发生异常都将执行最后的代码。
+	```python
+	try:
+		<语句>
+	finally:
+		<语句> # 退出try时总会执行
+	raise
+	```
+	eg:
+	```python
+	try:
+		fh = open("testfile", "w")
+		fh.write("这是一个测试文件,用于测试异常!")
+	finally:
+		print("Error: 没有找到文件或者读取文件失败!")
+	```
+
+4. 触发异常
+	我们可以使用`raise`语句自己触发异常
+	raise语法格式如下：
+	``raise [Exception[, args, [, traceback]]]``
+	语句中 Exception 是异常的类型（例如，NameError）参数标准异常中任一种，args 是自已提供的异常参数。
+	最后一个参数是可选的（在实践中很少使用），如果存在，是跟踪异常对象。
+	eg:
+	```python
+	def test(args):
+		raise Exception("Invalid!!!", args)
+		
+	try:
+		test("abcd")
+	except(Exception, args): # python3使用括号括起异常名称和参数
+		print(args)
+	else:
+		print("没有异常!")
+	```
+	![QQ截图20180709164538.png](QQ截图20180709164538.png)
+	
+5. python标准异常
+	-- | --
+	异常名称 | 描述
+	BaseException | 所有异常的基类
+	SystemExit    | 解释器请求退出
+	KeyboardInterrupt | 用户中断执行(通常是输入^C)
+	Exception 	  | 常规错误的基类
+	StopIteration | 迭代器没有更多的值
+	GeneratorExit | 生成器(generator)发生异常来通知退出
+	StandardError | 所有的内建标准异常的基类
+	ArithmeticError  | 所有数值计算错误的基类
+	FloatingPointError  | 浮点计算错误
+	OverflowError | 数值运算超出最大限制
+	ZeroDivisionError | 除(或取模)零 (所有数据类型)
+	AssertionError | 断言语句失败
+	AttributeError | 对象没有这个属性
+	EOFError  | 没有内建输入,到达EOF 标记
+	EnvironmentError  | 操作系统错误的基类
+	IOError  | 输入/输出操作失败
+	OSError  | 操作系统错误
+	WindowsError | 系统调用失败	
+	ImportError | 导入模块/对象失败
+	LookupError | 无效数据查询的基类
+	IndexError  | 序列中没有此索引(index)
+	KeyError    | 映射中没有这个键
+	MemoryError | 内存溢出错误(对于Python 解释器不是致命的)
+	NameError   | 未声明/初始化对象 (没有属性)
+	UnboundLocalError | 访问未初始化的本地变量
+	ReferenceError | 弱引用(Weak reference)试图访问已经垃圾回收了的对象
+	RuntimeError  | 一般的运行时错误
+	NotImplementedError | 尚未实现的方法
+	SyntaxError | Python 语法错误
+	IndentationError | 缩进错误
+	TabError | Tab和空格混用
+	SystemError | 一般的解释器系统错误
+	TypeError | 对类型无效的操作
+	ValueError | 传入无效的参数
+	UnicodeError | Unicode 相关的错误
+	UnicodeDecodeError | Unicode 解码时的错误
+	UnicodeEncodeError | Unicode 编码时错误	
+	UnicodeTranslateError | Unicode 转换时错误
+	Warning | 警告的基类
+	DeprecationWarning | 关于被弃用的特征的警告
+	FutureWarning  | 关于构造将来语义会有改变的警告
+	OverflowWarning | 旧的关于自动提升为长整型(long)的警告
+	PendingDeprecationWarning | 关于特性将会被废弃的警告
+	RuntimeWarning | 可疑的运行时行为(runtime behavior)的警告
+	SyntaxWarning | 可疑的语法的警告
+	UserWarning | 用户代码生成的警告
+	-- | --
+	
+### Python 面对对象
+
+1. 创建类
+	使用`class`语句来创建一个新类，class之后为类的名称并以冒号结尾：
+	```python
+	class ClassName :
+		'类的帮助信息' 	# 类文档字符串
+		class_suite 	# 类体
+	```
+	类的帮助信息可以通过`ClassName.__doc__`查看。
+	class_suite由类成员、方法，数据属性组成。
+	eg:
+	```python
+	#!/usr/bin/python3
+	# -*- coding:utf-8 -*-
+	class Employee:
+		'所有员工的基类'
+		empCount = 0
+		
+		def __init__(self, name, salary) :
+			self.name = name
+			self.salary = salary
+			Employee.empCount += 1
+	
+		def displayCount(self) :
+			print("Total Employee %d" %Employee.empCount)
+			
+		def displayEmployee(self) :
+			print("Name : ", self.name,", Salary : ", self.salary )
+	```
+	* `empCount`变量是一个类变量，可以被该类的所有实例共享，相当于一个`静态变量`。使用Employee.empCount访问。
+	* 第一个方法`__init__()`方法是一种特殊的方法，被称为类的构造函数或初始化方法，当创建了这个类的实例时就会调用该方法。
+	* `self`代表类的实例，self在定义类的方法时是必须有的，虽然在调用时不必传入相应的参数。
+	
+2. **self代表类的实例，而非类**
+	类的方法与普通的函数只有一个特别的区别--它们必须有一个额外的第一个参数名称，按照惯例它的名称是self.
+	```python
+	class Test:
+		def prt(self) :
+			print(self)
+			print(self.__class__)
+	
+	t = Test()
+	t.prt()
+	```
+	
+3. 创建实例对象
+	其他语言中实例化类一般用关键字`new`，但是在python中没有这个关键字，
+	类的实例化类似函数的调用方式。以下使用类的名称Employee来实例化，
+	并且通过__init__方法接收参数。
+	```python
+	"创建 Employee类的第一个对象"
+	emp1 = Employee("zara", 2000)
+	"创建 Employee类的第二个对象"
+	emp2 = Employee("Manni", 5000)
+	```
+	
+4. 访问属性
+	使用点号`.`来访问对象的属性。
+	```python
+	emp1.displayEmployee()
+	emp2.displayEmployee()
+	print("Total Employee %d" % Emplee.empCount)
+	```
+	对象的属性操作：
+	```python
+	emp1.age = 7 # 添加一个`age`属性
+	emp1.age = 8 # 修改`age`属性
+	del emp1.age # 删除`age`属性
+	```
+	使用方法操作属性：
+	* `getattr(obj, name[, default])` 访问对象的属性
+	* `hasattr(obj, name)` 检查是否存在一个属性
+	* `setattr(obj, name, value)` 设置一个属性，如果属性不存在，会创建一个新属性
+	* `delattr(obj, name)` 删除属性 
+	
+5. Python内置属性
+	* `__dict__` 类的属性(包含一个字典，由类的数据属性组成)
+	* `__doc__` 类的文档字符串
+	* `__name__` 类名
+	* `__module__` 类定义所在的模块(类的全名是`__module__.className`)，如果类位于一个导入模块mymod中，
+	那么className.__module__等于mymod)
+	* `__bases__` 类的所有父类构成元素(包含了一个由所有父类组成的元组)
+	
+6. Python对象销毁(垃圾回收)	
+	Python 使用了引用计数这一简单技术来跟踪和回收垃圾。
+	在 Python 内部记录着所有使用中的对象各有多少引用。
+	一个内部跟踪变量，称为一个引用计数器。
+	当对象被创建时， 就创建了一个引用计数， 
+	当这个对象不再需要时， 也就是说， 这个对象的引用计数变为0 时， 它被垃圾回收。但是回收不是"立即"的， 
+	由解释器在适当的时机，将垃圾对象占用的内存空间回收。
+
+7. 类的继承
+	通过继承创建的新类称为子类或派生类，被继承的类称为基类、父类或超类。
+	```python
+	class 派生类名(基类名):
+		...
+	```
+	在python中继承中的一些特点：
+	* 如果在子类中需要父类的构造方法就需要显示的调用父类的构造方法，或者不重写父类的构造方法。详细说明可查看：python 子类继承父类构造函数说明。 
+	* 在调用基类的方法时，需要加上基类的类名前缀，且需要带上 self 参数变量。区别在于类中调用普通函数时并不需要带上 self 参数
+	* Python 总是首先查找对应类型的方法，如果它不能在派生类中找到对应的方法，它才开始到基类中逐个查找。（先在本类中查找调用的方法，找不到才去基类中找）。
+	多重继承：
+	```python
+	class SubClass(ParentClass1[, ParentClass2, ...]):
+		...
+	```
+
+8. 方法重写
+
+9. 基础重载方法
+	1 | __init__ ( self [,args...] ) | 构造函数 | 简单的调用方法: obj = className(args)
+	2 | __del__( self ) | 析构方法, 删除一个对象 | 简单的调用方法 : del obj
+	3 | __repr__( self ) | 转化为供解释器读取的形式 | 简单的调用方法 : repr(obj)
+	4 | __str__( self ) | 用于将值转化为适于人阅读的形式 | 简单的调用方法 : str(obj)
+	5 | __cmp__( self, x ) | 对象比较 | 简单的调用方法 : cmp(obj, x)
+	
+10. 运算符重载
+
+11. 类属性与方法
+	1. 类的私有属性
+	`__private_attr`两个下划线开头，声明该属性为私有，不能在类的外部被使用或者被直接访问。
+	在类的内部使用时使用`self.private_attr`。
+	2. 类的方法
+	在类的内部，使用`def`关键字可以为类定义一个方法，与一般函数定义不同，类方法必须包含参数`self`,且为第一个参数
+	3. 类的私有方法
+	`__private_method`两个下划线开头，声明该方法为私有方法，不能在类的外部调用。
+	在类的内部调用 `self.__private_methods`
+	
+	Python不允许实例化的类访问私有数据，但你可以使用 object._className__attrName（ 对象名._类名__私有属性名 ）访问属性，参考以下实例：
+	```python
+	#!/usr/bin/python
+	# -*- coding: UTF-8 -*-
+
+	class Runoob:
+		__site = "www.runoob.com"
+
+	runoob = Runoob()
+	print runoob._Runoob__site
+	```
+
+12. 单下划线、双下划线、头尾双下划线说明
+	* __foo__: 定义的是特殊方法，一般是系统定义名字 ，类似 __init__() 之类的。
+	* _foo: 以单下划线开头的表示的是 protected 类型的变量，即保护类型只能允许其本身与子类进行访问，不能用于 from module import *
+	* __foo: 双下划线的表示的是私有类型(private)的变量, 只能是允许这个类本身进行访问了。
+
+
+	
+		
 -----------------------------------------------------------
 
 完结撒花!!!
