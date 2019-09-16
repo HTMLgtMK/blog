@@ -320,8 +320,7 @@
 
       
         
-          
-            <p>这里记录使用 eclipse 创建 maven 项目时发生的错误集合。</p>
+          <p>这里记录使用 eclipse 创建 maven 项目时发生的错误集合。</p>
 <h3 id="1-Unable-to-add-module-to-the-current-project-as-it-is-not-of-packaging-type-‘pom’"><a href="#1-Unable-to-add-module-to-the-current-project-as-it-is-not-of-packaging-type-‘pom’" class="headerlink" title="1. Unable to add module to the current project as it is not of packaging type ‘pom’"></a>1. Unable to add module to the current project as it is not of packaging type ‘pom’</h3><p>今天想要使用 eclipse 创建一个基于<code>maven-archetype-webapp</code>的 web 项目，但是一直出现如下错误：</p>
 <blockquote>
 <blockquote>
@@ -329,36 +328,13 @@
 </blockquote>
 </blockquote>
 <p>先说原因和解决方法：</p>
-<p><strong>原因</strong>：在创建项目的 workspace 目录下，存在一个 <code>pom.xml</code> 文件，导致 Maven 认为你创建的是一个 sub-module。</p>
-<blockquote>
-<blockquote>
-<p>Are you running the command from a directory that has an existing pom.xml file in it? I think that may be confusing Maven, as it thinks you’re trying to add your new project as a sub-module of the project in the working directory.</p>
-</blockquote>
-</blockquote>
-<p><strong>解决方法</strong>：删掉 pom.xml 文件就可以了。。</p>
-<p>唉。。之前为了节省添加 spring 依赖的时间，备份了一份 pom.xml 文件到 workspace 目录下，结果反而浪费了不少时间。</p>
-<p>上网搜资料，我以为是没有下载 <code>maven-archetype-webapp-1.4.jar</code> 成功，，毕竟是国外的镜像。于是尝试换了 <code>aliyun</code>的 maven 镜像，如下：</p>
-<blockquote>
-<blockquote>
-   <mirrors>
-
-<p>   ​    <mirror><br>   ​        <id>alimaven</id><br>   ​        <name>aliyun maven</name><br>   ​        <url><a href="http://maven.aliyun.com/nexus/content/groups/public/" target="_blank" rel="noopener">http://maven.aliyun.com/nexus/content/groups/public/</a></url><br>   ​        <mirrorof>central</mirrorof><br>   ​    </mirror></p>
-   </mirrors>
-</blockquote>
-</blockquote>
-<p>结果创建项目的时候还是不行。 于是考虑使用 <code>mvn</code> 命令安装本地 <code>jar</code> 文件。</p>
-<ol>
-<li><p>从 <a href="https://mvnrepository.com/artifact/org.apache.maven.archetypes/maven-archetype-webapp" target="_blank" rel="noopener">https://mvnrepository.com/artifact/org.apache.maven.archetypes/maven-archetype-webapp</a> 下载 <code>maven-archetype-webapp-1.4.jar</code> 包到 <code>~/Downloads/</code> 目录。</p>
-</li>
-<li><p>进入<code>～/Downloads/</code>目录，使用 <code>mvn</code> 命令安装 jar 文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=org.apache.maven.archetypes -DartifactId=maven-archetype-webapp -Dversion=1.4 -Dpackaging=jar -Dfile=maven-archetype-webapp-1.4.jar</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>可以看到 <code>maven-archetype-webapp-1.4.jar</code> 成功安装，但是创建项目仍然失败了。。</p>
-<p>然后又有帖子说把 <code>mirror</code>  注释掉，可能存在 mirror  冲突的问题，结果还是不行。。最后删掉 <code>pom.xml</code> 文件后成功了。 emmm 用的 aliyun。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2019/09/14/eclipse创建maven项目错误/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -505,7 +481,7 @@
 <p>参考资料:</p>
 <p>[1] <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener">W3Cschool Spring 教程</a></p>
 <p>本文CSDN地址: <a href="https://blog.csdn.net/HTMK_GT_MK/article/details/100892271" target="_blank" rel="noopener">#Spring 学习#入门</a></p>
-<p>这篇文章的项目代码地址：<a href="github.com/HTMLgtMK/Spring-Demo.git">Spring-Demo</a></p>
+<p>这篇文章的项目代码地址：<a href="https://github.com/HTMLgtMK/Spring-Demo.git" target="_blank" rel="noopener">Spring-Demo</a></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2019/09/09/Spring入门/#more" rel="contents">

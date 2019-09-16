@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="GT Blog">
 <meta property="og:description" content="这里记录使用 eclipse 创建 maven 项目时发生的错误集合。 1. Unable to add module to the current project as it is not of packaging type ‘pom’今天想要使用 eclipse 创建一个基于maven-archetype-webapp的 web 项目，但是一直出现如下错误：   Unable to creat">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2019-09-14T09:31:11.855Z">
+<meta property="og:updated_time" content="2019-09-16T09:59:56.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="eclipse创建maven项目错误">
 <meta name="twitter:description" content="这里记录使用 eclipse 创建 maven 项目时发生的错误集合。 1. Unable to add module to the current project as it is not of packaging type ‘pom’今天想要使用 eclipse 创建一个基于maven-archetype-webapp的 web 项目，但是一直出现如下错误：   Unable to creat">
@@ -329,6 +329,8 @@
 </blockquote>
 </blockquote>
 <p>先说原因和解决方法：</p>
+<a id="more"></a>
+
 <p><strong>原因</strong>：在创建项目的 workspace 目录下，存在一个 <code>pom.xml</code> 文件，导致 Maven 认为你创建的是一个 sub-module。</p>
 <blockquote>
 <blockquote>
