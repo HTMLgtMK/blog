@@ -15,6 +15,8 @@ tags: eclipse maven
 
 先说原因和解决方法：
 
+<!-- more -->
+
 **原因**：在创建项目的 workspace 目录下，存在一个 `pom.xml` 文件，导致 Maven 认为你创建的是一个 sub-module。
 
 > >Are you running the command from a directory that has an existing pom.xml file in it? I think that may be confusing Maven, as it thinks you're trying to add your new project as a sub-module of the project in the working directory.

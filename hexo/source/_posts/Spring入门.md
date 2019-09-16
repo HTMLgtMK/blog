@@ -17,7 +17,7 @@ tags: Spring 入门
 
 本文CSDN地址: [#Spring 学习#入门](https://blog.csdn.net/HTMK_GT_MK/article/details/100892271)
 
-这篇文章的项目代码地址：[Spring-Demo](github.com/HTMLgtMK/Spring-Demo.git)
+这篇文章的项目代码地址：[Spring-Demo](https://github.com/HTMLgtMK/Spring-Demo.git)
 
 <!-- more -->
 
