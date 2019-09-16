@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="mongoDB 入门,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概述 开源 免费 技术支持  使用案例： 国外：ebay sourceforge github 国内：淘宝 京东 百度 360 大众点评  mongoDB中的概念  mongoDB mongo 索引(index) 集合(Set) 复制集 分片(Slice) 数据均衡">
+<meta name="keywords" content="mongoDB 入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongoDB入门">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="概述 开源 免费 技术支持  使用案例： 国外：ebay sourceforge github 国内：淘宝 京东 百度 360 大众点评  mongoDB中的概念  mongoDB mongo 索引(index) 集合(Set) 复制集 分片(Slice) 数据均衡">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704101612.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704103030.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704154503.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704154944.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704160303.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704160719.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704161036.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704161310.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704162226.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180705164533.png">
+<meta property="og:updated_time" content="2019-09-09T05:16:08.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongoDB入门">
+<meta name="twitter:description" content="概述 开源 免费 技术支持  使用案例： 国外：ebay sourceforge github 国内：淘宝 京东 百度 360 大众点评  mongoDB中的概念  mongoDB mongo 索引(index) 集合(Set) 复制集 分片(Slice) 数据均衡">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704101612.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/07/04/mongoDB入门/">
+
+
+
+
+
+  <title>mongoDB入门 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/07/04/mongoDB入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mongoDB入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T09:37:59+08:00">
+                2018-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/07/04/mongoDB入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/07/04/mongoDB入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/07/04/mongoDB入门/" class="leancloud_visitors" data-flag-title="mongoDB入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
+<li><p>开源 免费 技术支持</p>
+</li>
+<li><p>使用案例：<br> 国外：ebay sourceforge github<br> 国内：淘宝 京东 百度 360 大众点评</p>
+</li>
+<li><p>mongoDB中的概念</p>
+<ol>
+<li>mongoDB</li>
+<li>mongo</li>
+<li>索引(index)</li>
+<li>集合(Set)</li>
+<li>复制集</li>
+<li>分片(Slice)</li>
+<li>数据均衡</li>
+</ol>
+</li>
+</ol>
+<a id="more"></a>
+
+<ol start="4">
+<li><p>mongoDB的搭建<br> 部署数据库服务</p>
+<ol>
+<li>搭建简单的单机服务</li>
+<li>搭建具有冗余容错功能的复制集</li>
+<li>搭建大规模数据集群</li>
+<li>完成集群的自动部署</li>
+</ol>
+</li>
+<li><p>mongoDB的使用</p>
+<ol>
+<li>最基本的文档的读写更新删除</li>
+<li>各种不同类型索引的创建与使用</li>
+<li>复杂的聚合查询</li>
+<li>对数据集合进行分片，在不同分片中维持数据均衡</li>
+<li>数据备份与恢复</li>
+<li>数据迁移</li>
+</ol>
+</li>
+<li><p>简单运维</p>
+<ol>
+<li>部署mongoDB集群</li>
+<li>处理多种常见的故障<ol>
+<li>单节点失效，如何恢复工作</li>
+<li>数据库意外被杀死，如何进行数据恢复</li>
+<li>数据库拒绝服务，如何排查原因</li>
+<li>数据库磁盘快满时如何处理</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>网站</p>
+<ol>
+<li>官网：<a href="www.mongodb.org">www.mongodb.org</a><br> 编译文件, 英文文档</li>
+<li>国内官网：<a href="www.mongoing.com">www.mongoing.com</a><br> 中文翻译文档(不全)</li>
+<li>github: <a href="github.com/mongodb">github.com/mongodb</a><br> mongoDB源码, mongoDB驱动</li>
+</ol>
+</li>
+<li><p>数据库分类</p>
+<ol>
+<li>Sql数据库：支出Sql语言的数据库<br> Oracle, Mysql<br> 有表，有事务支持</li>
+<li>NoSql数据库(Not Only SQL)：不支持Sql语言的数据库<br> redis, mongoDB</li>
+<li>比较<br> |————|————-|<table>
+<thead>
+<tr>
+<th>Sql数据库</th>
+<th>NoSql数据库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实时一致性</td>
+<td>简单便捷</td>
+</tr>
+<tr>
+<td>事务</td>
+<td>方便扩展</td>
+</tr>
+<tr>
+<td>多表联合查询</td>
+<td>更好的性能</td>
+</tr>
+<tr>
+<td>————</td>
+<td>————-</td>
+</tr>
+<tr>
+<td>redis支持事务，mongoDb不支持事务。</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="MongoDB的安装与部署"><a href="#MongoDB的安装与部署" class="headerlink" title="MongoDB的安装与部署"></a>MongoDB的安装与部署</h2><ol>
+<li><p>从官网下载二进制文件或者下载源码自己编译</p>
+</li>
+<li><p>源码说明<br> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704101612.png" alt="QQ截图20180704101612.png"></p>
+<ol>
+<li><code>mongod</code> 数据库的服务程序</li>
+<li><code>mongo</code> 数据库的客户端</li>
+<li><code>mongimport</code> 导入<br> <code>mongexport</code> 导出</li>
+<li><code>mongodump</code> 导出二进制<br> <code>mongorestore</code> 导入二进制,一般用于作数据库的备份与恢复</li>
+<li><code>mongooplog</code> 操作日志</li>
+<li><code>mongostat</code> 数据库状态</li>
+</ol>
+</li>
+<li><p>搭建简单的mongoDB服务器</p>
+<ol>
+<li><p>创建数据库目录<br> |– mongodb_simple  数据库目录<br> |  |– data         数据目录<br> |  |– log            日志目录<br> |  |– conf            配置目录<br> |  |– bin            数据库的二进制文件</p>
+</li>
+<li><p>将<code>mongod</code>拷贝到<code>./bin</code>目录</p>
+</li>
+<li><p>创建启动文件<code>./conf/mongod.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">port = 12345 	; 监听端口</span><br><span class="line">dbpath = data 	; 数据库数据目录, 可以是相对路径或绝对路径</span><br><span class="line">logpath = log/mongod.log ; 日志文件</span><br><span class="line">fork = true		; 启动后台进程</span><br></pre></td></tr></table></figure>
+
+<p>windows下的镜像自带有配置文件，位置为：<code>.\bin\mongod.cfg</code><br>默认监听端口为：<code>27017</code>, 并且<code>dbpath</code>和<code>logpath</code>需要写绝对路径。</p>
+</li>
+<li><p>启动mongod</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./bin/mongod -f conf/mongod.conf</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p> -f 指定启动文件<br> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704103030.png" alt="QQ截图20180704103030.png"></p>
+<p> 或为保证数据库的安全性，使用下面的方式：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numactl --interleave=all bin/mongod -f conf/mongod.conf</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>windows下MongoDB配置服务<br>1) 配置服务</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 管理员权限的控制台</span><br><span class="line">mongod --config "D:\MongoDB\Server\<span class="number">4</span>.<span class="number">0</span>\conf\mongod.conf" --install --serverName "MongoDB"</span><br></pre></td></tr></table></figure>
+
+<p>2) 启动服务</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> <span class="built_in">start</span> MongoDB</span><br></pre></td></tr></table></figure>
+
+<p>3) 停止服务</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop MongDB</span><br></pre></td></tr></table></figure>
+
+<p>4) 删除服务</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc delete MongoDB</span><br></pre></td></tr></table></figure>
+
+<p>可以将<code>bin</code>目录添加到环境变量，这样不需要每次使用都进入mongoDB的安装目录。</p>
+</li>
+</ol>
+</li>
+<li><p>连接mongoDB服务器</p>
+<ol>
+<li><p>方式1：使用<code>mongo</code>程序在shell控制台连接</p>
+</li>
+<li><p>方式2：在程序中使用mongodb驱动连接<br>这里先描述方式1:</p>
+</li>
+<li><p>将<code>mongo</code>二进制文件拷贝到<code>./bin</code>目录</p>
+</li>
+<li><p>连接mongod</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./bin/mongo [options] [db address] [file names(ending <span class="keyword">in</span> .js]</span></span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./bin/mongo 127.0.0.1:12345/dbname -u user -p</span></span><br><span class="line"> password</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="mongoDB的基本使用"><a href="#mongoDB的基本使用" class="headerlink" title="mongoDB的基本使用"></a>mongoDB的基本使用</h2><ol>
+<li><p>查看所有数据库</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show dbs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>选择使用数据库</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use dbname</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据库</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.dropDatabase()</span><br></pre></td></tr></table></figure>
+
+<p> 在mongoDB中不需要手动创建数据库，<br> 会在需要的时候自动创建。</p>
+</li>
+<li><p>插入数据<br> db.dbname_collection.insert(JSON)<br> eg:</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.insert(&#123;x:1&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> imooc_collection是一个数据集。</p>
+</li>
+<li><p>查询数据<br> db.dbname_collection.find([JSON])<br> db.dbname_collection.findOne() 查询一条数据<br> eg:</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.find() # 查询所有数据</span><br><span class="line">db.imooc_collection.find(&#123;x:1&#125;) # 查询x为1的是数据</span><br></pre></td></tr></table></figure>
+
+<p> mongoDB中默认主键为<code>_id</code>.<br> <code>find()</code>支持<code>skip</code>(跳过多条数据), <code>limit</code>(限制数据条数),<br> <code>sort</code>(数据排序)。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i=3; i&lt;100; i++) db.imooc_collection.insert(&#123;x:i&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> mongoDB可以支持JS语法插入数据。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.find().count()</span><br></pre></td></tr></table></figure>
+
+<p> 对查询结果进行计数。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.find().skip(3).limit(2).sort(&#123;x:1&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据更新<br> db.dbname_collection.update(condition_JSON, data_JSON, insert_boolean, all_boolean)</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.update(&#123;x:1&#125;, &#123;x:999&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> 更新全部x=1的数据为x=999</p>
+<p> 案例1：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.insert(&#123;x:100, y:100, z:100&#125;)</span><br><span class="line">db.imooc_collection.update(&#123;z:100&#125;, &#123;y:99&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> 这种情况下更新的数据是：所有z=100的数据更新为y=99,<br> 而x,z的数据会被覆盖。</p>
+<p> 如何更新一行中的某个元素？在update中使用<code>set</code>操作。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.insert(&#123;x:100, y:100, z:100&#125;)</span><br><span class="line">db.imooc_collection.update(&#123;z:100&#125;, &#123;$set:&#123;y:99&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704154503.png" alt="QQ截图20180704154503.png"></p>
+<p> 需求：如果更新一条数据时，数据不存在，则插入数据<br> 方法：设置update()的第三个参数为true.</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.update(&#123;y:100&#125;, &#123;y:999&#125;, true)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704154944.png" alt="QQ截图20180704154944.png"></p>
+<p> mongoDB中默认更新第一条匹配的数据, 这样设计是为了防止误操作。<br> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704160303.png" alt="QQ截图20180704160303.png"></p>
+<p> 如何更新所有匹配的数据？使用<code>set</code>操作符，update第四个参数设置为true.</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.update(&#123;c:1&#125;, &#123;$set: &#123;c:2&#125;&#125;, false, true)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704160719.png" alt="QQ截图20180704160719.png"></p>
+</li>
+<li><p>数据删除<br> db.dbname_collection.remove(JSON)<br> 与find()不同的是，remove为防止误操作，必须传入参数。<br> 与update()不同的是，remove默认删除所有匹配的数据。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.remove(&#123;c:2&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704161036.png" alt="QQ截图20180704161036.png"></p>
+<p> 对于某张表(数据集)使用删除操作，可以使用:<br> db.dbname_collection.drop()</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.drop()</span><br><span class="line">show tables</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704161310.png" alt="QQ截图20180704161310.png"></p>
+</li>
+<li><p>创建索引<br> 查看集合的索引情况：db.dbname_collection.getIndexes()</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.getIndexes()</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180704162226.png" alt="QQ截图20180704162226.png"></p>
+<p> 创建索引：<br> db.dbname_collection.ensureIndex(JSON)</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;x:1&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> 1表示正序，-1代表负向排序。</p>
+</li>
+</ol>
+<h2 id="mongoDB常见的查询索引"><a href="#mongoDB常见的查询索引" class="headerlink" title="mongoDB常见的查询索引"></a>mongoDB常见的查询索引</h2><p>db.collection.ensureIndex({param1},{param2})<br>param1: 索引的值。<br>param2: 索引的属性。</p>
+<ol>
+<li><p>索引的种类与使用</p>
+<ol>
+<li><p>_id索引<br> _id是绝大多数集合默认建立的索引。<br> 对于每个插入的数据，mongoDb都会自动生成一条唯一的_id字段。</p>
+</li>
+<li><p>单键索引<br> 最普通的索引，并不会自动创建。<br> 使用<code>ensureIndex()</code>创建。</p>
+</li>
+<li><p>多键索引<br> 与单键索引创建形式相同，区别在于字段的值。<br> 单键索引：值为一个单一的值，例如字符串，数字或者日期。<br> 多键索引：值具有多个记录，例如数组。<br> eg:</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.insert(&#123;x:[1,2,3,4,5]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p> x即为多键索引。</p>
+</li>
+<li><p>复合索引<br> 当查询条件不只有一个时，就需要创建复合索引。<br> 逻辑：插入{x:1,y:2,z:3}记录-&gt;按照x与y的值查询</p>
+<pre><code>-&gt;创建索引：db.collection.ensureIndex({x:1, y:1})
+-&gt;使用{x:1, y:1}作为条件进行查询。</code></pre> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;x:1, y:1&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;x:1, y:2&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过期索引<br> 是在一段时间后会过期的索引。<br> 在索引过期后，相应的数据会被删除。<br> 这适合存储一些在一段时间之后会失效的数据，<br> 比如用户的登陆信息，存储的日志。<br> 建立方法:db.collection.ensureIndex({time:1},{expireAfterSecond:10})<br> <code>time</code>是键值，<code>expireAfterSecond</code>表示秒数。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;time:1&#125;, &#123;expireAfterSecond:30&#125;)</span><br><span class="line">db.imooc_collection.insert(&#123;time: new Date()&#125;)</span><br><span class="line">db.imooc_collection.find()</span><br></pre></td></tr></table></figure>
+
+<p> 过期索引的限制：</p>
+<ol>
+<li>存储在过期索引字段的值必须是指定的事件类型。<br> 必须是ISODate或者ISODate数组，不能使用时间戳，否则不能自动删除。</li>
+<li>如果指定了ISODate数组，则按照最小的时间进行删除。</li>
+<li>过期索引不能是复合索引。</li>
+<li>删除时间是不精确的。删除进程在后台每60s跑一次。</li>
+</ol>
+</li>
+<li><p>全文索引<br> 对字符串和字符数组创建全文可搜索的索引。<br> 适用情况：{author:””, title:””, article:””}<br> 创建方法：</p>
+<ol>
+<li><p>db.articles.ensureIndex({key:”text”})</p>
+</li>
+<li><p>db.articles.ensureIndex({key_1:”text”, key_2:”text”})</p>
+</li>
+<li><p>db.articles.ensureIndex({“$**”:”text”})</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;"article":"text"&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>使用全文索引查询：<br>db.article.find({$text: {$search:”coffe”}})<br>db.article.find({$text: {$search:”aa bb cc”}} 使用空格分隔多个关键词（<code>或</code>查找）。<br>db.article.find({$text: {$search:”aa bb -cc”}} 不包含cc<br>db.article.find({$text: {$search:”&quot;aa&quot; &quot;bb&quot; &quot;cc&quot;“}}  <code>与</code>查找</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.insert(&#123;"article":"aa bb cc dd ee"&#125;)</span><br><span class="line">db.imooc_collection.insert(&#123;"article":"aa bb rr gg"&#125;)</span><br><span class="line">db.imooc_collection.insert(&#123;"article":"aa bb cc hh gg"&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;$text: &#123;$sarch:"aa"&#125;&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;$text: &#123;$sarch:"aa rr"&#125;&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;$text: &#123;$sarch:"\"aa\" \"rr\""&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>全文索引的相似度查询：<br><code>$meta</code>操作符: {score: {$meta:”textScore”}}<br>写在查询条件后面可以返回查询结果的相似度。<br>与<code>sort</code>一起使用，可以达到很好的实用效果。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.find(&#123;$text: &#123;$search:"aa bb"&#125;&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;$text: &#123;$search:"aa bb"&#125;&#125;, &#123;score: &#123;$meta: "textScore"&#125;&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;$text: &#123;$search:"aa bb"&#125;&#125;, &#123;score: &#123;$meta: "textScore"&#125;&#125;).sort(&#123;score: &#123;$meta: "textScore"&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>全文索引使用限制：</p>
+</li>
+<li><p>每次查询，只能指定一个$text查询</p>
+</li>
+<li><p>$text拆线呢不能出现在$nor查询中</p>
+</li>
+<li><p>查询中如果包含了$text, hint不再起作用</p>
+</li>
+<li><p>MongoDB的全文索引还不支持中文</p>
+</li>
+</ol>
+</li>
+<li><p>地理位置索引<br> 概念：将一些点的位置存储在mongoDB中，创建索引后，<br> 可以按照位置来查找其他点。</p>
+<p> 子分类：1) 2D索引，用于存储和查找平面上的点。<br> 2) 2DSphere索引，用于存储和查找球面上的点。</p>
+<p> 查找方式：<br> 1) 查找距离某个点一定距离内的点。<br> 2) 查找包含在某个区域内的点。</p>
+<ol>
+<li><p>2D索引<br>db.collection.ensureIndex({w:”2d”})<br><code>w</code>是字段名, <code>2d</code>固定。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.location.ensureIndex(&#123;"w":"2d"&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>位置表示方式：经纬度[经度, 纬度]<br>取值范围：经度[-180, 180] 纬度[-90, 90]</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.location.insert(&#123;w:[1,1]&#125;)</span><br><span class="line">db.location.insert(&#123;w:[1,2]&#125;)</span><br><span class="line">db.location.insert(&#123;w:[3,1]&#125;)</span><br><span class="line">db.location.insert(&#123;w:[100,80]&#125;)</span><br><span class="line">db.location.insert(&#123;w:[180,80]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>查询方式：<br>1) <code>$near</code>查询：查询距离某个点最近的点。<br>2) <code>$geoWithin</code>查询：查询某个形状内的点。</p>
+<p><code>$near</code>查询：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.location.find(&#123;w:&#123;$near:[1,1]&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>$near默认会返回100个距离[1,1]的点，<br>可以使用<code>$maxDistance</code>设置扫描半径。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.location.find(&#123;w:&#123;$near:[1,1], $maxDistance:10&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>同理也有<code>$minDistance</code>选项，但是2D索引中不支持这个。</p>
+<p>形状的表示：<br>1) <code>$box</code>:矩形，使用<code>{$box:[[&lt;x1&gt;,&lt;y1&gt;],[&lt;x2,&lt;y2&gt;&gt;]]}</code>表示。<br>使用两个坐标表示，第一个是左上角坐标，第二个是右下角坐标。</p>
+<p>2) <code>$center</code>:圆形，使用<code>{$center:[[&lt;x1&gt;,&lt;y1&gt;], r]}</code>表示。<br>使用圆心和半径表示，第一个参数是圆心坐标，第二个参数是半径长度。</p>
+<p>3) <code>$polygon</code>:多边形，使用<code>{$polygon:[[&lt;x1&gt;,&lt;y1&gt;],[&lt;x2&gt;,&lt;y2&gt;],[&lt;x3&gt;,&lt;y3&gt;]]}</code>表示。<br>参数为一个数组，数组内是点的坐标，组成一个多边形。</p>
+<p><code>$geoWithin</code>查询：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.location.find(&#123;w:&#123;$geoWithin:&#123;$box:[[0,0],[3,3]]&#125;&#125;&#125;)</span><br><span class="line">db.location.find(&#123;w:&#123;$geoWithin:&#123;$box:[[1,1],[2,3]]&#125;&#125;&#125;)</span><br><span class="line">db.location.find(&#123;w:&#123;$geoWithin:&#123;$center:[[0,0], 4]&#125;&#125;)</span><br><span class="line">db.location.find(&#123;w:&#123;$geoWithin:&#123;$polygon:[[0,0], [1,1], [0,2], [2,2]]&#125;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>geoNear查询</code>：<br>geoNear使用<code>runCommand</code>命令进行使用，常用使用如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.runCommand(&#123;</span><br><span class="line">	geoNear:&lt;collection&gt;,</span><br><span class="line">	near:[x,y],</span><br><span class="line">	minDistance:(对2d索引无效),</span><br><span class="line">	maxDistance: ,</span><br><span class="line">	num: ,</span><br><span class="line">	...</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.runCommand(&#123;geoNear:"location", near:[1,2], maxDistance:10, num:2&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2DSphere索引<br>db.collection.ensureIndex({w:”2dsphere”})<br>位置表示方式：<br>GeoJSON：描述一个点，一条直线，多边形等形状。<br>格式：<br>{type: “”, coordinates:[<coordinates>]}<br>支持$minDistance与$maxDisctance</coordinates></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>索引属性<br> 重要的索引属性：名字，唯一性，稀疏性，是否定时删除</p>
+<ol>
+<li><p>名称(<code>name</code>)属性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;x:1&#125;)</span><br><span class="line">db.imooc_collection.ensureIndex(&#123;y:-1&#125;) # 排序方向为负</span><br><span class="line">db.imooc_collection.getIndexes()</span><br></pre></td></tr></table></figure>
+
+<p>创建了索引x，使用getIndexes()获取索引，查看索引名称为：<br><code>&quot;name&quot;:&quot;x_1&quot;</code> <code>&quot;name&quot;:&quot;y_-1</code><br>=&gt; 索引的命名方式是<code>key_1</code>或者<code>key_-1</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;x:1, y:-1&#125;)</span><br><span class="line">db.imooc_collection.getIndexes()</span><br></pre></td></tr></table></figure>
+
+<p>创建复合索引，获取复合索引名称为：<code>x_1_y_-1</code><br>=&gt;索引的命名方式是：多个键之间使用<code>_</code>连接。<br>mongoDB的索引最大长度是125，为此，key太多的情况下索引名称会很长。<br>可以在创建索引的时候指定索引的名称：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;x:1,y:1,z:1,m:1&#125;,&#123;name:"normal_index"&#125;)</span><br><span class="line">db.imooc_collection.getIndexes()</span><br></pre></td></tr></table></figure>
+
+<p>查看索引名称为：<code>&quot;name&quot;:&quot;normal_index&quot;</code></p>
+<p>在删除索引时，也可以使用指定的名称删除:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.dropIndex("normal_index")</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>唯一性(<code>unique</code>)属性<br>db.collection.ensureIndex({},{unique:true/false})<br>作用：如果为唯一索引，则在集合中不允许出现两个相同的记录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;m:1, n:1&#125;, &#123;unique:true&#125;)</span><br><span class="line">db.imooc_collection.insert(&#123;m:1, n:2&#125;)</span><br><span class="line">db.imooc_collection.insert(&#123;m:1, n:2&#125;) # 报错: duplicate key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>稀疏性(<code>sparse</code>)和<code>expireAfterSeconds</code>指定<br>db.collection.ensureIndex({}, {sparse:true/false})<br>作用：默认创建的是非稀疏的，true/false表示了mongoDB处理数据时3的两种不同方法。。<br>mongoDB在插入一条新记录时，如果某个字段原来不存在，<br>mongoDB默认会新建该字段；如果不希望这种情况发生，则设置稀疏性为true.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.insert(&#123;"m":1&#125;)</span><br><span class="line">db.imooc_collection.insert(&#123;"n":1&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;m:&#123;$exists:true&#125;&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;m:&#123;$exists:false&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>$exists</code>操作符可以获取存在该字段的记录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.imooc_collection.ensureIndex(&#123;m:1&#125;,&#123;sparse:true&#125;)</span><br><span class="line">db.imooc_collection.find(&#123;m:&#123;$exists:false&#125;&#125;).hint("m_1")</span><br></pre></td></tr></table></figure>
+
+<p>创建m的稀疏索引, <code>hint</code>表示强制使用索引。</p>
+</li>
+<li><p>过期属性<br><code>expireAfterSecond</code>指定. TTL，过期索引。</p>
+</li>
+</ol>
+</li>
+<li><p>索引的匹配规则</p>
+</li>
+<li><p>如何建立合适的索引</p>
+</li>
+<li><p>索引建立的情况评估<br>索引好处：加快索引相关的查询。<br>索引坏处：增加磁盘空间消耗，降低写入性能。</p>
+<ol>
+<li><p><code>mongostat</code>工具<br>使用：<code>mongostat -h 127.0.0.1:27017</code></p>
+</li>
+<li><p><code>profile</code>集合介绍</p>
+</li>
+<li><p>日志介绍</p>
+</li>
+<li><p><code>explain</code>分析<br>db.collection.find().explain()</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="mongoDB安全"><a href="#mongoDB安全" class="headerlink" title="mongoDB安全"></a>mongoDB安全</h2><ol>
+<li><p>mongoDB安全楔子</p>
+<ol>
+<li>最安全的是物理隔离：不现实</li>
+<li>网络隔离其次</li>
+<li>防火墙再其次</li>
+<li>用户名密码在最后</li>
+</ol>
+</li>
+<li><p>开启权限认证</p>
+<ol>
+<li><p>auth开启<br>在<code>mongod.conf</code>中附加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">需要重启mongod服务。</span><br><span class="line">再在mongoDB中创建用户:</span><br><span class="line">1) 创建语法：`createUser`(2.6之前为addUser)</span><br><span class="line">```shell</span><br><span class="line">&#123;</span><br><span class="line">user: &quot;&lt;name&gt;&quot;,</span><br><span class="line">pwd: &quot;&lt;cleartext password&gt;&quot;,</span><br><span class="line">customData: &#123;&lt;any information&gt;&#125;,</span><br><span class="line">roles: [&#123;role: &quot;role&quot;, db: &quot;&lt;database&gt;&quot;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>角色类型：内建类型(read, readWrite, dbAdmin, dbOwner, userAdmin)<br>eg:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123;user:"imooc", pwd:"imooc", customData:"示例",roles:[&#123;role:"userAdmin", db:"admin"&#125;,&#123;role:"read",db:"test"&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>登陆：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mongod 127.0.0.1:27017/imooc -u imooc -p imooc</span></span><br></pre></td></tr></table></figure>
+
+<p>角色详解：<br>1) 数据库角色：read, readWrite, dbAdmin, dbOwner, userAdmin<br>2) 集群角色：clusterAdmin, clusterManager…<br>3) 备份角色：backup, restore…<br>4) 其它特殊权限：DBAdminAnyDatabase…<br>mongoDB中创建用户角色：<br><img src="/blog/2018/07/04/mongoDB入门/QQ%E6%88%AA%E5%9B%BE20180705164533.png" alt="QQ截图20180705164533.png"></p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/mongoDB-入门/" rel="tag"># mongoDB 入门</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/06/09/hexo-mul-pc/" rel="next" title="hexo博客在多个系统上同步">
+                <i class="fa fa-chevron-left"></i> hexo博客在多个系统上同步
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/07/14/森悦家居销售工作总结/" rel="prev" title="森悦家居销售工作总结">
+                森悦家居销售工作总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB的安装与部署"><span class="nav-number">2.</span> <span class="nav-text">MongoDB的安装与部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mongoDB的基本使用"><span class="nav-number">3.</span> <span class="nav-text">mongoDB的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mongoDB常见的查询索引"><span class="nav-number">4.</span> <span class="nav-text">mongoDB常见的查询索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mongoDB安全"><span class="nav-number">5.</span> <span class="nav-text">mongoDB安全</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

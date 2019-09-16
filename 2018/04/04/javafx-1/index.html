@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javaFX,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaFX 学习学习javaFx是由于我的无人超市项目需要读写标签，在windows环境下开发图形界面的需求。教程地址: 第一篇 开始学习JavaFX JavaFX 优点: 层级样式表（CSS）将外观和样式与业务逻辑实现进行了分离，如果你具有Web设计背景， 或者你希望分离用户界面（UI）和后端逻辑，那么你可以通过FXML脚本语言来表述图形界面并且使用Java代码来表述业务逻辑。 如果你希望通过">
+<meta name="keywords" content="javaFX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaFX 学习(1)">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="JavaFX 学习学习javaFx是由于我的无人超市项目需要读写标签，在windows环境下开发图形界面的需求。教程地址: 第一篇 开始学习JavaFX JavaFX 优点: 层级样式表（CSS）将外观和样式与业务逻辑实现进行了分离，如果你具有Web设计背景， 或者你希望分离用户界面（UI）和后端逻辑，那么你可以通过FXML脚本语言来表述图形界面并且使用Java代码来表述业务逻辑。 如果你希望通过">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162006.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162138.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162403.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162856.png">
+<meta property="og:updated_time" content="2019-09-09T05:16:08.286Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaFX 学习(1)">
+<meta name="twitter:description" content="JavaFX 学习学习javaFx是由于我的无人超市项目需要读写标签，在windows环境下开发图形界面的需求。教程地址: 第一篇 开始学习JavaFX JavaFX 优点: 层级样式表（CSS）将外观和样式与业务逻辑实现进行了分离，如果你具有Web设计背景， 或者你希望分离用户界面（UI）和后端逻辑，那么你可以通过FXML脚本语言来表述图形界面并且使用Java代码来表述业务逻辑。 如果你希望通过">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162006.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/04/04/javafx-1/">
+
+
+
+
+
+  <title>javaFX 学习(1) | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/04/04/javafx-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javaFX 学习(1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-04T10:09:54+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/04/04/javafx-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/04/04/javafx-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/04/04/javafx-1/" class="leancloud_visitors" data-flag-title="javaFX 学习(1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JavaFX-学习"><a href="#JavaFX-学习" class="headerlink" title="JavaFX 学习"></a>JavaFX 学习</h2><p>学习javaFx是由于我的无人超市项目需要读写标签，在windows环境下开发图形界面的需求。<br>教程地址: <a href="http://www.javafxchina.net/blog/docs/tutorial1/" target="_blank" rel="noopener">第一篇 开始学习JavaFX</a></p>
+<h3 id="JavaFX-优点"><a href="#JavaFX-优点" class="headerlink" title="JavaFX 优点:"></a>JavaFX 优点:</h3><ol>
+<li><p>层级样式表（CSS）将外观和样式与业务逻辑实现进行了分离，如果你具有Web设计背景，<br> 或者你希望分离用户界面（UI）和后端逻辑，那么你可以通过FXML脚本语言来表述图形界面并且使用Java代码来表述业务逻辑。<br> 如果你希望通过非编码的方式来设计UI，则可以使用JavaFX Scene Builder。<br> 在你进行UI设计时，Scene Builder会创建FXML标记，它可以与一个集成开发环境（IDE）对接，这样开发人员可以向其中添加业务逻辑。</p>
+</li>
+<li><p>JavaFX库被写成了Java API，因此JavaFX应用程序可以调用各种Java库中的API。同时，JavaFX也具有跨平台兼容性。</p>
+</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h3><ol>
+<li>Java API: JavaFX是一个Java库。</li>
+<li>FXML和Scene Builder: FXML是一种基于XML的声明式标记语言，用于描述JavaFX应用程序的用户界面。<br> Scene Builder(交互式)生成的FXML标记可以与IDE对接，这样开发者可以添加业务逻辑。</li>
+<li>WebView: 使用了WebKitHTML技术的Web组件，可用于JavaFX应用程序中潜入Web页面。<br> 在WebView中运行的JavaScript可以方便的调用JavaAPI， 并且JavaAPI也可以调用WebView中的JS。</li>
+<li>与Swing互操作</li>
+<li>内置的UI控件和CSS: JavaFX提供了开发一个全功能应用程序所需的所有主要控件。<br> 这些组件可以使用标准的Web技术如css进行装饰。</li>
+<li>Modena主题</li>
+<li>3D图像处理能力</li>
+<li>Canvas API: Canvas API允许在由一个图形元素(node)组成额JavaFX场景(Scene)的一个区域中直接绘图。</li>
+<li>Printing API：JavaFX 8中加入了print包并且提供了打印功能公共类。</li>
+<li>Rich Text支持</li>
+<li>多点触摸。。。<br>…</li>
+</ol>
+<h3 id="创建JavaFX应用程序"><a href="#创建JavaFX应用程序" class="headerlink" title="创建JavaFX应用程序"></a>创建JavaFX应用程序</h3><ol>
+<li>进入JavaSE下载页面：<br> <a href="http://www.oracle.com/technetwork/java/javase/downloads/" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/</a><br> 下载带有 JavaFX 8.n的Oracle® JDK 8。<br> Certified System Configurations和Release Notes的链接也可以在这个页面中找到。</li>
+<li>创建JavaFX应用程序</li>
+<li>使用JavaFX Scene Builder看通过非编码方式设计JavaFX应用程序UI。<ul>
+<li>从JavaFX 下载页面下载JavaFX Scene Builder：<br>  <a href="http://www.oracle.com/technetwork/java/javase/downloads/" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/</a>.</li>
+<li>根据《使用JavaFX Scene Builder（Getting Started with JavaFX Scene Builder）》教程来学习更多内容。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="使用Eclipse创建JavaFX程序"><a href="#使用Eclipse创建JavaFX程序" class="headerlink" title="使用Eclipse创建JavaFX程序"></a>使用Eclipse创建JavaFX程序</h3><ol>
+<li>首先确保至少安装了jdk8，并配置好了环境变量。我选的是jdk8u161。</li>
+<li>安装Eclip，其它编辑器也可以，我选用了Eclipse。<br> 我选的是<a href="http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/oxygen3" target="_blank" rel="noopener">Eclipse IDE for Java Developers </a>，下载安装后还需要安装<code>E(fx)clipse</code>插件。<ol>
+<li>E(fx)clipse插件: <a href="http://download.eclipse.org/efxclipse/updates-released/2.1.0/site" target="_blank" rel="noopener">http://download.eclipse.org/efxclipse/updates-released/2.1.0/site</a></li>
+<li>xtext插件: <a href="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" target="_blank" rel="noopener">http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</a><br>安装插件位置: Help -&gt; Install new Software, 其他的自行百度。<br>安装完插件需要重启Eclipse。到这里，环境就搭建好了。</li>
+</ol>
+</li>
+<li>创建JavaFX应用程序<ol>
+<li>File-&gt;new-&gt;Project-&gt;JavaFx-&gt;JavaFX Project<br> <img src="/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162006.png" alt="QQ截图20180404162006.png"></li>
+<li>Next -&gt; 输入Project Name,选择Jre，其它项默认，然后finish即可。<br> <img src="/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162138.png" alt="QQ截图20180404162138.png"></li>
+<li>生成的目录结构如图。<br> <img src="/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162403.png" alt="QQ截图20180404162403.png"></li>
+<li>此时可以点击运行程序，可以看到空白框。<br> <img src="/blog/2018/04/04/javafx-1/QQ%E6%88%AA%E5%9B%BE20180404162856.png" alt="QQ截图20180404162856.png"></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/javaFX/" rel="tag"># javaFX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/03/22/letetcode-3-longest-substring-without-repeating/" rel="next" title="longest substring without repeating">
+                <i class="fa fa-chevron-left"></i> longest substring without repeating
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/04/04/javafx-2/" rel="prev" title="javaFX 学习(2)">
+                javaFX 学习(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaFX-学习"><span class="nav-number">1.</span> <span class="nav-text">JavaFX 学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaFX-优点"><span class="nav-number">1.1.</span> <span class="nav-text">JavaFX 优点:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键特性"><span class="nav-number">1.2.</span> <span class="nav-text">关键特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建JavaFX应用程序"><span class="nav-number">1.3.</span> <span class="nav-text">创建JavaFX应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Eclipse创建JavaFX程序"><span class="nav-number">1.4.</span> <span class="nav-text">使用Eclipse创建JavaFX程序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

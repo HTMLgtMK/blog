@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javaFX,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="javaFX学习这篇博客主要记录一下JavaFX应用程序的生命周期和要类。JavaFX官方文档:JavaFX参考文档 JavaFX应用程序生命周期(life-cycle)javaFX 应用程序的入口点是Application Class，程序运行时按如下顺序执行：  Constructs am instance of the specified Application class. 继承了Appl">
+<meta name="keywords" content="javaFX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaFX 学习(2)">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/04/04/javafx-2/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="javaFX学习这篇博客主要记录一下JavaFX应用程序的生命周期和要类。JavaFX官方文档:JavaFX参考文档 JavaFX应用程序生命周期(life-cycle)javaFX 应用程序的入口点是Application Class，程序运行时按如下顺序执行：  Constructs am instance of the specified Application class. 继承了Appl">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2019-09-09T05:16:08.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaFX 学习(2)">
+<meta name="twitter:description" content="javaFX学习这篇博客主要记录一下JavaFX应用程序的生命周期和要类。JavaFX官方文档:JavaFX参考文档 JavaFX应用程序生命周期(life-cycle)javaFX 应用程序的入口点是Application Class，程序运行时按如下顺序执行：  Constructs am instance of the specified Application class. 继承了Appl">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/04/04/javafx-2/">
+
+
+
+
+
+  <title>javaFX 学习(2) | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/04/04/javafx-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javaFX 学习(2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-04T17:23:38+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/04/04/javafx-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/04/04/javafx-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/04/04/javafx-2/" class="leancloud_visitors" data-flag-title="javaFX 学习(2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="javaFX学习"><a href="#javaFX学习" class="headerlink" title="javaFX学习"></a>javaFX学习</h2><p>这篇博客主要记录一下JavaFX应用程序的生命周期和要类。<br>JavaFX官方文档:<a href="https://docs.oracle.com/javafx/2/api/overview-summary.html" target="_blank" rel="noopener">JavaFX参考文档</a></p>
+<h3 id="JavaFX应用程序生命周期-life-cycle"><a href="#JavaFX应用程序生命周期-life-cycle" class="headerlink" title="JavaFX应用程序生命周期(life-cycle)"></a>JavaFX应用程序生命周期(life-cycle)</h3><p>javaFX 应用程序的入口点是Application Class，程序运行时按如下顺序执行：</p>
+<ol>
+<li>Constructs am instance of the specified Application class.<br> 继承了Application类的实例的构造函数。</li>
+<li>Calls the <code>init</code> method.<br> 调用<code>init()</code>方法。</li>
+<li>Calls the <code>start</code> method.<br> 调用<code>start()</code>方法。<br> <strong>注: start(Stage stage) 方法是抽象方法，必须重载。</strong></li>
+<li>Wait for the application to finish, which happens when either of the following occurs:<ul>
+<li>the application calls <code>Platform.exit()</code>.</li>
+<li>the last window has been closed and the <code>implictExit</code> attribute on Platform is true.</li>
+</ul>
+</li>
+<li>Calls the <code>stop</code> method.<br> 调用<code>stop()</code>方法。</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="javafx-stage-Stage类的解析"><a href="#javafx-stage-Stage类的解析" class="headerlink" title="javafx.stage.Stage类的解析"></a><code>javafx.stage.Stage</code>类的解析</h3><ol>
+<li><p>继承关系 <code>public class Stage extends Window</code><br> |- java.lang.Object<br> | |- javafx.stage.Window<br> | | |- javafx.stage.Stage</p>
+</li>
+<li><p>The JavaFX Stage class is the top level JavaFX container.<br> The primary Stage is constructed by the platform.<br> Additional Stage objects may be constructed by the application.<br> Stage objects must be constructed and modified on the JavaFX Application Thread.<br> Many of the Stage properties are read only because they can be changed externally by the underlying platform and therefore must not be bindable. </p>
+<ul>
+<li><code>Stage</code>类是JavaFX中的顶级容器，类似Swing中的JWindow的顶级容器，代表一个窗口。</li>
+<li>最初的Stage是由Platform构造，其它Stage是由Application构造。</li>
+<li>Stage对象必须在JavaFX Application线程中构造和操作。</li>
+<li>由于Stage可能被潜在的外部Platform修改，因此许多的Stage的属性都是只读的。</li>
+</ul>
+<p> 2.1 Stage样式(Style)</p>
+<pre><code>1. `StageStyle.DECORATED` -a stage with a solid white background and platform decorations
+2. `StageStyle.UNDECORATED` -a stage with a solid white background and no decorations.
+3. `StageStyle.TRANSPARENT` -a stage with a transparent background and no decorations.
+4. `StageStyle.UTILITY` -a stage with a solid white background and minimal platform decorations.</code></pre><p> 2.2 Modality 舞台的模态</p>
+<pre><code>1. `Modality.NONE` -a stage that does not block any other window.
+2. `Modality.WINDOW_MODAL` - a stage that blocks input events from being delivered  to all windows form its owner(parent) 
+    to its root. Its root is the closest ancestor window without an owner.
+3. `Modality.APPLICATION_MODAL` -a stage that blocks input events from being delivered to all windows from the same application,
+    except for those  from its child hierarchy.
+
+注: 使用`show()`方法会不会阻塞Caller，无论声明的是哪种模态类型；
+    使用`showAndWait()`方法会阻塞Caller，需要等到窗口关闭后才能有返回值。</code></pre><p> 2.3 主要方法和属性</p>
+<pre><code>* `fullScreen` 只读布尔属性，specifies whether this Stage should be a full-screen,undecorated window.
+* 继承自`javafx.stage.Window`的属性:
+    eventDispatcher, focused, height, onCloseRequest, onHidden, onHiding, onShowing, onShown, opacity, scene, showing, width, x, y
+* 构造方法
+    * `Stage()` create a new instance of decorated Stage.
+    * `Stage(StageStyle style)` create a new instance of Stage.
+* `void close()` Close this Stage.
+* `void setFullScreen(boolean value)` Sets the value of the propety fullScreen`.
+* `void setScene(Scene scene)` Specify the scene to be used on this stage.
+* `void setTitle(java.lang.String value)` Sets the value of propety title.
+* `void show()` Attempts to show this Window by setting visibility to true.
+* `void showAndWait()` Shows this stage and waits for it to be hidden (closed) before returning to the caller.
+* `void toBack()` Send the Window to the background.
+* `void toFront()` Bring the Window to the foreground.
+* 继承自`javafx.stage.Window`的方法:
+    addEventFilter, addEventHandler, buildEventDispatchChain, centerOnScreen, eventDispatcherProperty, fireEvent, focusedProperty, getEventDispatcher, getHeight, getOnCloseRequest, getOnHidden, getOnHiding, getOnShowing, getOnShown, getOpacity, getScene, getWidth, getX, getY, heightProperty, hide, isFocused, isShowing, onCloseRequestProperty, onHiddenProperty, onHidingProperty, onShowingProperty, onShownProperty, opacityProperty, removeEventFilter, removeEventHandler, requestFocus, sceneProperty, setEventDispatcher, setEventHandler, setHeight, setOnCloseRequest, setOnHidden, setOnHiding, setOnShowing, setOnShown, setOpacity, setWidth, setX, setY, showingProperty, sizeToScene, widthProperty, xProperty, yProperty</code></pre></li>
+</ol>
+<h3 id="Threading线程"><a href="#Threading线程" class="headerlink" title="Threading线程"></a>Threading线程</h3><p>参考:<br>[1]. <a href="https://blog.csdn.net/xby1993/article/details/17203977" target="_blank" rel="noopener">javafx官方文档学习之一Application与Stage,Scene初探 作者: 浮沉雄鹰</a></p>
+<p><code>Launch Thread</code>启动线程和<code>Application Thread</code>应用线程的区别<br>Lacunch Thread启动线程是javafx运行时触发的，它会负责构造Application对象和调用Application对象的init()方法，这意味着主State主场景是在launcher Thread线程中被构造的，（因为它是init方法的参数）故而我们可以不用管它，直接拿来用就可以了。但是launch Thread并不是UI线程。它的工作也就只是上面所说的。<br>Application Thread:相当于Swing中的UI事件分派线程EDT。</p>
+<table>
+    <tr>
+        <td>HostServices</td>
+        <td>`getHostServices()`<br> Gets the HostServices provider for this application. </td>
+    </tr>
+    <tr>
+        <td>Application.Parameters</td>
+        <td>`getParameters()`<br>Retrieves the parameters for this Application, including any arguments passed on the command line and any parameters specified in a JNLP file for an applet or WebStart application.</td>
+    </tr>
+    <tr>
+        <td>void</td>
+        <td>`init()`<br> The application initialization method.</td>
+    </tr>
+    <tr>
+        <td>static void</td>
+        <td>`launch(java.lang.Class<? extends Application> appClass, java.lang.String... args)`<br> Launch a standalone application. |</td>
+    </tr>
+    <tr>
+        <td>static void</td>
+        <td>`launch(java.lang.String... args)`<br> Launch a standalone application. |</td>
+    </tr>
+    <tr>
+        <td>void</td>
+        <td>`notifyPreloader(Preloader.PreloaderNotification info)`<br> Notifies the preloader with an application-generated notification. |</td>
+    </tr>
+    <tr>
+        <td>abstract void</td>
+        <td>`start(Stage primaryStage)`<br> The main entry point for all JavaFX applications. |</td>
+    </tr>
+    <tr>
+        <td>void</td>
+        <td>`stop()`<br> This method is called when the application should stop, and provides a convenient place to prepare for application exit and destroy resources. |</td>
+    </tr>
+</table>
+
+<p>示例代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> application;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">import</span> javafx.application.Application;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.layout.BorderPane;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			BorderPane root = <span class="keyword">new</span> BorderPane();</span><br><span class="line">			Scene scene = <span class="keyword">new</span> Scene(root,<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">			scene.getStylesheets().add(getClass().getResource(<span class="string">"application.css"</span>).toExternalForm());</span><br><span class="line">			primaryStage.setScene(scene);</span><br><span class="line">			primaryStage.show();</span><br><span class="line">		&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		launch(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：根节点的大小是随着Scene自适应的。<br>main()方法并不是必须有的，一般javafx程序是将javafx packager Tool嵌入到jar文件，<br>但是为了便于调试，还是写出来为好。</p>
+<p>总之，看到这里让我学习JavaFX有了一定的信心，JavaFX和Android类库真的很相似！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/javaFX/" rel="tag"># javaFX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/04/04/javafx-1/" rel="next" title="javaFX 学习(1)">
+                <i class="fa fa-chevron-left"></i> javaFX 学习(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/04/05/javafx-3/" rel="prev" title="JavaFX 学习(3)">
+                JavaFX 学习(3) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#javaFX学习"><span class="nav-number">1.</span> <span class="nav-text">javaFX学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaFX应用程序生命周期-life-cycle"><span class="nav-number">1.1.</span> <span class="nav-text">JavaFX应用程序生命周期(life-cycle)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javafx-stage-Stage类的解析"><span class="nav-number">1.2.</span> <span class="nav-text">javafx.stage.Stage类的解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threading线程"><span class="nav-number">1.3.</span> <span class="nav-text">Threading线程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

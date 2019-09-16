@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaFX,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaFX 学习这篇博客主要记录JavaFX UI控件相关知识。参考:[1]. 第三篇 使用JavaFX UI组件 使用JavaFX UI控件JavaFX UI控件的包在javafx.scene.control">
+<meta name="keywords" content="JavaFX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaFX 学习(3)">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/04/05/javafx-3/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="JavaFX 学习这篇博客主要记录JavaFX UI控件相关知识。参考:[1]. 第三篇 使用JavaFX UI组件 使用JavaFX UI控件JavaFX UI控件的包在javafx.scene.control">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/04/05/javafx-3/QQ%E6%88%AA%E5%9B%BE20180405100100.png">
+<meta property="og:updated_time" content="2019-09-09T05:16:08.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaFX 学习(3)">
+<meta name="twitter:description" content="JavaFX 学习这篇博客主要记录JavaFX UI控件相关知识。参考:[1]. 第三篇 使用JavaFX UI组件 使用JavaFX UI控件JavaFX UI控件的包在javafx.scene.control">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/04/05/javafx-3/QQ%E6%88%AA%E5%9B%BE20180405100100.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/04/05/javafx-3/">
+
+
+
+
+
+  <title>JavaFX 学习(3) | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/04/05/javafx-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaFX 学习(3)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-05T09:25:09+08:00">
+                2018-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/04/05/javafx-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/04/05/javafx-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/04/05/javafx-3/" class="leancloud_visitors" data-flag-title="JavaFX 学习(3)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JavaFX-学习"><a href="#JavaFX-学习" class="headerlink" title="JavaFX 学习"></a>JavaFX 学习</h2><p>这篇博客主要记录JavaFX UI控件相关知识。<br>参考:<br>[1]. <a href="http://www.javafxchina.net/blog/docs/tutorial3/" target="_blank" rel="noopener">第三篇 使用JavaFX UI组件</a></p>
+<h3 id="使用JavaFX-UI控件"><a href="#使用JavaFX-UI控件" class="headerlink" title="使用JavaFX UI控件"></a>使用JavaFX UI控件</h3><p>JavaFX UI控件的包在<a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/package-summary.html" target="_blank" rel="noopener">javafx.scene.control</a></p>
+<a id="more"></a>
+
+<ol>
+<li><p><a href="http://www.javafxchina.net/blog/?p=23" target="_blank" rel="noopener">标签Label</a><br> 标签(Label)是一个不可编辑文本的控件，用于显示文本。</p>
+<ol>
+<li><p>继承关系 <code>public class Label extends Labled</code><br> |– java.lang.Object<br> |  |– javafx.scene.Node<br> |  |  |– javafx.scene.Parent<br> |  |  |  |– javafx.scene.control.Control<br> |  |  |  |   |– javafx.scene.control.Labeled<br> |  |  |  |   |  |– javafx.scene.control.Label</p>
+</li>
+<li><p>构造函数</p>
+<ul>
+<li><code>Label()</code> Creates an empty label</li>
+<li><code>Label(java.lang.String text)</code> Creates Label with supplied text.</li>
+<li><code>Label(java.lang.Striing text,Node graphic)</code> Creates a label wuth the supllied text and graphic</li>
+</ul>
+</li>
+<li><p>主要属性</p>
+<ul>
+<li>labelFor - A Label can act as a label for a different Control or Node.</li>
+<li>继承自Labeled的的属性<br>  contextMenu, height, maxHeight, maxWidth, minHeight, minWidth, prefHeight, prefWidth, skinClassName, skin, tooltip, width</li>
+</ul>
+</li>
+<li><p>主要方法</p>
+<ul>
+<li><code>void setLabelFor(Node node)</code> <code>Node getLabelFor()</code></li>
+<li>继承自Labeled的的方法<br>  alignmentProperty, contentDisplayProperty, ellipsisStringProperty, fontProperty, getAlignment, getContentBias, getContentDisplay, getEllipsisString, getFont, getGraphic, getGraphicTextGap, getLabelPadding, getText, getTextAlignment, getTextFill, getTextOverrun, graphicProperty, graphicTextGapProperty, isMnemonicParsing, isUnderline, isWrapText, labelPaddingProperty, mnemonicParsingProperty, setAlignment, setContentDisplay, setEllipsisString, setFont, setGraphic, setGraphicTextGap, setMnemonicParsing, setText, setTextAlignment, setTextFill, setTextOverrun, setUnderline, setWrapText, textAlignmentProperty, textFillProperty, textOverrunProperty, textProperty, underlineProperty, wrapTextProperty<br>eg:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		Label label = <span class="keyword">new</span> Label();</span><br><span class="line">		label.setText(<span class="string">"Hello World!"</span>);</span><br><span class="line">		Scene scene = <span class="keyword">new</span> Scene(label,<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">		scene.getStylesheets().add(getClass().getResource(<span class="string">"application.css"</span>).toExternalForm());</span><br><span class="line">		primaryStage.setScene(scene);</span><br><span class="line">		primaryStage.show();</span><br><span class="line">	&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="/blog/2018/04/05/javafx-3/QQ%E6%88%AA%E5%9B%BE20180405100100.png" alt="QQ截图20180405100100.png"></p>
+</li>
+</ol>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=120" target="_blank" rel="noopener">按钮Button</a><br> JavaFX API中的Button类用来处理用户点击一个按钮时执行一个动作。</p>
+<ol>
+<li><p>继承关系<br> |– java.lang.Object<br> |  |– javafx.scene.Node<br> |  |  |– javafx.scene.Parent<br> |  |  |  |– javafx.scene.control.Control<br> |  |  |  |  |– javafx.scene.control.Labeled<br> |  |  |  |  |  |– javafx.scene.control.ButtonBase<br> |  |  |  |  |  |   |– javafx.scene.control.Button </p>
+</li>
+<li><p>构造函数</p>
+<ul>
+<li><code>Button()</code> - 一个空的Button</li>
+<li><code>Button(String text)</code> - 一个指定文本标题的Button</li>
+<li><code>Button(String text, Node Grapgic)</code> - 一个指定文本标题和图标的Button<br>  也可以通过方法设置:<ul>
+<li><code>setText(String text)</code> 设置文本标题</li>
+<li><code>setGraphic(Node graphic)</code> 指定图标</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3种按钮模式</p>
+<ul>
+<li><code>Normal</code> 普通按钮</li>
+<li><code>Default</code> 默认按钮即为OK的意思，接受键VK_ENTER</li>
+<li><code>Cancel</code> 取消按钮即为Cancel的意思，接受键VK_ESC</li>
+</ul>
+</li>
+<li><p>添加Action监听器</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button.setOnAction(ActionEvent e)&#123;</span><br><span class="line">	label.setText(<span class="string">"Accepted"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加视觉效果<br> 由于Button继承自Node类，因此可以为Button添加javafx.scene.effect包下的任何特殊效果。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DropShadow shadow = <span class="keyword">new</span> DropShadow();</span><br><span class="line">button.setEffect(shadow);<span class="comment">//设置阴影效果</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=133" target="_blank" rel="noopener">单选按钮（Radio Button）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=127" target="_blank" rel="noopener">开关按钮（Toggle Button）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=139" target="_blank" rel="noopener">复选框（Checkbox）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=150" target="_blank" rel="noopener">选择框（Choice Box）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=155" target="_blank" rel="noopener">文本框（Text Field）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=165" target="_blank" rel="noopener">密码框（Password Field）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=173" target="_blank" rel="noopener">滚动条（Scroll Bar）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=188" target="_blank" rel="noopener">滚动面板（Scroll Pane）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=209" target="_blank" rel="noopener">列表视图（List View）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=226" target="_blank" rel="noopener">表格视图（Table View）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=250" target="_blank" rel="noopener">树视图（Tree View）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=252" target="_blank" rel="noopener">树表视图（Tree Table View）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=254" target="_blank" rel="noopener">组合框（Combo Box）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=256" target="_blank" rel="noopener">分隔符（Separator）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=258" target="_blank" rel="noopener">滑块（Slider）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=260" target="_blank" rel="noopener">进度条和进度指示器（Progress Bar and Progress Indicator）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=262" target="_blank" rel="noopener">超链接（Hyperlink）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=375" target="_blank" rel="noopener">HTML编辑器（HTML Editor）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=386" target="_blank" rel="noopener">提示信息（Tooltip）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=391" target="_blank" rel="noopener">带有标题的面板和可折叠面板（Titled Pane and Accordion）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=400" target="_blank" rel="noopener">菜单（Menu）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=410" target="_blank" rel="noopener">颜色选择器（Color Picker）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=422" target="_blank" rel="noopener">日期选择器（Date Picker）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=434" target="_blank" rel="noopener">分页控件（Pagination Control）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=447" target="_blank" rel="noopener">文件选择框（File Chooser）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=459" target="_blank" rel="noopener">自定义UI控件（Customization of UI Controls）</a></p>
+</li>
+<li><p><a href="http://www.javafxchina.net/blog/?p=469" target="_blank" rel="noopener">嵌入式平台的UI控件（UI Controls on the Embedded Platforms）</a></p>
+</li>
+</ol>
+<p><strong>实在是太多了，，，不一一搬运了。。。</strong></p>
+<h3 id="给UI控件添加样式"><a href="#给UI控件添加样式" class="headerlink" title="给UI控件添加样式"></a>给UI控件添加样式</h3><ol>
+<li><p>定义样式<br> 一般来说，创建的样式表都应该以.css为后缀，<br> 并且应该与你JavaFX程序的main class放在同一个路径下。<br> eg:</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button</span>&#123;</span><br><span class="line">	<span class="attribute">-fx-font</span>: <span class="number">32</span> aria</span><br><span class="line">	-fx-backgroound-color: <span class="number">#ccccff</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用样式</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Scene scene = <span class="keyword">new</span> Scene(<span class="keyword">new</span> Group(),<span class="number">400</span>,<span class="number">400</span>);</span><br><span class="line">scene.getStylesheets().add(<span class="string">"path/stylesheet.css"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分配Class Style</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Button buttonAccept = <span class="keyword">new</span> Button(<span class="string">"Accept"</span>);</span><br><span class="line">buttonAccept.getStyleClass().add(<span class="string">"button1"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分配ID Style</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Button buttonFont = <span class="keyword">new</span> Button(<span class="string">"Font"</span>);</span><br><span class="line">buttonFont.setId(<span class="string">"font-button"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明内联样式</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Button buttonColor = <span class="keyword">new</span> Button(<span class="string">"Color"</span>);</span><br><span class="line">buttonColor.setStyle(<span class="string">"-fx-background-color: slateblue; -fx-text-fill: white;"</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<p>我个人只是需要个界面，暂时还不需要了解太深入，日后再做研究。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JavaFX/" rel="tag"># JavaFX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/04/04/javafx-2/" rel="next" title="javaFX 学习(2)">
+                <i class="fa fa-chevron-left"></i> javaFX 学习(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/04/05/javafx-4/" rel="prev" title="JavaFX 学习(4)">
+                JavaFX 学习(4) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaFX-学习"><span class="nav-number">1.</span> <span class="nav-text">JavaFX 学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用JavaFX-UI控件"><span class="nav-number">1.1.</span> <span class="nav-text">使用JavaFX UI控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给UI控件添加样式"><span class="nav-number">1.2.</span> <span class="nav-text">给UI控件添加样式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="php basic,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="php (Hypertext Preprocessor), 超文本预处理器，是一种通用的开源脚本语言。入门简单，使用广泛，主要用于Web开发。  php的安装用于搭建Web网站，需要服务器，数据库，后台脚本还有网页前端。这里服务器windows下选用Apache，CentOS7以及Ubuntu下使用Nginx。数据库使用MySQL5。  Windows下环境搭建 1.1 使用Wamp或者XMP套">
+<meta name="keywords" content="php basic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php基础1">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="php (Hypertext Preprocessor), 超文本预处理器，是一种通用的开源脚本语言。入门简单，使用广泛，主要用于Web开发。  php的安装用于搭建Web网站，需要服务器，数据库，后台脚本还有网页前端。这里服务器windows下选用Apache，CentOS7以及Ubuntu下使用Nginx。数据库使用MySQL5。  Windows下环境搭建 1.1 使用Wamp或者XMP套">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180309211806.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310190259.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310200517.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310201117.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310213712.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310231956.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310232157.png">
+<meta property="og:updated_time" content="2019-09-09T05:16:08.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php基础1">
+<meta name="twitter:description" content="php (Hypertext Preprocessor), 超文本预处理器，是一种通用的开源脚本语言。入门简单，使用广泛，主要用于Web开发。  php的安装用于搭建Web网站，需要服务器，数据库，后台脚本还有网页前端。这里服务器windows下选用Apache，CentOS7以及Ubuntu下使用Nginx。数据库使用MySQL5。  Windows下环境搭建 1.1 使用Wamp或者XMP套">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180309211806.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/03/09/php-basic-1/">
+
+
+
+
+
+  <title>php基础1 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/03/09/php-basic-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php基础1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-09T19:58:36+08:00">
+                2018-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/03/09/php-basic-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/03/09/php-basic-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/03/09/php-basic-1/" class="leancloud_visitors" data-flag-title="php基础1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>php (Hypertext Preprocessor), 超文本预处理器，是一种通用的开源脚本语言。<br>入门简单，使用广泛，主要用于Web开发。</p>
+</blockquote>
+<h2 id="php的安装"><a href="#php的安装" class="headerlink" title="php的安装"></a>php的安装</h2><p>用于搭建Web网站，需要服务器，数据库，后台脚本还有网页前端。<br>这里服务器windows下选用Apache，CentOS7以及Ubuntu下使用Nginx。<br>数据库使用MySQL5。</p>
+<ol>
+<li><p>Windows下环境搭建<br> 1.1 使用Wamp或者XMP套件。简单快速，适合新手，不需要配置太多。<br> 1.2 自己下载Apache，MySQL以及php，并配置。</p>
+</li>
+<li><p>Linux下环境搭建<br> CentOS7和Ubuntu 都是直接使用源安装更加方便。当然后面需要自己配置。</p>
+</li>
+<li><p>测试是否搭建成功<br> 在网站根目录下新建php文件(phpinfo.php)：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">phpinfo();//输出配置信息</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 打开浏览器，localhost/phpinfo.php,就能看见输出的配置信息。</p>
+ <a id="more"></a></li>
+<li><p>php编辑器<br>使用eclipse 做为php和html的编辑器，需要下载插件<br>几个有用的插件：<br> 4.1 emment  提示代码<br> 4.2 Zen Coding 提示代码<br> 4.3 Php development tools 即，PDT，php的语言环境，否则嵌套html时报错<br> 4.4 或者不用PDT，而是下载phpEclipse插件<br> 这时，注意editor的选择,php文件使用php_editor或php_source_editor;<br> html文件使用 php_source_editor。同时，可以安装aptana，方便创建模板。<br> 4.5 eclipse对html的语法检查很严格，导致在html文件中插入php时也会报错。<br> 解决方法：<br> 在eclipse-&gt;windows-&gt;validation-&gt;html 取消检查html语法<br> 4.6 html文档中不能解析php代码的问题<br> 在apache的配置文件httpd.conf加入:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AddHandler php5-script .php .html</span><br><span class="line">AddType text/html .php .html</span><br></pre></td></tr></table></figure>
+
+<p> 然后重启apache.</p>
+</li>
+</ol>
+<h2 id="php基本语法"><a href="#php基本语法" class="headerlink" title="php基本语法"></a>php基本语法</h2><ol>
+<li><p>变量<br> 声明： $美元符号<br> php是弱类型语言，不需要向PHP声明该变量的数据类型。<br> php会根据变量的值，自动判断变量数据类型。</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$num=<span class="number">10</span>;<span class="comment">//数值型</span></span><br><span class="line">	$str=<span class="string">"hello world!"</span>;<span class="comment">//字符串类型</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串类型<br> 字符串单引号表示：可以输出包含变量的字符串，变量用变量值替换。<br> 字符串双引号表示：表示普通字符串，里面有变量时也是直接输出。并且没有字符串的转义。。。<br> <strong>注：输出引号时要使用\表示转义。</strong><br> 换行：\n</p>
+<p> 字符串的拼接：用<code>.</code>拼接；</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a=<span class="string">"hello ="</span>;</span><br><span class="line">$b=<span class="string">" world"</span>;</span><br><span class="line">$c=$a.$b;</span><br></pre></td></tr></table></figure>
+
+<p> 如果只是输出，那么也可以直接用<code>,</code>隔开<br> <code>echo=$a,&amp;b;</code></p>
+</li>
+<li><p>数组<br> 3.1 定义：<br> 在php中，有三种数组类型：<br> 3.1.1 索引数组–带有数字索引的数组<br> 创建索引数组,索引是自动分配的：<br> <code>$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;SAAB&quot;);</code><br> 或是手动分配：<br> <code>$cars[2]=&quot;BMW&quot;;</code><br> 3.1.2 关联数组-带有指定键的数组</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$arr=<span class="keyword">array</span>(<span class="string">"key1"</span>=&gt;<span class="string">"BWM"</span>,<span class="string">"key2"</span>=&gt;<span class="string">"Benz"</span>);</span><br><span class="line">$arr[<span class="string">'key3'</span>]=<span class="string">"GEELY"</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 3.1.3 多维数组-包含一个或多个数组的数组</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$arr=<span class="keyword">array</span>(<span class="string">"key1"</span>=&gt;<span class="string">"BWM"</span>,<span class="string">"key2"</span>=&gt;<span class="string">"Benz"</span>);</span><br><span class="line">...</span><br><span class="line">$arr2[<span class="string">'name'</span>]=$arr;</span><br><span class="line">print_r($arr2);<span class="comment">//可以输出格式化的数据</span></span><br></pre></td></tr></table></figure>
+
+<p> <img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180309211806.png" alt="QQ截图20180309211806"><br> 3.2 取数组单元：用数组名+key来取<br> <code>echo $arr[&#39;002&#39;];</code><br> 3.3 获取数组的长度-<code>count()</code>函数<br> <code>count($cars);</code><br> 3.4 遍历数组<br> 3.4.1 遍历数组foreach<br> foreach 是专门用于循环数组的，速度非常快<br> foreach里面的键值的变量名($k,$v)为任意合法的变量名。</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$arry=arry(<span class="string">'name'</span>=&gt;<span class="string">'zhangshan'</span>,<span class="string">'age'</span>=&gt;<span class="number">24</span>,<span class="string">'address'</span>=&gt;<span class="string">'beijing'</span>);</span><br><span class="line"><span class="keyword">foreach</span>($arry <span class="keyword">as</span> $k=&gt;$v)&#123;</span><br><span class="line">	<span class="keyword">echo</span> $k,<span class="string">':'</span>,$v,<span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 只循环值：</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span>($array <span class="keyword">as</span> $v)&#123;</span><br><span class="line">	<span class="keyword">echo</span> $v,<span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>注：foreach 方法不能只循环键</strong><br> 方法：<code>arry_keys()</code> –返回数组中所有的键名。<br> 3.4.2 for循环<br> 和其他语言一样</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$cars=<span class="keyword">array</span>(<span class="string">"Volvo"</span>,<span class="string">"BMW"</span>,<span class="string">"Toyota"</span>);</span><br><span class="line">$arrlength=count($cars);</span><br><span class="line"><span class="keyword">for</span>($x=<span class="number">0</span>;$x&lt;$arrlength;$x++)&#123;</span><br><span class="line">	<span class="keyword">echo</span> $cars[$x];</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数<br> 4.1 函数定义:<br> function 函数名([参数1],[参数2],…,[参数n]){</p>
+<pre><code>//函数体，就是php语句
+return 某值/某式;</code></pre><p> }</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">($a,$b)</span></span>&#123;<span class="comment">//加法</span></span><br><span class="line">	<span class="keyword">return</span> $a+$b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 4.2 调用<br> <code>$res=add(1,2);</code></p>
+</li>
+<li><p>打印函数<br> 5.1 print_r($var);<br> 5.2 var_dump($var);<br> 5.3 echo $str;</p>
+</li>
+<li><p><strong>php获取html表单数据 <code>$_GET</code> <code>$_POST</code></strong><br> 6.1 $_GET是一个全局数组，在页面的不同部分都能够访问这个数组。<br> 可以获取地址栏中<code>?</code>后面的参数，并且可以自动放到$_GET数组中.<br> 6.2 $_POST也是一个全局数组，在页面的不同部分也能访问的到这个数组。<br> 可以获取前台<code>post</code>方式提交的表单数据。</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html页面 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"11.php"</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"textarea"</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">```php</span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="comment">/*11.php*/</span></span></span><br><span class="line"><span class="php">var_dump($_GET);</span></span><br><span class="line"><span class="php">var_dump($_POST);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间戳格式化函数 <code>date(format,timestamp)</code></p>
+<ul>
+<li><p><code>time()</code>函数获取Unix时间戳秒数</p>
+</li>
+<li><p>d - 表示月里的某天（01-31）</p>
+</li>
+<li><p>m - 表示月（01-12）</p>
+</li>
+<li><p>Y - 表示年（四位数）</p>
+</li>
+<li><p>1 - 表示周里的某天</p>
+</li>
+<li><p>h - 带有首位零的 12 小时小时格式</p>
+</li>
+<li><p>i - 带有首位零的分钟</p>
+</li>
+<li><p>s - 带有首位零的秒（00 -59）</p>
+</li>
+<li><p>a - 小写的午前和午后（am 或 pm）</p>
+<p>获取当前时间</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$yesterday = time();</span><br><span class="line"><span class="keyword">echo</span> date(<span class="string">"Y-m-d H:i:s"</span>,$yesterday);/其实默认timestamp=time()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310190259.png" alt="QQ截图20180310190259.png"></p>
+<p>时间字符串转换成<code>int</code>时间戳<br><code>int strtotime(string);</code></p>
+</li>
+</ul>
+</li>
+<li><p>超全局变量<br> 8.1. $_GET //地址栏上获得的值<br> 8.2. $_POST //POST表单发送的值<br> 8.3. $_REQUEST //既有GET,又有POST的内容(GET,POST的并集)</p>
+<p> 8.4. $_SESSION //会话变量<br> 8.5. $_COOKIE //客户端标记<br> 8.6. $__FILES //上传的文件全局变量</p>
+<p> 8.7. $_SERVER //web服务器的环境<br> 8.8. $_ENV //服务器操作系统的环境变量，如操作系统类型:windows,linux,mac等。</p>
+<p> 8.9. $GOLBALS //引用全局作用域中可用的全部变量</p>
+</li>
+<li><p>php实现页面跳转的几种方法<br> 页面跳转可能是由于用户单击链接、按钮等引发的，也可能使系统自动产生的。</p>
+<p> 9.1 <code>header()</code>函数<br> <code>header()</code>函数的主要功能是将HTTP协议标头输出到浏览器。<br> <code>void header(string string[,bool replace[,int http_response_code]])</code><br> 可选的参数replace指明是替换之前一条类似标头还是添加一条相同类型的标头，默认为替换。<br> 第二个参数http_response_code强制将HTTP相应代码设置为指定值。<br> header函数中Location类型的标头是一种特殊的header调用，常用于页面的跳转。<br> <strong>注：</strong></p>
+<ol>
+<li><p><code>Location</code>和<code>:</code>之间不能有空格，否则不会有跳转。</p>
+</li>
+<li><p>在用<code>header</code>前不能有任何的输出,否则看不到任何输出。</p>
+</li>
+<li><p><code>header</code>后的PHP代码还会被执行，因此，常用exit.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="comment">//重定向浏览器</span></span><br><span class="line">  header(<span class="string">"Location://http:www.baidu.com"</span>);</span><br><span class="line">  <span class="comment">//确保重定向后，后续代码不会被执行</span></span><br><span class="line">  <span class="keyword">exit</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 <code>meta</code>标签<br><code>meta</code>标签是html中负责提供文档元信息的标签，在php程序中使用该标签，也可以实现页面跳转。<br>若定义<code>http-equiv</code>为<code>refresh</code>，则打开该页面时根据<code>content</code>规定的值在一定的时间内跳转到相应的页面。<br>若设置<code>content=</code>“秒数”,<code>url</code>=”网址”,则定义了经过多长时间后页面跳转到指定的网址。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html5&gt;</span></span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">$url=<span class="string">"http://www.baidu.com"</span>;<span class="comment">//要跳转的地址</span></span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"5; url=&lt;?php echo $url; ?&gt; "</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">页面只停留5s</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3 javascript方法<br>window.location.href 属性值设置window窗口的链接地址。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"javascript"</span> type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="built_in">window</span>.location.href=<span class="string">"&lt;?php echo $url; ?&gt;"</span>;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>json数据<br>json格式是一种很好的跨平台的格式。易于解析和编码。同样方便的xml格式。。<br>10.1 <code>json_encode()</code>编码函数<br><code>string json_encode(mixed value,int option=0);</code></p>
+<ul>
+<li>mixed value:需要编码的变量，一般是数组。<br><img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310200517.png" alt="QQ截图20180310200517.png"></li>
+</ul>
+<p>10.2 <code>json_decode()</code>解码函数<br><code>mixed json_decode(string json_str,[bool assoc=false,int depth=512]);</code></p>
+<ul>
+<li>string json_str:需要解码的json字符串。<br><img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310201117.png" alt="QQ截图20180310201117.png"></li>
+</ul>
+</li>
+<li><p>php类与对象<br>后面再续。。。</p>
+</li>
+<li><p>php数据库MySQL操作<br>12.1 连接MySQL<br>面向过程 方式：<br><code>mysqli_connection mysqli_connect([string $host,string $username,string $pwd,string $dbname,string port,string $socket])</code><br>面向对象 方式：<br>``$mysqli_connection=new mysqli(string $host,string $username,string $pwd,string $dbname);</p>
+<p>连接数据库时可以不选定数据库，但是后面需要指定：<br><code>bool mysqli_select_db(mysqli_link $conn,string $dbname);</code><br><code>$mysqli_connection-&gt;select_db(string $dbname);</code> </p>
+<p>不使用数据库后要关闭数据库连接：<br><code>bool mysqli_close(mysqli_link $conn);</code> 关闭数据库连接<br><code>$conn-&gt;close();</code>面向对象方式关闭数据库连接</p>
+<p>12.2 捕获错误信息<br><code>string mysqli_error();</code> 显示错误信息<br><code>int mysqli_errno();</code>    显示错误类型<br><code>$mysqli_link-&gt;error();</code>        显示错误信息</p>
+<p>12.3 query<br><code>mixed mysqli_query(mysqli_link $conn,string $query[,int result_mode=0]);</code><br>返回的类型是数据库资源(mysql resource)类型。<br><code>string $query</code> 可以是增删改查任意类型。。。</p>
+<p>获取查询的数据:<br><code>int mysqli_num_rows(mysqli_result $result);</code> 获取选择的列数<br><code>array|NULL mysqli_fetch_assoc(mysqli_result $result);</code><br>获取数据的第一行，以数组形式返回，列名为键值。<br><code>array|NULL mysqli_fetch_row(mysqli_result $result);</code><br>获取数据的第一行，以数组形式返回，列顺序下标为键值。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">"Content-Type:text/html;charset=utf-8"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">($host,$username,$pwd,$dbname)</span></span>&#123;</span><br><span class="line">	<span class="comment">//连接数据库</span></span><br><span class="line">	$conn=mysqli_connect($host,$username,$pwd);</span><br><span class="line">	<span class="keyword">if</span>(!$conn)&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"connect failed!"</span>,<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//选择数据库</span></span><br><span class="line">	<span class="keyword">if</span>(!mysqli_select_db($conn,$dbname))&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"select db failed!"</span>,<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">		mysqli_close($conn);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> $conn;<span class="comment">//返回数据库连接</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">close</span><span class="params">($conn)</span></span>&#123;</span><br><span class="line">	<span class="comment">//关闭数据库</span></span><br><span class="line">	mysqli_close($conn);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//====================================</span></span><br><span class="line">$conn=connect(<span class="string">"localhost"</span>,<span class="string">"root"</span>,<span class="string">"g**"</span>,<span class="string">"db_test"</span>);</span><br><span class="line"><span class="keyword">if</span>(!$conn) <span class="keyword">exit</span>();</span><br><span class="line">$sql=<span class="string">"SELECT * FROM `tb_test1`;"</span>;</span><br><span class="line">$res=mysqli_query($conn,$sql);</span><br><span class="line"><span class="keyword">if</span>(<span class="number">0</span>&lt;mysqli_num_rows($res))&#123;</span><br><span class="line">	$res=mysqli_fetch_assoc($res);<span class="comment">//获取列名作为数组key</span></span><br><span class="line">	<span class="comment">//$res=mysqli_fetch_row($res);//将列的顺序下标作为数组key</span></span><br><span class="line">	var_dump($res);</span><br><span class="line">&#125;</span><br><span class="line">close($conn);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310213712.png" alt="QQ截图20180310213712.png"></p>
+<p>12.4 数据库事务</p>
+<ol>
+<li><code>bool mysqli_autocommit(mysqli_link $conn,bool $mode);</code><br> 设置是否自动提交,默认$mode=true;</li>
+<li><code>bool mysqli_multi_query(mysqli_link $conn,string $query);</code><br> 一个进行多项query的方法。。。$query内以<code>;</code>分割不同query</li>
+<li><code>bool mysqli_next_result(mysqli_link $conn);</code><br> 移动$conn指针，指向下一个query的执行结果。</li>
+<li><code>int mysqli_affect_rows(mysqli_link $conn);</code><br> 获取query执行影响的行数。</li>
+<li><code>bool mysqli_commit(mysqli_link $conn);</code><br> 提交事务</li>
+<li><code>bool mysqli_rollback(mysqli_link $conn);</code><br> 回滚事务<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$conn=connect(<span class="string">"localhost"</span>,<span class="string">"root"</span>,<span class="string">"gt"</span>,<span class="string">"db_test"</span>);</span><br><span class="line"><span class="keyword">if</span>(!$conn) <span class="keyword">exit</span>();</span><br><span class="line">mysqli_autocommit($conn,<span class="keyword">false</span>);<span class="comment">//关闭自动提交</span></span><br><span class="line">$sql=<span class="string">"UPDATE `tb_test2` SET `str`='hello!';"</span>;</span><br><span class="line">$sql.=<span class="string">"UPDATE `tb_test2` SET `str`='hello GT!';"</span>;</span><br><span class="line">$res=mysqli_multi_query($conn,$sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)&#123;</span><br><span class="line">	<span class="keyword">echo</span> mysqli_error($conn);</span><br><span class="line">	close($conn);</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$res1=mysqli_affected_rows($conn)&gt;<span class="number">0</span>?<span class="keyword">true</span>:<span class="keyword">false</span>;</span><br><span class="line">mysqli_next_result($conn);</span><br><span class="line">$res2=mysqli_affected_rows($conn)&gt;<span class="number">0</span>?<span class="keyword">true</span>:<span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">if</span>($res1 &amp;&amp; $res2)&#123;</span><br><span class="line">	mysqli_commit($conn);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"commit transaction!&lt;br/&gt;"</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	mysqli_rollback($conn);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"rollback transaction!&lt;br/&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line">close($conn);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310231956.png" alt="QQ截图20180310231956.png"><br><img src="/blog/2018/03/09/php-basic-1/QQ%E6%88%AA%E5%9B%BE20180310232157.png" alt="QQ截图20180310232157.png"></p>
+</li>
+</ol>
+<p>=========================================================<br>这里只是简单的笔记，如果有错误恳请指正。<br>Email: <a href="mailto:GT_GameEmail@163.com" target="_blank" rel="noopener">GT_GameEmail@163.com</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/php-basic/" rel="tag"># php basic</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/03/07/suning-interview-one-experience/" rel="next" title="苏宁易购一面经历">
+                <i class="fa fa-chevron-left"></i> 苏宁易购一面经历
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/03/21/leetcode-1-two-nums/" rel="prev" title="leetcode-1-two-nums">
+                leetcode-1-two-nums <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#php的安装"><span class="nav-number">1.</span> <span class="nav-text">php的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php基本语法"><span class="nav-number">2.</span> <span class="nav-text">php基本语法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
