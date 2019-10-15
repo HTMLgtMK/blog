@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring-boot, Spring-security, JWT, Mybatis, Mybatis-generator,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SpringDemo 是 Spring boot + Spring Security + JWT 整合的项目。参考 securing-spring-boot-with-jwts.">
+<meta name="keywords" content="Spring-boot, Spring-security, JWT, Mybatis, Mybatis-generator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Security + JWT 初探">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/15/Spring-Security-JWT-初探/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="SpringDemo 是 Spring boot + Spring Security + JWT 整合的项目。参考 securing-spring-boot-with-jwts.">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2019-10-15T07:14:39.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Security + JWT 初探">
+<meta name="twitter:description" content="SpringDemo 是 Spring boot + Spring Security + JWT 整合的项目。参考 securing-spring-boot-with-jwts.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/15/Spring-Security-JWT-初探/">
+
+
+
+
+
+  <title>Spring Security + JWT 初探 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/10/15/Spring-Security-JWT-初探/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Security + JWT 初探</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-15T15:11:09+08:00">
+                2019-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/10/15/Spring-Security-JWT-初探/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/10/15/Spring-Security-JWT-初探/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2019/10/15/Spring-Security-JWT-初探/" class="leancloud_visitors" data-flag-title="Spring Security + JWT 初探">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://github.com/HTMLgtMK/Spring-Demo/tree/master/SecurityDemo" target="_blank" rel="noopener">SpringDemo</a> 是 Spring boot + Spring Security + JWT 整合的项目。<br>参考 <a href="https://github.com/freew01f/securing-spring-boot-with-jwts.git" target="_blank" rel="noopener">securing-spring-boot-with-jwts</a>.</p>
+<a id="more"></a>
+
+<h2 id="Spring-Security-框架"><a href="#Spring-Security-框架" class="headerlink" title="Spring Security 框架"></a>Spring Security 框架</h2><p>依赖： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要功能： 提供 链式过滤器（FilterChain） 支持。</p>
+<ol>
+<li><p>定义属性类 <code>WebSecurityConfig</code>，继承于 <code>WebSecurityConfigurerAdapter</code>.</p>
+</li>
+<li><p>重载 <code>configure(HttpSecurity http)</code> 方法，设置拦截的 url 和 filters.</p>
+<p>到这里可以利用 curl 或者 浏览器 查看效果，访问 /users 路径会跳转到 /login。</p>
+</li>
+</ol>
+<h2 id="JWT-支持"><a href="#JWT-支持" class="headerlink" title="JWT 支持"></a>JWT 支持</h2><p>依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.9.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要功能：提供 JWT 的生成，验证（用户名，过期时间）。<br>以下是几个主要的类, 这几个类交互的过程（泳道图）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/login:</span><br><span class="line">  JwtLoginFilter          |     AuthenticationManager |   TokenAuthenticationProvider  | JWTAuthenticationService </span><br><span class="line">  获取username&amp;password ---提交验证--&gt;   调用AuthenticationProvider  ---&gt;  验证username&amp;password</span><br><span class="line">																|  验证成功		</span><br><span class="line">  successfulAuthentication    &lt;--------- 返回   &lt;-------------    生成权限/角色</span><br><span class="line">			-----------------------------------------------------------------------------------------------&gt; 生成 JWT，写入HttpServletResponse</span><br><span class="line">																|  验证失败</span><br><span class="line">  unsuccessfulAuthentication  &lt;--------- 返回	&lt;---------------   BadCredentialsException 异常 </span><br><span class="line">			异常信息写入 HttpServletResponse</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>JWTAuthenticationService<br>功能：</li>
+</ol>
+<ul>
+<li><p>String generateJwt(String username)</p>
+<p>生成 JWT，将 username 放入 subject 中，并 claims : Authorization: ADMIN, AUTH_WRITE.</p>
+</li>
+<li><p>void addAuthentication(HttpServletResponse response，String username)</p>
+<p>生成 JWT， 并将 JWT 写入到 response 中.</p>
+</li>
+<li><p>Claims extranctClaims(String token) throws ExpiredJwtException</p>
+<p>将 token 转换成 JWT claims. 注：过期的 JWT 会抛出 ExpiredJwtException 异常.</p>
+</li>
+<li><p>Authentication getAuthentication(HttpServletRequest request) throws ExpiredJwtException</p>
+<p>从 HttpServletRequest 中获取 header 中的 Authorization 域，将其转换成 Claims, 从中获取 GrantedAuthorities, 交由 UsernamePasswordAuthenticationToken 封装成 Authentication.</p>
+<p>注：过期的 JWT 会抛出 ExpiredJwtException 异常。</p>
+</li>
+</ul>
+<ol start="2">
+<li>TokenAuthenticationProvider<br>功能： 验证 未验证的 Authentication，授权权限/角色。<br>继承于 AuthenticationProvider 接口，实现 authenticate 方法.</li>
+</ol>
+<ul>
+<li><p>Authentication authenticate(Authentication authentication) throws AuthenticationException</p>
+<p>从 Authentiation 中获取 username, password, 验证是否和 「数据库」 中的相同（这里只是直接写死的）。<br>然后为 创建权限/角色，利用 UsernamePasswordAuthenticationToken 封装成 Authentication, 返回授权。</p>
+</li>
+</ul>
+<ol start="3">
+<li>JwtLoginFilter<br>继承抽象类 AbstractAuthenticationProcessingFilter，需要实现 attempAuthentication 方法。</li>
+</ol>
+<ul>
+<li><p>Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)</p>
+<p>首先从 HttpServletRequest 中获取 输入流内容，将 内容 转换成 AccountCrediential 类（封装了 username, password）.<br>如果输入流内容为空，在 内部 catch 了异常 MismatchedInputException， 直接向 HttpServletResponse 中写入 错误信息。</p>
+<p>然后利用 UsernamePasswordAuthenticationToken 封装 username, password , 交由 AuthenticationManager 验证。</p>
+<p>AuthenticationManager 使用 WebSecurityConfig 中定义的 TokenAuthenticationProvider 验证 username 和 password .</p>
+<p>AuthenticationManager 验证成功后，调用 successfulAuthentication 回调，里面包含的 Authentication 是 Authenticated = true 的，在 successfulAuthentication 中调用 JWTAuthenticationService.addAuthentication 生成 JWT，并写入到 HttpServletResponse 中.</p>
+<p>AuthenticationManager 验证失败后，调用 unsuccessfulAuthentication 回调，里面包含 AuthenticationException 异常，直接将 异常信息 写入到 HttpServletResponse 中.</p>
+</li>
+<li><p>void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,<br>Authentication authResult)</p>
+<p>验证成功回调.</p>
+</li>
+<li><p>void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,<br>AuthenticationException failed)</p>
+<p>验证失败回调.</p>
+</li>
+</ul>
+<ol start="4">
+<li>JwtAuthenticationFilter<br>继承 GenericFilterBean ，实现 doFilter 方法.</li>
+</ol>
+<ul>
+<li><p>doFilter(ServletRequest request, ServletResponse response, FilterChain chain)</p>
+<p>从 HttpServletRequest 中获取 JWT Authentication, 如果 Authentication 不为空，则将 Authentication 设置到<br>SecurityContextHolder 中;<br>否则直接向 HttpServletResponse 中写入 JWT 已经过期的提示信息。</p>
+</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -H "Content-Type: application/json" -X POST localhost:8080/login -d '</span><br><span class="line">&#123;</span><br><span class="line">	"username": "admin",</span><br><span class="line">	"password": "123456"</span><br><span class="line">&#125;'</span><br><span class="line"><span class="meta">#</span> 返回数据，将 data 中的 token 复制</span><br><span class="line">curl -H "Content-Type: application/json" -H "Authorization: Bearer &lt;JWT token&gt;" -X GET localhost:8080/users</span><br><span class="line">curl -H "Content-Type: application/json" -H "Authorization: Bearer &lt;JWT token&gt;" -X GET localhost:8080/user/GT</span><br></pre></td></tr></table></figure>
+
+<h2 id="lombok"><a href="#lombok" class="headerlink" title="lombok"></a>lombok</h2><p>依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要功能：简化 Bean 的不必要的编写。<br><strong>注：</strong> 需要在 IDE 中添加 lombok 插件。在官网上下载 <code>lombok.jar</code> 后，利用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar lombok.jar</span><br></pre></td></tr></table></figure>
+
+<p>运行，选择需要添加插件的 IDE （eclipse, IDEA），完成安装， 重新启动 IDE。</p>
+<h2 id="Mybatis-generator"><a href="#Mybatis-generator" class="headerlink" title="Mybatis-generator"></a>Mybatis-generator</h2><p>这是一款可以自动生成 mapper.xml, model 以及 dao 的自动化插件。<br>需要在 <code>pom.xml</code> 中引入 <code>mybatis-generator</code> 的依赖，除此之外，还需要在 IDE 中安装 mybatis-generator 的插件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- mvn mybatis-generator:generate --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">				</span><br><span class="line">				<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">					<span class="comment">&lt;!-- generatorConfiguration.xml --&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">configurationFile</span>&gt;</span>src/main/resources/config/mybatis-generator.xml<span class="tag">&lt;/<span class="name">configurationFile</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">				</span><br><span class="line">				<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mariadb.jdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mariadb-java-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Eclipse 中的 mybatis-generator 插件直接在 marketplace 中查找就有，安装后重启 IDE。</p>
+<p>然后，编写 mybatis-generator 的配置文件，默认为 <code>src/main/resources/generatorConfig.xml</code>（其实在哪，叫啥无所谓）。<br>这个项目里放在了 <code>src/main/resources/config/mybatis-generator.xml</code>, 代码就不粘贴了。按照<br>    * <code>jdbcConnection</code>: JDBC 配置<br>    * <code>javaModelGenerator</code>: 指定自动生成的 POJO 置于哪个包下<br>    * <code>sqlMapGenerator</code>: 指定自动生成的 mapper.xml 置于哪个包下<br>    * <code>javaClientGenerator</code>: 指定自动生成的 DAO 接口置于哪个包下<br>    * <code>table</code>: 指定数据表名，可以使用 _ 和 % 通配符<br>配置。</p>
+<p>配置好后，可以使用 <code>mvn mybatis-generator:generate</code> 生成，也可以使用 Eclipse 中的工具： 选中 mybatis-generator.xml -&gt; 右键 -&gt; Run As -&gt;  Run Mybatis Generator.<br>运行就可以生成 mapper.xml, model 以及 dao.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Spring-boot-Spring-security-JWT-Mybatis-Mybatis-generator/" rel="tag"># Spring-boot, Spring-security, JWT, Mybatis, Mybatis-generator</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/09/18/Spring-boot入门/" rel="next" title="Spring-boot入门">
+                <i class="fa fa-chevron-left"></i> Spring-boot入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Security-框架"><span class="nav-number">1.</span> <span class="nav-text">Spring Security 框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT-支持"><span class="nav-number">2.</span> <span class="nav-text">JWT 支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lombok"><span class="nav-number">3.</span> <span class="nav-text">lombok</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-generator"><span class="nav-number">4.</span> <span class="nav-text">Mybatis-generator</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
