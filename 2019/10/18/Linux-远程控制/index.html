@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaFX,">
+  <meta name="keywords" content="linux远程控制，VNC，虚拟屏幕,">
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="JavaFX 学习这篇博客主要记录一些开发中遇到的问题。有些初级的东西，一开始也不懂，还是记录下来。  java UI控件绑定fxml中的控件 12Pane pane = FXMLLoader.load(getClass().getResource(&quot;login.fxml&quot;));Pane.lookup(&quot;#fx:id&quot;);//id选择器">
-<meta name="keywords" content="JavaFX">
+<meta name="description" content="在公司配了一台电脑，但是平时使用自己的 笔记本 作为主力，想着把办公室的 PC 作为自己的局域网服务器用，而 PC 的显示器作为自己的 扩展屏幕使用。在开始折腾之前，笔记本 和 办公室PC 的环境如下：    项目 笔记本 办公室PC    OS openSUSE Tumbleweed openSUSE Leap 15.1   Monitor 自带 Lenovo  V20-10   Resolut">
+<meta name="keywords" content="linux远程控制，VNC，虚拟屏幕">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaFX 学习(5)">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/04/05/javafx-5/index.html">
+<meta property="og:title" content="Linux 远程控制">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/18/Linux-远程控制/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="JavaFX 学习这篇博客主要记录一些开发中遇到的问题。有些初级的东西，一开始也不懂，还是记录下来。  java UI控件绑定fxml中的控件 12Pane pane = FXMLLoader.load(getClass().getResource(&quot;login.fxml&quot;));Pane.lookup(&quot;#fx:id&quot;);//id选择器">
+<meta property="og:description" content="在公司配了一台电脑，但是平时使用自己的 笔记本 作为主力，想着把办公室的 PC 作为自己的局域网服务器用，而 PC 的显示器作为自己的 扩展屏幕使用。在开始折腾之前，笔记本 和 办公室PC 的环境如下：    项目 笔记本 办公室PC    OS openSUSE Tumbleweed openSUSE Leap 15.1   Monitor 自带 Lenovo  V20-10   Resolut">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2019-09-09T05:16:08.290Z">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/18/Linux-远程控制/arch.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/18/Linux-远程控制/remmina-office-PC-black.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/18/Linux-远程控制/remmina-office-PC-ok.png">
+<meta property="og:updated_time" content="2019-10-18T09:50:05.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaFX 学习(5)">
-<meta name="twitter:description" content="JavaFX 学习这篇博客主要记录一些开发中遇到的问题。有些初级的东西，一开始也不懂，还是记录下来。  java UI控件绑定fxml中的控件 12Pane pane = FXMLLoader.load(getClass().getResource(&quot;login.fxml&quot;));Pane.lookup(&quot;#fx:id&quot;);//id选择器">
+<meta name="twitter:title" content="Linux 远程控制">
+<meta name="twitter:description" content="在公司配了一台电脑，但是平时使用自己的 笔记本 作为主力，想着把办公室的 PC 作为自己的局域网服务器用，而 PC 的显示器作为自己的 扩展屏幕使用。在开始折腾之前，笔记本 和 办公室PC 的环境如下：    项目 笔记本 办公室PC    OS openSUSE Tumbleweed openSUSE Leap 15.1   Monitor 自带 Lenovo  V20-10   Resolut">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/10/18/Linux-远程控制/arch.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/04/05/javafx-5/">
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/18/Linux-远程控制/">
 
 
 
 
 
-  <title>JavaFX 学习(5) | GT Blog</title>
+  <title>Linux 远程控制 | GT Blog</title>
   
 
 
@@ -233,7 +237,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/04/05/javafx-5/">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/10/18/Linux-远程控制/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GT">
@@ -250,7 +254,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaFX 学习(5)</h1>
+          <h1 class="post-title" itemprop="name headline">Linux 远程控制</h1>
         
 
         <div class="post-meta">
@@ -262,8 +266,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-05T23:09:33+08:00">
-                2018-04-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-18T16:15:58+08:00">
+                2019-10-18
               </time>
             
 
@@ -281,8 +285,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2018/04/05/javafx-5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/04/05/javafx-5/" itemprop="commentCount"></span>
+                <a href="/blog/2019/10/18/Linux-远程控制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/10/18/Linux-远程控制/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -290,7 +294,7 @@
 
           
           
-             <span id="/blog/2018/04/05/javafx-5/" class="leancloud_visitors" data-flag-title="JavaFX 学习(5)">
+             <span id="/blog/2019/10/18/Linux-远程控制/" class="leancloud_visitors" data-flag-title="Linux 远程控制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -321,36 +325,95 @@
       
 
       
-        <h2 id="JavaFX-学习"><a href="#JavaFX-学习" class="headerlink" title="JavaFX 学习"></a>JavaFX 学习</h2><p>这篇博客主要记录一些开发中遇到的问题。<br>有些初级的东西，一开始也不懂，还是记录下来。</p>
-<ol>
-<li>java UI控件绑定fxml中的控件 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = FXMLLoader.load(getClass().getResource(<span class="string">"login.fxml"</span>));</span><br><span class="line">Pane.lookup(<span class="string">"#fx:id"</span>);<span class="comment">//id选择器</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+        <p>在公司配了一台电脑，但是平时使用自己的 笔记本 作为主力，想着把办公室的 PC 作为自己的局域网服务器用，而 PC 的显示器作为自己的 扩展屏幕使用。在开始折腾之前，笔记本 和 办公室PC 的环境如下：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>笔记本</th>
+<th>办公室PC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OS</td>
+<td>openSUSE Tumbleweed</td>
+<td>openSUSE Leap 15.1</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>自带</td>
+<td>Lenovo  V20-10</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>1920x1080_60.00</td>
+<td>1600x900_60.00</td>
+</tr>
+<tr>
+<td>Net Addr</td>
+<td>DHCP</td>
+<td>DHCP</td>
+</tr>
+</tbody></table>
 <a id="more"></a>
-<ol start="2">
-<li><p>JavaFX中有Dialog控件，但是我在使用过程中发现关闭不了。。<br> 查了StackOverflow发现:</p>
-<blockquote>
-<p>JavaFX dialogs can only be closed ‘abnormally’ (as defined above) in two situations:<br>When the dialog only has one button, or<br>When the dialog has multiple buttons, as long as one of them meets one of the following requirements:<br>The button has a ButtonType whose ButtonData is of type ButtonData.CANCEL_CLOSE.<br>The button has a ButtonType whose ButtonData returns true when ButtonData.isCancelButton() is called.</p>
-</blockquote>
-<p> 后来发现好多别人的代码都是用Stage实现Dialog。</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Stage <span class="title">getLoginInfoDialog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Stage dialog = <span class="keyword">new</span> Stage(StageStyle.TRANSPARENT);</span><br><span class="line">	ProgressIndicator pi = <span class="keyword">new</span> ProgressIndicator();</span><br><span class="line">	Text text = <span class="keyword">new</span> Text(<span class="string">"登陆中"</span>);</span><br><span class="line">	VBox vbox = <span class="keyword">new</span> VBox();</span><br><span class="line">	vbox.setAlignment(Pos.CENTER);</span><br><span class="line">	vbox.setSpacing(<span class="number">10</span>);</span><br><span class="line">	vbox.setPadding(<span class="keyword">new</span> Insets(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>));</span><br><span class="line">	pi.setPadding(<span class="keyword">new</span> Insets(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">	text.setFill(Color.WHITE);</span><br><span class="line">	vbox.getChildren().addAll(pi,text);</span><br><span class="line">	vbox.setStyle(<span class="string">"-fx-background-color:#000000;-fx-border-radiu:10px;-fx-background-radiu:10px;"</span>);</span><br><span class="line">	Scene scene = <span class="keyword">new</span> Scene(vbox);</span><br><span class="line">	dialog.setScene(scene);</span><br><span class="line">	dialog.setOpacity(<span class="number">0.5</span>);</span><br><span class="line">	dialog.initModality(Modality.APPLICATION_MODAL);</span><br><span class="line">	dialog.initOwner(<span class="keyword">this</span>.stage);</span><br><span class="line">	<span class="keyword">return</span> dialog;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">dialog.hide();<span class="comment">//关闭dialog</span></span><br></pre></td></tr></table></figure>
 
-<p> 这里有个问题，ProgressIndicator不能居中显示，很是郁闷，后面再调试了。</p>
+<p>理想中的架构如下：</p>
+<p><img src="/blog/2019/10/18/Linux-远程控制/arch.png" alt="arch.png"></p>
+<p>相当于 利用 笔记本 作为 PC 和 PC Monitor 的中间人。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>先保证能够利用 <code>ssh</code> 连接上 PC，开启 <code>sshd</code> 服务，并添加到 自启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 开启 sshd 服务</span><br><span class="line">sudo systemctl start sshd</span><br><span class="line"><span class="meta">#</span> 添加为 自启动 服务</span><br><span class="line">chkconfig sshd on</span><br></pre></td></tr></table></figure>
+
+<p>然后，开放 ssh 的 <code>22</code> 端口：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --add-port 22/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<p>在 laptop  上的连接命令为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -l gt &lt;ip-addr&gt; -p 22</span><br></pre></td></tr></table></figure>
+
+<p>其中，PC 的 ip 地址使用 <code>ip -4 addr</code> 获取。</p>
+<p>然后，考虑如何将 PC 上的屏幕分享到 laptop 上，之前安装了 Teamviewer ，可以直接远程控制 PC，但是这需要 teamvewer 的服务器支持  :) . 网上在 Linux 直接屏幕共享多数是使用 <code>vnc</code>。参考 <a href="https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha.vnc.html" target="_blank" rel="noopener">Remote Access with VNC</a>.</p>
+<p>安转 <code>vnc</code>  的 实现 <code>tigervnc</code>, 里面包含 <code>vncserver</code> 和 <code>vncviewer</code>, 分别是 vnc 服务端 和 客户端 ( 两个机器上都要安装 )：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo zypper install tigervnc</span><br></pre></td></tr></table></figure>
+
+<p>在 PC 上面 开启 vnc 服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置vncserver 的访问密码</span><br><span class="line">vncpasswd </span><br><span class="line"><span class="meta">#</span> ...输入自己的密码</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开启服务</span><br><span class="line">vncserver</span><br></pre></td></tr></table></figure>
+
+<p>vncserver 使用的默认的 port  为 : <code>5900+&lt;display-number&gt;</code>.</p>
+<p>在 laptop 上面连接：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 使用 屏幕序号 </span><br><span class="line">vncviewer &lt;ip-addr&gt;:&lt;diplay-number&gt;</span><br><span class="line"><span class="meta">#</span> 使用 端口号</span><br><span class="line">vncviewer &lt;ip-addr&gt;::&lt;port&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里还需要开放 PC 5900-5910 段的端口，否则会出现 <code>refuse connection</code> 错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --add-port 5900-5910/tcp --permanent</span><br><span class="line">sudo firewall-cmd --add-port 5900-5910/udp --permanent</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>vncviewer</code> 我没有连接上，因为在点击 连接 按钮后程序就卡死了，不得不退出。这里使用 <code>remmina</code> 连接工具：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo zypper install remmina remmina-plugin-vnc</span><br></pre></td></tr></table></figure>
+
+<p>安装好后，执行 remmina 并选择 VNC 协议，输入 <ip-addr>:<display-number> 连接。比如，办公室 PC ip 地址为：172.16.1.31，那么连接的 格式为：<code>172.16.1.31:1</code>, 或者 <code>172.16.1.31::5901</code>.</display-number></ip-addr></p>
+<p>到这里应该是成功的。</p>
+<h2 id="组建网络"><a href="#组建网络" class="headerlink" title="组建网络"></a>组建网络</h2><p>将 PC Monitor  插入到 laptop 的上，在 System Settings 中设置屏幕扩展， 参考 <a href="https://forum.suse.org.cn/t/kde-opensuse/1237" target="_blank" rel="noopener">KDE 下 openSUSE 多屏幕设置教程</a>，简单说就是把 VGA-1 拖到 Laptop-Screen 的左边或者右边，而不是 Laptop-Screen 的内部。</p>
+<p>VGA 接口的默认分辨率输出是 <code>1024x768_60.00</code>, 但是 看着特别的不舒服，将分辨率调到 显示器的最高分辨率：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> cvt 工具新建 modeline</span><br><span class="line">cvt 1600 900</span><br><span class="line"><span class="meta">#</span> 输出 Modeline</span><br><span class="line"><span class="meta">#</span> # 1600x900 59.95 Hz (CVT 1.44M9) hsync: 55.99 kHz; pclk: 118.25 MHz</span><br><span class="line"><span class="meta">#</span> Modeline "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 新建 分辨率 模式</span><br><span class="line">xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync</span><br><span class="line"><span class="meta">#</span> 即将 modeline 后面的内容复制过来</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 添加 新分辨率模式 到 VGA-1接口（不一定是 VGA-1, 可以先用 xrandr 命令查看接口）</span><br><span class="line">xrandr --addmode VGA-1 "1600x900_60.00"</span><br><span class="line"><span class="meta">#</span> 这里的 "1600x900_60.00" 就是 分辨率的名称</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 设置 VGA-1 的 分辨率 为 "1600x900_60.00"</span><br><span class="line">xrandr --output VGA-1 --mode "1600x900_60.00"</span><br></pre></td></tr></table></figure>
+
+<p>执行完后，分辨率更高了，看的也更舒服了。</p>
+<p>接下来，尝试 利用 <code>remmina</code> 连接 PC，事实上连接成功了，但是显示的黑屏，使用 teamviewer 却不会，这里先给出 命令行下 查看 teamviewer id 的方法, 参考 <a href="[https://williamlfang.github.io/post/2017-12-05-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8-teamviewer/](https://williamlfang.github.io/post/2017-12-05-命令行启动-teamviewer/)">命令行启动 TeamViewer</a>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 开启 Teamviewer 守护线程</span><br><span class="line">sudo systemctl start teamviewerd</span><br><span class="line"><span class="meta">#</span> 查看  Teamviewer id</span><br><span class="line">teamviewer --info print id</span><br><span class="line"><span class="meta">#</span> 设置 Teamviwer 密码</span><br><span class="line">teamviewer --passwd &lt;password&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后可以在 laptop 上连接，但是 这次使用 Teamviewer 发现由明显的卡顿。</p>
+<p><img src="/blog/2019/10/18/Linux-远程控制/remmina-office-PC-black.png" alt="remmina-office-PC-black.png"></p>
+<p>上网查询资料后发现 ， Teamviewer 的 卡顿 和 vncviewer 黑屏的原因 在于 PC 拔掉显示器后，没有了 默认的显示器。</p>
+<p>参考 <a href="https://x-candy.github.io/2018/09/06/x11-conf/" target="_blank" rel="noopener">ubuntu无显示器配置方案</a>：</p>
+<ol>
+<li><p>在 <code>/etc/X11/xorg.conf.d/</code> 中的  <code>50-monitor.conf</code> 中编辑：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Having multiple "Monitor" sections is known to be problematic. Make</span><br><span class="line"><span class="meta">#</span> sure you don't have in use another one laying around e.g. in another</span><br><span class="line"><span class="meta">#</span> xorg.conf.d file or even a generic xorg.conf file. More details can</span><br><span class="line"><span class="meta">#</span> be found in https://bugs.freedesktop.org/show_bug.cgi?id=32430.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">Section "Monitor"</span><br><span class="line">  Identifier "Default Monitor"</span><br><span class="line">  VendorName "Unknow"</span><br><span class="line">  ModelName "Unknow"</span><br><span class="line"></span><br><span class="line"><span class="meta">  #</span># If your monitor doesn't support DDC you may override the</span><br><span class="line"><span class="meta">  #</span># defaults here</span><br><span class="line">  HorizSync 28-85</span><br><span class="line">  VertRefresh 50-100</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span>  ## Add your mode lines here, use e.g the cvt tool</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span>EndSection</span><br></pre></td></tr></table></figure>
+
+<p>相当于新建一个 虚拟显示器。</p>
 </li>
-<li><p>子线程不能操作Application Thread 问题<br> 其实早就想到了这个问题，但是不知道怎么解决。现在给出一个方案:</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在子线程中，将需要操作Applicaton Thread的部分放在下面区块中</span></span><br><span class="line">Platform.runLater(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">					</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<li><p>重启 PC，利用 ssh 连接，开启 vncserver 。</p>
 </li>
-<li><p>JSON-lib jar包问题<br> 由于项目中需要解析json数据，很自然想到了JSONObject，但是这次下载的jdk似乎没有json-lib。<br> 我下载了json-lib-2.4-jdk15.jar后，加入build path,发现能够编译，但是运行出错。<br> 查了博客发现还少几个jar包。。。贴出来以备后面需要。。</p>
-<blockquote>
-<p>java.lang.NoClassDefFoundError: org/apache/commons/lang/exception/NestableRuntimeException<br>可以看出是因为缺少jar包，但是很明显我已经导入了，为什么还会报这个错呢？</p>
-</blockquote>
-<blockquote>
-<p>commons-beanutils-1.8.0.jar不加这个包 , 出现Error:<br>java.lang.NoClassDefFoundError: org/apache/commons/beanutils/DynaBean<br>commons-collections.jar 不加这个包 , 出现Error:<br>java.lang.NoClassDefFoundError: org/apache/commons/collections/map/ListOrderedMap<br>commons-lang-2.4.jar不加这个包 ,出现Error:<br>java.lang.NoClassDefFoundError: org/apache/commons/lang/exception/NestableRuntimeException<br>commons-logging-1.1.1.jar不加这个包 , 出现Error:<br>java.lang.NoClassDefFoundError: org/apache/commons/logging/LogFactory<br>ezmorph-1.0.4.jar不加这个包 , 出现Error:<br>java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher<br>json-lib-2.3-jdk15.jar不加这个包 ,出现Error:<br>java.lang.NoClassDefFoundError: net/sf/json/JSONObject </p>
-</blockquote>
-<p> 相应jar包可到网上下载 </p>
+<li><p>利用 remmina 连接 。</p>
+<p><img src="/blog/2019/10/18/Linux-远程控制/remmina-office-PC-ok.png" alt="remmina-office-PC-ok.png"></p>
 </li>
 </ol>
+<p>到此，我的想法已经实现了！</p>
 
       
     </div>
@@ -368,7 +431,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/JavaFX/" rel="tag"># JavaFX</a>
+            <a href="/blog/tags/linux远程控制，VNC，虚拟屏幕/" rel="tag"># linux远程控制，VNC，虚拟屏幕</a>
           
         </div>
       
@@ -381,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/04/05/javafx-4/" rel="next" title="JavaFX 学习(4)">
-                <i class="fa fa-chevron-left"></i> JavaFX 学习(4)
+              <a href="/blog/2019/10/15/Spring-Security-JWT-初探/" rel="next" title="Spring Security + JWT 初探">
+                <i class="fa fa-chevron-left"></i> Spring Security + JWT 初探
               </a>
             
           </div>
@@ -390,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/05/31/python入门/" rel="prev" title="python入门">
-                python入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaFX-学习"><span class="nav-number">1.</span> <span class="nav-text">JavaFX 学习</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组建网络"><span class="nav-number">2.</span> <span class="nav-text">组建网络</span></a></li></ol></div>
             
 
           </div>
