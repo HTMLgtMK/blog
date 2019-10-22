@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hadoop HDFS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
+<meta name="keywords" content="Hadoop HDFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDFS 原理">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsarchitecture.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsdatanodes.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/staging.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/pipeline.png">
+<meta property="og:updated_time" content="2019-10-22T03:09:50.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HDFS 原理">
+<meta name="twitter:description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsarchitecture.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/">
+
+
+
+
+
+  <title>HDFS 原理 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/10/21/HDFS-原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HDFS 原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-21T19:01:15+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/10/21/HDFS-原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/10/21/HDFS-原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2019/10/21/HDFS-原理/" class="leancloud_visitors" data-flag-title="HDFS 原理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。</p>
+<p>参考：<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_design.html" target="_blank" rel="noopener">Hadoop分布式文件系统：架构和设计</a>. </p>
+<p>emmm… 多数是 Copy 的 官方文档。</p>
+<p><code>HDSF</code> 是一种<em>分布式的文件系统</em>，可以部署在通用的廉价机器，架构是 <strong>Master/Slave</strong> 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDFS是Apache Hadoop Core项目的一部分。这个项目的地址是 <a href="https://hadoop.apache.org/core/" target="_blank" rel="noopener">https://hadoop.apache.org/core/</a> 。”  而实际上，应该是参考了 Google 公司的 <code>GFS</code> 分布式文件系统（被开源。。）。</p>
+<a id="more"></a>
+
+<h2 id="HDFS-几个重要设计原则"><a href="#HDFS-几个重要设计原则" class="headerlink" title="HDFS 几个重要设计原则"></a>HDFS 几个重要设计原则</h2><ol>
+<li><p>硬件错误是常态而不是异常。这句话非常著名，意思就是说 HDFS 面向的是廉价的机器，任何一个组件都可能出现故障，因此 错误检测 和 快速自动恢复 是 HDSF 最核心的目标。</p>
+</li>
+<li><p>简单的一致性模式。HDFS 实现的是一个 “一次写入多次访问” 的文件访问模型，一个文件经过创建、写入 、关闭后就不再需要改变。这一假设简化了数据一致性问题，提高了 吞吐量。</p>
+</li>
+<li><p>“移动计算比移动数据更划算”</p>
+<p>这句话也十分有名。一个应用请求的计算，离它操作的数据越近就越高效，在数据达到海量级别的时候更是如此。因为这样就能降低网络阻塞的影响，提高系统数据的吞吐量。将计算移动到数据附近，比之将数据移动到应用所在显然更好。HDFS为应用提供了将它们自己移动到数据附近的接口。</p>
+</li>
+</ol>
+<h2 id="HDFS-架构"><a href="#HDFS-架构" class="headerlink" title="HDFS 架构"></a>HDFS 架构</h2><h3 id="Master-Slave-架构"><a href="#Master-Slave-架构" class="headerlink" title="Master/Slave 架构"></a>Master/Slave 架构</h3><p>HDFS 使用的是 <strong>Master / Slave</strong> 模式，一个 HDFS 集群由一个 <code>NameNode</code> 和 多个 <code>DataNode</code> 组成。这是官网上面的架构图：</p>
+<p><img src="/blog/2019/10/21/HDFS-原理/hdfsarchitecture.png" alt="hdfsarchitecture.png"></p>
+<ul>
+<li><p>NameNode:  名称节点。中心服务器，负责管理 FS  的 命名空间（namespace）以及 客户端对文件的访问（控制流）。在 Hadoop 中， NameNode 一般是 单点故障 所在，可以配置多个 NameNode 的备份。（很一般的策略。）</p>
+</li>
+<li><p>DataNode: 数据节点。通常一个 节点（机器）一个 DataNode，负责管理它上面的数据的存储。每个 DataNode  中以 块（Block）为单位存储数据，一个 Block 的大小通常取为 64M。根据 配置的值，每个块可以在不同 DataNode 中具有多个备份。</p>
+<p>以 replication 为例，一般同一个机架内 备份数为2，另外一个机架的 备份数为 1。这样可以提高系统的可靠性。</p>
+</li>
+<li><p>Rack: 机架。一个集群可有多个机架，主机之间，机架之间均通过 网络 互联，同一机架之间的主机的网络代价较小，而不同机架之间的主机网络代价更大。</p>
+</li>
+<li><p>Client： HFDS 客户端。 Client 与 NameNode 之间 通过 ClientProtocol 协议交互 (<em>控制流</em>，发送指令等)；与 DataNode 交换的是 文件数据（数据流）； 而 DataNode 与 NameNode 通过 DatanodeProtocol 协议交互，发送 心跳包 和 块状态报告，并且接收指令。NameNode 永远不会由 数据流 经过。</p>
+</li>
+</ul>
+<h3 id="数据的组织-与-备份"><a href="#数据的组织-与-备份" class="headerlink" title="数据的组织 与 备份"></a>数据的组织 与 备份</h3><ol>
+<li><p>FS 的命名空间（namespace）</p>
+<p>HDFS 支持传统的层次型文件组织结构（树形）。FS 的 命名空间和大多数现有的 FS 相似：用户可以创建、删除、移动 或 重命名 文件夹，但是不支持 磁盘配额 和 访问权限控制，也不支持 硬连接 和 软链接。</p>
+<p>Namenode 负责维护文件系统的名字空间，任何对文件系统名字空间或属性的修改都将被 Namenode 记录下来。应用程序可以设置HDFS保存的文件的副本数目。文件副本的数目称为文件的副本系数，这个信息也是由 Namenode 保存的。</p>
+</li>
+<li><p>数据副本</p>
+<p>数据副本 是 HDFS 可靠性 和 性能的关键。这里指的数据副本的单位是 DataNode 上的数据块（Block）。</p>
+<p>HDFS 采用一种称为 机架感知(rack-aware) 的策略来改进数据的可靠性、可用性和网络带宽的利用率。目前实现的副本存放策略只是在这个方向上的第一步。实现这个策略的短期目标是验证它在生产环境下的有效性，观察它的行为，为实现更先进的策略打下测试和研究的基础。。。</p>
+<p>通过 rack-aware 过程，NameNode  可以知道每个 DataNode 的所属的机架id。一个<strong>简单未优化的策略</strong>是：将副本存放在不同的机架上，这样可以防止整个机架失效时的数据丢失，并且允许读取数据时利用多个机架的带宽。这种策略设置可以将副本均匀分布在集群中，有利于当组件失效情况下的负载均衡。但是，因为这种策略的一个写操作需要传输数据块到多个机架，这增加了写的代价。</p>
+<p>在大多数情况下，<strong>副本系数是3，HDFS的存放策略</strong>是将一个副本存放在本地机架的节点上，一个副本放在同一机架的另一个节点上，最后一个副本放在不同机架的节点上。这种策略减少了机架间的数据传输，这就提高了写操作的效率。机架的错误远远比节点的错误少，所以这个策略不会影响到数据的可靠性和可用性。于此同时，因为数据块只放在两个（不是三个）不同的机架上，所以此策略减少了读取数据时需要的网络传输总带宽。在这种策略下，副本并不是均匀分布在不同的机架上。三分之一的副本在一个节点上，三分之二的副本在一个机架上，其他副本均匀分布在剩下的机架中，这一策略在不损害数据可靠性和读取性能的情况下改进了写的性能。</p>
+<p>当前，这里介绍的默认副本存放策略正在开发的过程中。。。</p>
+<p><img src="/blog/2019/10/21/HDFS-原理/hdfsdatanodes.png" alt="hdfsdatanodes.png"></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>副本选择</p>
+<p>为了降低整体的带宽消耗和读取延时，HDFS 会尽量让读取程序读取离它最近的副本。如果在读取程序的同一个机架上有一个副本，那么就读取该副本。如果一个HDFS集群跨越多个数据中心，那么客户端也将首先读本地数据中心的副本。</p>
+</li>
+<li><p>FS 元数据的持久化</p>
+<p>FS 元数据 指的是 NameNode 上面的 命名空间。</p>
+<p>任何对 FS  元数据的修改（增删改目录，文件，副本系数等），NameNode 都会将此用称为 <code>EditLog</code> 的事务日志记录。例如，在HDFS中创建一个文件，Namenode就会在Editlog中插入一条记录来表示；同样地，修改文件的副本系数也将往Editlog插入一条记录。Namenode在本地操作系统的文件系统中存储这个Editlog。</p>
+<p>整个 FS 的命名空间，包括数据块到文件的映射、文件的属性等，都存储在一个称为 <code>FsImage</code> 的文件中，这个文件也是放在 Namenode 所在的本地文件系统上。</p>
+<p><strong>元数据磁盘错误</strong></p>
+<p>FsImage 和 Editlog 是 HDFS 的核心数据结构。如果这些文件损坏了，整个 HDFS 实例都将失效。因而，Namenode可以配置成支持维护多个 FsImage 和 Editlog 的副本。任何对FsImage或者Editlog的修改，都将同步到它们的副本上。这种多副本的同步操作可能会降低Namenode每秒处理的名字空间事务数量。然而这个代价是可以接受的，因为即使HDFS的应用是数据密集的，它们也非元数据密集的。当Namenode重启的时候，它会选取最近的完整的FsImage和Editlog来使用。</p>
+<p>Namenode是HDFS集群中的<em>单点故障(single point of failure)</em>所在。如果Namenode机器故障，是需要手工干预的。目前，自动重启或在另一台机器上做Namenode故障转移的功能还没实现。。。</p>
+</li>
+</ol>
+<h2 id="HDFS-执行流程"><a href="#HDFS-执行流程" class="headerlink" title="HDFS 执行流程"></a>HDFS 执行流程</h2><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><p>Namenode 启动后会进入一个称为 安全模式 的特殊状态。处于安全模式的Namenode是不会进行数据块的复制的。Namenode 从所有的 Datanode 接收 心跳信号和 块状态报告。块状态报告包括了某个 Datanode 所有的数据块列表。每个数据块都有一个指定的最小副本数。当Namenode检测确认某个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全(safely replicated)的；在一定百分比（这个参数可配置）的数据块被Namenode检测确认是安全之后（加上一个额外的30秒等待时间），Namenode将退出安全模式状态。接下来它会确定还有哪些数据块的副本没有达到指定数目，并将这些数据块复制到其他 Datanode 上 。</p>
+<p><img src="/blog/2019/10/21/HDFS-原理/staging.png" alt="staging.png"></p>
+<h3 id="Staging"><a href="#Staging" class="headerlink" title="Staging"></a>Staging</h3><p>Client 创建文件的请求 其实并没有立即发送给 Namenode，事实上，在刚开始阶段 HDFS Client 会先将文件数据缓存到本地的一个临时文件tmp。应用程序的 写操作 被 透明地 重定向到这个临时文件。当这个临时文件累积的数据量超过一个Block 的大小，Client 才会联系 Namenode。Namenode 将文件名插入文件系统的层次结构中，并且分配一个数据块给它。然后返回 Datanode 的 标识符 和 目标数据块 给 Client。接着 Client 将这块数据从本地临时文件 tmp 上传到指定的 Datanode 上。当文件关闭时，在临时文件中剩余的没有上传的数据也会传输到指定的 Datanode 上。然后 Client 告诉 Namenode 文件已经关闭。此时 Namenode 才将 文件创建操作 提交到 EditLog 日志里进行存储。如果 Namenode 在文件关闭前宕机了，则该文件将丢失。</p>
+<h3 id="流水线复制"><a href="#流水线复制" class="headerlink" title="流水线复制"></a>流水线复制</h3><p>Datanode 能流水线式地从前一个节点接收数据，并在同时转发给下一个节点，数据以流水线的方式从前一个 Datanode 复制到下一个。</p>
+<p><img src="/blog/2019/10/21/HDFS-原理/pipeline.png" alt="pipeline.png"></p>
+<p>当 Client 向 HDFS 文件写入数据的时候，一开始是写到本地临时文件 tmp 中。假设该文件的副本系数设置为3，当本地临时文件累积到一个数据块的大小时，Client 会从 Namenode 获取一个 Datanode 列表用于存放副本。然后客户端开始向第一个 Datanode 传输数据，第一个 Datanode 一小部分一小部分(4 KB)地接收数据，将每一部分写入本地仓库，并同时传输该部分到列表中第二个 Datanode 节点。第二个 Datanode 也是这样，一小部分一小部分地接收数据，写入本地仓库，并同时传给第三个 Datanode 。最后，第三个 Datanode 接收数据并存储在本地。</p>
+<h3 id="存储空间的回收"><a href="#存储空间的回收" class="headerlink" title="存储空间的回收"></a>存储空间的回收</h3><ol>
+<li><p>文件的删除和恢复</p>
+<p>当用户或应用程序删除某个文件时，这个文件并没有立刻从 HDFS 中删除。实际上，HDFS 会将这个文件 重命名 移动到 <em>/trash</em> 目录。只要文件还在 /trash 目录中，该文件就可以被迅速地恢复。</p>
+<p>文件在 /trash 中保存的时间是可配置的，当超过这个时间时，Namenode就会将该文件从名字空间中删除。删除文件会使得该文件相关的数据块被释放。注意，从用户删除文件到HDFS空闲空间的增加之间会有一定时间的延迟。</p>
+</li>
+<li><p>减少副本系数</p>
+<p>当一个文件的 <em>副本系数</em> 被减小后，Namenode 会选择过剩的副本删除。下次 心跳检测 时会将该信息传递 Datanode。Datanode 遂即移除相应的数据块，集群中的空闲空间加大。同样，在调用setReplication API结束和集群中空闲空间增加间会有一定的延迟。</p>
+</li>
+</ol>
+<hr>
+<h2 id="健壮性保证"><a href="#健壮性保证" class="headerlink" title="健壮性保证"></a>健壮性保证</h2><p>HDFS 的主要目标就是即使在出错的情况下也要保证数据存储的可靠性。常见的三种出错情况是：Namenode 出错, Datanode 出错 和 网络割裂(network partitions)。</p>
+<ol>
+<li><p>磁盘数据错误，心跳检测和重新复制</p>
+<p>每个 Datanode 节点周期性地向 Namenode 发送心跳信号。网络割裂可能导致一部分 Datanode 跟 Namenode 失去联系。Namenode 通过心跳信号的缺失来检测这一情况，并将这些近期不再发送心跳信号 Datanode 标记为宕机，不会再将新的IO请求发给它们。任何存储在宕机 Datanode 上的数据将不再有效。Datanode 的宕机可能会引起一些数据块的副本系数低于指定值，Namenode 不断地检测这些需要复制的数据块，一旦发现就启动复制操作。</p>
+<p><strong>在下列情况下，可能需要重新复制</strong>：某个Datanode节点失效，某个副本遭到损坏，Datanode上的硬盘错误，或者文件的副本系数增大。</p>
+</li>
+<li><p>数据校验</p>
+<p>从某个 Datanode 获取的数据块有可能是损坏的，损坏可能是由 Datanode 的存储设备错误、网络错误 或者 软件bug 造成的。HDFS 客户端软件实现了对HDFS文件内容的 <em>校验和(checksum)</em> 检查。当 客户端创建一个新的HDFS文件，会计算这个文件每个数据块的校验和，并将校验和作为一个单独的 隐藏文件 保存在同一个 HDFS 名字空间下。当客户端获取文件内容后，它会检验从 Datanode 获取的数据跟相应的校验和文件中的校验和是否匹配，如果不匹配，客户端可以选择从其他Datanode获取该数据块的副本。</p>
+</li>
+<li><p>负载均衡</p>
+<p>HDFS 的架构支持 <em>数据均衡</em> 策略。如果某个 Datanode 节点上的 空闲空间 低于特定的临界点，按照均衡策略系统就会自动地将数据从这个 Datanode 移动到其他空闲的 Datanode。当对某个文件的请求突然增加，那么也可能启动一个计划创建该文件新的副本，并且同时重新平衡集群中的其他数据。这些均衡策略目前还没有实现。。。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Hadoop-HDFS/" rel="tag"># Hadoop HDFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/10/18/Linux-远程控制/" rel="next" title="Linux 远程控制">
+                <i class="fa fa-chevron-left"></i> Linux 远程控制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-几个重要设计原则"><span class="nav-number">1.</span> <span class="nav-text">HDFS 几个重要设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-架构"><span class="nav-number">2.</span> <span class="nav-text">HDFS 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-Slave-架构"><span class="nav-number">2.1.</span> <span class="nav-text">Master/Slave 架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的组织-与-备份"><span class="nav-number">2.2.</span> <span class="nav-text">数据的组织 与 备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-执行流程"><span class="nav-number">3.</span> <span class="nav-text">HDFS 执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">3.1.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-number">3.2.</span> <span class="nav-text">Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线复制"><span class="nav-number">3.3.</span> <span class="nav-text">流水线复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储空间的回收"><span class="nav-number">3.4.</span> <span class="nav-text">存储空间的回收</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性保证"><span class="nav-number">4.</span> <span class="nav-text">健壮性保证</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
