@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsdatanodes.png">
 <meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/staging.png">
 <meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/pipeline.png">
-<meta property="og:updated_time" content="2019-10-22T03:09:50.035Z">
+<meta property="og:updated_time" content="2019-10-22T06:19:38.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HDFS 原理">
 <meta name="twitter:description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
@@ -381,7 +381,10 @@
 <p>Namenode是HDFS集群中的<em>单点故障(single point of failure)</em>所在。如果Namenode机器故障，是需要手工干预的。目前，自动重启或在另一台机器上做Namenode故障转移的功能还没实现。。。</p>
 </li>
 </ol>
-<h2 id="HDFS-执行流程"><a href="#HDFS-执行流程" class="headerlink" title="HDFS 执行流程"></a>HDFS 执行流程</h2><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><p>Namenode 启动后会进入一个称为 安全模式 的特殊状态。处于安全模式的Namenode是不会进行数据块的复制的。Namenode 从所有的 Datanode 接收 心跳信号和 块状态报告。块状态报告包括了某个 Datanode 所有的数据块列表。每个数据块都有一个指定的最小副本数。当Namenode检测确认某个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全(safely replicated)的；在一定百分比（这个参数可配置）的数据块被Namenode检测确认是安全之后（加上一个额外的30秒等待时间），Namenode将退出安全模式状态。接下来它会确定还有哪些数据块的副本没有达到指定数目，并将这些数据块复制到其他 Datanode 上 。</p>
+<h2 id="HDFS-执行流程"><a href="#HDFS-执行流程" class="headerlink" title="HDFS 执行流程"></a>HDFS 执行流程</h2><h3 id="NameNode-的启动"><a href="#NameNode-的启动" class="headerlink" title="NameNode 的启动"></a>NameNode 的启动</h3><p>NameNode 将对 文件系统的改动 追加保存到本地文件系统上的一个日志文件（edits）。当一个 NameNode 启动时，它首先从一个映像文件（fsimage）中读取HDFS的状态，接着应用日志文件中的 edits 操作。然后它将新的HDFS状态写入（fsimage）中，并使用一个空的 edits 文件开始正常操作。</p>
+<p>因为NameNode只有在启动阶段才合并fsimage和edits，所以久而久之日志文件可能会变得非常庞大，特别是对大型的集群。日志文件太大的另一个副作用是下一次NameNode启动会花很长时间。</p>
+<p>Secondary NameNode 定期合并 fsimage 和 edits 日志，将 edits 日志文件大小控制在一个限度下。因为内存需求和NameNode 在一个数量级上，所以通常 secondary NameNode 和 NameNode 运行在不同的机器上</p>
+<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><p>Namenode 启动后会进入一个称为 安全模式 的特殊状态。处于安全模式的Namenode是不会进行数据块的复制的。Namenode 从所有的 Datanode 接收 心跳信号和 块状态报告。块状态报告包括了某个 Datanode 所有的数据块列表。每个数据块都有一个指定的最小副本数。当Namenode检测确认某个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全(safely replicated)的；在一定百分比（这个参数可配置）的数据块被Namenode检测确认是安全之后（加上一个额外的30秒等待时间），Namenode将退出安全模式状态。接下来它会确定还有哪些数据块的副本没有达到指定数目，并将这些数据块复制到其他 Datanode 上 。</p>
 <p><img src="/blog/2019/10/21/HDFS-原理/staging.png" alt="staging.png"></p>
 <h3 id="Staging"><a href="#Staging" class="headerlink" title="Staging"></a>Staging</h3><p>Client 创建文件的请求 其实并没有立即发送给 Namenode，事实上，在刚开始阶段 HDFS Client 会先将文件数据缓存到本地的一个临时文件tmp。应用程序的 写操作 被 透明地 重定向到这个临时文件。当这个临时文件累积的数据量超过一个Block 的大小，Client 才会联系 Namenode。Namenode 将文件名插入文件系统的层次结构中，并且分配一个数据块给它。然后返回 Datanode 的 标识符 和 目标数据块 给 Client。接着 Client 将这块数据从本地临时文件 tmp 上传到指定的 Datanode 上。当文件关闭时，在临时文件中剩余的没有上传的数据也会传输到指定的 Datanode 上。然后 Client 告诉 Namenode 文件已经关闭。此时 Namenode 才将 文件创建操作 提交到 EditLog 日志里进行存储。如果 Namenode 在文件关闭前宕机了，则该文件将丢失。</p>
 <h3 id="流水线复制"><a href="#流水线复制" class="headerlink" title="流水线复制"></a>流水线复制</h3><p>Datanode 能流水线式地从前一个节点接收数据，并在同时转发给下一个节点，数据以流水线的方式从前一个 Datanode 复制到下一个。</p>
@@ -528,7 +531,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -541,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -590,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-几个重要设计原则"><span class="nav-number">1.</span> <span class="nav-text">HDFS 几个重要设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-架构"><span class="nav-number">2.</span> <span class="nav-text">HDFS 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-Slave-架构"><span class="nav-number">2.1.</span> <span class="nav-text">Master/Slave 架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的组织-与-备份"><span class="nav-number">2.2.</span> <span class="nav-text">数据的组织 与 备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-执行流程"><span class="nav-number">3.</span> <span class="nav-text">HDFS 执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">3.1.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-number">3.2.</span> <span class="nav-text">Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线复制"><span class="nav-number">3.3.</span> <span class="nav-text">流水线复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储空间的回收"><span class="nav-number">3.4.</span> <span class="nav-text">存储空间的回收</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性保证"><span class="nav-number">4.</span> <span class="nav-text">健壮性保证</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-几个重要设计原则"><span class="nav-number">1.</span> <span class="nav-text">HDFS 几个重要设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-架构"><span class="nav-number">2.</span> <span class="nav-text">HDFS 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-Slave-架构"><span class="nav-number">2.1.</span> <span class="nav-text">Master/Slave 架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的组织-与-备份"><span class="nav-number">2.2.</span> <span class="nav-text">数据的组织 与 备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-执行流程"><span class="nav-number">3.</span> <span class="nav-text">HDFS 执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NameNode-的启动"><span class="nav-number">3.1.</span> <span class="nav-text">NameNode 的启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">3.2.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-number">3.3.</span> <span class="nav-text">Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线复制"><span class="nav-number">3.4.</span> <span class="nav-text">流水线复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储空间的回收"><span class="nav-number">3.5.</span> <span class="nav-text">存储空间的回收</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性保证"><span class="nav-number">4.</span> <span class="nav-text">健壮性保证</span></a></li></ol></div>
             
 
           </div>
