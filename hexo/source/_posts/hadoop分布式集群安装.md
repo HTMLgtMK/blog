@@ -1,32 +1,41 @@
 ---
-title: hadoop分布式集群安装
-date: 2018-11-13 18:57:59
-tags: hadoop-2.8.5 分布式 安装
-author: GT
+​---
+title: hadoop 分布式集群安装
+date: 2018-09-09
+tags: hadoop 分布式 云计算
+​---
 ---
 
 目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.
-环境 | CentOS7 
-hadoop版本 | hadoop-2.8.5
-java版本 | java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
+
+| 环境   | 说明                                            |
+| ------ | ----------------------------------------------- |
+| 系统   | CentOS7 64                                      |
+| Hadoop | hadoop-2.8.5                                    |
+| java   | java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64 |
 
 ## 集群规划
 1. Single Node集群
--- | -- 
-Master | hserver1
-Slave | hserver1
-<!-- more -->
+
+| 主从   | 主机id                |
+| ------ | --------------------- |
+| Master | hserver1              |
+  | Slave  | hserver1
+<!-- more --> |
+
 2. Mutli Node集群
-一共有3台虚拟机, 每台虚拟机的作用规划如下:
--- | -- 
-Master | hserver1
-Slave | hserver2, hserver2, hserver3
+    一共有3台虚拟机, 每台虚拟机的作用规划如下:
+
+| 主从   | 主机id             |
+| ------ | ------------------ |
+| Master | hserver1           |
+| Slave  | hserver2, hserver3 |
 
 SERVER | IP ADDR | PROCESS
--- | -- | -- | --
+-- | -- | -- 
 hserver1 | 192.168.48.200 | NameNode, DataNode, NodeManager, ResourceManager, JobHistoryServer
 hserver2 | 192.168.48.201 | DataNode, NodeManager
-hserver2 | 192.168.48.202 | DataNode, SecondaryNameNode, NodeManager
+hserver3 | 192.168.48.202 | DataNode, SecondaryNameNode, NodeManager
 
 这里为了方便, 直接使用root操作.(实际上不安全)
 
@@ -38,33 +47,50 @@ hserver2 | 192.168.48.202 | DataNode, SecondaryNameNode, NodeManager
 ### 配置hadoop
 hadoop的配置文件都在`etc/hadoop`目录下.
 1. 修改环境变量
-`hadoop-env.sh` 设置JAVA环境和hadoop home目录
-```shell
-# Set Hadoop-specific environment variables here.
-JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
-HADOOP_HOME=/usr/local/hadoop-2.8.5
-export JAVA_HOME=${JAVA_HOME}
-export HADOOP_HOME
-```<br/>
-`yarn-env.sh` 设置JAVA环境
-```shell
-# some Java parameters
-# export JAVA_HOME=/home/y/libexec/jdk1.6.0/
-JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
-```
+	1.1 `hadoop-env.sh` 设置JAVA环境和hadoop home目录
+    ```shell
+    # Set Hadoop-specific environment variables here.
+    JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
+    HADOOP_HOME=/usr/local/hadoop-2.8.5
+    export JAVA_HOME=${JAVA_HOME}
+    export HADOOP_HOME
+    ```
+	1.2 `yarn-env.sh` 配置 JAVA 环境
+   
+    ```shell
+    JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
+    ```
+   
+   参考 [关于hadoop3搭建的一些问题的解决](https://blog.csdn.net/qq_33931272/article/details/80070025), 当运行的 JDK 版本高于 9 时，会出现如下错误：
+   
+   ```shell
+   Error injecting constructor, java.lang.NoClassDefFoundError: javax/activation/DataSource
+     at org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver.<init>(JAXBContextResolver.java:52)
+     at org.apache.hadoop.yarn.server.nodemanager.webapp.WebServer$NMWebApp.setup(WebServer.java:153)
+     while locating org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver
+   ```
+   
+   解决方法是在`yarn-env.sh` 中添加环境变量 : 
+   
+   ```shell
+   export YARN_RESOURCEMANAGER_OPTS="--add-modules=ALL-SYSTEM"
+   export YARN_NODEMANAGER_OPTS="--add-modules=ALL-SYSTEM"
+   ```
+   
 2. 配置`core-site.xml`
 ```xml
 <property>
-<name>fs.defaultFS</name>
-<value>hdfs://hserver1:9000</value>
+    <name>fs.defaultFS</name>
+    <value>hdfs://hserver1:9000</value>
 </property>
 <property>
-<name>hadoop.tmp.dir</name>
-<value>/usr/local/hadoop-2.8.5/tmp</value>
-<description>temporary data dir</description>
+    <name>hadoop.tmp.dir</name>
+    <value>/usr/local/hadoop-2.8.5/tmp</value>
+    <description>temporary data dir</description>
 </property>
 ```
 3. 配置`hdfs-site.xml`
+
 ```xml
 <configuration>
 <property> 
@@ -103,7 +129,7 @@ JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64
 ```xml
 <configuration>
 <property> 
-<name>mapreduce.framework.name</name> 
+	<name>mapreduce.framework.name</name> 
 	<value>yarn</value>
 </property> 
 <property> 
@@ -205,6 +231,7 @@ localhost: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-ro
 ```
 **注: ** 开启hadoop时可能会提示需要输入用户密码, 是由于需要ssh登入, 可以使用ssh密钥免密登陆. 
 比如现在是root用户, 那么需要将`ssh-keygen`生成的`id_rsa.pub`公钥保存到`/root/.ssh/authorized_keys`文件中。
+
 3. 查看`NodeManager`
 按照配置, `NodeManager`地址为`dfs.http.address`:`hserver1:50070` or `dfs.secondary.http.address`:`hserver1:50090`。
 在浏览器地址栏输入:`hserver1:50070` or `192.168.48.200:50070`
@@ -232,6 +259,7 @@ hello world
 可以在`NodeManager`中看到新建的hdfs目录[hserver1:50070/explore.html#/](hserver1:50070/explore.html#/)
 ![CentOS 64 位-2018-11-13-22-06-06.png](CentOS 64 位-2018-11-13-22-06-06.png)
 或者从shell中查看:
+
 ```shell
 sudo ./bin/hadoop dfs -ls /input
 ```
@@ -336,6 +364,7 @@ localhost: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-ro
 ```
 ![CentOS 64 位-2018-11-14-13-10-52.png](CentOS 64 位-2018-11-14-13-10-52.png)
 查看运行结果, 可以通过查看输出文件查看结果:
+
 ```shell
 [root@hserver1 hadoop-2.8.5]# sudo ./bin/hdfs dfs -ls /output
 Found 1 items
