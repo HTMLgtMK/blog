@@ -85,6 +85,14 @@ HDFS 使用的是 **Master / Slave** 模式，一个 HDFS 集群由一个 `NameN
 
 ## HDFS 执行流程
 
+### NameNode 的启动
+
+NameNode 将对 文件系统的改动 追加保存到本地文件系统上的一个日志文件（edits）。当一个 NameNode 启动时，它首先从一个映像文件（fsimage）中读取HDFS的状态，接着应用日志文件中的 edits 操作。然后它将新的HDFS状态写入（fsimage）中，并使用一个空的 edits 文件开始正常操作。
+
+因为NameNode只有在启动阶段才合并fsimage和edits，所以久而久之日志文件可能会变得非常庞大，特别是对大型的集群。日志文件太大的另一个副作用是下一次NameNode启动会花很长时间。
+
+Secondary NameNode 定期合并 fsimage 和 edits 日志，将 edits 日志文件大小控制在一个限度下。因为内存需求和NameNode 在一个数量级上，所以通常 secondary NameNode 和 NameNode 运行在不同的机器上
+
 ### 安全模式
 
 Namenode 启动后会进入一个称为 安全模式 的特殊状态。处于安全模式的Namenode是不会进行数据块的复制的。Namenode 从所有的 Datanode 接收 心跳信号和 块状态报告。块状态报告包括了某个 Datanode 所有的数据块列表。每个数据块都有一个指定的最小副本数。当Namenode检测确认某个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全(safely replicated)的；在一定百分比（这个参数可配置）的数据块被Namenode检测确认是安全之后（加上一个额外的30秒等待时间），Namenode将退出安全模式状态。接下来它会确定还有哪些数据块的副本没有达到指定数目，并将这些数据块复制到其他 Datanode 上 。

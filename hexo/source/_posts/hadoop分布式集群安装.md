@@ -1,9 +1,7 @@
 ---
-​---
 title: hadoop 分布式集群安装
 date: 2018-09-09
-tags: hadoop 分布式 云计算
-​---
+tags: hadoop, 分布式, 云计算
 ---
 
 目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.
