@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="GFS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
+<meta name="keywords" content="GFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GFS 阅读">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/GFS-Architectture.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/File-Region-State.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/Write-Control-and-data-Flow.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/figure3.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/Table2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/Table3.png">
+<meta property="og:updated_time" content="2019-10-31T02:04:51.122Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GFS 阅读">
+<meta name="twitter:description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/GFS-Architectture.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/">
+
+
+
+
+
+  <title>GFS 阅读 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/10/28/GFS-阅读/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GFS 阅读</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-28T20:23:36+08:00">
+                2019-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/10/28/GFS-阅读/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/10/28/GFS-阅读/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2019/10/28/GFS-阅读/" class="leancloud_visitors" data-flag-title="GFS 阅读">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇文章主要记录阅读论文 <em>The Google File System</em> 的 Point。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><ol>
+<li><p>First, component failures are the norm rather than the exception.</p>
+<p>Therefore, constant monitoring, error detection, fault tolerance, and automatic recovery must be integral to the system.</p>
+</li>
+<li><p>Second, files are huge by traditional standards. </p>
+<ul>
+<li><p>Multi-GB files are common. </p>
+</li>
+<li><p>Billions of objects such as web documents with KB-sized.</p>
+</li>
+</ul>
+<p>As a result, design assumptions and parameters such as I/O operation and block sizes have to be revisited.</p>
+<a id="more"></a>
+</li>
+<li><p>Third,  most files are mutated by appending new data rather than overwriting existing data.</p>
+<p>Given this access pattern on huge files, appending becomes the focus of performance optimization and atomicity guarantees, while caching data blocks in the client loses its appeal</p>
+</li>
+<li><p>Fourth,  co-designing the applications and the file system API benefits the overall system by increasing our flexibility.</p>
+</li>
+</ol>
+<h2 id="2-Design-Overview"><a href="#2-Design-Overview" class="headerlink" title="2. Design Overview"></a>2. Design Overview</h2><h3 id="2-1-Detailed-Assumption"><a href="#2-1-Detailed-Assumption" class="headerlink" title="2.1 Detailed Assumption"></a>2.1 Detailed Assumption</h3><ol>
+<li>The system is built from many inexpensive commodity components that often fail.</li>
+<li>The system stores a modest number of large files.</li>
+<li>The workloads primarily consist of two kinds of reads: large streaming reads and small random reads. </li>
+<li>The workloads also have many large, sequential writes that append data to files. </li>
+<li>The system must efficiently implement well-defined semantics for multiple clients that concurrently append to the same file. (Automicity with minimal synchronization.)</li>
+<li>High sustained bandwidth is more important than low latency.</li>
+</ol>
+<h3 id="2-2-Interface"><a href="#2-2-Interface" class="headerlink" title="2.2 Interface"></a>2.2 Interface</h3><p>GFS provides a familiar file system interface. Files are organized hierarchically in directories and identified by <em>pathnames</em>. We support the usual operations to <em>createa</em>, <em>delete</em>, <em>open</em>, <em>close</em>, <em>read</em>, and <em>write</em> files.</p>
+<p>Moreover, GFS has <em>snapshot</em> and <em>record append</em> operations.</p>
+<h3 id="2-3-Architecture"><a href="#2-3-Architecture" class="headerlink" title="2.3 Architecture"></a>2.3 Architecture</h3><p>A GFS cluster consists of a <em>single master</em> and <em>multiple chunkservers</em> and is accessed by <em>multiple clients</em>, as shown in Figure 1.</p>
+<p><img src="/blog/2019/10/28/GFS-阅读/GFS-Architectture.png" alt="GFS-Architectture.png"></p>
+<p>Files are divided into fixed-size <em>chunks</em>. Each chunk is identified by an immutable and globally unique 64 bit <em>chunk handle</em> assigned by the master at the time of chunk creation. Chunkservers store chunks on local disks as Linux files. For reliability, each chunk is replicated on multiple chunkservers. </p>
+<p>The master maintains all file system metadata. This includes the namespace, access control information, the mapping from files to chunks, and the current locations of chunks The master periodically communicates with each chunkserver in <em>HeartBeat messages</em> to give it instructions and collect its state</p>
+<p>GFS  Clients interact with the master for metadata operations, but all data-bearing communication goes directly to the chunkservers.</p>
+<p>Neither the client nor the chunkserver caches file data.  Not having them simplifies the client and the overall system by eliminating cache coherence issues. (Clients do cache metadata, however.)</p>
+<h3 id="2-4-Single-Master"><a href="#2-4-Single-Master" class="headerlink" title="2.4 Single Master"></a>2.4 Single Master</h3><p>Explanation of the interactions for a simple read with reference Figure 1.</p>
+<h3 id="2-5-Chunk-Size"><a href="#2-5-Chunk-Size" class="headerlink" title="2.5 Chunk Size"></a>2.5 Chunk Size</h3><p>We choose 64 MB.  A large chunk size offers several important advantages.</p>
+<ol>
+<li>First, it reduces clients’ need to interact with the master.</li>
+<li>Second, since on a large chunk, a client is more likely to perform many operations on a given chunk, it can reduce network overhead by keeping a persistent TCP connection to the chunkserver over an extended period of time. </li>
+<li>Third, it reduces the size of the metadata stored on the master.</li>
+</ol>
+<p>Disadvantage: Chunkserver hot spots.</p>
+<h3 id="2-6-Metadata"><a href="#2-6-Metadata" class="headerlink" title="2.6 Metadata"></a>2.6 Metadata</h3><p>The master stores three major types of metadata: </p>
+<ul>
+<li>the file and chunk namespaces, </li>
+<li>the mapping from files to chunks,  ( file-to-chunk mapping )</li>
+<li>and the locations of each chunk’s replicas.</li>
+</ul>
+<p>The first two types (namespaces and file-to-chunk mapping) are also kept persistent by <em>logging</em> mutations to an <em>operation</em> log stored on the master’s local disk and replicated on remote machines.</p>
+<p>The master does not store chunk location information persistently. Instead, it asks each chunkserver about its chunks at master startup and whenever a chunkserver joins the cluster.</p>
+<h4 id="2-6-1-In-Memory-Data-Structures"><a href="#2-6-1-In-Memory-Data-Structures" class="headerlink" title="2.6.1 In-Memory Data Structures"></a>2.6.1 <em>In-Memory</em> Data Structures</h4><h4 id="2-6-2-Chunk-Locations"><a href="#2-6-2-Chunk-Locations" class="headerlink" title="2.6.2 Chunk Locations"></a>2.6.2 Chunk Locations</h4><h4 id="2-6-3-Operation-Log"><a href="#2-6-3-Operation-Log" class="headerlink" title="2.6.3 Operation Log"></a>2.6.3 <em>Operation Log</em></h4><h3 id="2-7-Consistency-Model"><a href="#2-7-Consistency-Model" class="headerlink" title="2.7 Consistency Model"></a>2.7 Consistency Model</h3><p>GFS has a relaxed consistency model.</p>
+<h4 id="2-7-1-Guarantee-by-GFS"><a href="#2-7-1-Guarantee-by-GFS" class="headerlink" title="2.7.1 Guarantee by GFS"></a>2.7.1 <em>Guarantee by GFS</em></h4><p>File namespace mutations (e.g., file creation) are atomic. They are handled exclusively by the master: namespace locking guarantees atomicity and correctness (Section 4.1); the master’s operation log defines a global total order of these operations (Section 2.6.3).</p>
+<p><img src="/blog/2019/10/28/GFS-阅读/File-Region-State.png" alt="File-Region-State.png"></p>
+<p>Data mutations: <em>Writes</em>, <em>Record Appends</em>.</p>
+<p>File region state after mutation:</p>
+<ul>
+<li><em>consistent</em>: t if all clients will always see the same data, regardless of which replicas they read from.</li>
+<li><em>defined</em>: if it is consistent and clients will see what the mutation writes in its entirety.</li>
+</ul>
+<p>GFS guarantee the mutated file region ( to be defined and contain the data writen by the last mutation ) by:</p>
+<p>​    (a)  applying mutations to a chunk in the same order on all its replicas (Section 3.1), and</p>
+<p>​    (b)   using chunk version numbers to detect any replica that has become stale because it has missed mutations while its chunkserver was down (Section 4.5).</p>
+<p> GFS identifies failed chunkservers by regular handshakes between master and all chunkservers and detects data corruption by checksumming (Section 5.2).</p>
+<h4 id="2-7-2-Implications-of-Applications"><a href="#2-7-2-Implications-of-Applications" class="headerlink" title="2.7.2 Implications of Applications"></a>2.7.2 <em>Implications of Applications</em></h4><p>Some simple techniques:   relying on appends rather than overwrites, checkpointing, and writing self-validating, self-identifying records.</p>
+<p> Readers deal with the occasional padding and duplicates as follows. Each record prepared by the writer contains extra information like checksums so that its validity can be verified. A reader can identify and discard extra padding and record fragments using the checksums. </p>
+<h2 id="3-SYSTEM-INTERACTIONS"><a href="#3-SYSTEM-INTERACTIONS" class="headerlink" title="3. SYSTEM INTERACTIONS"></a>3. SYSTEM INTERACTIONS</h2><p> we now describe how the client, master, and chunkservers interact to implement data mutations, atomic record append, and snapshot.</p>
+<h3 id="3-1-Leases-and-Mutation-Order"><a href="#3-1-Leases-and-Mutation-Order" class="headerlink" title="3.1 Leases and Mutation Order"></a>3.1 Leases and Mutation Order</h3><p>We use leases to maintain a consistent mutation order across replicas.  The master grants a chunk lease to one of the replicas, which we call the <em>primary</em>. The primary picks a serial order for all mutations to the chunk. All replicas follow this order when applying mutations. Thus, the global mutation order is defined first by the lease grant order chosen by the master, and within a lease by the serial numbers assigned by the primary.</p>
+<p>The lease mechanism is designed to minimize management overhead at the master.  A lease has an initial timeout of 60 seconds.</p>
+<p>The leases machanism illustration:</p>
+<p><img src="/blog/2019/10/28/GFS-阅读/Write-Control-and-data-Flow.png" alt="Write-Control-and-data-Flow.png"></p>
+<ol>
+<li>The client asks the master which chunkserver holds the current lease for the chunk and the locations of the other replicas. If no one has a lease, the master grants one to a replica it chooses (not shown).</li>
+<li>The master replies with the identity of the primary and the locations of the other (secondary) replicas. The client caches this data for future mutations. It needs to contact the master again only when the primary becomes unreachable or replies that it no longer holds a lease.</li>
+<li>The client pushes the data to all the replicas. A client can do so in any order. Each chunkserver will store the data in an internal LRU buffer cache until the data is used or aged out.</li>
+<li>Once all the replicas have acknowledged receiving the data, the client sends a write request to the primary. The request identifies the data pushed earlier to all of the replicas. The primary assigns consecutive serial numbers to all the mutations it receives, possibly from multiple clients, which provides the necessary serialization. It applies the mutation to its own local state in serial number order.</li>
+<li>The primary forwards the write request to all secondary replicas. Each secondary replica applies mutations in the same serial number order assigned by the primary.</li>
+<li>. The secondaries all reply to the primary indicating that they have completed the operation.  </li>
+<li>The primary replies to the client. Any errors encountered at any of the replicas are reported to the client. In case of errors, the write may have succeeded at the primary and an arbitrary subset of the secondary replicas. (If it had failed at the primary, it would not have been assigned a serial number and forwarded.) The client request is considered to have failed, and the modified region is left in an inconsistent state. Our client code handles such errors by retrying the failed mutation. It will make a few attempts at steps (3) through (7) before falling back to a retry from the beginning of the write.</li>
+</ol>
+<h3 id="3-2-Data-Flow"><a href="#3-2-Data-Flow" class="headerlink" title="3.2 Data Flow"></a>3.2 Data Flow</h3><p>We decouple the flow of data from the flow of control to use the network efficiently.  While control flows from the client to the primary and then to all secondaries, data is pushed linearly along a carefully picked chain of chunkservers in a pipelined fashion.</p>
+<ol>
+<li>To fully utilize each machine’s network bandwidth, the data is pushed linearly along a chain of chunkservers rather than distributed in some other topology .</li>
+<li>To avoid network bottlenecks and high-latency links (e.g., inter-switch links are often both) as much as possible, each machine forwards the data to the “closest” machine in the network topology that has not received it.</li>
+<li>Finally, we minimize latency by pipelining the data transfer over TCP connections.</li>
+</ol>
+<h3 id="3-3-Atomic-Record-Appends"><a href="#3-3-Atomic-Record-Appends" class="headerlink" title="3.3 Atomic Record Appends"></a>3.3 Atomic Record Appends</h3><p>GFS provides an atomic append operation called <em>record append</em>.</p>
+<p>In a record append, however, the client specifies only the data. GFS appends it to the file at least once atomically (i.e., as one continuous sequence of bytes) at an offset of GFS’s choosing and returns that offset to the client. This is similar to writing to a file opened in O-APPEND mode in Unix. </p>
+<p>If a record append fails at any replica, the client retries the operation. As a result, replicas of the same chunk may contain different data possibly including duplicates of the same record in whole or in part. GFS only guarantees that the data is written at least once as an atomic unit.</p>
+<h3 id="3-4-Snapshot"><a href="#3-4-Snapshot" class="headerlink" title="3.4 Snapshot"></a>3.4 Snapshot</h3><p>The snapshot operation makes a copy of a file or a directory tree (the “source”) almost instantaneously, while minimizing any interruptions of ongoing mutations.</p>
+<p>Like AFS [5], we use standard <strong>copy-on-write</strong> techniques to implement snapshots.  When the master receives a snapshot request, it first revokes any outstanding leases on the chunks in the files it is about to snapshot. This ensures that any subsequent writes to these chunks will require an interaction with the master to find the lease holder. This will give the master an opportunity to create a new copy of the chunk first.</p>
+<p>After the leases have been revoked or have expired, the master logs the operation to disk. It then applies this log record to its in-memory state by duplicating the metadata for the source file or directory tree. The newly created snapshot files point to the same chunks as the source files.</p>
+<p>The first time a client wants to write to a chunk C after the snapshot operation, it sends a request to the master to find the current lease holder. The master notices that the reference count for chunk C is greater than one. It defers replying to the client request and instead picks a new chunk handle C’. It then asks each chunkserver that has a current replica of C to create a new chunk called C’. By creating the new chunk on the same chunkservers as the original, we ensure that the data can be copied locally, not over the network.</p>
+<h2 id="4-MASTER-OPERATION"><a href="#4-MASTER-OPERATION" class="headerlink" title="4. MASTER OPERATION"></a>4. MASTER OPERATION</h2><p>The master executes all namespace operations. In addition, it manages chunk replicas throughout the system: it makes placement decisions, creates new chunks and hence replicas, and coordinates various system-wide activities to keep chunks fully replicated, to balance load across all the chunkservers, and to reclaim unused storage.</p>
+<h3 id="4-1-Namespace-Management-and-Locking"><a href="#4-1-Namespace-Management-and-Locking" class="headerlink" title="4.1 Namespace Management and Locking"></a>4.1 Namespace Management and Locking</h3><p> Each node in the namespace tree has an associated read-write lock. Each master operation acquires a set of locks before it runs.</p>
+<p><strong>Example</strong>:  how this locking mechanism can prevent a file <strong>/home/user/foo</strong> from being created while <strong>/home/user</strong> is being snapshotted to <strong>/save/user</strong>.</p>
+<ol>
+<li><p>The spanshot operation: </p>
+<ul>
+<li>Read lock:  <strong>/home</strong>, <strong>/save</strong></li>
+<li>Write lock: <strong>/home/user</strong>, <strong>/save/user</strong></li>
+</ul>
+</li>
+<li><p>The file creation:</p>
+<ul>
+<li>Read lock: <strong>/home</strong>, <strong>/home/user</strong></li>
+<li>Write lock: <strong>/home/user/foo</strong></li>
+</ul>
+<p>File creation does not require a write lock on the parent directory. The read lock on the name is sufficient to protect the paren  directory from deletion. </p>
+<p>The read lock on the directory name suffices to prevent the directory from being deleted, renamed, or snapshotted.</p>
+</li>
+<li><p>Since the namespace can have many nodes, read-write lock objects are allocated lazily and deleted once they are not in use. Also, locks are acquired in a consistent total order to prevent deadlock: they are first ordered by level in the namespace tree and lexicographically within the same level.</p>
+</li>
+</ol>
+<h3 id="4-2-Replica-Placement"><a href="#4-2-Replica-Placement" class="headerlink" title="4.2 Replica Placement"></a>4.2 Replica Placement</h3><p>The chunk replica placement policy serves two purposes: maximize data reliability and availability, and maximize network bandwidth utilization.</p>
+<p>We must also spread chunk replicas across racks. This ensures that some replicas of a chunk will survive and remain available even if an entire rack is damaged or offline.</p>
+<p>It also means that traffic, especially reads, for a chunk can exploit the aggregate bandwidth of multiple racks. On the other hand, write traffic has to flow through multiple racks, a tradeoff we make willingly.</p>
+<h3 id="4-3-Creation-Re-replication-Rebalancing"><a href="#4-3-Creation-Re-replication-Rebalancing" class="headerlink" title="4.3 Creation, Re-replication, Rebalancing"></a>4.3 Creation, Re-replication, Rebalancing</h3><p>Chunk replicas are created for three reasons: chunk creation, re-replication, and rebalancing.</p>
+<p>When the master <em>creates</em> a chunk, it considers several factors:</p>
+<ol>
+<li>equalizing disk space utilization,</li>
+<li>limiting active write/clone operations on any single chunkserver,</li>
+<li>spreading replicas across racks.</li>
+</ol>
+<p>The master <em>re-replicates</em> a chunk as soon as the number of available replicas falls below a user-specified goal. This could happen for various reasons:</p>
+<ul>
+<li>a chunkserver becomes unavailable, </li>
+<li>it reports that its replica may be corrupted, </li>
+<li>one of its disks is disabled because of errors,</li>
+<li>or the replication goal is increased.</li>
+</ul>
+<p>Each chunk that needs to be re-replicated is prioritized based on several factors:</p>
+<ul>
+<li>One is how far it is from its replication goal.( lost two replicas &gt; lost only one )</li>
+<li>we prefer to first re-replicate chunks for live files as opposed to chunks that belong to recently deleted files</li>
+<li>boost the priority of any chunk that is blocking client progress  ( to minimize the impact of failures on running applications )   </li>
+</ul>
+<p>Finally, the master <em>rebalances</em> replicas periodically: it examines the current replica distribution and moves replicas for better disk space and load balancing.</p>
+<h3 id="4-4-Garbage-Collection"><a href="#4-4-Garbage-Collection" class="headerlink" title="4.4 Garbage Collection"></a>4.4 Garbage Collection</h3><h4 id="4-4-1-Mechanism"><a href="#4-4-1-Mechanism" class="headerlink" title="4.4.1 Mechanism"></a>4.4.1 <em>Mechanism</em></h4><p>When a file is deleted by the application, the master logs the deletion immediately just like other changes.  </p>
+<p>However instead of reclaiming resources immediately, the file is just renamed to a hidden name that includes the deletion timestamp.</p>
+<p>During the master’s regular scan of the file system namespace, it removes any such hidden files if they have existed for more than three days (the interval is configurable) .</p>
+<p>Until then, the file can still be read under the new, special name and can be undeleted by renaming it back to normal.</p>
+<p>When the hidden file is removed from the namespace, its in-memory metadata is erased. </p>
+<h4 id="4-4-2-Discussion"><a href="#4-4-2-Discussion" class="headerlink" title="4.4.2 Discussion"></a>4.4.2 <em>Discussion</em></h4><p>We can easily identify all references to chunks: they are in the file-to-chunk mappings maintained exclusively by the master. We can also easily identify all the chunk replicas: they are Linux files under designated directories on each chunkserver. Any such replica not known to the master is “garbage.”</p>
+<h3 id="4-5-Stale-Replica-Detection"><a href="#4-5-Stale-Replica-Detection" class="headerlink" title="4.5 Stale Replica Detection"></a>4.5 Stale Replica Detection</h3><p>Chunk replicas may become stale if a chunkserver fails and misses mutations to the chunk while it is down. For<br>each chunk, the master maintains a <strong><em>chunk version number</em></strong> to distinguish between <strong>up-to-date</strong> and <strong>stale</strong> replicas.</p>
+<p>Whenever the master grants a new lease on a chunk, it increases the chunk version number and informs the up-to-date replicas. The master and these replicas all record the new version number in their persistent state. </p>
+<p>The master removes stale replicas in its regular garbage collection.</p>
+<p>As another safeguard, the master includes the chunk version number when it informs clients which chunkserver holds a lease on a chunk or when it instructs a chunkserver to read the chunk from another chunkserver in a cloning operation. The client or the chunkserver verifies the version number when it performs the operation so that it is always accessing up-to-date data.</p>
+<h2 id="5-FAULT-TOLERANCE-AND-DIAGNOSIS"><a href="#5-FAULT-TOLERANCE-AND-DIAGNOSIS" class="headerlink" title="5. FAULT TOLERANCE AND DIAGNOSIS"></a>5. FAULT TOLERANCE AND DIAGNOSIS</h2><p>“ we cannot completely trust the machines, nor can we completely trust the disks.”</p>
+<h3 id="5-1-Hign-Availability"><a href="#5-1-Hign-Availability" class="headerlink" title="5.1 Hign Availability"></a>5.1 Hign Availability</h3><p>We keep the overall system highly available with two simple yet effective strategies: <strong>fast recovery</strong> and <strong>replication</strong>.</p>
+<h4 id="5-1-1-Fast-Recovery"><a href="#5-1-1-Fast-Recovery" class="headerlink" title="5.1.1 Fast Recovery"></a>5.1.1 <em>Fast Recovery</em></h4><p>Both the master and the chunkserver are designed to restore their state and start in seconds no matter how they terminated. </p>
+<h4 id="5-1-2-Chunk-Replication"><a href="#5-1-2-Chunk-Replication" class="headerlink" title="5.1.2 Chunk Replication"></a>5.1.2 <em>Chunk Replication</em></h4><p>Each chunk is replicated on multiple chunkservers on different racks.  Users can specify different replication levels for different parts of the file namespace. The default is three.</p>
+<h4 id="5-1-3-Master-Replication"><a href="#5-1-3-Master-Replication" class="headerlink" title="5.1.3 Master Replication"></a>5.1.3 <em>Master Replication</em></h4><p>The master state is replicated for reliability.  Its operation log and checkpoints are replicated on multiple machines.</p>
+<p>If its machine or disk fails, monitoring infrastructure outside GFS starts a new master process elsewhere with the replicated operation log. Clients use only the canonical name of the master (e.g. gfs-test), which is a DNS alias that can be changed if the master is relocated to another machine.</p>
+<p>Moreover, “shadow” masters provide read-only access to the file system even when the primary master is down.</p>
+<p>To keep itself informed, a shadow master reads a replica of the growing operation log and applies the same sequence of changes to its data structures exactly as the primary does. Like the primary, it polls chunkservers at startup (and infrequently thereafter) to locate chunk replicas and exchanges frequent handshake messages with them to monitor their status. It depends on the primary master only for replica location updates resulting from the primary’s decisions to create and delete replicas.</p>
+<h3 id="5-2-Data-Integrity"><a href="#5-2-Data-Integrity" class="headerlink" title="5.2 Data Integrity"></a>5.2 Data Integrity</h3><p>Each chunkserver uses checksumming to detect corruption of stored data. </p>
+<p>Each chunkserver must independently verify the integrity of its own copy by maintaining checksums. </p>
+<p>A chunk is broken up into 64 KB blocks. Each has a corresponding 32 bit checksum.  Like other metadata, checksums<br>are kept in memory and stored persistently with logging, separate from user data.</p>
+<p>For reads, the chunkserver verifies the checksum of data blocks that overlap the read range before returning any data to the requester, whether a client or another chunkserver. If a block does not match the recorded checksum, the chunkserver returns an error to the requestor and reports the mismatch to the master. In response, the<br>requestor will read from other replicas, while the master will clone the chunk from another replica.   After a valid new<br>replica is in place, the master instructs the chunkserver that reported the mismatch to delete its replica.</p>
+<p>Append operation Checksum computation: We just incrementally update the checksum for the last partial checksum block, and compute new checksums for any brand new checksum blocks filled by the append.</p>
+<p>Overwrite operation Checksum computation:   we must read and verify the first and last blocks of the range being overwritten, then perform the write, and finally compute and record the new checksums.</p>
+<p>During idle periods, chunkservers can scan and verify the contents of inactive chunks. . This allows us to detect corruption in chunks that are rarely read.</p>
+<h3 id="5-3-Diagnostic-Tools"><a href="#5-3-Diagnostic-Tools" class="headerlink" title="5.3 Diagnostic Tools"></a>5.3 Diagnostic Tools</h3><p>Extensive and detailed diagnostic logging has helped immeasurably in problem isolation, debugging, and performance analysis, while incurring only a minimal cost.</p>
+<h2 id="6-MEASUREMENTS"><a href="#6-MEASUREMENTS" class="headerlink" title="6. MEASUREMENTS"></a>6. MEASUREMENTS</h2><h3 id="6-1-Micro-benchmarks"><a href="#6-1-Micro-benchmarks" class="headerlink" title="6.1 Micro-benchmarks"></a>6.1 Micro-benchmarks</h3><p>Env( A GFS cluster ): one master, two master replicas, 16 chunkservers, 16 clients.</p>
+<p>All the machines: dual 1.4 GHz PIII processors, 2 GB  of memory, two 80 GB 5400 rpm disks, and 100Mbps full-duplex Ethernet connection to an HP 2524 switch. </p>
+<p>All 19 GFS server machines are connected to one switch, and all 16 client machines to the other. The two switches are connected with a 1 Gbps link.</p>
+<h4 id="6-1-1-Reads"><a href="#6-1-1-Reads" class="headerlink" title="6.1.1 Reads"></a>6.1.1 <em>Reads</em></h4><p>N clients read simultaneously from the file system. Each client reads a randomly selected 4 MB region from a 320 GB file set. This is repeated 256 times so that each client ends up reading 1 GB of data.</p>
+<h4 id="6-1-2-Writes"><a href="#6-1-2-Writes" class="headerlink" title="6.1.2 Writes"></a>6.1.2 <em>Writes</em></h4><p>N clients write simultaneously to N distinct files.  Each client writes 1 GB of data to a new file in a series of 1 MB writes.</p>
+<h4 id="6-1-3-Record-Appends"><a href="#6-1-3-Record-Appends" class="headerlink" title="6.1.3 Record Appends"></a>6.1.3 <em>Record Appends</em></h4><p>N clients append simultaneously to a single file.</p>
+<p><img src="/blog/2019/10/28/GFS-阅读/figure3.png" alt="figure3.png"></p>
+<h3 id="6-2-Real-World-Clusters"><a href="#6-2-Real-World-Clusters" class="headerlink" title="6.2 Real World Clusters"></a>6.2 Real World Clusters</h3><p>Two clusters in use within Google:</p>
+<p>Cluster A is used regularly for research and development by over a hundred engineers. A typical task is initiated by a human user and runs up to several hours. It reads through a few MBs to a few TBs of data, transforms or analyzes the data, and writes the results back to the cluster. </p>
+<p>Cluster B is primarily used for production data processing. The tasks last much longer and continuously generate and process multi-TB datasets with only occasional human intervention. </p>
+<p>A single “”task: many processes on many machines reading and writing many files simultaneously.</p>
+<p><img src="/blog/2019/10/28/GFS-阅读/Table2.png" alt="Table2.png"></p>
+<h4 id="6-2-1-Storage"><a href="#6-2-1-Storage" class="headerlink" title="6.2.1 Storage"></a>6.2.1 <em>Storage</em></h4><h4 id="6-2-2-Metadata"><a href="#6-2-2-Metadata" class="headerlink" title="6.2.2 Metadata"></a>6.2.2 <em>Metadata</em></h4><h4 id="6-2-3-Read-and-Write-Rate"><a href="#6-2-3-Read-and-Write-Rate" class="headerlink" title="6.2.3 Read and Write Rate"></a>6.2.3 <em>Read and Write Rate</em></h4><p><img src="/blog/2019/10/28/GFS-阅读/Table3.png" alt="Table3.png"></p>
+<h4 id="6-2-4-Master-Load"><a href="#6-2-4-Master-Load" class="headerlink" title="6.2.4 Master Load"></a>6.2.4 Master Load</h4><h4 id="6-2-5-Recovery-Time"><a href="#6-2-5-Recovery-Time" class="headerlink" title="6.2.5  Recovery Time"></a>6.2.5  <em>Recovery Time</em></h4><h3 id="6-3-Workload-Breakdown"><a href="#6-3-Workload-Breakdown" class="headerlink" title="6.3 Workload Breakdown"></a>6.3 Workload Breakdown</h3><p>Cluster X is for research and development while cluster Y is for production data processing.</p>
+<h4 id="6-3-1-Methodology-and-Caveats"><a href="#6-3-1-Methodology-and-Caveats" class="headerlink" title="6.3.1 Methodology and Caveats"></a>6.3.1 <em>Methodology and Caveats</em></h4><h4 id="6-3-2-Chunkserver-Workload"><a href="#6-3-2-Chunkserver-Workload" class="headerlink" title="6.3.2 Chunkserver Workload"></a>6.3.2 <em>Chunkserver Workload</em></h4><h4 id="6-3-3-Appends-versus-Writers"><a href="#6-3-3-Appends-versus-Writers" class="headerlink" title="6.3.3 Appends versus Writers"></a>6.3.3 <em>Appends versus Writers</em></h4><h4 id="6-3-4-Master-Workload"><a href="#6-3-4-Master-Workload" class="headerlink" title="6.3.4 Master Workload"></a>6.3.4 <em>Master Workload</em></h4><h2 id="7-EXPERIENCES"><a href="#7-EXPERIENCES" class="headerlink" title="7. EXPERIENCES"></a>7. EXPERIENCES</h2><p>We opt for the centralized approach in order to simplify the design, increase its reliability, and gain flexibility. In particular, a centralized master makes it much easier to implement sophisticated chunk placement and replication policies since the master already has most of the relevant information and controls how it changes. We address fault tolerance by keeping the master state small and fully replicated on other machines. Scalability and high availability (for reads) are currently provided by our shadow master mechanism. Updates to the master state are made persistent by appending to a write-ahead log. Therefore we could adapt a primary-copy scheme like the one in Harp [7] to provide high availability with stronger consistency guarantees than our current scheme.</p>
+<h2 id="8-RELATED-WORK"><a href="#8-RELATED-WORK" class="headerlink" title="8. RELATED WORK"></a>8. RELATED WORK</h2><h2 id="9-CONCLUSIONS"><a href="#9-CONCLUSIONS" class="headerlink" title="9. CONCLUSIONS"></a>9. CONCLUSIONS</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/GFS/" rel="tag"># GFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/10/21/HDFS-原理/" rel="next" title="HDFS 原理">
+                <i class="fa fa-chevron-left"></i> HDFS 原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Design-Overview"><span class="nav-number">2.</span> <span class="nav-text">2. Design Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Detailed-Assumption"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Detailed Assumption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Interface"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Architecture"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Single-Master"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Single Master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Chunk-Size"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Chunk Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-Metadata"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 Metadata</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-In-Memory-Data-Structures"><span class="nav-number">2.6.1.</span> <span class="nav-text">2.6.1 In-Memory Data Structures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-Chunk-Locations"><span class="nav-number">2.6.2.</span> <span class="nav-text">2.6.2 Chunk Locations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-3-Operation-Log"><span class="nav-number">2.6.3.</span> <span class="nav-text">2.6.3 Operation Log</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-Consistency-Model"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 Consistency Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-1-Guarantee-by-GFS"><span class="nav-number">2.7.1.</span> <span class="nav-text">2.7.1 Guarantee by GFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-2-Implications-of-Applications"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.7.2 Implications of Applications</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SYSTEM-INTERACTIONS"><span class="nav-number">3.</span> <span class="nav-text">3. SYSTEM INTERACTIONS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Leases-and-Mutation-Order"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Leases and Mutation Order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Data-Flow"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Data Flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Atomic-Record-Appends"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Atomic Record Appends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Snapshot"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Snapshot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-MASTER-OPERATION"><span class="nav-number">4.</span> <span class="nav-text">4. MASTER OPERATION</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Namespace-Management-and-Locking"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Namespace Management and Locking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Replica-Placement"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Replica Placement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Creation-Re-replication-Rebalancing"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Creation, Re-replication, Rebalancing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Garbage-Collection"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Garbage Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1-Mechanism"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.1 Mechanism</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2-Discussion"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.2 Discussion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Stale-Replica-Detection"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Stale Replica Detection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-FAULT-TOLERANCE-AND-DIAGNOSIS"><span class="nav-number">5.</span> <span class="nav-text">5. FAULT TOLERANCE AND DIAGNOSIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Hign-Availability"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Hign Availability</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-Fast-Recovery"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 Fast Recovery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-Chunk-Replication"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 Chunk Replication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-3-Master-Replication"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 Master Replication</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Data-Integrity"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Data Integrity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Diagnostic-Tools"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Diagnostic Tools</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-MEASUREMENTS"><span class="nav-number">6.</span> <span class="nav-text">6. MEASUREMENTS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Micro-benchmarks"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 Micro-benchmarks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-1-Reads"><span class="nav-number">6.1.1.</span> <span class="nav-text">6.1.1 Reads</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-2-Writes"><span class="nav-number">6.1.2.</span> <span class="nav-text">6.1.2 Writes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-Record-Appends"><span class="nav-number">6.1.3.</span> <span class="nav-text">6.1.3 Record Appends</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Real-World-Clusters"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 Real World Clusters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-1-Storage"><span class="nav-number">6.2.1.</span> <span class="nav-text">6.2.1 Storage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-2-Metadata"><span class="nav-number">6.2.2.</span> <span class="nav-text">6.2.2 Metadata</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-Read-and-Write-Rate"><span class="nav-number">6.2.3.</span> <span class="nav-text">6.2.3 Read and Write Rate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-4-Master-Load"><span class="nav-number">6.2.4.</span> <span class="nav-text">6.2.4 Master Load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-Recovery-Time"><span class="nav-number">6.2.5.</span> <span class="nav-text">6.2.5  Recovery Time</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Workload-Breakdown"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 Workload Breakdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1-Methodology-and-Caveats"><span class="nav-number">6.3.1.</span> <span class="nav-text">6.3.1 Methodology and Caveats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-Chunkserver-Workload"><span class="nav-number">6.3.2.</span> <span class="nav-text">6.3.2 Chunkserver Workload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-3-Appends-versus-Writers"><span class="nav-number">6.3.3.</span> <span class="nav-text">6.3.3 Appends versus Writers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-4-Master-Workload"><span class="nav-number">6.3.4.</span> <span class="nav-text">6.3.4 Master Workload</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-EXPERIENCES"><span class="nav-number">7.</span> <span class="nav-text">7. EXPERIENCES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-RELATED-WORK"><span class="nav-number">8.</span> <span class="nav-text">8. RELATED WORK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-CONCLUSIONS"><span class="nav-number">9.</span> <span class="nav-text">9. CONCLUSIONS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
