@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="BigTable,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是阅读 [Bigtable: A Distributed Storage System for Structured Data](Bigtable: A Distributed Storage System for Structured Data) 的 Points. BigTable:  结构化数据的分布式存储系统作者： Fay Chang, Jeffrey Dean ( 杰夫尼-迪恩), S">
+<meta name="keywords" content="BigTable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BigTable-阅读">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/11/04/BigTable-阅读/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="这是阅读 [Bigtable: A Distributed Storage System for Structured Data](Bigtable: A Distributed Storage System for Structured Data) 的 Points. BigTable:  结构化数据的分布式存储系统作者： Fay Chang, Jeffrey Dean ( 杰夫尼-迪恩), S">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/11/04/BigTable-阅读/Figure1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/11/04/BigTable-阅读/Figure4.png">
+<meta property="og:updated_time" content="2019-11-05T07:07:10.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BigTable-阅读">
+<meta name="twitter:description" content="这是阅读 [Bigtable: A Distributed Storage System for Structured Data](Bigtable: A Distributed Storage System for Structured Data) 的 Points. BigTable:  结构化数据的分布式存储系统作者： Fay Chang, Jeffrey Dean ( 杰夫尼-迪恩), S">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/11/04/BigTable-阅读/Figure1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/11/04/BigTable-阅读/">
+
+
+
+
+
+  <title>BigTable-阅读 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/11/04/BigTable-阅读/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BigTable-阅读</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-04T08:39:18+08:00">
+                2019-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/11/04/BigTable-阅读/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/11/04/BigTable-阅读/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2019/11/04/BigTable-阅读/" class="leancloud_visitors" data-flag-title="BigTable-阅读">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是阅读 [Bigtable: A Distributed Storage System for Structured Data](Bigtable: A Distributed Storage System for Structured Data) 的 Points.</p>
+<h1 id="BigTable-结构化数据的分布式存储系统"><a href="#BigTable-结构化数据的分布式存储系统" class="headerlink" title="BigTable:  结构化数据的分布式存储系统"></a>BigTable:  结构化数据的分布式存储系统</h1><p>作者： Fay Chang, Jeffrey Dean ( 杰夫尼-迪恩), Sanjay Ghemawat (桑杰-格玛沃特), Wilson C. Hsieh (威尔逊 C .谢),  Deborah A. Wallach Mike Burrows (黛博拉·华莱克·迈克·伯罗斯),  Tushar Chandra (), Andrew Fikes (安德鲁-菲克斯), Robert E. Gruber (罗伯特E.格鲁伯).</p>
+<p>其中，Sanjay Ghemawat 参与了 GFS， MapReduce, BigTable; Jeffrey Dean 参与了 MapReduce。</p>
+<a id="more"></a>
+
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>BigTbale 是一个用于管理结构化数据的分布式存储系统，其设计规模非常大：跨越数千个普通服务器的 PB 级别数据。</p>
+<p>“本文”描述了 BigTable  提供的简单数据模型，该模型为用户提供了 对数据布局 ( data layout) 和 格式 (format) 的 动态控制，并描述了 BigTable 的设计和实现。</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p> Bigtable has achieved several goals: wide applicability, scalability, high performance, and high availability. </p>
+<p>Bigtable is used by more than sixty Google products and projects, including Google Analytics, Google Finance, Orkut, Personalized Search, Writely, and Google Earth.</p>
+<p>在许多方面，BigTable 类似于数据库：它与数据库共享许多实现策略。但是，BIgTable 不支持完全的关系模型( full relational data model ); 相反，它为客户机提供了一个简单的数据模型，该模型支持对数据布局和格式的动态控制，并使客户机能推断出底层存储中表示的数据的位置属性。Data is indexed using row and column names that can be arbitrary strings.  BigTable 还将数据视为未解释的字符串，尽管客户端经常各种形式的结构化数据和半结构化数据序列化到这些字符串中。客户端还可以通过仔细选择模式 ( schemas ) 来控制数据的位置。最后，BigTable 模式参数允许客户端动态控制是在内存还是在磁盘中提供数据。</p>
+<h2 id="2-Data-Model"><a href="#2-Data-Model" class="headerlink" title="2. Data Model"></a>2. Data Model</h2><p>A Bigtable is a sparse, distributed, persistent multi-dimensional sorted map. The map is indexed by a row key, column key, and a timestamp; each value in the map is an uninterpreted array of bytes.</p>
+<p><code>(row:string, column:string, time:int64) -&gt; string</code></p>
+<p>一个设计的具体例子：假设想要保留一个大的 Web page 和 relative information 集合的副本，它可以被许多不同的项目使用; 我们称这个特殊的表为 <code>WebTable</code>。在 WebTable 中，我们使用 （翻转的） URL 作为 row key, 将 Web Page 的各个方面作为 column names, 并将 Web page 的内容存储在 <code>Content</code> 列（提取时的时间戳下的 contents 列），如 Figure 1 所示。</p>
+<p><img src="/blog/2019/11/04/BigTable-阅读/Figure1.png" alt="Figure1.png"></p>
+<h4 id="Rows"><a href="#Rows" class="headerlink" title="Rows"></a>Rows</h4><p>表中的行 keys 是任意字符串（当前最长可达 64KB , 虽然对大多数用户典型大小只有 10-100 bytes）。单一行 key 下的每个读取或写入数据是 atomic 的。Bigtable通过行键按字典顺序维护数据。一个表的行范围（ row range）是动态分区的。<strong>每个行范围称为一个 <em>tablet</em>, 它是分配和负载均衡的基本单位。</strong> 将来自相同域（domain）的页面存储在彼此附近可以提高主机和域分析的效率。</p>
+<p>For example, in <em>Webtable</em>, pages in the same domain are grouped together into contiguous rows by reversing the hostname components of the URLs. </p>
+<h4 id="Column-Families"><a href="#Column-Families" class="headerlink" title="Column Families"></a>Column Families</h4><p><strong>列键值（Column keys）可以分组成集合（sets), 称为 <em>列族（column families）</em>,  它是 访问控制（ access control）的基本单位。</strong>  同一列族内的数据类型通常相同。</p>
+<p>列族的目的是使 表中不同列族的个数比较小（最多百个），并且列族在操作时比较少改变。相反，一个表可以由无限个列。</p>
+<p><strong>一个列键使用 <em>family:qualifier</em> 来命名</strong>，。列族必须可以打印，但是 qualifier 可以是任意的字符串。例如： “<em>anchor:cnnsi.com</em>”. </p>
+<h4 id="Timestamps"><a href="#Timestamps" class="headerlink" title="Timestamps"></a>Timestamps</h4><p>Each cell in a Bigtable cancontain multiple versions of the same data; these versions are indexed by timestamp. Bigtable timestamps are 64-bit integers. </p>
+<p>时间戳可以由 Bigtable 赋值当前的毫秒值，也可以显示的由用户赋值。</p>
+<p>To make the management of versioned data less onerous, we support two per-column-family settings that tell Bigtable to garbage-collect cell versions automatically。The client can specify either that only the last n versions of a cell be kept, or that only new-enough versions be kept。</p>
+<h2 id="3-API"><a href="#3-API" class="headerlink" title="3.  API"></a>3.  API</h2><p>这个，反正 BigTable 也没有开源，了解接口也没有什么卵用。。</p>
+<h2 id="4-Building-Blocks"><a href="#4-Building-Blocks" class="headerlink" title="4. Building Blocks"></a>4. Building Blocks</h2><p>BigTable  使用 <strong>GFS</strong> 存储日志和数据文件，依靠集群管理系统调度，管理共享机器资源，处理机器宕机，并监控机器状态。</p>
+<p><strong>BigTable  使用 Google 内部使用的 <em>SSTable</em> 文件格式存储数据。</strong> SSTable 提供一个持久的、有序的、不可变的键值映射(map)，其中的键和值都是任意的字符串。提供利用指定的 key 查找 value ，或者在指定 key range 上遍历所有 key/value 键值对 的操作。在 SSTable 内部包含序列块（a sequence of blocks ），通常每个块的大小是 64KB，但是这是可以配置的。块索引（block index） 用于定位块（通常位于SSTable 的末尾）；当 SSTable 打开时，块索引会被加载到内存中。一次查找可以在一次磁盘查找中完成：首先在内存中对块索引进行二分查找，然后再从磁盘中读取合适的块。当然，一个 SSTable  也可以完全载入到内存中，可以使完全不用接触磁盘。</p>
+<p><strong>BigTable  依靠一个高可靠的、持久的分布式锁服务，称为 <em>Chubby</em>. <em>* 一个 Chubby  服务由5个活跃副本组成，其中一个被选择为足迹，并积极响应请求。 **Chubby 使用 *Paxos</em> 算法保持副本失败时的一致性。</strong> Chubby 一个由目录和小文件组成的命名空间。每个目录或者文件可以用作锁(lock)，并且读取或者写入文件是原子的。每个 Chubby Client 维持一个 Chubby service 的 <em>session</em>。如果 client 不能在过期时间内更新 session，那这个 session 过期。当它的 session 过期，它丢失了所有的锁和文件句柄。Chubbu clients 也可以在 Chubby 文件和目录上注册回调接收 session 过期的通知。</p>
+<p>BigTable 使用 Chubby 来完成各种任务：保证每时最多只有一个 active master；存储 BigTable 数据的引导位置 ( bootstrap location )（5.1 节）； 发现 tablet servers 并且完成 tablet server deaths 后的工作（5.2 节）；存储 BigTable 模式信息（每个表的列族信息）；存储访存控制列表。<strong>如果 Chubby 在一段时间后变得不可用，那么 BigTable 也将不可用。</strong> </p>
+<h2 id="5-Implemention"><a href="#5-Implemention" class="headerlink" title="5. Implemention"></a>5. Implemention</h2><p>BigTable 3个组成部分： </p>
+<ul>
+<li>连接到每个客户机的library</li>
+<li>一个主机（master）</li>
+<li>多个 Tablet 服务器</li>
+</ul>
+<p>Master 负责：分配 Tablet 到 Tablet 服务器；检测 Tablet 服务器的添加和失效；Tablet 服务器的负载均衡；GFS 中文件的垃圾回收；schema 变化，比如表和列族的创建。</p>
+<p>每个 tablet 服务器管理一组 Tablets （通常在 Tablet 服务器上由 10-1000 个Tablets）。 Tablet 服务器负责处理它搭载的 Tablet 的读写请求，也处理 过大的 Tablet 的分割。</p>
+<p><code>master -&gt; Tablet servers -&gt; Tablets.</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">         master</span><br><span class="line">__|     |__</span><br><span class="line">client ---数据--  Tablet server</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-Tablet-的位置"><a href="#5-1-Tablet-的位置" class="headerlink" title="5.1 Tablet 的位置"></a>5.1 Tablet 的位置</h3><p>类似于 B+ 树的三层存储：</p>
+<p><img src="/blog/2019/11/04/BigTable-阅读/Figure4.png" alt="Figure4.png"></p>
+<p>The first level is a file stored in Chubby that contains the location of the <em>root tablet</em>. The <em>root tablet</em> contains the location of all tablets in a special <em>METADATA</em> table. Each <em>METADATA</em> tablet contains the location of a set of user tablets. The <em>root tablet</em> is just the first tablet in the <em>METADATA</em> table, but is treated specially—it is never split—to ensure that the tablet location hierarchy has no more than three levels.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Chubby file --&gt; Root Tablet (Metadata)</span><br><span class="line">			--&gt; Other MNetadata tablets (Metadata)</span><br><span class="line">			--&gt; User Tablets (row)</span><br></pre></td></tr></table></figure>
+
+<p>The <em>METADATA</em> table stores the location of a tablet under a row key that is an encoding of the tablet’s table  identifier and its end.</p>
+<p>每个 Metadata row 大约 1KB, Metadata  tablet 的限制为 128MB，因此三层存储结构的模式可以存放 2^34 个tablet地址。</p>
+<p>客户端将缓存 Tablets location:</p>
+<ol>
+<li>不知道或不正确：递归的寻找位置层次;</li>
+<li>缓存为空：location Algo. 要求3个网络来回（three network round-trips）</li>
+<li>缓存过期：位置算法要求6个网络来回（只有当发现没有命中时才更新）</li>
+</ol>
+<p>BigTable 一次读取多个 tablet 的 metadata 信息。</p>
+<h3 id="5-2-Tablet-分配"><a href="#5-2-Tablet-分配" class="headerlink" title="5.2 Tablet 分配"></a>5.2 Tablet 分配</h3><p>master 通过发送一个 tablet load req 请求到 tablet server 分配 tablet。</p>
+<p>当 tablet server 失去排他锁（exclusive lock）时不再提供 tablet 服务，例如由于网络分区，它丢失了 Chubby session. 只要文件还存在，那么 tablet server 会一直请求排他锁。如果文件被删除了，那么 server 不再提供服务，so it kills itself. 当 tablet 服务器被终止，它试图释放锁，这样 master 可以更快地重新分配的它的 tablets.</p>
+<p>当master 检测到 server 不再提供服务后，BigTable 内的交互：</p>
+<ol>
+<li>master 周期性的检测 tablet server 的锁状态，如果 tablet 服务器报告丢失锁，或者 master 在有限时间内没有收到响应，则</li>
+<li>master 尝试从 Chubby 服务器获取排他锁。如果 master 获取到排他锁，表示 Chubby 是活动的，并且 tablet 服务器已经 dead 或者不能 reach Chubby 服务器，master 可以确定 tablet 服务器在删除 它的server files后再不能提供服务。</li>
+<li>一旦 server 上的文件被删除，master 可以移动原来分配到 tablet 服务器上的所有 tablets 到 unassigned  tablets. </li>
+</ol>
+<p>Master Failure: master will kill itself. 而其他 server 不改变tablets 的分配。</p>
+<p>当集群管理系统启动 master 时，master 的启动步骤：</p>
+<ol>
+<li>The master grabs a unique <em>master lock</em> in Chubby, which prevents concurrent master instantiations. </li>
+<li>The master scans the servers directory in Chubby to find the live servers.</li>
+<li>The master communicates with every live tablet server to discover what tablets are already assigned to each server.</li>
+<li>The master scans the <em>METADATA</em> table to learn the set of tablets. </li>
+</ol>
+<p>在 master 启动过程中，只要发现有 Tablet 未分配，则添加到未分配。如果在 (4) 中没有发现 <em>root tablet</em>, 则 master 会添加一个 <em>root tablet</em> 到未分配。</p>
+<h3 id="5-3-Tablet-服务"><a href="#5-3-Tablet-服务" class="headerlink" title="5.3 Tablet 服务"></a>5.3 Tablet 服务</h3><p>GFS 保存 Tablet 的持久化状态。</p>
+<ol>
+<li>Write Ops<ol>
+<li>首先检查请求信息是否足够，请求方是否被授权（通过读取 Chubby file 上面的允许的 writer list 来检查授权）。</li>
+<li>将变动(mutation) 写入到 <em>commit log</em>。</li>
+<li>将内容写入到 memtable( 即缓存 )。</li>
+</ol>
+</li>
+<li>Read Ops<ol>
+<li>首先检查请求和请求方授权。</li>
+<li>读操作在 SSTable（全部数据）和 memtable（缓存数据） 的合并视图（merged view）上进行。</li>
+</ol>
+</li>
+</ol>
+<h3 id="5-4-Compactions-压缩"><a href="#5-4-Compactions-压缩" class="headerlink" title="5.4 Compactions (压缩)"></a>5.4 Compactions (压缩)</h3><p>主要是 <em>memtable</em> 的压缩。</p>
+<ol>
+<li><strong>minor compaction</strong>：当 memtable 大小到了门限后，冻结 memtable，形成新的 SSTable.</li>
+<li><strong>major compaction</strong>：合并所有的 SSTable 为一个 SSTable {in a timely fashion. 及时的}.</li>
+</ol>
+<h2 id="6-优化"><a href="#6-优化" class="headerlink" title="6. 优化"></a>6. 优化</h2><ol>
+<li>位置分组：客户端将多个列族分组到位置分组。</li>
+<li>Compression(压缩)：两阶段压缩算法。<ol>
+<li><em>Bentley-McIloy Algo.</em> 快，且压缩比高（10:1）。</li>
+<li>fast compression Algo.</li>
+</ol>
+</li>
+<li>Caching for read performance: 使用二级缓存。<ol>
+<li>Scan Cache:  caches the key-value pairs returned by the SSTable interface to the tablet server code. It is most useful for applications that tend to read the same data repeatedly.</li>
+<li>Block Cache:   cache that caches SSTables blocks that were read from GFS. It is useful for applications that tend to read data that is close to the data they recently read (e.g., sequential reads, or random reads of different columns in the same locality group within a hot row).</li>
+</ol>
+</li>
+<li>Bloom filters: 用于减少磁盘访问。</li>
+<li>Commit log 的实现：混合多个 Tablet 的变动日志到 单个 Commit log. 当 recovery 时，先并行排序，再顺序读取。</li>
+<li>Speeding up tablet recovery</li>
+<li>Exploit immutability</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/BigTable/" rel="tag"># BigTable</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/10/31/MapReduce-阅读/" rel="next" title="MapReduce-阅读">
+                <i class="fa fa-chevron-left"></i> MapReduce-阅读
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BigTable-结构化数据的分布式存储系统"><span class="nav-number">1.</span> <span class="nav-text">BigTable:  结构化数据的分布式存储系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.2.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Data-Model"><span class="nav-number">1.3.</span> <span class="nav-text">2. Data Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rows"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Rows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Column-Families"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">Column Families</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Timestamps"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">Timestamps</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-API"><span class="nav-number">1.4.</span> <span class="nav-text">3.  API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Building-Blocks"><span class="nav-number">1.5.</span> <span class="nav-text">4. Building Blocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Implemention"><span class="nav-number">1.6.</span> <span class="nav-text">5. Implemention</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Tablet-的位置"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 Tablet 的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Tablet-分配"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 Tablet 分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Tablet-服务"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.3 Tablet 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Compactions-压缩"><span class="nav-number">1.6.4.</span> <span class="nav-text">5.4 Compactions (压缩)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-优化"><span class="nav-number">1.7.</span> <span class="nav-text">6. 优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
