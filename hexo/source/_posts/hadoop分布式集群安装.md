@@ -15,11 +15,11 @@ tags: hadoop, 分布式, 云计算
 ## 集群规划
 1. Single Node集群
 
-| 主从   | 主机id                |
-| ------ | --------------------- |
-| Master | hserver1              |
-  | Slave  | hserver1
-<!-- more --> |
+| 主从   | 主机id   |
+| ------ | -------- |
+| Master | hserver1 |
+| Slave  | hserver1 |
+<!-- more --> 
 
 2. Mutli Node集群
     一共有3台虚拟机, 每台虚拟机的作用规划如下:
@@ -41,6 +41,8 @@ hserver3 | 192.168.48.202 | DataNode, SecondaryNameNode, NodeManager
 ### 准备工作
 安装好JDK, 并设置好环境变量.从官网中下载`hadoop-2.8.6.tar.gz`, 并解压到`/usr/local`下.
 修改三个server的ip为对应静态地址, 修改hostname.
+
+**注：** hadoop 3.0 以上版本的默认端口与低版本 hadoop 不同。例如 Hadoop-3.2.1 上面的 NameNode WebUI 的默认端口为 `9870`，具体的默认端口参考： [Default ports used by HDFS services](https://kontext.tech/column/hadoop/265/default-ports-used-by-hadoop-services-hdfs-mapreduce-yarn).
 
 ### 配置hadoop
 hadoop的配置文件都在`etc/hadoop`目录下.
@@ -406,6 +408,7 @@ Moreover,	1
 错误1: Error: Could not find or load main class jar
 写错了hadoop, 不是hdfs
 错误2:
+```shell
 [gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar wordcount /input /output
 18/11/13 08:07:17 INFO client.RMProxy: Connecting to ResourceManager at hserver1/127.0.0.1:8032
 org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://hserver1:9000/output already exists
@@ -433,13 +436,20 @@ org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://hse
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.apache.hadoop.util.RunJar.run(RunJar.java:239)
 	at org.apache.hadoop.util.RunJar.main(RunJar.java:153)
+```
+
 log上说是/output已经存在。。。那运行前保证输出文件不存在。
 错误3:
+
+```shell
 18/11/13 08:54:23 INFO mapreduce.Job: Task Id : attempt_1542127670113_0001_m_000000_0, Status : FAILED
 Error: java.net.ConnectException: Call From localhost/127.0.0.1 to hserver1:9000 failed on connection exception: java.net.ConnectException: Connection refused; 
-问题4:运行一直卡在`mapreduce.job: map 100 reduce 0`
+```
+
+问题4: 运行一直卡在`mapreduce.job: map 100 reduce 0`
 内存太小， 实测需要至少2G。另外还需要配置yarn和mapred的cpu-vcores.
 yarn-site.xml
+
 ```xml
 <property>
 	<!-- default memory size is 8192(MB), and if you physical mem size less than 8(G), it can't detect automaticly. -->
@@ -474,8 +484,12 @@ mapred-site.xml
 </property>
 ```
 错误5: 
+
+```shell
 INFO mapreduce.JobSubmitter: Cleaning up the staging area /tmp/hadoop-yarn/staging/root/.staging/job_1542168958134_0002
 java.io.IOException: org.apache.hadoop.yarn.exceptions.InvalidResourceRequestException: Invalid resource request, requested memory < 0, or requested memory > max configured, requestedMemory=1536, maxMemory=1024
+```
+
 原因: yarn配置`yarn.scheduler.maximum-allocation-mb`太小， 实测需要至少2G。
 
 ## Mutli Node集群搭建
@@ -629,7 +643,7 @@ hserver2: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-roo
 hserver3: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver3.out
 hserver1: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver1.out
 ```
-使用`jps`查看各个server中运行的进程
+使用`jps`（需要安装 jdk, java development toolkits）查看各个server中运行的进程
 ```shell
 [gt@hserver1 hadoop-2.8.5]$ sudo jps
 4082 DataNode
@@ -767,9 +781,140 @@ hserver1: nodemanager did not stop gracefully after 5 seconds: killing with kill
 no proxyserver to stop
 ```
 
+### 遇到的问题
+
+1. hdfs 在上传文件的时候不能连接 9000 端口
+
+   **问题出现**
+
+   在使用 `hdfs dfs -put ...` 上传文件时出现上述的错误：
+
+   ```shell
+   hdfs@vm1:/home/gt> hdfs dfs -put ./as_training_simple.utf8 / 
+   2019-12-05 21:46:54,708 WARN ipc.Client: Address change detected. Old: vm1/192.168.56.5:9000 New: vm1/127.0.0.1:9000 put: Call From localhost/127.0.0.1 to vm1:9000 failed on connection exception: java.net.ConnectExce ption: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
+   ```
+
+   ![vm1-hdfs-dfs-refused9000.png](vm1-hdfs-dfs-refused9000.png)
+
+   但是我用 `jps` 查看各个组件都己经启动了（包括 NameNode, DataNode）：
+
+   ![vm1-jps-20191205.png](vm1-jps-20191205.png) ![vm2-jps-20191205.png](vm2-jps-20191205.png)
+
+   然后使用 `netstat -nltp` 查看确实已经有进程在9000 端口监听：
+
+   ![vm1-netstat-20191205.png](vm1-netstat-20191205.png)
+
+   使用 `telnet vm1 9000`  尝试连接也得到 connection refused :
+
+   ![vm2-telnet-vm1-9000.png](vm2-telnet-vm1-9000.png)
+
+   **解决思路**
+
+   1. 可能是 NameNode 没有启动。这种情况可以尝试启动 dfs（`start-dfs.sh`），或者 重新格式化 NameNode （`hdfs namenode -format`）后再启动。
+
+      当然，我不属于这种情况，首先，我已经使用了dfs 在 dfs 上创建了目录，然后，我的namenode 已经启动，并且 9000 已经在监听。
+
+   2. 可能是 DataNode 没有启动。这种情况是在网上搜到的，虽然不懂为什么会影响 9000 端口拒绝连入，但是还是排查了一下。
+
+      另外，dir.data.node.dir 的目录一定要有至少755权限。
+
+      这种情况我也不符合，因为我的 DataNode 已经启动了，并且目录具有相应权限。
+
+   3. 可能是防火墙屏蔽了。在 ubuntu 18.0.4 LTS 上的防火墙是 `ufw`，但是默认是关闭的（`disable`）。
+
+      在我的 opensuse Leap 15.1 上是 `firewalld`, 默认开启，但是我已经关闭了，所以也不是这种情况。
+
+   4. 可能是进行监听的 ip 只是**环回地址**：**我就是这种情况！！！** 
+
+      我在查看`netstat -nltp` 时，发现我能够通过浏览器访问 `http://192.168.56.5:9870` 的 namenode Web UI ，但是却不能通过 telnet 访问  `telnet 192.168.56.5 9000`, 对比这两个端口，发现前面的`本地 ip 地址` 不同，9870 是 `0.0.0.0` 的任意地址监听，而 9000 是 `127.0.0.1` 的**环回地址**在监听. 我想可能修改这个本地地址可能有效。但是在哪里改呢？
+
+      hadoop 在配置的时候，只有 `core-site.xml` 中的 `fs.defaultFS` 有相应的地址，网上搜的是将 `hdfs://localhost:9000` 修改为 `hdfs://<your-ip>:9000`, 但是我配置的时候已经是 `hdfs://vm1:9000`了。于是我改成了 ip 地址 `hdfs://192.168.56.5:9000`. 重新启动还是一样的。
+
+      那么到底还要再哪里改呢？**/etc/hosts** 文件！我原来的 hosts 文件如下：
+
+      ```
+      127.0.0.1	localhost vm1
+      # special IPv6 addresses
+      ::1             localhost vm1 ipv6-localhost ipv6-loopback
+      
+      fe00::0         ipv6-localnet
+      
+      ff00::0         ipv6-mcastprefix
+      ff02::1         ipv6-allnodes
+      ff02::2         ipv6-allrouters
+      ff02::3         ipv6-allhosts
+      10.0.2.5        vm1 localhost
+      10.0.2.6        vm2
+      10.0.2.7        vm3
+      192.168.56.5    vm1
+      192.168.56.6    vm2
+      192.168.56.7    vm3
+      ```
+
+      于是去掉 `127.0.0.1` 后面的 `vm1`, 去掉 `::1` ipv6 地址中的 `vm1`, 去掉 `10.0.2.5` 中的 `localhost`, 重新启动 dfs (start-dfs.sh): 
+
+      ```shell
+      hdfs@vm1:/home/gt> start-dfs.sh
+      Starting namenodes on [vm1] vm1: Warning: Permanently added the ECDSA host key for IP address '10.0.2.5' to the list of known hosts.
+      Starting datanodes
+      Starting secondary namenodes [vm3]
+      ```
+
+      表示 namenode 和 datanode 都已经启动了。于是尝试 put 文件，可惜还是不行，查看 9000 端口：
+
+      ![vm1-netstat-10-20191205.png](vm1-netstat-10-20191205.png)
+
+      可以看到 9000 前面的本地地址已经修改成了 `10.0.2.5`, 但是这是 `NAT` 网卡得到的 IP，各个虚拟机之间不能互相 ping 通。因此这个 ip 也是不行的。
+
+      再修改 hosts 文件，**调整 hosts 文件中映射到 `vm1` 的 ip 顺序：先映射到 `Host-Only 网卡上的ip`**
+
+      ```text
+      127.0.0.1       localhost
+      
+      # special IPv6 addresses
+      # ::1             localhost vm1 ipv6-localhost ipv6-loopback
+      
+      fe00::0         ipv6-localnet
+      
+      ff00::0         ipv6-mcastprefix
+      ff02::1         ipv6-allnodes
+      ff02::2         ipv6-allrouters
+      ff02::3         ipv6-allhosts
+      192.168.56.5    vm1  # 这个 ip 要在前面
+      192.168.56.6    vm2
+      192.168.56.7    vm3
+      10.0.2.5        vm1  # NAT ip 要在后面
+      10.0.2.6        vm2
+      10.0.2.7        vm3
+      ```
+
+      重新启动 dfs (start-dfs.sh) 后，上传文件到dfs 上已经**成功**了，9000 端口的状态如下：
+
+      ![vm1-netstat-192-20191205.png](vm1-netstat-192-20191205.png)
+
+      发现 9000 端口的本地地址已经是 `Host-Only` 的 ip 地址了。猜想 hosts 文件映射到 `主机名` 时应该是`‘先到先得’`的。
+
+      **总之，**遇到 9000 Connection Refused 异常，
+
+      - 先判断 NameNode 是否已经工作，
+
+      - 9000 端口是否已经再监听，
+
+      - 防火墙是否开启或者屏蔽了 9000 端口，
+
+      - 监听 9000 的本次地址是否对其他 虚拟机可见（`桥接模式`或者 `Host-Only` 下的 ip 地址）。
+
+      唉～自以为骚的操作，其实害惨了自己！还有一个小问题，我想使用 Virtualbox 的端口转发( forwarding ports ),  但是 又想将 NAT 网卡下的 ip  设为 `static ip addr`, 导致我在使用 端口转发时连不上虚拟机（实际上虚拟机也 ping 不通 10.0.2.1 ）.最后修改回 `DHCP` 模式的 ip 才可以使用！
+
+      其中，还遇到使用 `hdfs dfsadmin -report` 查看datanode 的使用情况，发现 `Remaining Usage: 0B` 的问题。由于无法复现了，就不贴图了。但是也是由于 DataNode 连不上 NameNode 的原因，datanode 上的磁盘空间没有上报到 namenode , 导致总空间大小的 0B.
+
+
+
 ## 总结
+
 hadoop 作为主流开源分布式处理框架, 学会其搭建和简单使用是必要的。
 回顾前面的经验, 搭建主要过程如下:
+
 - 准备hadoop包, 准备java环境, 免密登陆
 - 配置hadoop, 主要的配置文件有: hadoop-env.sh, yarn-env.sh, core-site.xml, hdfs-site.xml, mapred-site.xml, yarn-site.xml
 	配置的主要内容包括: NameNode, DataNode, Yarn
