@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="English">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="spark，入门,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这里开始学习 Spark Spark 生态一开始， Spark 是加州伯克利大学伯克利分校  RAD 实验室的一个研究项目，最初是基于 Hadoop MapReduce 的。 Spark 组件： 1234567--------------------------------------------------------------------------Spark SQL结构化数据 | Spar">
+<meta name="keywords" content="spark，入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark入门-01">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/12/07/spark入门-01/index.html">
+<meta property="og:site_name" content="GT Blog">
+<meta property="og:description" content="这里开始学习 Spark Spark 生态一开始， Spark 是加州伯克利大学伯克利分校  RAD 实验室的一个研究项目，最初是基于 Hadoop MapReduce 的。 Spark 组件： 1234567--------------------------------------------------------------------------Spark SQL结构化数据 | Spar">
+<meta property="og:locale" content="English">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/12/07/spark入门-01/wordcount-terminal.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/12/07/spark入门-01/wordcount-hdfs.png">
+<meta property="og:updated_time" content="2019-12-07T10:33:10.433Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spark入门-01">
+<meta name="twitter:description" content="这里开始学习 Spark Spark 生态一开始， Spark 是加州伯克利大学伯克利分校  RAD 实验室的一个研究项目，最初是基于 Hadoop MapReduce 的。 Spark 组件： 1234567--------------------------------------------------------------------------Spark SQL结构化数据 | Spar">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/12/07/spark入门-01/wordcount-terminal.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/12/07/spark入门-01/">
+
+
+
+
+
+  <title>spark入门-01 | GT Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/12/07/spark入门-01/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GT">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GT Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spark入门-01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-07T18:26:27+08:00">
+                2019-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/12/07/spark入门-01/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/12/07/spark入门-01/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2019/12/07/spark入门-01/" class="leancloud_visitors" data-flag-title="spark入门-01">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这里开始学习 Spark</p>
+<h2 id="Spark-生态"><a href="#Spark-生态" class="headerlink" title="Spark 生态"></a>Spark 生态</h2><p>一开始， Spark 是加州伯克利大学伯克利分校  RAD 实验室的一个研究项目，最初是基于 Hadoop MapReduce 的。</p>
+<p>Spark 组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--------------------------------------------------------------------------</span><br><span class="line">Spark SQL结构化数据 | Spark Streaming 实时处理 | MLib 机器学习 | GraphX 图像处理</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">                                   Spark Core</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line"> Standalone Scheduler  |              YARN           |          Meros</span><br><span class="line">--------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<ul>
+<li>Spark Core: 包含 Spark 基本功能， 包括任务调度，内存管理，容错机制等。内部定义了 RDDs (弹性分布式数据集)。提供APIs.</li>
+<li>Spark SQL : Spark 处理结构化数据的库，像 Hive, Mysql 一样。应用场景：企业中用于做报表统计。</li>
+<li>Spark Streaming: 实时流处理组件, 类似 <code>Storm</code>. 应用场景：企业中用来从 <code>Kafka</code> 消息队列中接收数据做实时统计。</li>
+<li>MLib: 一个包含通用机器学习功能的包，Machine Learning Lib，包含分类，聚类，回归等，还包括模型评估和数据导入。<strong>MLib 提供的上面的方法，都支持集群上的横向扩展</strong>。应用场景：机器学习。</li>
+<li>GraphX: 是处理图的库（例如社交网络），并进行图的并行计算。它提供了各种图的操作，和常用的图算法，例如 PageRank 算法。应用场景：图计算。</li>
+</ul>
+<h2 id="Spark-与-Hadoop-的比较"><a href="#Spark-与-Hadoop-的比较" class="headerlink" title="Spark 与 Hadoop 的比较"></a>Spark 与 Hadoop 的比较</h2><table>
+<thead>
+<tr>
+<th>Spark</th>
+<th>Hadoop</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>时效性高的场景（几秒到几分钟）</td>
+<td>离线处理，对时效性要求不高（几分钟到几小时）</td>
+</tr>
+<tr>
+<td>中间数据存储在内存</td>
+<td>中间存储在硬盘</td>
+</tr>
+<tr>
+<td>机器学习</td>
+<td></td>
+</tr>
+<tr>
+<td>不具有HDFS 的存储能力</td>
+<td>HDFS是 HADOOP 的重要组成部分</td>
+</tr>
+</tbody></table>
+<h2 id="Spark-安装"><a href="#Spark-安装" class="headerlink" title="Spark 安装"></a>Spark 安装</h2><p>单机：</p>
+<p>直接下载，解压，即可使用。两种 shell: pyspark, scala shell. </p>
+<h2 id="RDDs-介绍"><a href="#RDDs-介绍" class="headerlink" title="RDDs 介绍"></a>RDDs 介绍</h2><ul>
+<li><p>Driver Program: 包含程序的 main() 方法， RDDs 的定义和操作。它管理很多节点，我们称做 <code>executors</code>.</p>
+</li>
+<li><p>SparkContext: Driver Program 通过 SparkContext 对象访问 Spark. SparkContex  代表和一个集群的连接。在 Shell 中 是自动创建好的 <code>sc</code> 。</p>
+</li>
+<li><p>RDDs： Resilient Distribute Datasets，弹性分布式数据集。这些 RDDs，并行的分布在整个集群中。</p>
+</li>
+</ul>
+<p>RDDs 常用操作：</p>
+<p>Transformations:</p>
+<ul>
+<li>map(): 接受一个函数参数，把函数应用到 RDD 的每一个元素，返回新 RDD。</li>
+<li>filter(): 接受一个函数参数，返回只包含满足 filter() 函数的元素的新 RDD。</li>
+<li>flatMap(): 对每个输入元素，输出多个输出元素。比如 <code>line.split()</code></li>
+<li>集合运算：distinct(): 去重；union(): 并集；intersection(): 交集；subtract(): 减法。</li>
+</ul>
+<p>Action: 在 RDD 上计算出来一个结果，并将结果返回给 Driver Program 或者保存在文件系统中。</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>功能</th>
+<th>例子</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>collect()</td>
+<td>返回 RDD 的所有元素</td>
+<td>rdd.collect()</td>
+<td>{1,2,3,4}</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>计数</td>
+<td>rdd.count()</td>
+<td>4</td>
+</tr>
+<tr>
+<td>countByValue()</td>
+<td>返回一个 map，表示某唯一元素出现的次数</td>
+<td>rdd.countByValue()</td>
+<td>{(1,1), (2,1), (3,2)}</td>
+</tr>
+<tr>
+<td>take(num)</td>
+<td>返回几个元素</td>
+<td>rdd.take(2)</td>
+<td>{1, 2}</td>
+</tr>
+<tr>
+<td>top(num)</td>
+<td>返回前几个元素</td>
+<td>rdd.top(2)</td>
+<td>{3,3}</td>
+</tr>
+<tr>
+<td>takeOrdered(num)(ordering)</td>
+<td>返回基于提供的排序算法的前几个元素</td>
+<td>rdd.takeOrdered(2)(myOrdering)</td>
+<td>{3,3}</td>
+</tr>
+</tbody></table>
+<ul>
+<li>reduce(): 接受一个函数参数，作用在 RDD 两个类型相同的元素上，返回新元素。可以实现 RDD 中元素的累加，计数，和其他类型的聚集操作。</li>
+<li>foreach(): 计算 RDD 中的每个元素，但不返回到本地。</li>
+</ul>
+<p>RDDs 的特性：</p>
+<ul>
+<li>RDDs 的血统关系图: RDD之间的依赖关系和创建关系。</li>
+<li>延迟计算：第一次使用 action, 可减少数据传输。</li>
+<li>RDD.persist(): 默认每次在 RDDs 上面进行 action 操作时，Spark 都重新计算 RDDs. 如果想重复使用一个 RDD，可以使用 RDD.persist().  unpersist() 方法重缓存中移除。</li>
+</ul>
+<p>KeyValue RDDs:</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>功能</th>
+<th>例子</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reduceByKey(func)</td>
+<td>把相同 Key  的 reduce</td>
+<td>rdd.reduceByKey((x,y)=&gt;x+y)</td>
+<td>{(1, 2), (3,  10)}</td>
+</tr>
+<tr>
+<td>groupByKey()</td>
+<td>把相同 key 的 values 分组</td>
+<td>rdd.groupByKey()</td>
+<td>{(1, [2]), (3, [4,6])}</td>
+</tr>
+<tr>
+<td>combineByKey(createCombiner, <br>mergeValue, <br>mergeCombiner, <br>partitioner )</td>
+<td>把相同 Key 的reduce, 使用不同的返回类型</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr>
+<td>mapValues(func)</td>
+<td>函数作用于 pairRDD 的每个元素，key 不变</td>
+<td>rdd.mapValues(x=&gt;x+1)</td>
+<td>{(1,3), (3,5)}</td>
+</tr>
+<tr>
+<td>flatMapValues(func)</td>
+<td>符号化的时候使用</td>
+<td>rdd.flatMapValues(x=&gt;(x to 5))</td>
+<td></td>
+</tr>
+<tr>
+<td>keys()</td>
+<td>仅返回 keys</td>
+<td>rdd.keys()</td>
+<td>{1,2,3}</td>
+</tr>
+<tr>
+<td>values()</td>
+<td>仅返回 values</td>
+<td>rdd.values()</td>
+<td>{2,4,6}</td>
+</tr>
+<tr>
+<td>sortByKey()</td>
+<td>按照 key 排序的 RDD</td>
+<td>rdd.sortByKey()</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Spark-实践"><a href="#Spark-实践" class="headerlink" title="Spark 实践"></a>Spark 实践</h2><p>这部分主要记录了 Spark 的使用。因为需要使用 hdfs, 所以需要安装 Hadoop 集群；再在 Spark 中指定 Hadoop 的配置文件的位置；最后学习了 python 环境下 hadoop 和 spark 的使用。</p>
+<h3 id="Hadoop-集群安装"><a href="#Hadoop-集群安装" class="headerlink" title="Hadoop 集群安装"></a>Hadoop 集群安装</h3><p>使用的 hadoop 版本是 <code>hadoop3.2.1</code>, 集群安装参考了我之前的一篇博客 <a href="https://htmlgtmk.github.io/blog/2018/09/09/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/">hadoop分布式集群安装</a>。搭建的集群具体如下：<br>export PATH=${PATH}:${SPARK_HOME}/bin</p>
+<table>
+<thead>
+<tr>
+<th>虚拟机</th>
+<th>IP 地址</th>
+<th>进程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vm1</td>
+<td>NAT: 10.0.2.5<br> Host-Only: 192.168.56.5</td>
+<td>NameNode <br>ResourceManager</td>
+</tr>
+<tr>
+<td>vm2</td>
+<td>NAT: 10.0.2.6<br>Host-Only: 192.168.56.6</td>
+<td>DataNode<br>NodeManager</td>
+</tr>
+<tr>
+<td>vm3</td>
+<td>NAT: 10.0.2.7<br>Host-Only: 192.168.56.7</td>
+<td>DataNode<br>NodeManager<br>SecondaryNameNode</td>
+</tr>
+</tbody></table>
+<p>hadoop3 的默认端口参考： <a href="https://kontext.tech/column/hadoop/265/default-ports-used-by-hadoop-services-hdfs-mapreduce-yarn" target="_blank" rel="noopener">default ports used by hadoop</a>. 几个常用的端口如下：</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Server</th>
+<th>Ports</th>
+<th>Protocol</th>
+<th>Configuration parameter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WebUI of NameNode</td>
+<td>Master</td>
+<td>9870/9871</td>
+<td>http / https</td>
+<td>dfs.namenode.http-address<br>dfs.namenode.https-address</td>
+</tr>
+<tr>
+<td>Metadata service (NameNode)</td>
+<td>Master</td>
+<td>9000</td>
+<td>IPC</td>
+<td>fs.defaultFS</td>
+</tr>
+<tr>
+<td>Secondary NameNode</td>
+<td>Secondary NameNode and any backup NameNodes</td>
+<td>9868 / 9869</td>
+<td>http / https</td>
+<td>dfs.namenode.secondary.http-address<br>dfs.namenode.secondary.http-address</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>8088 / 8090</td>
+<td>http / https</td>
+<td>yarn.resourcemanager.webapp.address<br>yarn.resourcemanager.webapp.https.address</td>
+</tr>
+</tbody></table>
+<p>位置：<code>/usr/local/hadoop3.2.1</code>, 用户：<code>hdfs</code>.</p>
+<h3 id="Spark-安装-1"><a href="#Spark-安装-1" class="headerlink" title="Spark 安装"></a>Spark 安装</h3><p>有两种 Spark 安装方式：1）直接使用 <code>pip install pyspark</code> 安装。2）从 Spark 官网 <a href="https://spark.apache.org/downloads.html" target="_blank" rel="noopener">Download Apache Spark</a> 选择 <a href="https://www.apache.org/dyn/closer.lua/spark/spark-3.0.0-preview/spark-3.0.0-preview-bin-hadoop3.2.tgz" target="_blank" rel="noopener">spark-3.0.0-preview-bin-hadoop3.2.tgz</a> 下载。（注：必须选择相对应的 hadoop 版本的 spark）.</p>
+<p>解压，将 <code>spark-3.0.0-preview-bin-hadoop3.2</code> 放在 <code>/usr/local/</code> 目录下.</p>
+<p>编辑 <code>etc/spark-env.sh</code>, 指定 <code>HADOOP_CONF_DIR</code>, <code>SPARK_HOME</code>. 此外，还要在 <code>Hadoop-env.sh</code> 中加上 <code>export HADOOP_OPTS=&quot;-Djava.library.path=${HADOOP_HOME}/lib/native&quot;</code>, 以防止出现 <code>WARNING: Unable to load native library for your platform.</code> 重启 HFDS.</p>
+<p>主要是使用 <code>pyspark</code>, <code>spark-submit</code> 等。其中 <code>pyspark</code>是交互式的，<code>spark-submit</code> 是提交后运行的。</p>
+<p>要使用 jupyter notebook 编辑时，需要进行一番设置：</p>
+<ol>
+<li><p>jupyter notebook 的配置文件<code>~/.jupyter/jupter_notebook_config.py</code>修改（使用 <code>jupyter notebook --generate-config</code>）:  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c.notebook.dir=<span class="string">'/home/gt/workspace'</span>  <span class="comment"># 修改文件的位置</span></span><br><span class="line"><span class="comment"># 修改 jupyter 运行的 ip，主机名</span></span><br><span class="line">c.NotebookApp.ip=<span class="string">'10.0.2.5'</span></span><br><span class="line">c.NotebookApp.local_hostnames = [<span class="string">'vm1'</span>, <span class="string">'localhost'</span>]</span><br><span class="line">c.NotebookApp.port = <span class="number">8888</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>spark-env.sh</code> 中配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PYSPARK_DRIVER_PYTHON=jupyter</span><br><span class="line">export PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动 <code>pyspark</code> 就可以在 jupyter 中使用 <code>pyspark</code> 了。</p>
+</li>
+</ol>
+<h3 id="Python-下使用-Hadoop"><a href="#Python-下使用-Hadoop" class="headerlink" title="Python 下使用 Hadoop"></a>Python 下使用 Hadoop</h3><p>首先，安装 <code>hdfs</code>: <code>pip install hdfs</code>.</p>
+<p><strong>连接</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hdfs <span class="keyword">import</span> Client</span><br><span class="line"></span><br><span class="line">client = Client(<span class="string">"http://192.168.56.5:9870"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看目录</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.list(<span class="string">"/"</span>)  <span class="comment"># hdfs_path, 查看 “/” 目录下的数据</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>创建目录，重命名，删除目录</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">client.makedirs(<span class="string">"/datasets"</span>, permission = <span class="number">0777</span>)  <span class="comment"># 创建 “/datasets” 目录</span></span><br><span class="line">client.rename(<span class="string">"/datasets"</span>, <span class="string">"/tmp"</span>)  <span class="comment"># 将 “/datasets” 目录重命名为 "/tmp" 目录</span></span><br><span class="line">client.delete(<span class="string">"/tmp"</span>, recursive=<span class="keyword">True</span>)  <span class="comment"># 删除 "/tmp" 目录</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>上传文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># client.upload(hdfs_path, local_path)</span></span><br><span class="line"><span class="comment"># 将本地文件 ‘/home/gt/as_training.utf8’ 上传到 hdfs 的 '/datasets/training' 目录下</span></span><br><span class="line">client.upload(<span class="string">"/datasets/training"</span>, <span class="string">"/home/gt/as_training.utf8"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>下载文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># client.download(hdfs_path, local_path)</span></span><br><span class="line"><span class="comment"># 将 hdfs 中的 "/datasets/training/as_training.utf8" 下载到本地目录 '/home/gt/data' 下</span></span><br><span class="line">client.download(<span class="string">'datasets/training/as_training.utf8'</span>, <span class="string">'/home/gt/data'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>读取文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> client.read(<span class="string">"/datasets/training/as_training.utf8"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">        print(line)</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Python-下实现-wordcount-程序"><a href="#Python-下实现-wordcount-程序" class="headerlink" title="Python 下实现 wordcount 程序"></a>Python 下实现 wordcount 程序</h3><p><strong>在终端实现 wordcount</strong></p>
+<!-- TODO  编写 python 下 hadoop mapreduce 的程序 -->
+
+<p>首先，实现 <code>mapper.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">        words = line.split()</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            print(word.strip(), <span class="string">" "</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后，实现 <code>reduce.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#-*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    results = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">        pair = line.strip().split()</span><br><span class="line">        <span class="keyword">if</span> pair[<span class="number">0</span>] <span class="keyword">in</span> results:</span><br><span class="line">            results[pair[<span class="number">0</span>]] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            results[pair[<span class="number">0</span>]] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> results.items():</span><br><span class="line">        print(key, <span class="string">": "</span>, value)</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>最后，执行 <code>wordcount</code> 程序：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat as_training_simple.utf8 | python3 mapper.py | sort -k 1 | python3 reduce.py</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 中间的 <code>sort</code> 命令按 第一个位置排序，即按关键字排序。</p>
+<p>执行结果：</p>
+<p><img src="/blog/2019/12/07/spark入门-01/wordcount-terminal.png" alt="wordcount-terminal.png"></p>
+<p><strong>在 hadoop 中实现 wordcount</strong></p>
+<p>先将数据集放到 hdfs 上面：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>&#123;HADOOP_HOME&#125;/bin/hdfs dfs -put \</span><br><span class="line">~/datasets/training/as_training_simple.utf8 \</span><br><span class="line">/datasets/training/</span><br></pre></td></tr></table></figure>
+
+<p>然后，使用 hadoop 自带的 <code>hadoop-streaming-3.2.1.jar</code>， 执行 python 文件的 <code>mapreduce</code> 程序：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>&#123;HADOOP_HOME&#125;/bin/hadoop jar $&#123;HADOOP_HOME&#125;/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar \</span><br><span class="line">-input /datasets/training/as_training_simple.utf8 \</span><br><span class="line">-output /output/wordcount2 \</span><br><span class="line">-mapper "python3 mapper.py" \</span><br><span class="line">-reducer "python3 reduce.py" \</span><br><span class="line">-file ~/workspace/mapper.py \</span><br><span class="line">-file ~/workspace/reduce.py</span><br></pre></td></tr></table></figure>
+
+<p><code>hadoop-streaming-3.2.1.jar</code> jar包选项说明( 参考<a href="https://hadoop.apache.org/docs/r1.2.1/streaming.html" target="_blank" rel="noopener">hadoop streaming</a> )：</p>
+<ul>
+<li>-input             &lt;path&gt; DFS input file(s) for the Map step.</li>
+<li>-output          &lt;path&gt; DFS output directory for the Reduce step.</li>
+<li>-mapper        &lt;cmd|JavaClassName&gt; Optional. Command to be run as mapper.</li>
+<li>-combiner     &lt;cmd|JavaClassName&gt; Optional. Command to be run as combiner.</li>
+<li>-reducer        &lt;cmd|JavaClassName&gt; Optional. Command to be run as reducer.</li>
+<li>-file                &lt;file&gt; Optional. File/dir to be shipped in the Job jar file.  Deprecated. Use generic option “-files” instead.</li>
+<li>-files &lt;file1,…&gt;    specify a comma-separated list of files to be copied to the map r<br>educe cluster.</li>
+</ul>
+<p>执行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">packageJobJar: [/home/gt/workspace/mapper.py, /home/gt/workspace/reduce.py, /tmp/hadoop-unjar5233076481611645536/] [] /tmp/streamjob3259781167263769986.jar tmpDir=null</span><br><span class="line">2019-12-07 17:34:24,263 INFO client.RMProxy: Connecting to ResourceManager at vm1/192.168.56.5:8032</span><br><span class="line">2019-12-07 17:34:24,696 INFO client.RMProxy: Connecting to ResourceManager at vm1/192.168.56.5:8032</span><br><span class="line">...</span><br><span class="line">2019-12-07 17:34:26,228 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1575708748978_0002</span><br><span class="line">2019-12-07 17:34:26,228 INFO mapreduce.JobSubmitter: Executing with tokens: []</span><br><span class="line">2019-12-07 17:34:26,622 INFO conf.Configuration: resource-types.xml not found</span><br><span class="line">2019-12-07 17:34:26,623 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.</span><br><span class="line">2019-12-07 17:34:26,716 INFO impl.YarnClientImpl: Submitted application application_1575708748978_0002</span><br><span class="line">2019-12-07 17:34:26,793 INFO mapreduce.Job: The url to track the job: http://vm1:8088/proxy/application_1575708748978_0002/</span><br><span class="line">2019-12-07 17:34:26,800 INFO mapreduce.Job: Running job: job_1575708748978_0002</span><br><span class="line">2019-12-07 17:34:37,028 INFO mapreduce.Job: Job job_1575708748978_0002 running in uber mode : false</span><br><span class="line">2019-12-07 17:34:37,029 INFO mapreduce.Job:  map 0% reduce 0%</span><br><span class="line">2019-12-07 17:35:00,237 INFO mapreduce.Job:  map 22% reduce 0%</span><br><span class="line">2019-12-07 17:35:06,292 INFO mapreduce.Job:  map 36% reduce 0%</span><br><span class="line">2019-12-07 17:35:12,343 INFO mapreduce.Job:  map 50% reduce 0%</span><br><span class="line">2019-12-07 17:35:18,381 INFO mapreduce.Job:  map 64% reduce 0%</span><br><span class="line">2019-12-07 17:35:24,421 INFO mapreduce.Job:  map 67% reduce 0%</span><br><span class="line">2019-12-07 17:35:27,456 INFO mapreduce.Job:  map 83% reduce 0%</span><br><span class="line">2019-12-07 17:35:28,465 INFO mapreduce.Job:  map 100% reduce 0%</span><br><span class="line">2019-12-07 17:35:47,605 INFO mapreduce.Job:  map 100% reduce 82%</span><br><span class="line">2019-12-07 17:35:53,659 INFO mapreduce.Job:  map 100% reduce 96%</span><br><span class="line">2019-12-07 17:35:56,679 INFO mapreduce.Job:  map 100% reduce 100%</span><br><span class="line">2019-12-07 17:35:56,688 INFO mapreduce.Job: Job job_1575708748978_0002 completed successfully</span><br><span class="line">2019-12-07 17:35:56,811 INFO mapreduce.Job: Counters: 54</span><br><span class="line">...</span><br><span class="line">2019-12-07 17:35:56,814 INFO streaming.StreamJob: Output directory: /output/wordcount2</span><br></pre></td></tr></table></figure>
+
+<p>查看 wordcount  结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>&#123;HADOOP_HOME&#125;/bin/hdfs dfs -cat /output/wordcount2</span><br><span class="line">2019-12-07 17:39:03,689 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false</span><br><span class="line">) :  1</span><br><span class="line">.５ :  1</span><br><span class="line">.６ :  1</span><br><span class="line">1980年 :  1</span><br><span class="line">2. :  1</span><br><span class="line">78. :  1</span><br><span class="line">8. :  1</span><br><span class="line">80. :  1</span><br><span class="line">? :  12</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><img src="/blog/2019/12/07/spark入门-01/wordcount-hdfs.png" alt="wordcount-hdfs.png"></p>
+<h4 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h4><p>在 hadoop 上执行 mapreduce 任务时，出现：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Error: Could not find or load main class org.apache.hadoop.mapreduce.v2.app.MRAppMaster</span><br><span class="line">Please check whether your etc/hadoop/mapred-site.xml contains the below configuration:</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.app.mapreduce.am.env&lt;/name&gt;</span><br><span class="line">&lt;value&gt;HADOOP_MAPRED_HOME=$&#123;full path of your hadoop distribution directory&#125;&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;mapreduce.map.env&lt;/name&gt;</span><br><span class="line">&lt;value&gt;HADOOP_MAPRED_HOME=$&#123;full path of your hadoop distribution directory&#125;&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;mapreduce.reduce.env&lt;/name&gt;</span><br><span class="line">&lt;value&gt;HADOOP_MAPRED_HOME=$&#123;full path of your hadoop distribution directory&#125;&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>查找资料 <a href="https://mathsigit.github.io/blog_page/2017/11/16/hole-of-submitting-mr-of-hadoop300RC0/" target="_blank" rel="noopener">Hadoop 3.0.0 RC0執行MR Job時所遇到的坑</a>:</p>
+<blockquote>
+<p>In Hadoop 3, YARN containers do not inherit the NodeManagers’ environment variables. Therefore, if you want to inherit NodeManager’s environment variables (e.g.* <code>HADOOP_MAPRED_HOME</code><em>), you need to set additional parameters (e.g.</em> <code>mapreduce.admin.user.env</code> <em>and</em> <code>yarn.app.mapreduce.am.env</code><em>).</em></p>
+</blockquote>
+<p>解决：在 <code>etc/hadoop/mapred-site.xml</code> 中添加配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.app.mapreduce.am.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;full path of your hadoop distribution directory&#125;&lt;/value&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;full path of your hadoop distribution directory&#125;&lt;/value&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.reduce.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--  &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;full path of your hadoop distribution directory&#125;&lt;/value&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Python-下使用-Spark"><a href="#Python-下使用-Spark" class="headerlink" title="Python 下使用 Spark"></a>Python 下使用 Spark</h3><h4 id="python-文件形式提交"><a href="#python-文件形式提交" class="headerlink" title="python 文件形式提交"></a>python 文件形式提交</h4><p>首先，编写一个 <code>wordcount</code> 的程序 (<code>wordcount.py</code>) :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hdfs <span class="keyword">import</span> Client</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext, SparkConf</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    conf = SparkConf().setAppName(<span class="string">"Spark-hadoop-demo"</span>).setMaster(<span class="string">"local"</span>)</span><br><span class="line">    sc = SparkContext(conf = conf)</span><br><span class="line">    sc.setLogLevel(<span class="string">"Warn"</span>)</span><br><span class="line">    client = Client(<span class="string">"http://192.168.56.5:9870"</span>)</span><br><span class="line">    print(<span class="string">'='</span>*<span class="number">40</span>)</span><br><span class="line">    print(<span class="string">' '</span>*<span class="number">20</span>, <span class="string">'Output'</span>, <span class="string">' '</span> * <span class="number">20</span>)</span><br><span class="line">    print(<span class="string">'-'</span>*<span class="number">40</span>)</span><br><span class="line">    print(client.list(<span class="string">"/datasets/training"</span>))</span><br><span class="line">    print(client.list(<span class="string">"/datasets/testing"</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从 hdfs 中获取 RDD</span></span><br><span class="line">    training = sc.textFile(<span class="string">"hdfs://192.168.56.5:9000/datasets/training/as_training_simple.utf8"</span>)</span><br><span class="line">    <span class="comment"># print(training.first())</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    wordcount</span></span><br><span class="line"><span class="string">    flatMap: Takes a single object and transforms it into a list of objects</span></span><br><span class="line"><span class="string">    map: Takes a single object and transforms it into another single object</span></span><br><span class="line"><span class="string">    reduce: Combines objects together</span></span><br><span class="line"><span class="string">    filter: Removes objects based on a given true/false condition</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    counted = training.flatMap(<span class="keyword">lambda</span> line: line.split(<span class="string">" "</span>))\</span><br><span class="line">    		.map(<span class="keyword">lambda</span> word: (word.strip(), <span class="number">1</span>))\</span><br><span class="line">        	.reduceByKey(<span class="keyword">lambda</span> x,y: x+y)</span><br><span class="line">            </span><br><span class="line">    print(counted.collect()[:<span class="number">100</span>])</span><br><span class="line">    counted.saveAsTextFile(<span class="string">"hdfs://192.168.56.5:9000/output/wordcount"</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"-"</span>*<span class="number">40</span>)</span><br><span class="line">    </span><br><span class="line">    sc.stop()  <span class="comment"># 关闭sc</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>再用 <code>spark-submit</code> 提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>&#123;SPARK_HOME&#125;/bin/spark-submit --master yourSparkMaster\</span><br><span class="line">--num-executors 20 \</span><br><span class="line">--executor-memory 1G \</span><br><span class="line">--executor-cores 2 \</span><br><span class="line">--driver-memory 1G \</span><br><span class="line">pythonfile.py</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span>&#123;SPARK_HOME&#125;/bin/spark-submit --master yarn ~/workspace/wordcount.py</span><br></pre></td></tr></table></figure>
+
+<p>可以省略一些 executor 的参数。</p>
+<h4 id="jupyter-中实时运行"><a href="#jupyter-中实时运行" class="headerlink" title="jupyter 中实时运行"></a>jupyter 中实时运行</h4><p>需要保证能够在 jupyter 中使用 <code>pyspark</code>.</p>
+<p>对于 <code>MultiSparkContext</code> 错误，可以由下面的代码段初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext, SparkConf</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    sc.stop()  <span class="comment"># 先关闭之前的 SparkContext</span></span><br><span class="line"><span class="keyword">except</span> e:</span><br><span class="line">    print(e)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">conf = SparkConf().setAppName(<span class="string">"Spark-hadoop-demo"</span>).setMaster(<span class="string">"local"</span>)</span><br><span class="line">sc = SparkContext(conf = conf)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/spark，入门/" rel="tag"># spark，入门</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/11/28/GPDB入门-1/" rel="next" title="GPDB入门-1">
+                <i class="fa fa-chevron-left"></i> GPDB入门-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GT</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-生态"><span class="nav-number">1.</span> <span class="nav-text">Spark 生态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-与-Hadoop-的比较"><span class="nav-number">2.</span> <span class="nav-text">Spark 与 Hadoop 的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-安装"><span class="nav-number">3.</span> <span class="nav-text">Spark 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDDs-介绍"><span class="nav-number">4.</span> <span class="nav-text">RDDs 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-实践"><span class="nav-number">5.</span> <span class="nav-text">Spark 实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-集群安装"><span class="nav-number">5.1.</span> <span class="nav-text">Hadoop 集群安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-安装-1"><span class="nav-number">5.2.</span> <span class="nav-text">Spark 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-下使用-Hadoop"><span class="nav-number">5.3.</span> <span class="nav-text">Python 下使用 Hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-下实现-wordcount-程序"><span class="nav-number">5.4.</span> <span class="nav-text">Python 下实现 wordcount 程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到的问题"><span class="nav-number">5.4.1.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-下使用-Spark"><span class="nav-number">5.5.</span> <span class="nav-text">Python 下使用 Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python-文件形式提交"><span class="nav-number">5.5.1.</span> <span class="nav-text">python 文件形式提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jupyter-中实时运行"><span class="nav-number">5.5.2.</span> <span class="nav-text">jupyter 中实时运行</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GT</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
+        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
