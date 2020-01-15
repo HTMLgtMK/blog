@@ -8,6 +8,8 @@ tags: greenplum, database,分布式
 
 GPDB 由一家硅谷的公司 Pivotal 开源。
 
+<!-- more -->
+
 ## 如何使用
 
 GPDB 的[文档](https://gp-docs-cn.github.io/docs/best_practices/intro.html) 描述的是使用文档，而不是具体原理。下面记录的是简要的使用（在 GPDB 6.1.0 版本下）：
@@ -48,6 +50,7 @@ GPDB 配置集群环境：
                            gateway4: 10.0.2.1
                            nameservers:
                                    addresses: [10.0.2.1]
+                                   
                    enp0s8: 
                            dhcp4: false
                            addresses: [192.168.56.4/24]
@@ -85,7 +88,7 @@ GPDB 配置集群环境：
 
    注：这里的 ip 地址是固定的，我在实验中是 `桥接模式+Host-Only` 的网络，因此虚拟机之间、虚拟机主机之间能够互相 ping  通。后面的操作都是直接在我的本地机器 opensUSE 上面用 ssh 远程完成。
 
-   如果不能，可以使用 Virtualbox 为 NAT 提供的端口映射， ssh 连接时换一个 端口即可。
+   如果不能，可以使用 Virtualbox 为 NAT 提供的端口映射， ssh 连接时换一个 端口即可。pinls 
 
 4. 虚拟机之间 ssh 免密登录， greenplum 提供了一个生成交换 ssh 公钥的脚本，但是我的出现错误
 
@@ -133,7 +136,7 @@ GPDB 配置集群环境：
 
       ```shell
       sudo mkdir /mnt/sdb
-      sudo mount -t ext4 /mnt/sdb /mnt/sdb
+      sudo mount -t ext4 /dev/sdb /mnt/sdb
       sudo vim /etc/fstab # 修改开机挂载
       # 将下面的内容追加到文件 
       /dev/sdb /mnt/sdb ext4 defaults 0 0
@@ -183,7 +186,7 @@ db_test=> \d # 查看全部relations
 db_test=> \d tablename # 查看数据表 中的具体结构
 ```
 
-#### CURD
+#### CRUD
 
 PostgreSQL 支持的数据类型有很多，但是 CURD 还是使用 SQL 操作，可以使用 `\help SELECT` 等查看帮助。
 
