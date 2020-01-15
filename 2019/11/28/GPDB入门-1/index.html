@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。 如何使用GPDB 的文档 描述的是使用文档，而不是具体原理。下面记录的是简要的使用（在 GPDB 6.1.0 版本下）： 环境搭建   项目 描述    虚拟机 VirtualBox 6.0   虚拟系统 Ubuntu 18.04 (bionic) desktop LTS X86_64   系统配置 1 CPU,">
+<meta name="description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
 <meta name="keywords" content="greenplum, database,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPDB入门-1">
 <meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/11/28/GPDB入门-1/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。 如何使用GPDB 的文档 描述的是使用文档，而不是具体原理。下面记录的是简要的使用（在 GPDB 6.1.0 版本下）： 环境搭建   项目 描述    虚拟机 VirtualBox 6.0   虚拟系统 Ubuntu 18.04 (bionic) desktop LTS X86_64   系统配置 1 CPU,">
+<meta property="og:description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2019-12-07T07:15:46.088Z">
+<meta property="og:updated_time" content="2020-01-15T02:15:15.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GPDB入门-1">
-<meta name="twitter:description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。 如何使用GPDB 的文档 描述的是使用文档，而不是具体原理。下面记录的是简要的使用（在 GPDB 6.1.0 版本下）： 环境搭建   项目 描述    虚拟机 VirtualBox 6.0   虚拟系统 Ubuntu 18.04 (bionic) desktop LTS X86_64   系统配置 1 CPU,">
+<meta name="twitter:description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
 
 
 
@@ -322,6 +322,8 @@
 
       
         <h1 id="分布式数据库-GreenPlum"><a href="#分布式数据库-GreenPlum" class="headerlink" title="分布式数据库 GreenPlum"></a>分布式数据库 GreenPlum</h1><p>GPDB 由一家硅谷的公司 Pivotal 开源。</p>
+<a id="more"></a>
+
 <h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>GPDB 的<a href="https://gp-docs-cn.github.io/docs/best_practices/intro.html" target="_blank" rel="noopener">文档</a> 描述的是使用文档，而不是具体原理。下面记录的是简要的使用（在 GPDB 6.1.0 版本下）：</p>
 <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><table>
 <thead>
@@ -376,7 +378,7 @@
 </tbody></table>
 <p>虚拟机之间要能够 ping 通，需要使用 桥接模式 或者 Host-Only 模式，或者两种模式兼有。我这里两种模式兼有，并且将 主机DHCP 模式修改成 static ip。 </p>
 <p>ubuntu 18.04 LST 中修改步骤为 ( gp1 ) ：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">gt@gp1:~$ sudo apt-get install network-manager</span><br><span class="line">gt@gp1:~$ sudo vim /etc/netplan/01-network-manager-all.yaml </span><br><span class="line">network:</span><br><span class="line">        version: 2</span><br><span class="line">        renderer: NetworkManager</span><br><span class="line">        ethernets:</span><br><span class="line">                enp0s3: </span><br><span class="line">                        dhcp4: false</span><br><span class="line">                        addresses: [10.0.2.4/24]</span><br><span class="line">                        gateway4: 10.0.2.1</span><br><span class="line">                        nameservers:</span><br><span class="line">                                addresses: [10.0.2.1]</span><br><span class="line">                enp0s8: </span><br><span class="line">                        dhcp4: false</span><br><span class="line">                        addresses: [192.168.56.4/24]</span><br><span class="line">                        gateway4: 192.168.56.1</span><br><span class="line">                        nameservers:</span><br><span class="line">                                addresses: [192.168.56.1]</span><br><span class="line">                                </span><br><span class="line">gt@gp1:~$ sudo netplan apply  # 使配置生效</span><br><span class="line">gt@gp1:~$ ifconfig</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">gt@gp1:~$ sudo apt-get install network-manager</span><br><span class="line">gt@gp1:~$ sudo vim /etc/netplan/01-network-manager-all.yaml </span><br><span class="line">network:</span><br><span class="line">        version: 2</span><br><span class="line">        renderer: NetworkManager</span><br><span class="line">        ethernets:</span><br><span class="line">                enp0s3: </span><br><span class="line">                        dhcp4: false</span><br><span class="line">                        addresses: [10.0.2.4/24]</span><br><span class="line">                        gateway4: 10.0.2.1</span><br><span class="line">                        nameservers:</span><br><span class="line">                                addresses: [10.0.2.1]</span><br><span class="line">                                </span><br><span class="line">                enp0s8: </span><br><span class="line">                        dhcp4: false</span><br><span class="line">                        addresses: [192.168.56.4/24]</span><br><span class="line">                        gateway4: 192.168.56.1</span><br><span class="line">                        nameservers:</span><br><span class="line">                                addresses: [192.168.56.1]</span><br><span class="line">                                </span><br><span class="line">gt@gp1:~$ sudo netplan apply  # 使配置生效</span><br><span class="line">gt@gp1:~$ ifconfig</span><br></pre></td></tr></table></figure>
 
 <p>其中 <code>enp0s3</code> 是 NAT 网卡，<code>enp0s8</code> 是 Host-Only 网卡。</p>
 <p><strong>注：</strong>需要先安装 <code>network-manager</code>.</p>
@@ -388,7 +390,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo vim /etc/hosts</span><br><span class="line"><span class="meta">#</span> Mapping for local vms</span><br><span class="line">192.168.56.4 gp1</span><br><span class="line">192.168.56.5 gp2</span><br><span class="line">192.168.56.6 gp3</span><br></pre></td></tr></table></figure>
 
 <p>注：这里的 ip 地址是固定的，我在实验中是 <code>桥接模式+Host-Only</code> 的网络，因此虚拟机之间、虚拟机主机之间能够互相 ping  通。后面的操作都是直接在我的本地机器 opensUSE 上面用 ssh 远程完成。</p>
-<p>如果不能，可以使用 Virtualbox 为 NAT 提供的端口映射， ssh 连接时换一个 端口即可。</p>
+<p>如果不能，可以使用 Virtualbox 为 NAT 提供的端口映射， ssh 连接时换一个 端口即可。pinls </p>
 </li>
 <li><p>虚拟机之间 ssh 免密登录， greenplum 提供了一个生成交换 ssh 公钥的脚本，但是我的出现错误</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> source /usr/local/greenplum-db/greenplum_path.sh</span><br><span class="line"><span class="meta">$</span> vim /usr/local/greenplum-db/etc/hosts.list</span><br><span class="line">gp1</span><br><span class="line">gp2</span><br><span class="line">gp3</span><br><span class="line"><span class="meta">$</span> gpssh-exkeys -f /usr/local/greenplum-db/etc/hosts.list</span><br></pre></td></tr></table></figure>
@@ -412,7 +414,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe ext4</span><br><span class="line">sudo mkfs.ext4 /dev/sdb  # 需要用 fdisk -l 再次查看名称是否相同</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>最后，将 /dev/sdb 挂载到文件系统，并且启用开机挂载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /mnt/sdb</span><br><span class="line">sudo mount -t ext4 /mnt/sdb /mnt/sdb</span><br><span class="line">sudo vim /etc/fstab # 修改开机挂载</span><br><span class="line"><span class="meta">#</span> 将下面的内容追加到文件 </span><br><span class="line">/dev/sdb /mnt/sdb ext4 defaults 0 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /mnt/sdb</span><br><span class="line">sudo mount -t ext4 /dev/sdb /mnt/sdb</span><br><span class="line">sudo vim /etc/fstab # 修改开机挂载</span><br><span class="line"><span class="meta">#</span> 将下面的内容追加到文件 </span><br><span class="line">/dev/sdb /mnt/sdb ext4 defaults 0 0</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>最后的最后，修改 gpdb 的数据目录路径为 <code>/mnt/sdb/greenplum-db</code>. 注： 需要修改该目录的权限为 <code>gpadmin:pguser</code>.</p>
 </li>
@@ -433,7 +435,7 @@
 <p>其他操作：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \l # 查看全部数据库</span><br><span class="line">postgres=# \c dbname # 选择进入 dbname 数据库</span><br><span class="line"><span class="meta">#</span># 表内操作</span><br><span class="line">db_test=&gt; \d # 查看全部relations</span><br><span class="line">db_test=&gt; \d tablename # 查看数据表 中的具体结构</span><br></pre></td></tr></table></figure>
 
-<h4 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h4><p>PostgreSQL 支持的数据类型有很多，但是 CURD 还是使用 SQL 操作，可以使用 <code>\help SELECT</code> 等查看帮助。</p>
+<h4 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h4><p>PostgreSQL 支持的数据类型有很多，但是 CURD 还是使用 SQL 操作，可以使用 <code>\help SELECT</code> 等查看帮助。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">db_test=# \help SELECT</span><br><span class="line">Command:     SELECT</span><br><span class="line">Description: retrieve rows from a table or view</span><br><span class="line">Syntax:</span><br><span class="line">[ WITH [ RECURSIVE ] with_query [, ...] ]</span><br><span class="line">SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ] ]</span><br><span class="line">    [ * | expression [ [ AS ] output_name ] [, ...] ]</span><br><span class="line">    [ FROM from_item [, ...] ]</span><br><span class="line">    [ WHERE condition ]</span><br><span class="line">    [ GROUP BY grouping_element [, ...] ]</span><br><span class="line">    [ HAVING condition [, ...] ]</span><br><span class="line">        [ WINDOW window_name AS (window_specification) ]</span><br><span class="line">    [ &#123; UNION | INTERSECT | EXCEPT &#125; [ ALL | DISTINCT ] select ]</span><br><span class="line">    [ ORDER BY expression [ ASC | DESC | USING operator ] [ NULLS &#123; FIRST | LAST &#125; ] [, ...] ]</span><br><span class="line">    [ LIMIT &#123; count | ALL &#125; ]</span><br><span class="line">    [ OFFSET start [ ROW | ROWS ] ]</span><br><span class="line">    [ FETCH &#123; FIRST | NEXT &#125; [ count ] &#123; ROW | ROWS &#125; ONLY ]</span><br><span class="line">    [ FOR &#123; UPDATE | NO KEY UPDATE | SHARE | KEY SHARE &#125; [ OF table_name [, ...] ] [ NOWAIT ] [...]</span><br><span class="line"> ]</span><br><span class="line">... # 省略后面的</span><br></pre></td></tr></table></figure>
 
 <p>实例：</p>
@@ -613,7 +615,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -626,7 +628,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -675,7 +677,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式数据库-GreenPlum"><span class="nav-number">1.</span> <span class="nav-text">分布式数据库 GreenPlum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用"><span class="nav-number">1.1.</span> <span class="nav-text">如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-访问"><span class="nav-number">1.1.2.</span> <span class="nav-text">SQL 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库相关操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">数据库相关操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CURD"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">CURD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询执行"><span class="nav-number">1.1.3.</span> <span class="nav-text">查询执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发"><span class="nav-number">1.1.4.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载"><span class="nav-number">1.1.5.</span> <span class="nav-text">负载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部原理"><span class="nav-number">1.2.</span> <span class="nav-text">内部原理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式数据库-GreenPlum"><span class="nav-number">1.</span> <span class="nav-text">分布式数据库 GreenPlum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用"><span class="nav-number">1.1.</span> <span class="nav-text">如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-访问"><span class="nav-number">1.1.2.</span> <span class="nav-text">SQL 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库相关操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">数据库相关操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CRUD"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">CRUD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询执行"><span class="nav-number">1.1.3.</span> <span class="nav-text">查询执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发"><span class="nav-number">1.1.4.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载"><span class="nav-number">1.1.5.</span> <span class="nav-text">负载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部原理"><span class="nav-number">1.2.</span> <span class="nav-text">内部原理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -695,7 +697,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
