@@ -1,130 +1,48 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="greenplum, database,分布式,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
-<meta name="keywords" content="greenplum, database,分布式">
+  <meta name="description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPDB入门-1">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/11/28/GPDB入门-1/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/11/28/GPDB%E5%85%A5%E9%97%A8-1/index.html">
 <meta property="og:site_name" content="GT Blog">
 <meta property="og:description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
-<meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2020-01-15T02:15:15.191Z">
+<meta property="article:published_time" content="2019-11-28T01:43:05.000Z">
+<meta property="article:modified_time" content="2020-01-15T02:15:15.191Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="greenplum, database,分布式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GPDB入门-1">
-<meta name="twitter:description" content="分布式数据库 GreenPlumGPDB 由一家硅谷的公司 Pivotal 开源。">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/11/28/GPDB%E5%85%A5%E9%97%A8-1/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/11/28/GPDB入门-1/">
-
-
-
-
 
   <title>GPDB入门-1 | GT Blog</title>
   
@@ -134,183 +52,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2019/11/28/GPDB%E5%85%A5%E9%97%A8-1/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/11/28/GPDB入门-1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">GPDB入门-1</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          GPDB入门-1
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-28T09:43:05+08:00">
-                2019-11-28
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2019-11-28 09:43:05" itemprop="dateCreated datePublished" datetime="2019-11-28T09:43:05+08:00">2019-11-28</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2019/11/28/GPDB入门-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/11/28/GPDB入门-1/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-15 10:15:15" itemprop="dateModified" datetime="2020-01-15T10:15:15+08:00">2020-01-15</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2019/11/28/GPDB入门-1/" class="leancloud_visitors" data-flag-title="GPDB入门-1">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -318,21 +192,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <h1 id="分布式数据库-GreenPlum"><a href="#分布式数据库-GreenPlum" class="headerlink" title="分布式数据库 GreenPlum"></a>分布式数据库 GreenPlum</h1><p>GPDB 由一家硅谷的公司 Pivotal 开源。</p>
 <a id="more"></a>
-
 <h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>GPDB 的<a href="https://gp-docs-cn.github.io/docs/best_practices/intro.html" target="_blank" rel="noopener">文档</a> 描述的是使用文档，而不是具体原理。下面记录的是简要的使用（在 GPDB 6.1.0 版本下）：</p>
-<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><table>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>项目</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>虚拟机</td>
 <td>VirtualBox 6.0</td>
 </tr>
@@ -348,73 +220,48 @@
 <td>GreenPlum</td>
 <td>6.1.0 版本，使用 <code>.deb</code> 文件安装</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>GPDB 配置集群环境：</p>
 <ol>
 <li><p>利用 VirtualBox 搭建 3 个 Ubuntu 虚拟机</p>
-<table>
-<thead>
-<tr>
-<th>主机</th>
-<th>ip</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>gp1</td>
-<td>192.168.56.4</td>
-<td>master</td>
-</tr>
-<tr>
-<td>gp2</td>
-<td>192.168.56.5</td>
-<td>segment</td>
-</tr>
-<tr>
-<td>gp3</td>
-<td>192.168.56.6</td>
-<td>segment</td>
-</tr>
-</tbody></table>
+<p>| 主机 | ip           | 用途    |<br>| —— | —————— | ———- |<br>| gp1  | 192.168.56.4 | master  |<br>| gp2  | 192.168.56.5 | segment |<br>| gp3  | 192.168.56.6 | segment |</p>
 <p>虚拟机之间要能够 ping 通，需要使用 桥接模式 或者 Host-Only 模式，或者两种模式兼有。我这里两种模式兼有，并且将 主机DHCP 模式修改成 static ip。 </p>
 <p>ubuntu 18.04 LST 中修改步骤为 ( gp1 ) ：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">gt@gp1:~$ sudo apt-get install network-manager</span><br><span class="line">gt@gp1:~$ sudo vim /etc/netplan/01-network-manager-all.yaml </span><br><span class="line">network:</span><br><span class="line">        version: 2</span><br><span class="line">        renderer: NetworkManager</span><br><span class="line">        ethernets:</span><br><span class="line">                enp0s3: </span><br><span class="line">                        dhcp4: false</span><br><span class="line">                        addresses: [10.0.2.4/24]</span><br><span class="line">                        gateway4: 10.0.2.1</span><br><span class="line">                        nameservers:</span><br><span class="line">                                addresses: [10.0.2.1]</span><br><span class="line">                                </span><br><span class="line">                enp0s8: </span><br><span class="line">                        dhcp4: false</span><br><span class="line">                        addresses: [192.168.56.4/24]</span><br><span class="line">                        gateway4: 192.168.56.1</span><br><span class="line">                        nameservers:</span><br><span class="line">                                addresses: [192.168.56.1]</span><br><span class="line">                                </span><br><span class="line">gt@gp1:~$ sudo netplan apply  # 使配置生效</span><br><span class="line">gt@gp1:~$ ifconfig</span><br></pre></td></tr></table></figure>
-
 <p>其中 <code>enp0s3</code> 是 NAT 网卡，<code>enp0s8</code> 是 Host-Only 网卡。</p>
 <p><strong>注：</strong>需要先安装 <code>network-manager</code>.</p>
 </li>
 <li><p>修改每个虚拟机的 <code>hostname</code> : gp1, gp2, gp3 ( 由于是拷贝的虚拟机，否则跳过)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo vim /etc/hostname</span><br><span class="line">localvm1  # 修改成相应的 hostname</span><br><span class="line"><span class="meta">$</span> sudo vim /etc/hosts</span><br><span class="line"><span class="meta">#</span> 把 127.0.1.1 地址映射成 hostname</span><br><span class="line">127.0.1.1	gp1</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/hostname</span></span><br><span class="line">localvm1  # 修改成相应的 hostname</span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/hosts</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把 127.0.1.1 地址映射成 hostname</span></span><br><span class="line">127.0.1.1	gp1</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将每个主机对应的 ip 地址映射成主机名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo vim /etc/hosts</span><br><span class="line"><span class="meta">#</span> Mapping for local vms</span><br><span class="line">192.168.56.4 gp1</span><br><span class="line">192.168.56.5 gp2</span><br><span class="line">192.168.56.6 gp3</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/hosts</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Mapping <span class="keyword">for</span> <span class="built_in">local</span> vms</span></span><br><span class="line">192.168.56.4 gp1</span><br><span class="line">192.168.56.5 gp2</span><br><span class="line">192.168.56.6 gp3</span><br></pre></td></tr></table></figure>
 <p>注：这里的 ip 地址是固定的，我在实验中是 <code>桥接模式+Host-Only</code> 的网络，因此虚拟机之间、虚拟机主机之间能够互相 ping  通。后面的操作都是直接在我的本地机器 opensUSE 上面用 ssh 远程完成。</p>
 <p>如果不能，可以使用 Virtualbox 为 NAT 提供的端口映射， ssh 连接时换一个 端口即可。pinls </p>
 </li>
 <li><p>虚拟机之间 ssh 免密登录， greenplum 提供了一个生成交换 ssh 公钥的脚本，但是我的出现错误</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> source /usr/local/greenplum-db/greenplum_path.sh</span><br><span class="line"><span class="meta">$</span> vim /usr/local/greenplum-db/etc/hosts.list</span><br><span class="line">gp1</span><br><span class="line">gp2</span><br><span class="line">gp3</span><br><span class="line"><span class="meta">$</span> gpssh-exkeys -f /usr/local/greenplum-db/etc/hosts.list</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /usr/<span class="built_in">local</span>/greenplum-db/greenplum_path.sh</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vim /usr/<span class="built_in">local</span>/greenplum-db/etc/hosts.list</span></span><br><span class="line">gp1</span><br><span class="line">gp2</span><br><span class="line">gp3</span><br><span class="line"><span class="meta">$</span><span class="bash"> gpssh-exkeys -f /usr/<span class="built_in">local</span>/greenplum-db/etc/hosts.list</span></span><br></pre></td></tr></table></figure>
 <p>脚本不能用，那我后面是手动为每个主机添加 ssh 公钥的</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen -t rsa -f ~/.ssh/id_rsa -C gt</span><br><span class="line"><span class="meta">#</span> 添加到 gp2</span><br><span class="line"><span class="meta">$</span> cat ~/.ssh/id_rsa.pub | ssh -l gt 192.168.56.5 -p 22 'cat &gt;&gt; ~/.ssh/authorized_keys'</span><br><span class="line"><span class="meta">$</span> ssh gp2</span><br><span class="line"><span class="meta">#</span> gp3 同理</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -f ~/.ssh/id_rsa -C gt</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加到 gp2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/id_rsa.pub | ssh -l gt 192.168.56.5 -p 22 <span class="string">'cat &gt;&gt; ~/.ssh/authorized_keys'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh gp2</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> gp3 同理</span></span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<ol>
 <li><p>10 GB 的虚拟磁盘实在是太尴尬了，系统安装完后就空间不足了，只好再配置一个虚拟磁盘。</p>
 <ol>
 <li><p>首先，用 <code>fdisk</code> 工具为新磁盘创建一个分区</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk /dev/sdb  # /dev/sdb 是新虚拟磁盘的名称</span><br><span class="line"><span class="meta">&gt;</span> n # 之后一路回车</span><br><span class="line"><span class="meta">&gt;</span> w # 写入，修改分区表</span><br><span class="line"><span class="meta">#</span> 或者 q, 不修改，直接退出</span><br></pre></td></tr></table></figure>
-
-
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk /dev/sdb  # /dev/sdb 是新虚拟磁盘的名称</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> n <span class="comment"># 之后一路回车</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> w <span class="comment"># 写入，修改分区表</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者 q, 不修改，直接退出</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li><p>然后，用 <code>mkfs.ext4</code> 工具为新分区格式化</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe ext4</span><br><span class="line">sudo mkfs.ext4 /dev/sdb  # 需要用 fdisk -l 再次查看名称是否相同</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>最后，将 /dev/sdb 挂载到文件系统，并且启用开机挂载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /mnt/sdb</span><br><span class="line">sudo mount -t ext4 /dev/sdb /mnt/sdb</span><br><span class="line">sudo vim /etc/fstab # 修改开机挂载</span><br><span class="line"><span class="meta">#</span> 将下面的内容追加到文件 </span><br><span class="line">/dev/sdb /mnt/sdb ext4 defaults 0 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /mnt/sdb</span><br><span class="line">sudo mount -t ext4 /dev/sdb /mnt/sdb</span><br><span class="line">sudo vim /etc/fstab # 修改开机挂载</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将下面的内容追加到文件 </span></span><br><span class="line">/dev/sdb /mnt/sdb ext4 defaults 0 0</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>最后的最后，修改 gpdb 的数据目录路径为 <code>/mnt/sdb/greenplum-db</code>. 注： 需要修改该目录的权限为 <code>gpadmin:pguser</code>.</p>
 </li>
@@ -422,29 +269,23 @@
 <h3 id="SQL-访问"><a href="#SQL-访问" class="headerlink" title="SQL 访问"></a>SQL 访问</h3><p>Greenplum  就是 <code>postgreSQL</code> 的集群，所以访问 <code>GPDB</code> 的许多操作都与之相同。下面利用 <code>psql</code> 访问数据库。</p>
 <h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><p>首先，对于 PostgreSQL 数据库，连接命令为 <code>psql</code>:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -h 192.168.56.4 -p 5432 -U gpadmin -d postgres</span><br></pre></td></tr></table></figure>
-
 <p>说明：我这里使用的用户是 <code>gpadmin</code>， 也可以用其他用户如<code>postgres</code>。<code>-d</code> 表示使用的数据库为 <code>postgres</code>，是 PostgreSQL 数据库默认的系统数据库。</p>
 <h4 id="数据库相关操作"><a href="#数据库相关操作" class="headerlink" title="数据库相关操作"></a>数据库相关操作</h4><p>首先，创建数据库，可以使用 <code>CREATE DATABASE</code> SQL 语句 或者 使用 <code>createdb</code> 命令，如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createdb -h 192.168.56.4 -p 5432 -O gpadmin DBNAME</span><br></pre></td></tr></table></figure>
-
 <p><code>-O</code> 表示 Owner.</p>
 <p>然后，删除数据库：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createdb -h 192.168.56.4 -p 5432 DBNAME</span><br></pre></td></tr></table></figure>
-
 <p>数据表操作同理。具体操作语法参考 <a href="https://www.runoob.com/postgresql/postgresql-syntax.html" target="_blank" rel="noopener">PostgreSQL 语法</a>.</p>
 <p>其他操作：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \l # 查看全部数据库</span><br><span class="line">postgres=# \c dbname # 选择进入 dbname 数据库</span><br><span class="line"><span class="meta">#</span># 表内操作</span><br><span class="line">db_test=&gt; \d # 查看全部relations</span><br><span class="line">db_test=&gt; \d tablename # 查看数据表 中的具体结构</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \l # 查看全部数据库</span><br><span class="line">postgres=# \c dbname # 选择进入 dbname 数据库</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 表内操作</span></span></span><br><span class="line">db_test=&gt; \d # 查看全部relations</span><br><span class="line">db_test=&gt; \d tablename # 查看数据表 中的具体结构</span><br></pre></td></tr></table></figure>
 <h4 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h4><p>PostgreSQL 支持的数据类型有很多，但是 CURD 还是使用 SQL 操作，可以使用 <code>\help SELECT</code> 等查看帮助。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">db_test=# \help SELECT</span><br><span class="line">Command:     SELECT</span><br><span class="line">Description: retrieve rows from a table or view</span><br><span class="line">Syntax:</span><br><span class="line">[ WITH [ RECURSIVE ] with_query [, ...] ]</span><br><span class="line">SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ] ]</span><br><span class="line">    [ * | expression [ [ AS ] output_name ] [, ...] ]</span><br><span class="line">    [ FROM from_item [, ...] ]</span><br><span class="line">    [ WHERE condition ]</span><br><span class="line">    [ GROUP BY grouping_element [, ...] ]</span><br><span class="line">    [ HAVING condition [, ...] ]</span><br><span class="line">        [ WINDOW window_name AS (window_specification) ]</span><br><span class="line">    [ &#123; UNION | INTERSECT | EXCEPT &#125; [ ALL | DISTINCT ] select ]</span><br><span class="line">    [ ORDER BY expression [ ASC | DESC | USING operator ] [ NULLS &#123; FIRST | LAST &#125; ] [, ...] ]</span><br><span class="line">    [ LIMIT &#123; count | ALL &#125; ]</span><br><span class="line">    [ OFFSET start [ ROW | ROWS ] ]</span><br><span class="line">    [ FETCH &#123; FIRST | NEXT &#125; [ count ] &#123; ROW | ROWS &#125; ONLY ]</span><br><span class="line">    [ FOR &#123; UPDATE | NO KEY UPDATE | SHARE | KEY SHARE &#125; [ OF table_name [, ...] ] [ NOWAIT ] [...]</span><br><span class="line"> ]</span><br><span class="line">... # 省略后面的</span><br></pre></td></tr></table></figure>
-
 <p>实例：</p>
 <ol>
 <li>创建数据表 COMPANY</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> COMPANY(</span><br><span class="line">   <span class="keyword">ID</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>     <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">   <span class="keyword">NAME</span>           <span class="built_in">TEXT</span>    <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">   AGE            <span class="built_in">INT</span>     <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">   ADDRESS        <span class="built_in">CHAR</span>(<span class="number">50</span>),</span><br><span class="line">   SALARY         <span class="built_in">REAL</span>,</span><br><span class="line">   JOIN_DATE      <span class="built_in">DATE</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> DEPARTMENT(</span><br><span class="line">   <span class="keyword">ID</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>      <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">   DEPT           <span class="built_in">CHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">   EMP_ID         <span class="built_in">INT</span>      <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<ol>
 <li><p>插入数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TABLE_NAME (column1, column2, column3,...columnN)</span><br><span class="line">	<span class="keyword">VALUES</span> (value1, value2, value3,...valueN);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> COMPANY (<span class="keyword">ID</span>,<span class="keyword">NAME</span>,AGE,ADDRESS,SALARY,JOIN_DATE) <span class="keyword">VALUES</span> </span><br><span class="line">	(<span class="number">1</span>, <span class="string">'Paul'</span>, <span class="number">32</span>, <span class="string">'California'</span>, <span class="number">20000.00</span>,<span class="string">'2001-07-13'</span>),</span><br><span class="line">	(<span class="number">2</span>, <span class="string">'Allen'</span>, <span class="number">25</span>, <span class="string">'Texas'</span>, <span class="string">'2007-12-13'</span>);</span><br></pre></td></tr></table></figure>
 </li>
@@ -456,7 +297,6 @@
 </li>
 <li><p>删除数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> [condition];</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <p><strong>性能测试</strong></p>
@@ -464,261 +304,165 @@
 <p>首先，测试 postgreSQL 的单机版本： (PostgreSQL) 10.10 (Ubuntu 10.10-0ubuntu0.18.04.1)。</p>
 <p>创建用于测试的数据库：<code>pg_bench</code>:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> pg_bench;</span><br></pre></td></tr></table></figure>
-
 <p>初始化数据库：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pgbench -h localhost -p 5433 -U postgres -i -s 100 -F 100 --unlogged-tables pg_bench</span><br></pre></td></tr></table></figure>
-
 <p>测试：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pgbench -h localhost -p 5433 -U postgres -c 16 -j 8  pg_bench</span><br></pre></td></tr></table></figure>
-
 <p>测试结果：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">gt@gp1:~$ pgbench -h localhost -p 5433 -U postgres -c 16 -j 8  pg_bench</span><br><span class="line">Password: </span><br><span class="line">starting vacuum...end.</span><br><span class="line">transaction type: &lt;builtin: TPC-B (sort of)&gt;</span><br><span class="line">scaling factor: 100</span><br><span class="line">query mode: simple</span><br><span class="line">number of clients: 16</span><br><span class="line">number of threads: 8</span><br><span class="line">number of transactions per client: 10</span><br><span class="line">number of transactions actually processed: 160/160</span><br><span class="line">latency average = 41.099 ms</span><br><span class="line">tps = 389.299689 (including connections establishing)</span><br><span class="line">tps = 433.735413 (excluding connections establishing)</span><br></pre></td></tr></table></figure>
-
 <p>在 GPDB 上面测试：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gpadmin@gp1:~$ pgbench -h 192.168.56.4 -p 5432 -U gpadmin -c 16 -j 8  pg_bench</span><br><span class="line">starting vacuum...end.</span><br><span class="line">transaction type: &lt;builtin: TPC-B (sort of)&gt;</span><br><span class="line">scaling factor: 100</span><br><span class="line">query mode: simple</span><br><span class="line">number of clients: 16</span><br><span class="line">number of threads: 8</span><br><span class="line">number of transactions per client: 10</span><br><span class="line">number of transactions actually processed: 160/160</span><br><span class="line">latency average = 12214.952 ms</span><br><span class="line">tps = 1.309870 (including connections establishing)</span><br><span class="line">tps = 1.310335 (excluding connections establishing)</span><br></pre></td></tr></table></figure>
-
 <p><strong>单机的 TPS 要比集群的 TPS 高！</strong></p>
 <p>遇到的问题：</p>
 <ol>
 <li><p>postgreSQL 10 启动失败：对应的服务为 <code>postgresql@10-main.service</code>. 利用 <code>sudo journalctl _PID=</code> 查询得到原因是我的数据目录被我修改了（修改的配置文件位于：<code>/etc/postgresql/10/main/postgres.conf</code>），而数据目录<strong>没有初始化</strong>. 下面初始化目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> /usr/lib/postgresql/10/bin/initdb &lt;data-dir&gt;</span><br><span class="line"><span class="meta">#</span> 或 </span><br><span class="line">/usr/lib/postgresql/10/bin/pg_ctl -D &lt;data-dir&gt;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> /usr/lib/postgresql/10/bin/initdb &lt;data-dir&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 或 </span></span><br><span class="line">/usr/lib/postgresql/10/bin/pg_ctl -D &lt;data-dir&gt;</span><br></pre></td></tr></table></figure>
 <p>初始化后，再启动 postgresql 服务：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start postgresql@10-main.service</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
 <h3 id="查询执行"><a href="#查询执行" class="headerlink" title="查询执行"></a>查询执行</h3><h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>依靠PostgreSQL 的多版本并发控制（MVCC）模型来管理对于堆表的并发事务。</p>
 <p>每一行的事务操作都是在事务开始前的快照上面完成，这样可以比传统的两段锁协议支持更高的并发度。</p>
-<p>每个事务都会分配一个唯一的事务 ID – XID。当一个事务插入一行时，其XID会被保存在该行的 xmin系统列中。当一个事务删除一行时，其XID会被保存在xmax系统列中。更新一行被视为一次删除加上一次插入，因此XID会被保存在当前行的xmax中以及新插入行的xmin中。xmin和 xmax列再加上事务完成状态就指定了一个事务的范围，行的这个版本对于其中的事务可见。一个事务可以看到所有小于xmin的事务的效果，这些事务确保已经被提交，但它无法看到任何大于等于xmax的事务的效果。</p>
+<p>每个事务都会分配一个唯一的事务 ID — XID。当一个事务插入一行时，其XID会被保存在该行的 xmin系统列中。当一个事务删除一行时，其XID会被保存在xmax系统列中。更新一行被视为一次删除加上一次插入，因此XID会被保存在当前行的xmax中以及新插入行的xmin中。xmin和 xmax列再加上事务完成状态就指定了一个事务的范围，行的这个版本对于其中的事务可见。一个事务可以看到所有小于xmin的事务的效果，这些事务确保已经被提交，但它无法看到任何大于等于xmax的事务的效果。</p>
 <h3 id="负载"><a href="#负载" class="headerlink" title="负载"></a>负载</h3><h2 id="内部原理"><a href="#内部原理" class="headerlink" title="内部原理"></a>内部原理</h2>
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/greenplum-database-分布式/" rel="tag"># greenplum, database,分布式</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2019/11/12/汉语分词论文阅读-1/" rel="next" title="汉语分词论文阅读-1">
-                <i class="fa fa-chevron-left"></i> 汉语分词论文阅读-1
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/greenplum-database-%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># greenplum, database,分布式</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/12/07/spark入门-01/" rel="prev" title="spark入门-01">
-                spark入门-01 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2019/11/12/%E6%B1%89%E8%AF%AD%E5%88%86%E8%AF%8D%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-1/" rel="prev" title="汉语分词论文阅读-1">
+      <i class="fa fa-chevron-left"></i> 汉语分词论文阅读-1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2019/12/07/spark%E5%85%A5%E9%97%A8-01/" rel="next" title="spark入门-01">
+      spark入门-01 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式数据库-GreenPlum"><span class="nav-number">1.</span> <span class="nav-text">分布式数据库 GreenPlum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用"><span class="nav-number">1.1.</span> <span class="nav-text">如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-访问"><span class="nav-number">1.1.2.</span> <span class="nav-text">SQL 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库相关操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">数据库相关操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CRUD"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">CRUD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询执行"><span class="nav-number">1.1.3.</span> <span class="nav-text">查询执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发"><span class="nav-number">1.1.4.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载"><span class="nav-number">1.1.5.</span> <span class="nav-text">负载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部原理"><span class="nav-number">1.2.</span> <span class="nav-text">内部原理</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式数据库-GreenPlum"><span class="nav-number">1.</span> <span class="nav-text">分布式数据库 GreenPlum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用"><span class="nav-number">1.1.</span> <span class="nav-text">如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.1.1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-访问"><span class="nav-number">1.1.2.</span> <span class="nav-text">SQL 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库相关操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">数据库相关操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CRUD"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">CRUD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询执行"><span class="nav-number">1.1.3.</span> <span class="nav-text">查询执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发"><span class="nav-number">1.1.4.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载"><span class="nav-number">1.1.5.</span> <span class="nav-text">负载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部原理"><span class="nav-number">1.2.</span> <span class="nav-text">内部原理</span></a></li></ol></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -728,135 +472,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -872,178 +506,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

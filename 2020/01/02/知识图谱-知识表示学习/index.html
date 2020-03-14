@@ -1,130 +1,114 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="知识图谱, 知识表示, Graph Embedding,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="知识图谱的知识表示学习Representation &amp;amp; Embedding">
-<meta name="keywords" content="知识图谱, 知识表示, Graph Embedding">
+  <meta name="description" content="知识图谱的知识表示学习-TransX 系列Knowledge Grapph Representation &amp; Embedding,  KGR, KGE. 知识图谱嵌入是将知识图谱中的实体(entities) 和关系(relations) 编码到一个低维连续向量空间，并且最大程度的保存知识图谱的潜在结构。 据 [1]， 目前多数可用技术是基于知识图谱存储的事实( facts stored i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识图谱-知识表示学习">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2020/01/02/知识图谱-知识表示学习/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2020/01/02/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="知识图谱的知识表示学习Representation &amp;amp; Embedding">
-<meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2020-01-03T02:27:24.503Z">
+<meta property="og:description" content="知识图谱的知识表示学习-TransX 系列Knowledge Grapph Representation &amp; Embedding,  KGR, KGE. 知识图谱嵌入是将知识图谱中的实体(entities) 和关系(relations) 编码到一个低维连续向量空间，并且最大程度的保存知识图谱的潜在结构。 据 [1]， 目前多数可用技术是基于知识图谱存储的事实( facts stored i">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transE-distance-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transE-scoring-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//learning-transE.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transE-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transE-parameter-nums.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-vs-transE.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-training-constraints.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-loss-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-datasets.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-link-prediction-catg.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transH-triplets-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transR-figure1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transR-score-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//ctransR-score-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transR-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transR-link-prediction-mapping-properties.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transR-triplet-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transD-illution1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transD-score-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transD-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transD-link-prediction-mapping-properties.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transD-triplet-classification-table3.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transD-triplets-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transM-figure1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transM-algo1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transM-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transM-triple-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transM-precision-recall.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transF-figure1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transF-triple-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transA-loss-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transM-wr.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transA-ATPE.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transA-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transA-link-prediction-2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transA-triple-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//manifold-figure1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//manifold-sphere-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//manifold-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//manifold-link-prediction-2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//manifold-triple-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//UM-figure2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//UM-figure3.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//SE-KDE.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//SE-KDE-func.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//SE-ranking-2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//SE-ranking.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-KL-gradient.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-EL-gradient.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-regularization.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-algo1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-link-prediction-mapping.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KG2E-triple-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-figure1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-score-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-relation-semantic-p.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-loss-function.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-constraint.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-link-prediction.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-link-prediction2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transG-triple-classification.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//transX-illustration.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//survey-space-time.png">
+<meta property="article:published_time" content="2020-01-02T12:33:59.000Z">
+<meta property="article:modified_time" content="2020-03-14T09:18:28.234Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="知识图谱, 知识表示, Knowledge Graph Embedding">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="知识图谱-知识表示学习">
-<meta name="twitter:description" content="知识图谱的知识表示学习Representation &amp;amp; Embedding">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/.io//transE-distance-function.png">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2020/01/02/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2020/01/02/知识图谱-知识表示学习/">
-
-
-
-
 
   <title>知识图谱-知识表示学习 | GT Blog</title>
   
@@ -134,183 +118,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2020/01/02/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2020/01/02/知识图谱-知识表示学习/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">知识图谱-知识表示学习</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          知识图谱-知识表示学习
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-02T20:33:59+08:00">
-                2020-01-02
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2020-01-02 20:33:59" itemprop="dateCreated datePublished" datetime="2020-01-02T20:33:59+08:00">2020-01-02</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2020/01/02/知识图谱-知识表示学习/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2020/01/02/知识图谱-知识表示学习/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-14 17:18:28" itemprop="dateModified" datetime="2020-03-14T17:18:28+08:00">2020-03-14</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2020/01/02/知识图谱-知识表示学习/" class="leancloud_visitors" data-flag-title="知识图谱-知识表示学习">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -318,236 +258,1160 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+        <h1 id="知识图谱的知识表示学习-TransX-系列"><a href="#知识图谱的知识表示学习-TransX-系列" class="headerlink" title="知识图谱的知识表示学习-TransX 系列"></a>知识图谱的知识表示学习-TransX 系列</h1><p>Knowledge Grapph Representation &amp; Embedding,  KGR, KGE.</p>
+<p>知识图谱嵌入是将知识图谱中的实体(entities) 和关系(relations) 编码到一个低维连续向量空间，并且最大程度的保存知识图谱的潜在结构。</p>
+<p>据 [1]， 目前多数可用技术是基于知识图谱存储的事实( facts stored in KG )来编码，典型的编码步骤如下：</p>
+<p>i.  representing entities and relations,</p>
+<p>ii. defining a scoring function,</p>
+<p>iii. learning entity and relation representations.</p>
+<p>Quan Wang et al. 在 [1] 中将目前的 embedding 技术分成两种类型：<em>距离向量模型 ( translational distance models )</em>, <em>语义匹配模型 ( semantic matching models )</em> .</p>
+<p>本篇主要描述了 translational distance models.</p>
+<a id="more"></a>
+<h2 id="Translational-Distance-Models"><a href="#Translational-Distance-Models" class="headerlink" title="Translational Distance Models"></a>Translational Distance Models</h2><p>距离向量模型是基于距离( distance-based )的打分函数。</p>
+<h3 id="TransE"><a href="#TransE" class="headerlink" title="TransE"></a>TransE</h3><p>法国康皮涅科技大学 ( Université de Technologie de Compiègne, UTC.fr ) 的 Antoine Bordes et al. 在 [2] 中提出   <code>TransE</code>.  TransE 是一种基于能量( energy ) 的用于学习实体( entities ) 在低维连续空间中的向量表示的模型。</p>
+<p><strong>Basic idea</strong>: <em>l-labeled</em> edges corresponds to a translation of the embeddings.( 即关系表示在向量空间中的位移。 ) 如果事实 <em>(h, l, t)</em> 成立, 那么尾实体向量 <em>t</em> 应该靠近于 头实体向量 <em>h</em> 加上关系向量 <em>l</em> ，e.g. $h + l \approx t$  .</p>
+<p><strong>Notations</strong>:  training set $S: (h, l, t)$, $h ,t \in E, l \in L$.  $k:$ hyperparameter of the embeddings.</p>
+<p><strong>Energy function:</strong>  $d(h+l, t)$ , $d$ 常用 $L1-norm$ 或者 $L2-norm$ .</p>
+<p><img src="/blog/.io//transE-distance-function.png" alt="transE-distance-function.png"></p>
+<p>其中，$||h||_2^2 = ||t||_2^2 = 1$ , 而 $||l||_2^2$ 在 currupt triples 中不起到关键作用。即：</p>
+<script type="math/tex; mode=display">
+f_r(h, t) = ||h+r-t||_{1/2}, \\
+w.r.t \quad ||h||_2 = 1, \,  ||t||_2 = 1 .</script><p>L1: $d = abs(h+r-t).sum()$</p>
+<p>对 $h$ 求导：$\frac{\partial d}{\partial h} = sum(sign(h+r-t))$.</p>
+<p>对$t$ 求导：$\frac{\partial d}{\partial t} = -sum(sign(h+r-t))$.</p>
+<p>对$r$ 求导：$\frac{\partial d}{\partial r} = sum(sign(h+r-t))$.</p>
+<p>L2: $d = (h+r-t)^T(h+r-t).sum()$</p>
+<p>对 $h$ 求导：$\frac{\partial d}{\partial h} = 2sum(h+r-t)$.</p>
+<p>对 $t$  求导：$\frac{\partial d}{\partial t} = -2sum(h+r-t)$.</p>
+<p>对 $r$  求导：$\frac{\partial d}{\partial t} = 2sum(h+r-t)$.</p>
+<p><strong>Loss function</strong> : </p>
+<p><img src="/blog/.io//transE-scoring-function.png" alt="transE-scoring-function.png"></p>
+<p>其中， $\gamma$ 是超参数， $S^`_{(h, l, t)}$ 是 <em>currupted triplets</em>.  打分函数只统计正距离。</p>
+<p><strong>Optimization method</strong>: stochastic gradient descent (in minibatch mode).  + L2-norm constraint for enties, with no regulazation for labels.</p>
+<p><strong>Algo 1</strong>: </p>
+<p><img src="/blog/.io//learning-transE.png" alt="learning-transE.png"></p>
+<ul>
+<li><p>初始化：为每一个实体和关系使用 [原文 4] 中的方法随机初始化(torch.nn.init.xavier_uniform)。关系向量需要归一化。(在 OpenKE 中，将 实体和关系向量都放到迭代中归一化)。</p>
+</li>
+<li><p>迭代：每次迭代需要先将实体向量归一化( normalize ) ; 然后，采样 batch, 对每个 triple 生成对应 currupt triplets：<em>{(h, l, t), (h’, l’, t’)}</em>.  需要注意的是，根据后文中的讨论，这里生成的 currupt triples 需要进行过滤，以防 currupt triples 也出现在 datasets 中。（包括 training set, validating set, testing set. ）最后，利用 SGD update embeddings.</p>
+</li>
+</ul>
+<p><strong>Code</strong>: 在 <a href="http://goo.gl/0PpKQe。(失效！" target="_blank" rel="noopener">http://goo.gl/0PpKQe。(失效！</a>)</p>
+<p><strong>Experiments</strong>:</p>
+<p>数据集：WN18, FB15K, FB1M. 在训练过程中，Currupting Triplets 也可能出现在 Knowlegde graph 中，因此需要把这部分训练数据从训练集中剔除。没有剔除的训练集称为 <code>raw</code>, 剔除后的训练集称为 <code>filt.</code>. </p>
+<p>在 <code>链接预测</code> 任务上 TransE 的表现：</p>
+<p><img src="/blog/.io//transE-link-prediction.png" alt="transE-link-prediction.png"></p>
+<p>Optimal configurations were: $k = 20$, $λ = 0.01$, $γ = 2$, and $d = L1$ on Wordnet; $k = 50$, $λ = 0.01$, $γ = 1$, and $d = L1$ on FB15k; $k = 50$, $λ = 0.01$, $γ = 1$, and $d = L2$ on FB1M. For all data sets, training time was limited to at most 1, 000 epochs over the training set. </p>
+<p>TransE 与 Baseline 之间的参数数量对比：</p>
+<p><img src="/blog/.io//transE-parameter-nums.png" alt="transE-parameter-nums.png"></p>
+<p>OpenKE 上实现的TransE，参数为：d = 200, alpha = 1.0, p_norm = 1, train_times = 1000，最终的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">no type constraint results:</span><br><span class="line">metric:                  MRR             MR              hit@10          hit@3           hit@1 </span><br><span class="line">l(raw):                  0.089080        569.558411      0.204681        0.085654        0.033714 </span><br><span class="line">r(raw):                  0.248875        168.295654      0.439314        0.270058        0.155722 </span><br><span class="line">averaged(raw):           0.168978        368.927032      0.321997        0.177856        0.094718 </span><br><span class="line"></span><br><span class="line">l(filter):               0.189340        315.928040      0.362064        0.211619        0.105199 </span><br><span class="line">r(filter):               0.386719        142.252563      0.594107        0.436871        0.279195 </span><br><span class="line">averaged(filter):        0.288030        229.090302      0.478086        0.324245        0.192197 </span><br><span class="line">0.478086</span><br><span class="line">0.47808557748794556</span><br></pre></td></tr></table></figure>
+<p><strong>Limitations</strong>:  不能很好的处理关系的一些属性，比如 reflexive, one-to-many, many-to-one, many-to-many.</p>
+<h3 id="TransH"><a href="#TransH" class="headerlink" title="TransH"></a>TransH</h3><p>对于 TransE 的缺陷，其他复杂模型虽然可以保留这些 mapping properties,但是牺牲了效率。为了权衡  capacity 和 efficiency, Wang Zhen  et al. 在 [3] 中提出 <em>translation on hyperplane</em>, <code>TransH</code>,  将关系( relations )建模成超平面( hyperplane ) 上的位移( translation )操作。这样既可以保留 mapping properties 也可以保持和 TransE  相当的模型复杂性。另外，由于 KG 通常是不完全（not completed）的，因此在训练过程中如何构建负样本( negative examples ) 并减少<code>假阴性标签</code>( false negative  label )是很重要的。</p>
+<p><strong>Overcoming flaws of TransE </strong>: 在 TransH 中，每个关系由两个向量表示：the <em>norm</em> vector ($w_r$) of the hyperplane, and the <em>translation</em> vector ($d_r$) on the hyperplane.  对于一个 golden triple <em>(h, r, t)</em>, 希望 $h$ 和 $t$ 在 超平面上的投影( <em>projections</em> ) 以位移向量 $d_r$ 相连，并错误最小。</p>
+<p><strong>Translation on Hyperplane</strong>:  As illustrated in Figure 1, for a relation r, we position the relation-specific translation vector $d_r$ in the relation-specific hyperplane $w_r$ (the normal vector) rather than in the same space of entity embeddings. Specially, 对于一个三元组 (h, r, t)，the embedding h and t 首先投影到超平面 $w_r$ 上，投影分别表示为 $h_{\perp}$, $t_{\perp}$. 我们希望 $h_{\perp}$, $t_{\perp}$可以由在 hyperplane 上的位移向量 $d_r$ 连接，并且使得错误最小。</p>
+<p><img src="/blog/.io//transH-vs-transE.png" alt="transH-vs-transE.png"></p>
+<p><strong>Score function</strong>: </p>
+<script type="math/tex; mode=display">
+f(h, t) = ||h_{\perp} + d_r - t_{\perp}||_2^2, \\
+w.r.t. \quad ||w_r||_2 = 1 .\,  h_{\perp} = h - w_r^T h w_r, \, t_{\perp} = t - w_r^T t w^r .</script><p><strong>Training</strong>: Margin-based ranking loss function:</p>
+<script type="math/tex; mode=display">
+L = \sum_{(h, r, t) \in \Delta} \sum_{(h`, r`, t`) \in \Delta^`_{(h, r, t)}} [f(h, t) + \gamma - f(h`, t`)]_+</script><p>, where  $γ$ is the margin separating positive and negative triplets.</p>
+<p><img src="/blog/.io//transH-training-constraints.png" alt="transH-training-constraints.png" style="zoom:50%;"></p>
+<p>于是将 loss function 通过soft constraints转换成如下的无约束的loss:</p>
+<p><img src="/blog/.io//transH-loss-function.png" alt="transH-loss-function.png" style="zoom:67%;"></p>
+<p>其中，$C$  is a hyper-parameter weighting the importance of soft constraints. 最后，利用 SGD 训练。</p>
+<p><strong>Simple trick to reduce False Negative Labeling</strong>:  在 TransH 中，在 currupting triples 时根据关系( relation )的 mapping  properties 为替换头实体 h 和 尾实体 t 设置不同的概率。当映射关系是 <em>one-to-many</em> 时，替换头实体 h 的概率大些；当映射关系是 <em>many-to-one</em> 时，则替换尾实体 t 的概率大些。这样产生假阴性标签的概率将会减小。具体做法如下：首先统计每个关系 r 的三元组，得到两个统计数据：(1) 每个头实体对应的平均尾实体数( the average number of tail entities per head entity ), 表示为 <em>tph</em> ；(2) 每个尾实体对应的平均头实体数( the average number of head entities per tail entity ), 表示为 <em>hpt</em>. 然后为采样( sampling ) 定义一个 Bernouli Distribution 参数： $\frac{tph}{tph + hpt}$。 给定一个 golden triple <em>(h, r, t)</em>, 以 $\frac{tph}{tph + hpt}$ 的概率替换头实体，以 $\frac{hpt}{tph + hpt}$ 的概率替换尾实体。不使用伯努力分布采样的为 <code>unif.</code>,  否则称为 <code>bern.</code> .</p>
+<p><strong>Experimemts</strong>: TransH 一共在 3 个任务上进行实验：link prediction,  triplets classification, relational fact extraction . </p>
+<p><strong>Link Prediction</strong>:</p>
+<p>Evaluation protocol: <em>mean-rank</em>, <em>Hits@10</em>. </p>
+<p>符号表示： $\alpha$ , SGD learning rate; $\gamma$, the margin; $k$, the embedding dimension; $C$, the weight; $B$, the batch size. 最佳参数设置：Under the “unif” setting, the optimal configurations are: $α = 0.01$, $γ = 1$, $k = 50$, $C = 0.25$, and $B = 75$ on WN18; $α = 0.005$, $γ = 0.5$, $k = 50$, $C = 0.015625$, and $B = 1200$ on FB15k.   Under “bern” setting, the optimal configurations are: $α = 0.01$, $γ = 1$, $k = 50$, $C = 0.25$, and $B = 1200$ on WN18; $α = 0.005$, $γ = 0.25$, $k = 100$, $C = 1.0$, and $B = 4800$ on FB15k. For both datasets, we traverse all the training triplets for 500 rounds.</p>
+<p>Datasets： WN18, FB15k.</p>
+<p><img src="/blog/.io//transH-datasets.png" alt="transH-datasets.png" style="zoom:67%;"></p>
+<p>Result ：</p>
+<p><img src="/blog/.io//transH-link-prediction.png" alt="transH-link-prediction.png"></p>
+<p>其中, <code>unif.</code> 表示头实体和尾实体替换概率相同，<code>bern.</code> 表示头实体尾实体按照 bernouli 概率替换。在 WN18 数据集上，TransE 和 TransH 表现都很好；在  FB15k 数据集上，TransH 表现很好。</p>
+<p><img src="/blog/.io//transH-link-prediction-catg.png" alt="transH-link-prediction-catg.png"></p>
+<p>可以看到，TransH 在具有 side 1 特征的mapping properties 的关系上表现比其他都好，并且在 1-to-1 关系上也比其他方法表现好。</p>
+<p><strong>Triplets Classification</strong>:</p>
+<p>Evaluation protocol: Accuracy.</p>
+<p>Datasets: WN11, FB13, FB15k.</p>
+<p>Optimal Configurations：The optimal configurations of TransE (bern.) are: $α = 0.01$, $k = 20$, $γ = 2.0$, $B = 120$, and $L1$ as dissimilarity on WN11; $α = 0.001$, $k = 100$, $γ = 2.0$, $B = 30$, and $L1$ as dissimilarity on FB13; $α = 0.005$, $k = 100$, $γ = 2.0$, $B = 480$, and $L1$ as dissimilarity on FB15k. The optimal hyperparameters of TransH (bern.) are: $α = 0.01$, $k = 100$, $γ = 2.0$, $C = 0.25$, and $B = 4800$ on WN11; $α = 0.001$, $k = 100$, $γ = 0.25$, $C = 0.0625$, and $B = 4800$ on FB13; $α = 0.01$, $k = 100$, $γ = 0.25$, $C = 0.0625$, and $B = 4800$ on FB15k.  Since FB15k is relatively large, we limit the number of epochs to 500.</p>
+<p>Results: </p>
+<p><img src="/blog/.io//transH-triplets-classification.png" alt="transH-triplets-classification.png" style="zoom:67%;"></p>
+<p>由表格 6可见，TransE, TransH 在 WN11 数据集上表现好，NTN 在 FB13 数据集上表现好，TransH 在 FB15k 上表现好。其中，FB13 比 FB15k 更加稠密( dense )，entities 间存在强关联( strong coorelations ). 因此利用 tensor 和 nonlinear transformer 的复杂模型有利于 embedding. 而在 FB15k 这样较为稀疏的 ( sparse ) 的图谱上使用  TransH 已经足够。</p>
+<p><strong>Relational Fact Extraction from Text</strong>: 不想看了。。。</p>
+<p><strong>Limitation</strong>: </p>
+<h3 id="TransR"><a href="#TransR" class="headerlink" title="TransR"></a>TransR</h3><p>TransE 和 TransH 模型都是假设 entities 和 relations 向量在同一语义空间 $\mathbb{R}^k$ 中，但实际上，每个 entity 可能具有多个方面( aspect )，而不同的 relations 可能关注 entity 的不同方面。为解决这个问题，Lin, Yankai, et al. [4] 提出 <code>TransR</code>, 为实体和关系分别构建实体空间和(多个)关系空间。然后，在学习 embedding 时，首先将 entities 从 entity space 投影到对应的 relation space 中，在关系空间中建立两个投影向量的位移( translation )。（因此称为 TransR）</p>
+<p><strong>Source Code</strong>: <a href="https://github.com/mrlyk423/relation_extraction" target="_blank" rel="noopener">https://github.com/mrlyk423/relation_extraction</a> or <a href="https://github.com/thunlp/KB2E" target="_blank" rel="noopener">https://github.com/thunlp/KB2E</a>.</p>
+<p><strong>Basic Idea</strong>:  如图1, 头实体 $h$ 和尾实体 $t$ 通过 $M_r$ 操作投影到 <em>r-relation space</em>， 分别为 $h_r$, $t_r$ , 然后使得 $h_r + r \approx t_r$ . </p>
+<p><img src="/blog/.io//transR-figure1.png" alt="transR-figure1.png"></p>
+<p><strong>Score function</strong>:  在 TransR 中, 对每一个三元组 <em>(h, r, t)</em>， 头实体和尾实体向量 $h, t \in \mathbb{R}^k$, 关系向量 $r \in \mathbb{R}^d$ ，注意 $k$ 不一定与 $d$ 相等。对每一个关系 $r$， 设置一个投影矩阵 $M_r \in \mathbb{R}^{k \times d}$,  可以将实体投影到关系空间中。定义实体的投影向量如下： </p>
+<script type="math/tex; mode=display">
+h_r = h M_r , t_r = t M_r</script><p>。于是打分函数变成了  $f_r(h,t) = ||h_r + r - t_r||_2^2$ . </p>
+<p><img src="/blog/.io//transR-score-function.png" alt="transR-score-function.png" style="zoom:80%;"></p>
+<p><strong>CTransR</strong>: 对于某个关系， <em>head-tail</em>  pair 可能具有不同的表现模式，仅仅使用一个关系向量来执行 head 到 tail 实体的转换是远远不够的( TransE, TransH, TransR )。例如关系 “location_location_contains”，存在多种模式: country-city, country-university, continent-country等。在 [4] 中扩展了 TransR, 将 <em>head-tail</em> pair 聚类成组，然后对每一个 group 学习对应的 relation vector, 命名为 <em>cluster-based</em> TransR (CTransR)。</p>
+<p>利用 TransE 得到实体的向量, 对每个实体对 <em>(h, t)</em> 使用 vector offset <em>(h - t)</em> 进行聚类。然后，对每一个 group 学习relation vector $r_c$,  对每个 relation 学习一个投影矩阵 $M_r$, 定义投影向量：$h_{r,c} = h M_r$ , $t_{r, c} = t M_r$,  打分函数定义为:  $f_r(h, t) = ||h_{r,c} + r_c - t_{r,c}||_2^2 + \alpha ||r_c -  r||_2^2$.</p>
+<p><img src="/blog/.io//ctransR-score-function.png" alt="ctransR-score-function.png"></p>
+<p>其中 $\alpha$ 控制约束的影响。</p>
+<p><strong>Training</strong>: 目标函数：$L = \sum_{(h,r,t) \in S} \sum_{(h<code>, r</code>, t<code>) \in S</code>} max(0, f_r(h ,t) + \gamma - f_r(h<code>. t</code>))$. </p>
+<p>To avoid overfitting, we initialize entity and relation embeddings with results of TransE, and initialize relation matrices as identity matrices. </p>
+<p><strong>Experiments</strong>: [4] 进行了 3 项任务: Link Prediction, Triplet Classification, Relation Fact Extraction.</p>
+<p><strong>Link Prediction</strong>:  Datasets: WN18, FB15k.   Optimial Configuration: The optimal configurations are $λ = 0.001$, $γ = 4$, $k = 50$, $d = 50$, $B = 1440$, $α = 0.001$ and taking $L1$ as dissimilarity on WN18; $λ = 0.001$, $γ = 1$, $k = 50$, $d = 50$, $B = 4800$, $α = 0.01$ and taking $L1$ as dissimilarity on FB15K. For both datasets, we traverse all the training triplets for 500 rounds.</p>
+<p>Reults:  (1) TransR， CTransR 比其他模型表现更好；(2) CTransR 比 TransR 模型表现更好些，说明应该微调模型以处理每个关系内部的复杂关联；(3) the “bern.” simple trick 在 TransH 和 TransR 上都很有效。</p>
+<p><img src="/blog/.io//transR-link-prediction.png" alt="transR-link-prediction.png"></p>
+<p>对于关系的 mapping properties, 从 table 3 中可以看出，在 1-to-1 上的表现持续提高，在 “side one” 属性上的表现也比其他模型提高了许多。（用many预测 one 的Hits@10 已经很高了）</p>
+<p><img src="/blog/.io//transR-link-prediction-mapping-properties.png" alt="transR-link-prediction-mapping-properties.png"></p>
+<p><strong>Triple Classification</strong>:  For a triple (h, r, t), if the dissimilarity score obtained by fr is below δr , the triple will be classified as positive, otherwise negative. δr is optimized by maximizing classification accuracies on the validation set.</p>
+<p>Optimal configuration: The optimal configurations are: $λ = 0.001$, $γ = 4$, $k, d= 20$,  $B = 120$ and taking $L1$ as dissimilarity on WN11; $λ = 0.0001$, $γ = 2$,$ k, d = 100$ and $B = 480$ and taking $L1$ as dissimilarity on FB13. For both datasets, we traverse all the training triples for 1000 rounds.</p>
+<p>Results: 在 WN11 上， TransR 表现明显比 TransE, TransH 好；(2) 在 FB13 上，NTN 模型的表现最好， 在 FB15k 上，TransE 系列表现比 NTN 好；(3) the simple trick “bern.” 提高了 TransE, TransH, TransR 的表现。</p>
+<p>在训练时间方面，TransE, TransH 分别需要 5min 和 30min, 而复杂模型 TransR 花费了近 3 个小时训练。(实际上，我用自己的电脑在 FB15K 数据集上跑 OpenKE 实现的 TransE，一个 batch 耗时39s, 一个 epoch 耗时约 70 分钟。)</p>
+<p><img src="/blog/.io//transR-triplet-classification.png" alt="transR-triplet-classification.png"></p>
+<p><strong>Relation Extraction from Text</strong>: 不想看了。。</p>
+<p>Future work:  (1) 使用 关系 之间的关联，比如 (金鱼, kinds_of, 鱼), (鱼, kind_of, 动物), 由于关系 kind_of 具有传递性(transitive) 就可以得到 (金鱼, kind_of, 动物). 应该充分利用这些关系模式。(2) CTransR 只是关系类型内部关联的一个小微调，以后可以尝试更加复杂的调整。</p>
+<p><strong>Limitation</strong>:  (1) 在同一关系 $r$ 下，头实体尾实体使用相同的投影举矩阵 $M_r$, 而头实体尾实体可能类别和属性相差很大，这些实体应该使用不同方法映射；(2) 投影过程是关系和实体的交互过程，投影矩阵 $M_r$ 仅与关系 $r$ 有关不合理；(3) ( 当关系数量多时 )参数多，（matrix-vector multiplications）计算复杂度高。由于这些缺陷，TransR/CTransR 难以适用于大规模知识图谱。（来源于 TransD 原文）</p>
+<h3 id="TransD"><a href="#TransD" class="headerlink" title="TransD"></a>TransD</h3><p>为了克服 TransR 以上的缺点，中科院自动化所 NLPR 实验室的刘康、赵军老师等人在2015年提出了一种 TransR/CTransR 的 fine-grained 版本：<code>TransD</code> .  </p>
+<p>CTransR 相比于 TransR 就是多考虑了同一关系也可能具有不同的类型，实际上，实体也具有不同类型。由于实体也有不同的类型，因此使用同一映射矩阵是不合理的，比如（刘康，工作单位，中科院自动化所），刘康 和 中科院自动化所 是不同类型，应该用不同的矩阵映射；而且映射矩阵不应该只和关系有关，还应该和实体有关。</p>
+<p><img src="/blog/.io//transD-illution1.png" alt="transD-illution1.png"></p>
+<p><strong>Model</strong>: 在 TranD 中，为每一个 entities 和 relations 定义两个vectors, 第一个 vector 是用来表示 entity/relation 的意义的( the meaning of an entity or  an relation), 第二个 vector （称为 <em>projection vector</em>）是用来表示如何将 entity embedding 投影到 relation vector space中，并且将用于构建 mapping matrix. 这样，每个 entity-relation 都是一个唯一的 mapping matrix. </p>
+<p>例如，对一个三元组 <em>(h, r, t)</em>,  它对应的向量为 $h, h_p, r, r_p, t, t_p$ (注，这里的向量都是 列向量), 下标  $p$ 表示这是投影向量。$h, h_p, t, t_p \in \mathbb{R}^n$, $r, r_p \in \mathbb{R}^m$ . 于是得到两个 mapping matrix:  $M_{rh}, M_{rt} \in \mathbb{R}^{m \times n}$  将实体映射到关系向量空间。映射矩阵定义为: </p>
+<script type="math/tex; mode=display">
+M_{rh} = r_p h_p^T + I^{m \times n} \\
+M_{rt} = r_p t_p^T + I^{m \times n}</script><p>再定义实体的投影向量如下：</p>
+<script type="math/tex; mode=display">
+h_{\perp} = M_{rh} h = h + h_p^T h r_p, t_{\perp} = M_{rt} t = t + t_p^T t r_p</script><p>于是：</p>
+<p><strong>Score function</strong>:  </p>
+<script type="math/tex; mode=display">
+f_r(h, t) = - || h_{\perp} + r - t_{\perp} ||_2^2</script><p><img src="/blog/.io//transD-score-function.png" alt="transD-score-function.png"></p>
+<p><strong>Experiments</strong>: 进行了两项任务 Link prediction, Triplet classification.</p>
+<p><strong>Link prediction</strong>: The best configuration obtained by valid set are: $γ = 1$, $m, n = 50$, $B = 200$ and taking $L2$ as dissimilarity. For both the two datasets, We traverse to training for 1000 rounds.</p>
+<p>Results: TransD 在两个数据集上表现都比其他数据集要好，TransD 与  TransR/CTransR 结果相近但是更好。</p>
+<p><img src="/blog/.io//transD-link-prediction.png" alt="transD-link-prediction.png"></p>
+<p>TransD 在关系的mapping properties上，比 TransR 的 Hits@10 提高了 7.4% 。</p>
+<p><img src="/blog/.io//transD-link-prediction-mapping-properties.png" alt="transD-link-prediction-mapping-properties.png"></p>
+<p><strong>Triplets classification</strong>: The best configuration obtained by valid set are: $γ = 1$, $m, n = 100$, $B = 1000$ and taking $L2$ as dissimilarity on WN11; $γ = 1$, $m, n =100$, $B = 200$ and taking $L2$ as dissimilarity on FB13; $γ = 2$, $m, n = 100$, $B = 4800$ and taking $L1$ as dissimilarity on FB15k. For all the three datasets, We traverse to training for 1000 rounds. </p>
+<p>Results: 在 WN11 和 FB15k，TransD 比其他模型表现好；在 FB13，TransD 的表现仅次于 NTN.</p>
+<p><img src="/blog/.io//transD-triplet-classification-table3.png" alt="transD-triplet-classification-table3.png"></p>
+<p><img src="/blog/.io//transD-triplets-classification.png" alt="transD-triplets-classification.png"></p>
+<p>Table 6 and 7 show that the same category objects have similar projec- tion vectors.  另外，TransD 将 matrix-vector operation 替换成了 vector operations。</p>
+<p><strong>Limitations</strong>: 暂无。</p>
+<h3 id="TransSparse"><a href="#TransSparse" class="headerlink" title="TransSparse"></a>TransSparse</h3><p>TransE, TransH, TransR, TransD 方法都忽略了异构性( heterogeneity，有些关系连接有许多实体对，有些没有 ) 和不均匀性（imbalance, 关系中的头实体和尾实体的数量可能不同）。异构性会导致简单的关系过拟合，复杂关系欠拟合；头尾实体数量不均衡暗示将头尾视作平等是不合理的。为解决上述两个问题，中科院自动化所NLPR实验室刘康、赵军老师等人2015年在 [5] 中提出 <code>TransSparse</code>。 TransSparse 中不同复杂性的关系需要不同表示能力模型去学习，并且关系两端实体也需要分别建模。 </p>
+<hr>
+<p>接下来的方法是放松位移要求 $h+r  \approx t$ 的方法。</p>
+<h3 id="TransM"><a href="#TransM" class="headerlink" title="TransM"></a>TransM</h3><p>TransE 可以很好的解决 1-to-1 关系的问题，但是不能很好的解决 many-to-1, 1-to-many, many-to-many 关系的问题。而实际知识图谱中，大约只有 26.2% 的 1-to-1 事实，因此其他73.8%的事实需要其他方法解决。清华大学 Miao Fan et al. [7] 在 2014年提出 <code>TransM</code>, 通过给每个事实（的关系）一个权重，可以放宽 TransE 中 score function 的约束。如图1：</p>
+<p><img src="/blog/.io//transM-figure1.png" alt="transM-figure1.png"></p>
+<p><strong>Score function</strong>: </p>
+<script type="math/tex; mode=display">
+f_r(h,t)=w_r|h+r-t|_{L1/L2}</script><p><strong>Loss function</strong>:   margin-based hinge loss function</p>
+<script type="math/tex; mode=display">
+L = min \sum_\limits{(h, r, t) \in \Delta} \sum_\limits{(h', r, t')\in \Delta’} [\gamma + f_r(h,t) - f_r(h', t')]_{+} ,\quad s.t. V e \in E, ||e||_2 = 1.</script><p>其中， $[\quad]_+$ 是 <em>hinge loss function</em>. $[x]_+ = max(x, 0)$. </p>
+<p><strong>Degree of mapping property for a relation</strong>: 对每个关系，统计得到唯一头(尾)实体对应的平均尾(头)实体数量。记为：$h_r p t_r$: heads per tail. $t_r p h_r$: tails per head. 于是，关系对应的权重为：</p>
+<script type="math/tex; mode=display">
+w_r = \frac{1}{log(h_rpt_r + t_rph_r)}.</script><p><strong>Alogrithm</strong>: 对比 TransE, 需要在迭代前 pre-calculate 关系的 weight.</p>
+<p><img src="/blog/.io//transM-algo1.png" alt="transM-algo1.png"></p>
+<p>更新向量时，使用 SGD 更新。line 19 表示  golden triple 的 score 比 corrupted triple 的 score 还高（即错的更离谱），需要更新这个triple 的向量。</p>
+<p><strong>Experiments</strong>: 论文做了两个任务: link-prediction, triple-classification.</p>
+<p><strong>Link-Prediction</strong>: 数据集: WN18, FB15K. 最优参数: $d = 20$, $ \gamma= 2.0$, $s = 0.01$ for WN18 dataset; $d = 50$, $\gamma = 1.0$, $s = 0.01$ for FB15K dataset. </p>
+<p><img src="/blog/.io//transM-link-prediction.png" alt="transM-link-prediction.png"></p>
+<p>可以看出， TransM 优于 TransE 模型。</p>
+<p><strong>Triple-classification</strong>: 数据集 WN11, FB13 FB15K. 最优参数: 同链接预测参数。</p>
+<p><img src="/blog/.io//transM-triple-classification.png" alt="transM-triple-classification.png"></p>
+<p><img src="/blog/.io//transM-precision-recall.png" alt="transM-precision-recall.png"></p>
+<p>在稀疏图谱中, TransM 表现最好. 在 FB15K 数据集上测试， <em>L1</em>  形式的 score function 表现最好。</p>
+<h3 id="TransF"><a href="#TransF" class="headerlink" title="TransF"></a>TransF</h3><p>为了解决 TransE 的问题， 清华大学 Jun Feng et al. [8] 提出了一种新的 score function, 不同于 $h+r \approx t$, TransF 只要求 $h+r$ (或$t-r$) 的方向与 $t$(或 $h$) 的方向相同，从而实现了 $h+r \approx \alpha $ 或 $t- r \approx \alpha h$.  </p>
+<p><img src="/blog/.io//transF-figure1.png" alt="transF-figure1.png"></p>
+<p>如图1(b),  3个 tail entity 的方向相同，但是向量大小(长度， magnitudes)不同。</p>
+<p><strong>Method</strong>: <em>Flexible Translation</em> (FT).  </p>
+<p><strong>Score function</strong>: $f_r(h, r) = (h+r)^T t + h^T (t-r)$ . 因此，golden triple 的 score 要比 corrupted triple 高。</p>
+<p><strong>Experiment</strong>: 只进行了 triple-classification. Benchmarks: WN18, WN11, FB13. </p>
+<p><img src="/blog/.io//transF-triple-classification.png" alt="transF-triple-classification.png"></p>
+<p>结果表示 TransE-FT 模型完胜所有其他 baseline 模型，并且使  TransH, TransR 模型也得到了提升，证明 FT 的优越性和泛化能力。</p>
+<h3 id="TransA"><a href="#TransA" class="headerlink" title="TransA"></a>TransA</h3><p>清华大学 M Huang et al. [9] 在 2015 提出 <code>TransA</code>, 也是一种不同的 score function, 具有更大的灵活性。</p>
+<p><strong>Score function</strong>:   $f_r(h,t) = (|h+r-t|)^T W_r (|h+r-t|)$, </p>
+<p>其中 $|h+r-t| = (|h1+r1-t1|, |h2+r2-t2|, …, |hn + rn -tn|)$,  $W_r$ 是关系相关的对称非负矩阵( symmetric non-negative weight matrix )。 注意这里的 |h + r -t| 是取每个元素的绝对值的意思。</p>
+<p>在等势面(Equipotential Surface)角度上看，传统的等势面为: $||(t-h)-r||_2^2 = C$ , 即 Euclidean distance;  而 TransA 的等势面为：$|(t-h)-r|^T W_r |(t-h)-r| = C$, 即 Mahalanobis diatance of absolute loss.</p>
+<p>由于 $W_r$ 是对称非负矩阵，可以分解成：$L^TDL$ 形式.</p>
+<script type="math/tex; mode=display">
+W_r = L_r^T D_r L_r ; D_r = diag(w_1, w_2, ..., w_d) ;\\
+f_r(h, t) = (L_r |h+r-t|)^T D_r (L_r |h+r-t|)</script><p><strong>Loss function</strong>: </p>
+<p><img src="/blog/.io//transA-loss-function.png" alt="transA-loss-function.png"></p>
+<p><strong>Training</strong>: 每一次迭代，$W_r$ 可以通过求偏导数得到；为了使 $W_r$ 保持非负性质，直接将负数的部分设成 0 。</p>
+<p><img src="/blog/.io//transM-wr.png" alt="transM-wr.png"></p>
+<p><strong>Experiments</strong>: 论文做了两个任务： Link-prediction,  triple-classification.  论文提出一个词叫 <code>ATPE</code>, 即 Averaged Triple number Per Entity, 用于评估数据集的多样性和复杂性。</p>
+<p><img src="/blog/.io//transA-ATPE.png" alt="transA-ATPE.png"></p>
+<p><strong>Link-prediction</strong>:  Under the “bern.” sampling strategy, the optimal configurations are: learning rate $α = 0.001$, embedding dimension $k = 50$, $γ = 2.0$, $C = 0.2$ on WN18; $α = 0.002$, $k = 200$, $γ = 3.2$, and $C = 0.2$ on FB15K.</p>
+<p><img src="/blog/.io//transA-link-prediction.png" alt="transA-link-prediction.png"></p>
+<p><img src="/blog/.io//transA-link-prediction-2.png" alt="transA-link-prediction-2.png"></p>
+<p><strong>Triple Classification</strong>: The optimal configurations are: “bern” sampling, $α = 0.02$, $k = 50$, $γ = 10.0$, $C = 0.2$ on WN11, and “bern” sampling, $α = 0.002$, $k = 200$, $γ = 3.0$, $C = 0.00002$ on FB13. </p>
+<p><img src="/blog/.io//transA-triple-classification.png" alt="transA-triple-classification.png"></p>
+<p>TransA 在更为多样复杂的数据集上表现更好。</p>
+<h3 id="Manifold"><a href="#Manifold" class="headerlink" title="Manifold"></a>Manifold</h3><p>为了解决 TransE 不适用( ill-posed )的代数系统和过于严格的几何形式，清华大学 Xiao et al. 在 2015 年提出<code>Manifold</code> 。从代数的角度，TransE 使用等式 $h_r + r = t_r$  编码向量会使得等式的数量（即事实的数量）大于等式中自由变量的数量（即实体和关系向量中的参数数量). 在 manifold 中通过限制 $d \gt \frac{T}{E+R} $ , 即 $ (E+R)*d &gt; T $ , 使得实现 well-posed algebraic system 。从几何的角度，TransE 使用的 score function 使得 golden facts 集中在一点，而 manifold 可以将 golden facts 分散在高维球面( Sphere ), 即有： $M(h,r,t) = D_r^2$.  $h+r$ 是球体的中心，$t$ 是分散在球面的实体，$D_r$ 是球体的半径。</p>
+<p><img src="/blog/.io//manifold-figure1.png" alt="manifold-figure1.png"></p>
+<p><strong>Score function</strong>: <script type="math/tex">f_r(h, t) = ||M(h, r, t) - D_r^2||^2</script>, </p>
+<p>其中，$M(h, r, t)$ 是 manifold function： $\mathbb{E} \times \mathbb{L} \times \mathbb{E} \rightarrow \mathbb{R}$, $D_r$ 是关系有关的 manifold 参数。 </p>
+<ul>
+<li><p>Sphere: 球体对应的 manifold function: $ M(h,r,t) = ||h+r-t||_2^2 $ . Reproducing Kernel Hilbert Spacing (RKHS) 可以提供更加丰富的 manifold 表达，引入核函数到 hilbert spacing 中的球体：</p>
+<p><img src="/blog/.io//manifold-sphere-function.png" alt="manifold-sphere-function.png"></p>
+<p>其中 $K$ 是核函数，如 linear kernel: $K(a,b)=a^Tb$, Guassian kernel: $K(a,b)=e^{-\frac{||a-b||^2}{\theta^2}}$, Polynomial kernel: $K(a,b) = (a^Tb+d)^p$ 。</p>
+</li>
+<li><p>Hyperplane: 超平面对应的 manifold function: $M(h,r,t)=(h + r_{head})^T(t+r_{tail})$.  对应的核函数写法为：$M(h,r,t) = K(h+r_{head}, t+r_{tail})$ .</p>
+</li>
+</ul>
+<p><strong>EXperiments</strong>: Link-prediction, Triple-classification.</p>
+<p><strong>Link-prediction</strong>: Under the “bern.” sampling strategy, the optimal configurations of ManifoldE are as follows. For sphere, $α = 0.001$, $k = 100$, $γ = 3.0$, Linear kernel, on WN18; $α = 0.0005$, $k = 800$, $γ = 1.0$, Polynomial kernel(p = 2, d = 2) on FB15K. For hyperplane, learning rate $α = 0.01$, embedding dimension $k = 800$, margin $γ = 0.2$, Linear kernel, on WN18; $α = 0.01$, $k = 1000$, $γ = 0.2$, Linear kernel, on FB15K. The experimental environment is a common PC with i7-4790 CPU, 16G Memory and Windows 10.</p>
+<p><img src="/blog/.io//manifold-link-prediction.png" alt="manifold-link-prediction.png"></p>
+<p><img src="/blog/.io//manifold-link-prediction-2.png" alt="manifold-link-prediction-2.png"></p>
+<p>可以看出，$d&gt;\frac{T}{E+R}$ 的有效性和 manifold 的有效性。</p>
+<p><strong>Triple classification</strong>:  The optimal configurations of ManifoldE are as follows with “bern” sampling. For sphere, $α = 0.001$, $k = 100$, $γ = 10.0$, Linear kernel on WN18; $α = 0.00005$, $k = 1000$, $γ = 0.3$, Gaussian kernel ($σ = 1.0$) on FB13. For hyperplane, learning rate $α = 0.01$, embedding dimension $k = 500$, margin $γ = 1.0$, Linear kernel, on WN18; $α = 0.001$, $k = 1000$, $γ = 3.0$, Polynomial kernel ($p = 2$, $d = 2$), on FB13.</p>
+<p><img src="/blog/.io//manifold-triple-classification.png" alt="manifold-triple-classification.png"></p>
+<hr>
+<p>其他方法。</p>
+<h3 id="UM"><a href="#UM" class="headerlink" title="UM"></a>UM</h3><p>Bordes et al. 2011 [11]  提出一种用于从知识库的 raw text 训练学习得到 <em>MR</em> ( <em>meaning representation</em> )  方法，最终用于 WSD (word sense disambiguation )。</p>
+<p>在 WordNet 中，论文将一个词表示成<em>_word_POS_N</em> 形式，这样可以区分一个词同一词性的不同意义。</p>
+<p>UM  的 Semantic  Enerty Matching 过程如下：</p>
+<p>Input triplets: $x = ((lhs_1, lhs_2, …), (rel_1, rel_2, …), (rhs_1, rhs_2,…))$. </p>
+<ol>
+<li><p>输入的 triples 中每个symbol映射成 $E_i \in \mathbb{R}^d$ . </p>
+</li>
+<li><p>相同 tuple 的所有symbols 的embeddings 用聚合函数(pooling function) $\pi$ 聚合.</p>
+<script type="math/tex; mode=display">
+E_{lhs} = \pi (E_{lhs_1}, E_{lhs_2}, ...); \\ 
+E_{rel} = \pi (E_{rel_1}, E_{rel_2}, ...); \\ 
+E_{lhs} = \pi (E_{rhs_1}, E_{rhs_2}, ...).</script></li>
+<li><p>构建新的关系相关的表示：</p>
+<script type="math/tex; mode=display">
+E_{lhs} (rel)  = g_{left}(E_{lhs}, E_{rel}); \\
+E_{rhs} (rel)  = g_{rihgt}(E_{rhs}, E_{rel}).</script></li>
+<li><p>计算 energy:  $\varepsilon (x) = h(E_{lhs}(rel), E_{rhs}(rel))$ . </p>
+</li>
+</ol>
+<p><img src="/blog/.io//UM-figure2.png" alt="UM-figure2.png"></p>
+<p>由后续的实验，$g$ 采用 bilinear layers, $h$ 采用 dot product. 即，</p>
+<p><img src="/blog/.io//UM-figure3.png" alt="UM-figure3.png"></p>
+<h3 id="SE"><a href="#SE" class="headerlink" title="SE"></a>SE</h3><p>Bordes et al. 2011 [12] 提出一种神经网络结构的知识表示过程，并且利用 Kernel Density Estimation 评估结果。在 [12] 中首次使用了 WN11 和 FB13 数据集。</p>
+<p><strong>Structure Embeddings</strong>:  (1) 对任意$e_i$, 映射成向量 $E_i \in \mathbb{R}^d$. (2) 对任意给定关系类型，都有一个特斯嗯的 similarity measure。由于 similarity 通常不是对称的，因此 $R_k = (R_k^{lhs}, R_k^{rhs})$, $R_k$ 是 $d \times d$ 矩阵。</p>
+<p><strong>Similarity function</strong>: score function, $S_k(E_i, E_j) = ||R_k^{lhs} E_i - R_k^{rhs} E_j||_p$. </p>
+<p><strong>Neural Network Arch</strong>: training set: $x_1 = (e_1^l, r_1, e_1^r), …, x_m = (e_m^l, r_m, e_m^r)$ .  </p>
+<p>training objective( loss function ): $f(e_i^l, r_i, e_i^r) &lt; f(e_j, r_i, e_i^r) \quad or \quad f(e_i^l, r_i, e_j)$ ， 即： $f(e_i^l, r_i, e_i^r) = ||R_{r_i}^{lhs} Ev(e_i^l) - R_{r_i}^{rhs} Ev(e_i^r)||_1$ . 使用 1-norm. $R_r^{lhs}, R_r^{rhs}: d \times d \times D_r$, $E: d \times D_e$ , 即为列向量。</p>
+<p><strong>Training</strong>: </p>
+<ol>
+<li>如果 $f(x_i) &gt; f(x^{neg}) - 1$, 则 make a gradient step to minimize $max(0, 1-f(x^{neg} + f(x_i)))$. </li>
+<li>强制 $||E_i|| = 1$ .</li>
+</ol>
+<p><strong>Probability landscape estimation</strong>: 使用 Kernel Density Estimation(KDE)来完成 Ranking task . 论文中使用 Guassian kernel: </p>
+<p><img src="/blog/.io//SE-KDE.png" alt="SE-KDE.png"></p>
+<p>于是，kernel density estimator 定义为：</p>
+<p><img src="/blog/.io//SE-KDE-func.png" alt="SE-KDE-func.png"></p>
+<p>于是，ranking or predictation:  $\hat{e}^r = argmax \quad x_{e \in D_e} f_{kde}((e_l,, r, e))$  .</p>
+<p><strong>Experiments</strong>: ranking.</p>
+<p><strong>Ranking</strong>: All methods based on embeddings share the same hyperparameters: $d = 50$, $λ = 0.01$ and have been trained for $1.5 × 10^9$ updates (which takes ≈ 3 days). For KDE, $σ^2 = 0.5$.</p>
+<p><img src="/blog/.io//SE-ranking-2.png" alt="SE-ranking-2.png" style="zoom:50%;"></p>
+<p><img src="/blog/.io//SE-ranking.png" alt="SE-ranking.png" style="zoom:50%;"></p>
+<h3 id="PTransE"><a href="#PTransE" class="headerlink" title="PTransE"></a>PTransE</h3><h3 id="KG2E"><a href="#KG2E" class="headerlink" title="KG2E"></a>KG2E</h3><p>TransE 系列模型总是认为 entity / relation 具有相同的 manner, 而忽略了他们的（不）确定性((un)certainty). 清华大学 Shihu He et al. 2015 [13].  提出一种基于密度的（density-based） embedding. 并提出 <code>KE2G</code>, 建模实体和关系的不确定性。KG2G 有两层含义：1) Knowledge graph to Embedding; 2) Knowledge graph with Guassian Embedding. </p>
+<p>KG2G 将 KG 用多元高斯分布表示：$entity/relation \sim N(\mu, \Sigma) $. The mean 用于表示位置，the covariance 用于表示 uncertainty.   <em>(h, r, t)</em> 对于分布表示为 $(\mathcal{H}, \mathcal{R}, \mathcal{T})$， 有：$\mathcal{H} \sim N(\mu_h, \Sigma_h)$, $\mathcal{R}$ 和 $\mathcal{T}$ 同理。</p>
+<p>训练框架（learning framework）: Ranking loss. 也是 transX 系列通用的学习框架。</p>
+<p>Guassian Embedding for a KG:</p>
+<ol>
+<li><p>TranxE 中关系是头实体到尾实体的位移的思想，entity transformation: $\mathcal{H} - \mathcal{T}$.  对应概率分布为： $\mathcal{P}_e \sim N(\mu_h - \mu_t, \Sigma_h + \Sigma_t)$ (假设头实体尾实体相互独立)。 </p>
+</li>
+<li><p>关系的概率分布为：$\mathcal{R} \sim N(\mu_r, \Sigma_r)$. </p>
+</li>
+<li><p><strong>Score function</strong>: </p>
+<ul>
+<li><p><strong>KL-divergence</strong>: 相互熵，用于衡量两个概率分布之间的距离。非对称相似度衡量函数。</p>
+<script type="math/tex; mode=display">
+\varepsilon(h, r, t) = \varepsilon(\mathcal{P}_e, \mathcal{P}_h) = \mathcal{D}_{KL} (\mathcal{P}_e, \mathcal{P}_r) \\
+= \int_{x\in R^{k_e}} N(x; \mu_r, \Sigma_r) log \frac{N(x; \mu_e, \Sigma_e)}{N(x; \mu_r, \Sigma_r)} dx \\
+= \frac{1}{2} \{tr(\Sigma_r^{-1} \Sigma_e) + (\mu_r - \mu_e)^T \Sigma_r^{-1} (\mu_r - \mu_e) \\ - log \frac{det(\Sigma_e)}{det(\Sigma_r)} -k_e\}. \dots (1)</script><p>这里有一段十分精彩的梯度推导：$\frac{\partial\, log \, det\, A}{\partial A} = A^{-1} $; $\frac{\partial \, x^T A^{-1}y}{\partial A} = -A^{-T} xy^T A^{-T}$; $\frac{\partial \, tr(X^T A^{-1}Y)}{\partial A} = -(A^{-1}YX^TA^{-1})$. 于是，</p>
+<p><img src="/blog/.io//KG2E-KL-gradient.png" alt="KG2E-KL-gradient.png"></p>
+</li>
+<li><p><strong>Expected likelihood</strong>: 期望似然。对称的相似度衡量函数。</p>
+<script type="math/tex; mode=display">
+\varepsilon({\mathcal{P}_e, \mathcal{P}_r}) = \int_{x\in\mathcal{R}^k_e} N(x; \mu_e, \Sigma_e) N(x; \mu_r, \Sigma_r) dx \\
+= N(0; \mu_e-\mu_r, \Sigma_e + \Sigma_r).</script><p>为了便于计算，使用 log 函数转换, 表示为 EL.</p>
+<script type="math/tex; mode=display">
+\varepsilon{h,r,t} = \varepsilon(\mathcal{P}_e, \mathcal{P}_r) = log \mathcal{N}(0; \mu_e-\mu_r, \Sigma_r+\Sigma_r) \\
+= \frac{1}{2} \{(\mu_e-\mu_r)^T (\Sigma_e+\Sigma_r)^{-1} (\mu_e - \mu_r) \\ +log\, det (\Sigma_e + \Sigma_r) + k_e log(2\pi)\}. \dots (6)</script><p>对应导数为：</p>
+<p><img src="/blog/.io//KG2E-EL-gradient.png" alt="KG2E-EL-gradient.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p><strong>Loss function</strong>: $\mathcal{L} = \sum_{(h,r,t)\in \Gamma} \sum_{(h’, r’, t’) \in \Gamma’} [\varepsilon(h,r,t) + \gamma + \varepsilon(h’,r’,t’)]_+ \dots (9)$. </p>
+<p>regularization term:  <img src="/blog/.io//KG2E-regularization.png" alt="KG2E-regularization.png"></p>
+<p>在训练时，可以用 $\sum_{ii} \leftarrow max(c_{min}, min(c_{max}, \sum_{ii})). $ 实现 (11)。</p>
+<p><img src="/blog/.io//KG2E-algo1.png" alt="KG2E-algo1.png"></p>
+</li>
+</ol>
+<p><strong>Experiments</strong>: 链接预测 和 元组分类。</p>
+<p><strong>Link-prediction</strong>: 在 WN18 和 FB15K 数据集上，比 state-of-art 方法 CTransR 实现了略高的表现。并且非对称的score function KL 要比对称的 EL 表现要好。</p>
+<p><img src="/blog/.io//KG2E-link-prediction.png" alt="KG2E-link-prediction.png"></p>
+<p><img src="/blog/.io//KG2E-link-prediction-mapping.png" alt="KG2E-link-prediction-mapping.png"></p>
+<p><strong>Triple classification</strong>: KG2E_KL 实现了和 state-of-art 差不多的表现。。。</p>
+<p><img src="/blog/.io//KG2E-triple-classification.png" alt="KG2E-triple-classification.png"></p>
+<h3 id="TransG"><a href="#TransG" class="headerlink" title="TransG"></a>TransG</h3><p>HanXiao et al. 2016 [14] 提出TransX系列都没有关注到<em>mupltiple relation semantic</em> 的问题，将 TransE 的 embedding vector 用 PCA 维度约减，在二维图像上，一个 triple 表示一个 point，明显一个 relation 具有多个 clusters ，因此验证了作者的多元关系语义的假设。为了解决这个问题，作者提出 <code>TransG</code>. </p>
+<p><img src="/blog/.io//transG-figure1.png" alt="transG-figure1.png"></p>
+<p>TransG 可以自动挖掘关系的多层语义，并且利用 mixture of multiple relation components 来表示 entity pair 的位移。</p>
+<p><strong>模型的生成过程</strong>：</p>
+<ol>
+<li>对每一个实体 $e \in E$:<ol>
+<li>Draw each entity embedding mean vector from a standard normal distribution as a prior: $\mu_e \sim \mathcal{N}(0,1)$.</li>
+</ol>
+</li>
+<li>对每个事实 $(h,r,t) \in \Delta$: <ol>
+<li>用中餐馆模型（Chinese Restaurant Process, CRP）抽取关系的语义(概率)：$\pi_{r, m} \sim CRP(\beta)$ ; </li>
+<li>从标准分布抽取头实体 embedding: $h \sim \mathcal{N}(\mu_h, \sigma_h^2 E)$; </li>
+<li>从标准分布抽取尾实体 embedding: $t \sim \mathcal{N}(\mu_t, \sigma_t^2 E)$ ;</li>
+<li>为该关系的语义抽取 embedding: $\mu_{r, m} = t - h \sim \mathcal{N}(\mu_t - \mu_h, (\sigma_h^2 + \sigma_t^2)E )$ . </li>
+</ol>
+</li>
+</ol>
+<p>其中， $\mu_h, \mu_t$ 分别表示头实体尾实体的 mean, $\sigma_h, \sigma_t$ 分别表示实体分布的 variance , $\mu_{r, m}$ 表示关系 $r$ 的第 $m$ 个语义的 translation vector. CPR 是一个 狄利克雷过程(Dirichlet process), 可以自动的探测关系的语义。</p>
+<p><strong>Score function</strong>: </p>
+<p><img src="/blog/.io//transG-score-function.png" alt="transG-score-function.png"></p>
+<p><strong>新关系语义的概率</strong>： <img src="/blog/.io//transG-relation-semantic-p.png" alt="transG-relation-semantic-p.png"></p>
+<p><strong>Loss function</strong>:  最大化 golden triple 与 corrupted triple 的似然比。</p>
+<p><img src="/blog/.io//transG-loss-function.png" alt="transG-loss-function.png"></p>
+<p>模仿 TransE 的对更新的限制， TransG 中当满足条件(5) 时才更新：</p>
+<p><img src="/blog/.io//transG-constraint.png" alt="transG-constraint.png"></p>
+<p><strong>Experiments</strong>: Link-prediction, Triple-classification. </p>
+<p><strong>Link prediction</strong>: Under the “bern.” sampling strategy, the optimal configurations are: learning rate<br>$α = 0.001$, the embedding dimension $k = 100$, $γ = 2.5$, $β = 0.05$ on WN18; $α = 0.0015$, $k = 400$, $γ = 3.0$, $β = 0.1$ on FB15K. Note that all the symbols are introduced in “Methods”. We train the model until it converges. </p>
+<p><img src="/blog/.io//transG-link-prediction.png" alt="transG-link-prediction.png"></p>
+<p><img src="/blog/.io//transG-link-prediction2.png" alt="transG-link-prediction2.png"></p>
+<p><strong>Triple classification</strong>:  “bern” sampling, learning rate $α = 0.001$, $k = 50$, $γ = 6.0$, $β = 0.1$ on WN11, and “bern” sampling, $α = 0.002$, $k = 400$, $γ = 3.0$, $β = 0.1$ on FB13.</p>
+<p><img src="/blog/.io//transG-triple-classification.png" alt="transG-triple-classification.png"></p>
+<p><strong>KG2E vs. TransG</strong>: KG2E 是建模 entity / relation 的不确定性，而 TransG 是建模关系的多元语义。</p>
+<p><strong>CTransR vs. TransG</strong>: CTransR 是在训练前做为每个关系内的语义聚类，再进行训练；而 TransG 是在训练过程利用 CRP （中餐馆）模型得到关系的多元语义，训练和聚类同时进行。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="TransX-图示"><a href="#TransX-图示" class="headerlink" title="TransX 图示"></a>TransX 图示</h4><p><img src="/blog/.io//transX-illustration.png" alt="transX-illustration.png"></p>
+<p>高斯混合分布的图没有画。</p>
+<h4 id="参数比较"><a href="#参数比较" class="headerlink" title="参数比较"></a>参数比较</h4><p>TransX 以及神经网络模型空间复杂度和时间复杂度：( Wang et al. 2017 [1] )</p>
+<p><img src="/blog/.io//survey-space-time.png" alt="survey-space-time.png"></p>
+<p>在 TransX 系列模型中，TransE 效率最高，TransR 最复杂。</p>
+<h4 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h4><p>在 TransX 系列中，用了几个技巧可以提高模型的表现。</p>
+<ol>
+<li><code>filt.</code> :  在训练过程中，Currupting Triplets 也可能出现在 Knowlegde graph 中，因此需要把这部分训练数据从训练集中剔除。没有剔除的训练集称为 <code>raw</code>, 剔除后的训练集称为 <code>filt.</code>. </li>
+<li><code>bern.</code> : 由于 KG 通常是不完全（not completed）的，因此在训练过程中如何构建负样本( negative examples ) 并减少<code>假阴性标签</code>( false negative  label )是很重要的。 在 TransH 中，在 currupting triples 时根据关系( relation )的 mapping  properties 为替换头实体 h 和 尾实体 t 设置不同的概率。 给定一个 golden triple <em>(h, r, t)</em>, 以 $\frac{tph}{tph + hpt}$ 的概率替换头实体，以 $\frac{hpt}{tph + hpt}$ 的概率替换尾实体。不使用伯努力分布采样的为 <code>unif.</code>,  否则称为 <code>bern.</code> .</li>
+</ol>
+<h4 id="Score-fucntion"><a href="#Score-fucntion" class="headerlink" title="Score fucntion"></a>Score fucntion</h4><p>TransX 系列 score function 总结如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Ent. embedding</th>
+<th>Rel. embedding</th>
+<th>Scoring function $f_r(h, t)$</th>
+<th>Constraints / Regularization</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TransE, Bordes et al. 2013, [2]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td>$r \in \mathbb{R}^d$</td>
+<td>$-</td>
+<td></td>
+<td>h+r-t</td>
+<td></td>
+<td>_{1/2}$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 = 1$,  $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 = 1$</td>
+<td>- 存在 “many-side” 问题<br>-过滤在golden triple 中的 corrupt triple，分成 <em>raw</em> 和 <em>filt.</em></td>
+</tr>
+<tr>
+<td>TransH, Wang et al. 2014, [3]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td>$r \in \mathbb{R}^d$</td>
+<td>$h_{\perp} = h - w_r^T h w_r$; <br>$t_{perp} = t - w_r^T t w_r$; <br>$-</td>
+<td></td>
+<td>h_{\perp} + d_r - t_{\perp}</td>
+<td></td>
+<td>_2^2$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 \leq 1$; $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 \leq 1$<br>$</td>
+<td>w_r^T d_r</td>
+<td>/</td>
+<td></td>
+<td>d_r</td>
+<td>\leq \epsilon$ <br>$</td>
+<td></td>
+<td>w_r</td>
+<td></td>
+<td>_2 = 1$</td>
+<td>- 每个关系由$w_r$ 和 $d_r$ 两个向量表示.<br>- 提出 <em>bern.</em> 技巧，减少假阴性标签</td>
+</tr>
+<tr>
+<td>TransR, Lin, Yankai, et al. 2015, [4]</td>
+<td>$h, t \in \mathbb{R}^k$</td>
+<td>$r \in \mathbb{R}^d$, $M_r \in \mathbb{R}^{k \times d}$</td>
+<td>$h_r = hM_r$, $t_r = tM_r$<br>$-</td>
+<td></td>
+<td>h_r + r - t_r</td>
+<td></td>
+<td>_2^2$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 \leq 1$, $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 \leq 1$, $</td>
+<td></td>
+<td>r</td>
+<td></td>
+<td>_2 \leq 1$<br>$</td>
+<td></td>
+<td>hM_r</td>
+<td></td>
+<td>\leq1$, $</td>
+<td></td>
+<td>tM_r</td>
+<td></td>
+<td>\leq 1$</td>
+<td>-关系由位移向量$r$ 和映射矩阵 $M_r$ 组成，实体向量需要映射到向量空间<br>- 提出 CTransR，为每个关系的语义聚类</td>
+</tr>
+<tr>
+<td>TransD, Ji et al. 2015, [5]</td>
+<td>$h, h_p \in \mathbb{R}^n$, <br> $t, t_p \in \mathbb{R}^n$</td>
+<td>$r, r_p \in \mathbb{R}^m$</td>
+<td>$M_{rh} = r_p h_p^T + I^{m\times n}$,  $M_{rh} \in \mathbb{R}^{m\times n}$<br>$M_{rt} = r_p t_p^T + I^{m \times n}$, $M_{rt} \in \mathbb{R}^{m\times n}$; <br>$h_{\perp} = M_{rh}h$, $t_{\perp} = M_{rt}t$;<br>$-</td>
+<td></td>
+<td>h_{\perp} + r - t_{\perp}</td>
+<td></td>
+<td>_2^2$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>r</td>
+<td></td>
+<td>_2 \leq 1$; <br>$</td>
+<td></td>
+<td>h_{\perp}</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>t_{\perp}</td>
+<td></td>
+<td>_2 \leq 1$</td>
+<td>- 考虑实体使用同一映射矩阵不合理<br>- 每个实体和关系都由两个列向量组成 $e, e_p$</td>
+</tr>
+<tr>
+<td>TransM, Fan et al.2014, [7]</td>
+<td>$h,t \in \mathbb{R}^d$</td>
+<td>$r \in \mathbb{R}^d$</td>
+<td>$- w_r</td>
+<td></td>
+<td>h + r-t</td>
+<td></td>
+<td>_{1/2}$ , <br>$w_r = \frac{1}{h_r p t_r + t_r p h_r}$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 = 1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 = 1$</td>
+<td>- 放松 TransE 的条件<br>- 预计算每个triple的权重</td>
+</tr>
+<tr>
+<td>TransF, Feng et al. 2016, [8]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td>$r \in \mathbb{R}^d$+r</td>
+<td>$(h+r)^Tt + (t-r)^T h$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>r</td>
+<td></td>
+<td>_2 \leq 1$</td>
+<td>- 只要求 (h+r) 的方向与 t 相同, 大小不同<br>- 可以和 TransX 系列方法结合</td>
+</tr>
+<tr>
+<td>TransA, Xiao et al. 2015, [9]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td>$r \in \mathbb{R}^d$ , $W_r \in \mathbb{R}^{d \times d}$</td>
+<td>$-(</td>
+<td>h+r-t</td>
+<td>)^T W_r (</td>
+<td>h+r-t</td>
+<td>) $</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2  \leq  1$ , $</td>
+<td></td>
+<td>r</td>
+<td></td>
+<td>_2 \leq 1 $ ; <br>$</td>
+<td></td>
+<td>W_r</td>
+<td></td>
+<td>_F \leq 1$ , $[W_r]_{ij}  = [W_r]_{ji} \geq 0$</td>
+<td>- 等势面为绝对值的马氏距离<br>- 比 manifold 更加灵活<br>-提出 <em>ATPE</em> 用于衡量数据集的多样性和复杂性</td>
+</tr>
+<tr>
+<td>Manifold,   Xiao et al. 2015, [10]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td>$r \in \mathbb{R}^d$</td>
+<td>$-(</td>
+<td></td>
+<td>h+r-t</td>
+<td></td>
+<td>_2^2 - D_r^2)^2$</td>
+<td>$</td>
+<td></td>
+<td></td>
+<td>h</td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>r</td>
+<td></td>
+<td>_2 \leq 1$</td>
+<td>- 可以使用 核函数，映射到希伯尔特空间</td>
+</tr>
+<tr>
+<td>UM, Bordes et al. 2012, [11]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td></td>
+<td>$-</td>
+<td></td>
+<td>h - t</td>
+<td></td>
+<td>_2^2$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 = 1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 = 1$</td>
+<td>- TransE 的简化版本</td>
+</tr>
+<tr>
+<td>SE, Bordes et al. 2011, [12]</td>
+<td>$h, t \in \mathbb{R}^d$</td>
+<td>$R_k^{lhs}, R_k^{rhs} \in \mathbb{R}^{d \times d}$</td>
+<td>$-</td>
+<td></td>
+<td>R_k^{lhs} E_i - R_k^{rhs} E_j</td>
+<td></td>
+<td>_1$</td>
+<td>$</td>
+<td></td>
+<td>h</td>
+<td></td>
+<td>_2 =1$ , $</td>
+<td></td>
+<td>t</td>
+<td></td>
+<td>_2 = 1$</td>
+<td></td>
+</tr>
+<tr>
+<td>KG2E, Shihu He et al. 2015, [13]</td>
+<td>$h \sim \mathcal{N}(\mu_h, \Sigma_h)$ <br>$t \sim \mathcal{N}(\mu_t, \Sigma_t)$<br>$\mu_h, \mu_t \in \mathbb{R}^d$ <br>$\Sigma_h , \Sigma_t \in \mathbb{R}^{d \times d}$</td>
+<td>$r \sim \mathcal{N}(\mu_r, \Sigma_r)$<br>$\mu_r \in\mathbb{R}^d$ , $\Sigma_r \in \mathbb{R}^{d \times d}$</td>
+<td>KL-divergence: $-\frac{1}{2} \{tr(\Sigma_r^{-1} \Sigma_e) + (\mu_r - \mu_e)^T \Sigma_r^{-1} (\mu_r - \mu_e) \\ - log \frac{det(\Sigma_e)}{det(\Sigma_r)} -k_e\}$</td>
+<td>$</td>
+<td></td>
+<td>\mu_h</td>
+<td></td>
+<td>_2,</td>
+<td></td>
+<td>\mu_t</td>
+<td></td>
+<td>_2,</td>
+<td></td>
+<td>\mu_r</td>
+<td></td>
+<td>_2 \leq 1$<br>$c_{min}I \leq \Sigma_h, \Sigma_t, \Sigma_r \leq c_{max}I$</td>
+<td>- 混合高斯分布衡量ent./rel. 的不确定性<br>-借用了 TransE 的位移函数</td>
+</tr>
+<tr>
+<td>TransG, HanXiao et al. 2016, [14]</td>
+<td>$h \sim \mathcal{N}(\mu_h,\sigma_h^2E)$<br>$t \sim \mathcal{N}(\mu_t,\sigma_t^2E)$<br>$\mu_h, \mu_t \in \mathbb{R}^d$</td>
+<td>$\mu_{r, m} = t - h \sim \mathcal{N}(\mu_t - \mu_h, (\sigma_h^2 + \sigma_t^2)E )$<br>$\pi_{r, m} \sim CRP(\beta)$<br>$r = \sum_m \pi_{r,m} \mu_{r, m} \in \mathbb{R}^d$</td>
+<td>$\sum_m \pi_{r,m} exp\{-\frac{</td>
+<td></td>
+<td>\mu_h + \mu_{r, m} - \mu_t</td>
+<td></td>
+<td>_2^2}{\sigma_h^2 + \sigma_t^2}\}$</td>
+<td>$</td>
+<td></td>
+<td>\mu_h</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>\mu_t</td>
+<td></td>
+<td>_2 \leq 1$ , $</td>
+<td></td>
+<td>\mu_{r, m}</td>
+<td></td>
+<td>_2 \leq 1$</td>
+<td>- 用生成模型解决关系多语义的问题<br>- 用 CRP 自动抽取关系的语义</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Link-Prediction"><a href="#Link-Prediction" class="headerlink" title="Link Prediction"></a>Link Prediction</h4><p>评估链接预测结果的常用 metrics 是 <em>mean rank</em> 和 <em>hits@10</em>, 其他的还有<em>hits@5</em>, <em>hits@1</em> 等。<em>mean rank</em> 就是要预测的正确实体的排序平均；<em>hits@n</em> 就是正确实体在top n的频率。</p>
+<p>在链接预测任务上 TransX 的表现：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>DATASET</strong></th>
+<th><strong>WN18</strong></th>
+<th></th>
+<th></th>
+<th></th>
+<th><strong>FB15K</strong></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metric Eval</td>
+<td>MEAN RANK</td>
+<td></td>
+<td>HITS@10</td>
+<td></td>
+<td>MEAN RANK</td>
+<td></td>
+<td>HITS@10</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Raw</td>
+<td>Filt.</td>
+<td>Raw</td>
+<td>Filt.</td>
+<td>Raw</td>
+<td>Filt.</td>
+<td>Raw</td>
+<td>Filt.</td>
+</tr>
+<tr>
+<td>TransE ( Bordes et al. 2013 [2])</td>
+<td>263</td>
+<td>251</td>
+<td>75.4</td>
+<td>89.2</td>
+<td>243</td>
+<td>125</td>
+<td>34.9</td>
+<td>47.1</td>
+</tr>
+<tr>
+<td>TransH(unif.) (Wang et al. 2014 [3])</td>
+<td>318</td>
+<td>303</td>
+<td>75.4</td>
+<td>86.7</td>
+<td>211</td>
+<td>84</td>
+<td>42.5</td>
+<td>58.5</td>
+</tr>
+<tr>
+<td>TransH(bern.) (Wang et al. 2014 [3])</td>
+<td>400.8</td>
+<td>388</td>
+<td>73</td>
+<td>82.3</td>
+<td>212</td>
+<td>87</td>
+<td>45.7</td>
+<td>64.4</td>
+</tr>
+<tr>
+<td>TransR(unif.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>232</td>
+<td>219</td>
+<td>78.3</td>
+<td>91.7</td>
+<td>226</td>
+<td>78</td>
+<td>43.8</td>
+<td>65.5</td>
+</tr>
+<tr>
+<td>TransR(bern.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>238</td>
+<td>225</td>
+<td>79.8</td>
+<td>92</td>
+<td>198</td>
+<td>77</td>
+<td>48.2</td>
+<td>68.7</td>
+</tr>
+<tr>
+<td>CTransR(unif.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>243</td>
+<td>230</td>
+<td>78.9</td>
+<td>92.3</td>
+<td>233</td>
+<td>82</td>
+<td>44</td>
+<td>66.3</td>
+</tr>
+<tr>
+<td>CTransR(bern.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>231</td>
+<td>218</td>
+<td>79.4</td>
+<td>92.3</td>
+<td>199</td>
+<td>75</td>
+<td>48.4</td>
+<td>70.2</td>
+</tr>
+<tr>
+<td>TransD(unif.) (Ji et al. 2015, [5])</td>
+<td>242</td>
+<td>229</td>
+<td>79.2</td>
+<td>92.5</td>
+<td>211</td>
+<td>67</td>
+<td>49.4</td>
+<td>74.2</td>
+</tr>
+<tr>
+<td>TransD(bern.) (Ji et al. 2015, [5])</td>
+<td><strong>224</strong></td>
+<td><strong>212</strong></td>
+<td>79.6</td>
+<td>92.2</td>
+<td>194</td>
+<td>91</td>
+<td>53.4</td>
+<td>77.3</td>
+</tr>
+<tr>
+<td>TransM (Fan et al. 2014, [7])</td>
+<td>292.5</td>
+<td>280.8</td>
+<td>75.67</td>
+<td>85.38</td>
+<td>196.8</td>
+<td>93.8</td>
+<td>44.64</td>
+<td>55.15</td>
+</tr>
+<tr>
+<td>TransA (M Huang et al. 2015, [9]])</td>
+<td>405</td>
+<td>392</td>
+<td>82.3</td>
+<td>94.3</td>
+<td>155</td>
+<td>74</td>
+<td>56.1</td>
+<td>80.4</td>
+</tr>
+<tr>
+<td>manifold(Sphere) (Xiao et al. 2015, [10])</td>
+<td></td>
+<td></td>
+<td>81.1</td>
+<td>94.4</td>
+<td></td>
+<td></td>
+<td>52</td>
+<td>79.5</td>
+</tr>
+<tr>
+<td>manifold(Hyperplane) (Xiao et al. 2015, [10])</td>
+<td></td>
+<td></td>
+<td>81.4</td>
+<td>93.7</td>
+<td></td>
+<td></td>
+<td>52.6</td>
+<td>78.2</td>
+</tr>
+<tr>
+<td>KE2G (Shihu He et al. 2015 [13])</td>
+<td>342</td>
+<td>331</td>
+<td>80.2</td>
+<td>92.8</td>
+<td>174</td>
+<td>59</td>
+<td>48.9</td>
+<td>74</td>
+</tr>
+<tr>
+<td>TransG (HanXiao et al. 2016 [14])</td>
+<td>357</td>
+<td>345</td>
+<td><strong>84.5</strong></td>
+<td><strong>94.9</strong></td>
+<td><strong>152</strong></td>
+<td><strong>50</strong></td>
+<td><strong>55.9</strong></td>
+<td><strong>88.2</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>TODO 描绘 mean rank, hits@10 走势图。</p>
+<h4 id="Triple-Classification"><a href="#Triple-Classification" class="headerlink" title="Triple Classification"></a>Triple Classification</h4><p>评估 Triple classification 的常用 metrics 是 <em>accuracy</em> 和 <em>recall</em>. </p>
+<p>TransX 在triple classification 上的准确率表现如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DATASET</strong></td>
+<td><strong>WN11</strong></td>
+<td><strong>FB13</strong></td>
+<td><strong>FB15K</strong></td>
+<td><strong>Remark</strong></td>
+</tr>
+<tr>
+<td>TransE(unif.) ( Bordes et al. 2013 [2])</td>
+<td>75.9</td>
+<td>70.9</td>
+<td>77.3</td>
+<td>TransD 论文中抄录</td>
+</tr>
+<tr>
+<td>TransE(bern.) ( Bordes et al. 2013 [2])</td>
+<td>75.9</td>
+<td>81.5</td>
+<td>79.8</td>
+<td>TransD 论文中抄录</td>
+</tr>
+<tr>
+<td>TransH(unif.) (Wang et al. 2014 [3])</td>
+<td>77.68</td>
+<td>76.5</td>
+<td>80.2</td>
+<td></td>
+</tr>
+<tr>
+<td>TransH(bern.) (Wang et al. 2014 [3])</td>
+<td>77.8</td>
+<td>83.3</td>
+<td>87.7</td>
+<td>FB15K 存疑，后面的论文都没有这么高的精度, TransD 中为 79.9</td>
+</tr>
+<tr>
+<td>TransR(unif.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>85.5</td>
+<td>74.7</td>
+<td>81.7</td>
+<td></td>
+</tr>
+<tr>
+<td>TransR(bern.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>85.9</td>
+<td>82.5</td>
+<td>83.9</td>
+<td></td>
+</tr>
+<tr>
+<td>CTransR(unif.) (Lin, Yankai, et al. 2015 [4])</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CTransR(bern.) (Lin, Yankai, et al. 2015 [4])</td>
+<td>85.7</td>
+<td></td>
+<td>84.5</td>
+<td></td>
+</tr>
+<tr>
+<td>TransD(unif.) (Ji et al. 2015, [5])</td>
+<td>85.6</td>
+<td>85.9</td>
+<td>86.4</td>
+<td></td>
+</tr>
+<tr>
+<td>TransD(bern.) (Ji et al. 2015, [5])</td>
+<td>86.4</td>
+<td><strong>89.1</strong></td>
+<td>88</td>
+<td></td>
+</tr>
+<tr>
+<td>TransM (Fan et al. 2014, [7])</td>
+<td>77.8</td>
+<td>72.1</td>
+<td><strong>89.9</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>TransF ( Jun Feng et al. 2016 [8])</td>
+<td>86.6</td>
+<td>82.9</td>
+<td>88.9</td>
+<td></td>
+</tr>
+<tr>
+<td>TransA (M Huang et al. 2015, [9]])</td>
+<td>83.2</td>
+<td>87.3</td>
+<td>85.3</td>
+<td></td>
+</tr>
+<tr>
+<td>manifold(Sphere) (Xiao et al. 2015, [10])</td>
+<td><strong>87.5</strong></td>
+<td>87.2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manifold(Hyperplane) (Xiao et al. 2015, [10])</td>
+<td>86.9</td>
+<td>87.3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>KE2G (Shihu He et al. 2015 [13])</td>
+<td>85.4</td>
+<td>85.3</td>
+<td>89.3</td>
+<td></td>
+</tr>
+<tr>
+<td>TransG (HanXiao et al. 2016 [14])</td>
+<td>87.4</td>
+<td>87.3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NTN</td>
+<td>70.4</td>
+<td>87.1</td>
+<td>68.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li>[1] Q. Wang, Z. Mao, B. Wang, and L. Guo, “Knowledge Graph Embedding: A Survey of Approaches and Applications,” <em>IEEE Trans. Knowl. Data Eng.</em>, vol. 29, no. 12, pp. 2724–2743, Dec. 2017, doi: <a href="https://doi.org/10.1109/TKDE.2017.2754499" target="_blank" rel="noopener">10.1109/TKDE.2017.2754499</a>.</li>
+<li>[2] A. Bordes, N. Usunier, A. Garcia-Duran, J. Weston, and O. Yakhnenko, “Translating Embeddings for Modeling Multi-relational Data,” in <em>Advances in Neural Information Processing Systems 26</em>, C. J. C. Burges, L. Bottou, M. Welling, Z. Ghahramani, and K. Q. Weinberger, Eds. Curran Associates, Inc., 2013, pp. 2787–2795. </li>
+<li>[3] Wang Z, Zhang J, Feng J, et al. Knowledge graph embedding by translating on hyperplanes[C]//Twenty-Eighth AAAI conference on artificial intelligence. 2014.</li>
+<li>[4] Lin, Yankai, et al. “Learning entity and relation embeddings for knowledge graph completion.” <em>Twenty-ninth AAAI conference on artificial intelligence</em>. 2015.</li>
+<li>[5] G. Ji, S. He, L. Xu, K. Liu, and J. Zhao, “Knowledge graph embedding via dynamic mapping matrix,” in <em>Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)</em>, 2015, pp. 687–696.</li>
+<li>[6] G. Ji, K. Liu, S. He, and J. Zhao, “Knowledge graph completion with adaptive sparse transfer matrix,” in <em>Thirtieth AAAI conference on artificial intelligence</em>, 2016.</li>
+<li>[7] M. Fan, Q. Zhou, E. Chang, and F. Zheng, “Transition-based knowledge graph embedding with relational mapping properties,” in <em>Proceedings of the 28th Pacific Asia Conference on Language, Information and Computing</em>, 2014, pp. 328–337.</li>
+<li>[8] J. Feng, M. Huang, M. Wang, M. Zhou, Y. Hao, and X. Zhu, “Knowledge graph embedding by flexible translation,” in <em>Fifteenth International Conference on the Principles of Knowledge Representation and Reasoning</em>, 2016.</li>
+<li>[9] H. Xiao, M. Huang, Y. Hao, and X. Zhu, “Transa: An adaptive approach for knowledge graph embedding,” <em>arXiv preprint arXiv:1509.05490</em>, 2015.</li>
+<li>[10] H. Xiao, M. Huang, and X. Zhu, “From one point to a manifold: Knowledge graph embedding for precise link prediction,” <em>arXiv preprint arXiv:1512.04792</em>, 2015.</li>
+<li>[11] A. Bordes, X. Glorot, J. Weston, and Y. Bengio, “Joint learning of words and meaning representations for open-text semantic parsing,” in <em>Artificial Intelligence and Statistics</em>, 2012, pp. 127–135.</li>
+<li>[12] A. Bordes, J. Weston, R. Collobert, and Y. Bengio, “Learning structured embeddings of knowledge bases,” in <em>Twenty-Fifth AAAI Conference on Artificial Intelligence</em>, 2011.</li>
+<li>[13] S. He, K. Liu, G. Ji, and J. Zhao, “Learning to represent knowledge graphs with gaussian embedding,” in <em>Proceedings of the 24th ACM International on Conference on Information and Knowledge Management</em>, 2015, pp. 623–632.</li>
+<li>[14] H. Xiao, M. Huang, and X. Zhu, “TransG: A generative model for knowledge graph embedding,” in <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 2016, pp. 2316–2325.</li>
+</ul>
 
-      
-        <h1 id="知识图谱的知识表示学习"><a href="#知识图谱的知识表示学习" class="headerlink" title="知识图谱的知识表示学习"></a>知识图谱的知识表示学习</h1><p>Representation &amp; Embedding</p>
-
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/知识图谱-知识表示-Graph-Embedding/" rel="tag"># 知识图谱, 知识表示, Graph Embedding</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2019/12/07/spark入门-01/" rel="next" title="spark入门-01">
-                <i class="fa fa-chevron-left"></i> spark入门-01
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA-Knowledge-Graph-Embedding/" rel="tag"># 知识图谱, 知识表示, Knowledge Graph Embedding</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2020/01/03/知识图谱概览/" rel="prev" title="知识图谱概览">
-                知识图谱概览 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2019/12/07/spark%E5%85%A5%E9%97%A8-01/" rel="prev" title="spark入门-01">
+      <i class="fa fa-chevron-left"></i> spark入门-01
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/01/03/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/" rel="next" title="知识图谱概览">
+      知识图谱概览 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#知识图谱的知识表示学习"><span class="nav-number">1.</span> <span class="nav-text">知识图谱的知识表示学习</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#知识图谱的知识表示学习-TransX-系列"><span class="nav-number">1.</span> <span class="nav-text">知识图谱的知识表示学习-TransX 系列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Translational-Distance-Models"><span class="nav-number">1.1.</span> <span class="nav-text">Translational Distance Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TransE"><span class="nav-number">1.1.1.</span> <span class="nav-text">TransE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransH"><span class="nav-number">1.1.2.</span> <span class="nav-text">TransH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransR"><span class="nav-number">1.1.3.</span> <span class="nav-text">TransR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransD"><span class="nav-number">1.1.4.</span> <span class="nav-text">TransD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransSparse"><span class="nav-number">1.1.5.</span> <span class="nav-text">TransSparse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransM"><span class="nav-number">1.1.6.</span> <span class="nav-text">TransM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransF"><span class="nav-number">1.1.7.</span> <span class="nav-text">TransF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransA"><span class="nav-number">1.1.8.</span> <span class="nav-text">TransA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Manifold"><span class="nav-number">1.1.9.</span> <span class="nav-text">Manifold</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UM"><span class="nav-number">1.1.10.</span> <span class="nav-text">UM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SE"><span class="nav-number">1.1.11.</span> <span class="nav-text">SE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PTransE"><span class="nav-number">1.1.12.</span> <span class="nav-text">PTransE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KG2E"><span class="nav-number">1.1.13.</span> <span class="nav-text">KG2E</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransG"><span class="nav-number">1.1.14.</span> <span class="nav-text">TransG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.1.15.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TransX-图示"><span class="nav-number">1.1.15.1.</span> <span class="nav-text">TransX 图示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数比较"><span class="nav-number">1.1.15.2.</span> <span class="nav-text">参数比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tricks"><span class="nav-number">1.1.15.3.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Score-fucntion"><span class="nav-number">1.1.15.4.</span> <span class="nav-text">Score fucntion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Link-Prediction"><span class="nav-number">1.1.15.5.</span> <span class="nav-text">Link Prediction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Triple-Classification"><span class="nav-number">1.1.15.6.</span> <span class="nav-text">Triple Classification</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.2.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -557,135 +1421,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -701,178 +1455,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

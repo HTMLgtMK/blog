@@ -1,135 +1,53 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hadoop HDFS,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
-<meta name="keywords" content="Hadoop HDFS">
+  <meta name="description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master&#x2F;Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDFS 原理">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
-<meta property="og:locale" content="English">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsarchitecture.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsdatanodes.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/staging.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/pipeline.png">
-<meta property="og:updated_time" content="2019-10-22T08:05:43.570Z">
+<meta property="og:description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master&#x2F;Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hdfsarchitecture.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hdfsdatanodes.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//staging.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//pipeline.png">
+<meta property="article:published_time" content="2019-10-21T11:01:15.000Z">
+<meta property="article:modified_time" content="2019-10-22T08:05:43.570Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="Hadoop HDFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HDFS 原理">
-<meta name="twitter:description" content="今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。 参考：Hadoop分布式文件系统：架构和设计.  emmm… 多数是 Copy 的 官方文档。 HDSF 是一种分布式的文件系统，可以部署在通用的廉价机器，架构是 Master/Slave 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDF">
-<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/hdfsarchitecture.png">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/.io//hdfsarchitecture.png">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-%E5%8E%9F%E7%90%86/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-原理/">
-
-
-
-
 
   <title>HDFS 原理 | GT Blog</title>
   
@@ -139,183 +57,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2019/10/21/HDFS-%E5%8E%9F%E7%90%86/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/10/21/HDFS-原理/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">HDFS 原理</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          HDFS 原理
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-21T19:01:15+08:00">
-                2019-10-21
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2019-10-21 19:01:15" itemprop="dateCreated datePublished" datetime="2019-10-21T19:01:15+08:00">2019-10-21</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2019/10/21/HDFS-原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/10/21/HDFS-原理/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-22 16:05:43" itemprop="dateModified" datetime="2019-10-22T16:05:43+08:00">2019-10-22</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2019/10/21/HDFS-原理/" class="leancloud_visitors" data-flag-title="HDFS 原理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -323,15 +197,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>今天学习了 Hadoop  的 HDFS 组件的架构设计和原理。</p>
 <p>参考：<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_design.html" target="_blank" rel="noopener">Hadoop分布式文件系统：架构和设计</a>. </p>
 <p>emmm… 多数是 Copy 的 官方文档。</p>
 <p><code>HDSF</code> 是一种<em>分布式的文件系统</em>，可以部署在通用的廉价机器，架构是 <strong>Master/Slave</strong> 模式的，具有 高容错、高吞吐量 的特点。官方上说：“ HDFS 在最开始是作为 Apache Nutch 搜索引擎项目的基础架构而开发的。HDFS是Apache Hadoop Core项目的一部分。这个项目的地址是 <a href="https://hadoop.apache.org/core/" target="_blank" rel="noopener">https://hadoop.apache.org/core/</a> 。”  而实际上，应该是参考了 Google 公司的 <code>GFS</code> 分布式文件系统（被开源。。）。</p>
 <a id="more"></a>
-
 <h2 id="HDFS-几个重要设计原则"><a href="#HDFS-几个重要设计原则" class="headerlink" title="HDFS 几个重要设计原则"></a>HDFS 几个重要设计原则</h2><ol>
 <li><p>硬件错误是常态而不是异常。这句话非常著名，意思就是说 HDFS 面向的是廉价的机器，任何一个组件都可能出现故障，因此 错误检测 和 快速自动恢复 是 HDSF 最核心的目标。</p>
 </li>
@@ -342,7 +212,7 @@
 </li>
 </ol>
 <h2 id="HDFS-架构"><a href="#HDFS-架构" class="headerlink" title="HDFS 架构"></a>HDFS 架构</h2><h3 id="Master-Slave-架构"><a href="#Master-Slave-架构" class="headerlink" title="Master/Slave 架构"></a>Master/Slave 架构</h3><p>HDFS 使用的是 <strong>Master / Slave</strong> 模式，一个 HDFS 集群由一个 <code>NameNode</code> 和 多个 <code>DataNode</code> 组成。这是官网上面的架构图：</p>
-<p><img src="/blog/2019/10/21/HDFS-原理/hdfsarchitecture.png" alt="hdfsarchitecture.png"></p>
+<p><img src="/blog/.io//hdfsarchitecture.png" alt="hdfsarchitecture.png"></p>
 <ul>
 <li><p>NameNode:  名称节点。中心服务器，负责管理 FS  的 命名空间（namespace）以及 客户端对文件的访问（控制流）。在 Hadoop 中， NameNode 一般是 单点故障 所在，可以配置多个 NameNode 的备份。（很一般的策略。）</p>
 </li>
@@ -351,8 +221,7 @@
 </li>
 <li><p>Rack: 机架。一个集群可有多个机架，主机之间，机架之间均通过 网络 互联，同一机架之间的主机的网络代价较小，而不同机架之间的主机网络代价更大。</p>
 </li>
-<li><p>Client： HFDS 客户端。 Client 与 NameNode 之间 通过 ClientProtocol 协议交互 (<em>控制流</em>，发送指令等)；与 DataNode 交换的是 文件数据（数据流）； 而 DataNode 与 NameNode 通过 DatanodeProtocol 协议交互，发送 心跳包 和 块状态报告，并且接收指令。NameNode 永远不会由 数据流 经过。</p>
-</li>
+<li>Client： HFDS 客户端。 Client 与 NameNode 之间 通过 ClientProtocol 协议交互 (<em>控制流</em>，发送指令等)；与 DataNode 交换的是 文件数据（数据流）； 而 DataNode 与 NameNode 通过 DatanodeProtocol 协议交互，发送 心跳包 和 块状态报告，并且接收指令。NameNode 永远不会由 数据流 经过。</li>
 </ul>
 <h3 id="数据的组织-与-备份"><a href="#数据的组织-与-备份" class="headerlink" title="数据的组织 与 备份"></a>数据的组织 与 备份</h3><ol>
 <li><p>FS 的命名空间（namespace）</p>
@@ -365,10 +234,10 @@
 <p>通过 rack-aware 过程，NameNode  可以知道每个 DataNode 的所属的机架id。一个<strong>简单未优化的策略</strong>是：将副本存放在不同的机架上，这样可以防止整个机架失效时的数据丢失，并且允许读取数据时利用多个机架的带宽。这种策略设置可以将副本均匀分布在集群中，有利于当组件失效情况下的负载均衡。但是，因为这种策略的一个写操作需要传输数据块到多个机架，这增加了写的代价。</p>
 <p>在大多数情况下，<strong>副本系数是3，HDFS的存放策略</strong>是将一个副本存放在本地机架的节点上，一个副本放在同一机架的另一个节点上，最后一个副本放在不同机架的节点上。这种策略减少了机架间的数据传输，这就提高了写操作的效率。机架的错误远远比节点的错误少，所以这个策略不会影响到数据的可靠性和可用性。于此同时，因为数据块只放在两个（不是三个）不同的机架上，所以此策略减少了读取数据时需要的网络传输总带宽。在这种策略下，副本并不是均匀分布在不同的机架上。三分之一的副本在一个节点上，三分之二的副本在一个机架上，其他副本均匀分布在剩下的机架中，这一策略在不损害数据可靠性和读取性能的情况下改进了写的性能。</p>
 <p>当前，这里介绍的默认副本存放策略正在开发的过程中。。。</p>
-<p><img src="/blog/2019/10/21/HDFS-原理/hdfsdatanodes.png" alt="hdfsdatanodes.png"></p>
+<p><img src="/blog/.io//hdfsdatanodes.png" alt="hdfsdatanodes.png"></p>
 </li>
 </ol>
-<ol start="3">
+<ol>
 <li><p>副本选择</p>
 <p>为了降低整体的带宽消耗和读取延时，HDFS 会尽量让读取程序读取离它最近的副本。如果在读取程序的同一个机架上有一个副本，那么就读取该副本。如果一个HDFS集群跨越多个数据中心，那么客户端也将首先读本地数据中心的副本。</p>
 </li>
@@ -385,10 +254,10 @@
 <p>因为NameNode只有在启动阶段才合并fsimage和edits，所以久而久之日志文件可能会变得非常庞大，特别是对大型的集群。日志文件太大的另一个副作用是下一次NameNode启动会花很长时间。</p>
 <p>Secondary NameNode 定期合并 fsimage 和 edits 日志，将 edits 日志文件大小控制在一个限度下。因为内存需求和NameNode 在一个数量级上，所以通常 secondary NameNode 和 NameNode 运行在不同的机器上</p>
 <h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><p>Namenode 启动后会进入一个称为 安全模式 的特殊状态。处于安全模式的Namenode是不会进行数据块的复制的。Namenode 从所有的 Datanode 接收 心跳信号和 块状态报告。块状态报告包括了某个 Datanode 所有的数据块列表。每个数据块都有一个指定的最小副本数。当Namenode检测确认某个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全(safely replicated)的；在一定百分比（这个参数可配置）的数据块被Namenode检测确认是安全之后（加上一个额外的30秒等待时间），Namenode将退出安全模式状态。接下来它会确定还有哪些数据块的副本没有达到指定数目，并将这些数据块复制到其他 Datanode 上 。</p>
-<p><img src="/blog/2019/10/21/HDFS-原理/staging.png" alt="staging.png"></p>
+<p><img src="/blog/.io//staging.png" alt="staging.png"></p>
 <h3 id="Staging"><a href="#Staging" class="headerlink" title="Staging"></a>Staging</h3><p>Client 创建文件的请求 其实并没有立即发送给 Namenode，事实上，在刚开始阶段 HDFS Client 会先将文件数据缓存到本地的一个临时文件tmp。应用程序的 写操作 被 透明地 重定向到这个临时文件。当这个临时文件累积的数据量超过一个Block 的大小，Client 才会联系 Namenode。Namenode 将文件名插入文件系统的层次结构中，并且分配一个数据块给它。然后返回 Datanode 的 标识符 和 目标数据块 给 Client。接着 Client 将这块数据从本地临时文件 tmp 上传到指定的 Datanode 上。当文件关闭时，在临时文件中剩余的没有上传的数据也会传输到指定的 Datanode 上。然后 Client 告诉 Namenode 文件已经关闭。此时 Namenode 才将 文件创建操作 提交到 EditLog 日志里进行存储。如果 Namenode 在文件关闭前宕机了，则该文件将丢失。</p>
 <h3 id="流水线复制"><a href="#流水线复制" class="headerlink" title="流水线复制"></a>流水线复制</h3><p>Datanode 能流水线式地从前一个节点接收数据，并在同时转发给下一个节点，数据以流水线的方式从前一个 Datanode 复制到下一个。</p>
-<p><img src="/blog/2019/10/21/HDFS-原理/pipeline.png" alt="pipeline.png"></p>
+<p><img src="/blog/.io//pipeline.png" alt="pipeline.png"></p>
 <p>当 Client 向 HDFS 文件写入数据的时候，一开始是写到本地临时文件 tmp 中。假设该文件的副本系数设置为3，当本地临时文件累积到一个数据块的大小时，Client 会从 Namenode 获取一个 Datanode 列表用于存放副本。然后客户端开始向第一个 Datanode 传输数据，第一个 Datanode 一小部分一小部分(4 KB)地接收数据，将每一部分写入本地仓库，并同时传输该部分到列表中第二个 Datanode 节点。第二个 Datanode 也是这样，一小部分一小部分地接收数据，写入本地仓库，并同时传给第三个 Datanode 。最后，第三个 Datanode 接收数据并存储在本地。</p>
 <h3 id="存储空间的回收"><a href="#存储空间的回收" class="headerlink" title="存储空间的回收"></a>存储空间的回收</h3><ol>
 <li><p>文件的删除和恢复</p>
@@ -414,231 +283,144 @@
 </li>
 </ol>
 
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/Hadoop-HDFS/" rel="tag"># Hadoop HDFS</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2019/10/18/Linux-远程控制/" rel="next" title="Linux 远程控制">
-                <i class="fa fa-chevron-left"></i> Linux 远程控制
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Hadoop-HDFS/" rel="tag"># Hadoop HDFS</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/10/28/GFS-阅读/" rel="prev" title="GFS 阅读">
-                GFS 阅读 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2019/10/18/Linux-%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6/" rel="prev" title="Linux 远程控制">
+      <i class="fa fa-chevron-left"></i> Linux 远程控制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2019/10/28/GFS-%E9%98%85%E8%AF%BB/" rel="next" title="GFS 阅读">
+      GFS 阅读 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-几个重要设计原则"><span class="nav-number">1.</span> <span class="nav-text">HDFS 几个重要设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-架构"><span class="nav-number">2.</span> <span class="nav-text">HDFS 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-Slave-架构"><span class="nav-number">2.1.</span> <span class="nav-text">Master/Slave 架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的组织-与-备份"><span class="nav-number">2.2.</span> <span class="nav-text">数据的组织 与 备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-执行流程"><span class="nav-number">3.</span> <span class="nav-text">HDFS 执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NameNode-的启动"><span class="nav-number">3.1.</span> <span class="nav-text">NameNode 的启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">3.2.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-number">3.3.</span> <span class="nav-text">Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线复制"><span class="nav-number">3.4.</span> <span class="nav-text">流水线复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储空间的回收"><span class="nav-number">3.5.</span> <span class="nav-text">存储空间的回收</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性保证"><span class="nav-number">4.</span> <span class="nav-text">健壮性保证</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-几个重要设计原则"><span class="nav-number">1.</span> <span class="nav-text">HDFS 几个重要设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-架构"><span class="nav-number">2.</span> <span class="nav-text">HDFS 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-Slave-架构"><span class="nav-number">2.1.</span> <span class="nav-text">Master&#x2F;Slave 架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的组织-与-备份"><span class="nav-number">2.2.</span> <span class="nav-text">数据的组织 与 备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS-执行流程"><span class="nav-number">3.</span> <span class="nav-text">HDFS 执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NameNode-的启动"><span class="nav-number">3.1.</span> <span class="nav-text">NameNode 的启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">3.2.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Staging"><span class="nav-number">3.3.</span> <span class="nav-text">Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流水线复制"><span class="nav-number">3.4.</span> <span class="nav-text">流水线复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储空间的回收"><span class="nav-number">3.5.</span> <span class="nav-text">存储空间的回收</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#健壮性保证"><span class="nav-number">4.</span> <span class="nav-text">健壮性保证</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -648,135 +430,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -792,178 +464,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

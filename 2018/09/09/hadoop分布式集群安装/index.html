@@ -1,144 +1,71 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="hadoop, 分布式, 云计算,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.    环境 说明    系统 CentOS7 64   Hadoop hadoop-2.8.5   java java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64   集群规划 Single Node集群     主从 主机id    Master hser">
-<meta name="keywords" content="hadoop, 分布式, 云计算">
+  <meta name="description" content="目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.     环境 说明     系统 CentOS7 64   Hadoop hadoop-2.8.5   java java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64     集群规划 Single Node集群      主从 主机id     Maste">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop 分布式集群安装">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.    环境 说明    系统 CentOS7 64   Hadoop hadoop-2.8.5   java java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64   集群规划 Single Node集群     主从 主机id    Master hser">
-<meta property="og:locale" content="English">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-17-28-46.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-17-43-44.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver2-2018-11-14-17-45-25.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver3-2018-11-14-17-47-41.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-18-18-34.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-18-18-40.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm1-hdfs-dfs-refused9000.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm1-jps-20191205.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm2-jps-20191205.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm1-netstat-20191205.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm2-telnet-vm1-9000.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm1-netstat-10-20191205.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/vm1-netstat-192-20191205.png">
-<meta property="og:updated_time" content="2019-12-07T10:22:19.566Z">
+<meta property="og:description" content="目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.     环境 说明     系统 CentOS7 64   Hadoop hadoop-2.8.5   java java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64     集群规划 Single Node集群      主从 主机id     Maste">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-20-08-12.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-21-06-49.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-21-07-22.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-21-07-29.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-21-14-40.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-22-06-06.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-23-56-58.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-14-00-21-22.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-14-13-10-52.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hserver1-2018-11-14-17-28-46.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hserver1-2018-11-14-17-43-44.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hserver2-2018-11-14-17-45-25.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hserver3-2018-11-14-17-47-41.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hserver1-2018-11-14-18-18-34.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//hserver1-2018-11-14-18-18-40.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm1-hdfs-dfs-refused9000.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm1-jps-20191205.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm2-jps-20191205.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm1-netstat-20191205.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm2-telnet-vm1-9000.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm1-netstat-10-20191205.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//vm1-netstat-192-20191205.png">
+<meta property="article:published_time" content="2018-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-12-07T10:22:19.566Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="hadoop, 分布式, 云计算">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hadoop 分布式集群安装">
-<meta name="twitter:description" content="目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.    环境 说明    系统 CentOS7 64   Hadoop hadoop-2.8.5   java java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64   集群规划 Single Node集群     主从 主机id    Master hser">
-<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-17-28-46.png">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/.io//CentOS%2064%20%E4%BD%8D-2018-11-13-20-08-12.png">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/09/09/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/09/09/hadoop分布式集群安装/">
-
-
-
-
 
   <title>hadoop 分布式集群安装 | GT Blog</title>
   
@@ -148,183 +75,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2018/09/09/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/09/09/hadoop分布式集群安装/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">hadoop 分布式集群安装</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          hadoop 分布式集群安装
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-09T00:00:00+08:00">
-                2018-09-09
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2018-09-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-09T00:00:00+08:00">2018-09-09</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2018/09/09/hadoop分布式集群安装/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/09/09/hadoop分布式集群安装/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 18:22:19" itemprop="dateModified" datetime="2019-12-07T18:22:19+08:00">2019-12-07</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2018/09/09/hadoop分布式集群安装/" class="leancloud_visitors" data-flag-title="hadoop 分布式集群安装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -332,10 +215,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>目的: 在虚拟机中安装hadoop集群，并且正确运行hadoop自带的实例程序wordcount.</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -343,7 +224,8 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>系统</td>
 <td>CentOS7 64</td>
 </tr>
@@ -355,10 +237,13 @@
 <td>java</td>
 <td>java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="集群规划"><a href="#集群规划" class="headerlink" title="集群规划"></a>集群规划</h2><ol>
 <li>Single Node集群</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -366,7 +251,8 @@
 <th>主机id</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Master</td>
 <td>hserver1</td>
 </tr>
@@ -374,14 +260,14 @@
 <td>Slave</td>
 <td>hserver1</td>
 </tr>
-<tr>
-<td><a id="more"></a></td>
-<td></td>
-</tr>
-</tbody></table>
-<ol start="2">
+</tbody>
+</table>
+</div>
+<a id="more"></a> 
+<ol>
 <li>Mutli Node集群<br> 一共有3台虚拟机, 每台虚拟机的作用规划如下:</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -389,7 +275,8 @@
 <th>主机id</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Master</td>
 <td>hserver1</td>
 </tr>
@@ -397,7 +284,10 @@
 <td>Slave</td>
 <td>hserver2, hserver3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -406,7 +296,8 @@
 <th>PROCESS</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>hserver1</td>
 <td>192.168.48.200</td>
 <td>NameNode, DataNode, NodeManager, ResourceManager, JobHistoryServer</td>
@@ -421,7 +312,9 @@
 <td>192.168.48.202</td>
 <td>DataNode, SecondaryNameNode, NodeManager</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>这里为了方便, 直接使用root操作.(实际上不安全)</p>
 <h2 id="Single-Node安装"><a href="#Single-Node安装" class="headerlink" title="Single Node安装"></a>Single Node安装</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>安装好JDK, 并设置好环境变量.从官网中下载<code>hadoop-2.8.6.tar.gz</code>, 并解压到<code>/usr/local</code>下.<br>修改三个server的ip为对应静态地址, 修改hostname.</p>
 <p><strong>注：</strong> hadoop 3.0 以上版本的默认端口与低版本 hadoop 不同。例如 Hadoop-3.2.1 上面的 NameNode WebUI 的默认端口为 <code>9870</code>，具体的默认端口参考： <a href="https://kontext.tech/column/hadoop/265/default-ports-used-by-hadoop-services-hdfs-mapreduce-yarn" target="_blank" rel="noopener">Default ports used by HDFS services</a>.</p>
@@ -429,113 +322,67 @@
 <ol>
 <li><p>修改环境变量<br> 1.1 <code>hadoop-env.sh</code> 设置JAVA环境和hadoop home目录</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Set Hadoop-specific environment variables here.</span></span><br><span class="line">JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64</span><br><span class="line">HADOOP_HOME=/usr/local/hadoop-2.8.5</span><br><span class="line">export JAVA_HOME=$&#123;JAVA_HOME&#125;</span><br><span class="line">export HADOOP_HOME</span><br></pre></td></tr></table></figure>
-
 <p> 1.2 <code>yarn-env.sh</code> 配置 JAVA 环境</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64</span><br></pre></td></tr></table></figure>
-
-
+<p>参考 <a href="https://blog.csdn.net/qq_33931272/article/details/80070025" target="_blank" rel="noopener">关于hadoop3搭建的一些问题的解决</a>, 当运行的 JDK 版本高于 9 时，会出现如下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Error injecting constructor, java.lang.NoClassDefFoundError: javax/activation/DataSource</span><br><span class="line">  at org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver.&lt;init&gt;(JAXBContextResolver.java:52)</span><br><span class="line">  at org.apache.hadoop.yarn.server.nodemanager.webapp.WebServer$NMWebApp.setup(WebServer.java:153)</span><br><span class="line">  while locating org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver</span><br></pre></td></tr></table></figure>
+<p>解决方法是在<code>yarn-env.sh</code> 中添加环境变量 : </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export YARN_RESOURCEMANAGER_OPTS="--add-modules=ALL-SYSTEM"</span><br><span class="line">export YARN_NODEMANAGER_OPTS="--add-modules=ALL-SYSTEM"</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>   参考 <a href="https://blog.csdn.net/qq_33931272/article/details/80070025" target="_blank" rel="noopener">关于hadoop3搭建的一些问题的解决</a>, 当运行的 JDK 版本高于 9 时，会出现如下错误：</p>
-   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Error injecting constructor, java.lang.NoClassDefFoundError: javax/activation/DataSource</span><br><span class="line">  at org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver.&lt;init&gt;(JAXBContextResolver.java:52)</span><br><span class="line">  at org.apache.hadoop.yarn.server.nodemanager.webapp.WebServer$NMWebApp.setup(WebServer.java:153)</span><br><span class="line">  while locating org.apache.hadoop.yarn.server.nodemanager.webapp.JAXBContextResolver</span><br></pre></td></tr></table></figure>
-
-
-<p>   解决方法是在<code>yarn-env.sh</code> 中添加环境变量 : </p>
-   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export YARN_RESOURCEMANAGER_OPTS="--add-modules=ALL-SYSTEM"</span><br><span class="line">export YARN_NODEMANAGER_OPTS="--add-modules=ALL-SYSTEM"</span><br></pre></td></tr></table></figure>
-
-
-<ol start="2">
 <li><p>配置<code>core-site.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://hserver1:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop-2.8.5/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>temporary data dir<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置<code>hdfs-site.xml</code></p>
-</li>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://hserver1:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop-2.8.5/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>temporary data dir<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>配置<code>hdfs-site.xml</code></li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>data replication number<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="comment">&lt;!-- 不能识别环境变量$&#123;HADOOP_HOME&#125; --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop-2.8.5/hdfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop-2.8.5/hdfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.http.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.secondary.http.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:50090<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.webhdfs.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>配置<code>mapred-site.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:10020<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:19888<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置<code>yarn-site.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8032<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.scheduler.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8030<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8031<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.admin.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8033<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8088<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<ol>
+<li>配置<code>mapred-site.xml</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:10020<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:19888<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>配置<code>yarn-site.xml</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8032<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.scheduler.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8030<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8031<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.admin.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8033<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>hserver1:8088<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+简单的hadoop配置完成了</li>
 </ol>
-<p>简单的hadoop配置完成了</p>
 <h3 id="开启hadoop"><a href="#开启hadoop" class="headerlink" title="开启hadoop"></a>开启hadoop</h3><ol>
 <li>格式化<code>namenode</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ pwd</span><br><span class="line">/usr/local/hadoop-2.8.5</span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo bash ./bin/hdfs namenod -format</span><br><span class="line">Error: Could not find or load main class namenod</span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo bash ./bin/hdfs namenode -format</span><br><span class="line">18/11/13 04:04:28 INFO namenode.NameNode: STARTUP_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">STARTUP_MSG: Starting NameNode</span><br><span class="line">STARTUP_MSG:   user = root</span><br><span class="line">STARTUP_MSG:   host = localhost/127.0.0.1</span><br><span class="line">STARTUP_MSG:   args = [-format]</span><br><span class="line">STARTUP_MSG:   version = 2.8.5</span><br><span class="line">STARTUP_MSG:   classpath = ...</span><br><span class="line">STARTUP_MSG:   java = 1.8.0_191</span><br><span class="line">************************************************************/</span><br><span class="line">18/11/13 04:04:28 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]</span><br><span class="line">18/11/13 04:04:28 INFO namenode.NameNode: createNameNode [-format]</span><br><span class="line">...</span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at localhost/127.0.0.1</span><br><span class="line">************************************************************/</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>![CentOS 64 位-2018-11-13-20-08-12.png](CentOS 64 位-2018-11-13-20-08-12.png)<br>*<em>报错: *</em> <code>Please specify HADOOP_NAMENODE_USER</code>. 意思是需要指定hadoop namenode的用户, 需要在<br><code>hadoop-env.sh</code>头部添加(后面如果有<code>export</code>的话可以省略<code>export</code>):</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_NAMENODE_USER=root</span><br><span class="line">export HADOOP_SECONDARYNAMENODE_USER=root</span><br><span class="line">export HADOOP_JOBTRACKER_USER=root</span><br><span class="line">export HADOOP_DATANODE_USER=root</span><br><span class="line">export HADOOP_TASKTRACKER_USER=root</span><br></pre></td></tr></table></figure>
-
-<p>或者将这几句添加到<code>start-all.sh</code>,<code>stop-all.sh</code>,<code>start-dfs.sh</code>,<code>stop-dfs.sh</code>,<code>start-yarn.sh</code>,<code>stop-yarn.sh</code>的头部。<br>2. 开启hadoop<br>直接使用<code>sbin</code>目录下的脚本<code>start-all.sh</code>开启, 使用<code>stop-all.sh</code>停止。<br>hadoop-2.8.5版本中会报deprecate(但是hadoop-3.1.1不会), 可以依次使用<code>start-dfs.sh</code>, <code>start-yarn.sh</code>代替。</p>
+<img src="/blog/.io//CentOS 64 位-2018-11-13-20-08-12.png" alt="CentOS 64 位-2018-11-13-20-08-12.png"><br><strong>报错: </strong> <code>Please specify HADOOP_NAMENODE_USER</code>. 意思是需要指定hadoop namenode的用户, 需要在<br><code>hadoop-env.sh</code>头部添加(后面如果有<code>export</code>的话可以省略<code>export</code>):<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_NAMENODE_USER=root</span><br><span class="line">export HADOOP_SECONDARYNAMENODE_USER=root</span><br><span class="line">export HADOOP_JOBTRACKER_USER=root</span><br><span class="line">export HADOOP_DATANODE_USER=root</span><br><span class="line">export HADOOP_TASKTRACKER_USER=root</span><br></pre></td></tr></table></figure>
+或者将这几句添加到<code>start-all.sh</code>,<code>stop-all.sh</code>,<code>start-dfs.sh</code>,<code>stop-dfs.sh</code>,<code>start-yarn.sh</code>,<code>stop-yarn.sh</code>的头部。</li>
+<li><p>开启hadoop<br>直接使用<code>sbin</code>目录下的脚本<code>start-all.sh</code>开启, 使用<code>stop-all.sh</code>停止。<br>hadoop-2.8.5版本中会报deprecate(但是hadoop-3.1.1不会), 可以依次使用<code>start-dfs.sh</code>, <code>start-yarn.sh</code>代替。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo bash ./sbin/start-all.sh</span><br><span class="line">This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh</span><br><span class="line">Starting namenodes on [hserver1]</span><br><span class="line">hserver1: starting namenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-namenode-hserver1.out</span><br><span class="line">localhost: starting datanode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-datanode-hserver1.out</span><br><span class="line">Starting secondary namenodes [hserver1]</span><br><span class="line">hserver1: starting secondarynamenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-secondarynamenode-hserver1.out</span><br><span class="line">starting yarn daemons</span><br><span class="line">starting resourcemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-gt-resourcemanager-hserver1.out</span><br><span class="line">localhost: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver1.out</span><br></pre></td></tr></table></figure>
-
-<p>*<em>注: *</em> 开启hadoop时可能会提示需要输入用户密码, 是由于需要ssh登入, 可以使用ssh密钥免密登陆.<br>比如现在是root用户, 那么需要将<code>ssh-keygen</code>生成的<code>id_rsa.pub</code>公钥保存到<code>/root/.ssh/authorized_keys</code>文件中。</p>
-<ol start="3">
-<li>查看<code>NodeManager</code><br>按照配置, <code>NodeManager</code>地址为<code>dfs.http.address</code>:<code>hserver1:50070</code> or <code>dfs.secondary.http.address</code>:<code>hserver1:50090</code>。<br>在浏览器地址栏输入:<code>hserver1:50070</code> or <code>192.168.48.200:50070</code><br>![CentOS 64 位-2018-11-13-21-06-49.png](CentOS 64 位-2018-11-13-21-06-49.png)<br>![CentOS 64 位-2018-11-13-21-07-22.png](CentOS 64 位-2018-11-13-21-07-22.png)<br>![CentOS 64 位-2018-11-13-21-07-29.png](CentOS 64 位-2018-11-13-21-07-29.png)</li>
-</ol>
-<p>*<em>注: *</em>需要在<code>/etc/hosts</code>文件中添加<code>127.0.0.1 hserver1</code>对应项才能使用主机名访问方式。<br>4. 查看<code>ResourceManager</code><br>根据配置, <code>yarn.resourcemanager.webapp.address</code>的地址为<code>hserver1:8088</code>.<br>在浏览器中输入<code>hserver1:8088</code><br>![CentOS 64 位-2018-11-13-21-14-40.png](CentOS 64 位-2018-11-13-21-14-40.png)</p>
-<h3 id="运行wordcount实例"><a href="#运行wordcount实例" class="headerlink" title="运行wordcount实例"></a>运行<code>wordcount</code>实例</h3><ol>
-<li><p>在hadoop home目录下创建目录<code>input</code>, 创建文件<code>f1.in</code>, <code>f2.in</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ cat input/f1.in</span><br><span class="line">hello hadoop</span><br><span class="line">hello java</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<p><strong>注: </strong> 开启hadoop时可能会提示需要输入用户密码, 是由于需要ssh登入, 可以使用ssh密钥免密登陆.<br>比如现在是root用户, 那么需要将<code>ssh-keygen</code>生成的<code>id_rsa.pub</code>公钥保存到<code>/root/.ssh/authorized_keys</code>文件中。</p>
 </li>
-<li><p>在运行的hadoop中创建目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo bash ./bin/hdfs dfs -mkdir /input</span><br></pre></td></tr></table></figure>
-
+<li><p>查看<code>NodeManager</code><br>按照配置, <code>NodeManager</code>地址为<code>dfs.http.address</code>:<code>hserver1:50070</code> or <code>dfs.secondary.http.address</code>:<code>hserver1:50090</code>。<br>在浏览器地址栏输入:<code>hserver1:50070</code> or <code>192.168.48.200:50070</code><br><img src="/blog/.io//CentOS 64 位-2018-11-13-21-06-49.png" alt="CentOS 64 位-2018-11-13-21-06-49.png"><br><img src="/blog/.io//CentOS 64 位-2018-11-13-21-07-22.png" alt="CentOS 64 位-2018-11-13-21-07-22.png"><br><img src="/blog/.io//CentOS 64 位-2018-11-13-21-07-29.png" alt="CentOS 64 位-2018-11-13-21-07-29.png"><br><strong>注: </strong>需要在<code>/etc/hosts</code>文件中添加<code>127.0.0.1 hserver1</code>对应项才能使用主机名访问方式。</p>
 </li>
+<li>查看<code>ResourceManager</code><br>根据配置, <code>yarn.resourcemanager.webapp.address</code>的地址为<code>hserver1:8088</code>.<br>在浏览器中输入<code>hserver1:8088</code><br><img src="/blog/.io//CentOS 64 位-2018-11-13-21-14-40.png" alt="CentOS 64 位-2018-11-13-21-14-40.png"><h3 id="运行wordcount实例"><a href="#运行wordcount实例" class="headerlink" title="运行wordcount实例"></a>运行<code>wordcount</code>实例</h3></li>
+<li>在hadoop home目录下创建目录<code>input</code>, 创建文件<code>f1.in</code>, <code>f2.in</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ cat input/f1.in</span><br><span class="line">hello hadoop</span><br><span class="line">hello java</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure></li>
+<li>在运行的hadoop中创建目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo bash ./bin/hdfs dfs -mkdir /input</span><br></pre></td></tr></table></figure>
+[gray]删除为<code>hdfs dfs -rm -r -f /input</code>[gray]<br>可以在<code>NodeManager</code>中看到新建的hdfs目录<a href="hserver1:50070/explore.html#/">hserver1:50070/explore.html#/</a><br><img src="/blog/.io//CentOS 64 位-2018-11-13-22-06-06.png" alt="CentOS 64 位-2018-11-13-22-06-06.png"><br>或者从shell中查看:</li>
 </ol>
-<p>[gray]删除为<code>hdfs dfs -rm -r -f /input</code>[gray]<br>可以在<code>NodeManager</code>中看到新建的hdfs目录<a href="hserver1:50070/explore.html#/" target="_blank" rel="noopener">hserver1:50070/explore.html#/</a><br>![CentOS 64 位-2018-11-13-22-06-06.png](CentOS 64 位-2018-11-13-22-06-06.png)<br>或者从shell中查看:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hadoop dfs -ls /input</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
+<ol>
 <li>上传文件<br>将<code>/usr/local/hadoop-2.8.5/input</code>目录的文件上传到hadoop目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs dfs -put input/* /input</span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs dfs -ls /input</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   3 root supergroup         36 2018-11-13 07:54 /input/f1.in</span><br><span class="line">-rw-r--r--   3 root supergroup       2710 2018-11-13 07:54 /input/f2.in</span><br></pre></td></tr></table></figure>
-
-</li>
+<img src="/blog/.io//CentOS 64 位-2018-11-13-23-56-58.png" alt="CentOS 64 位-2018-11-13-23-56-58.png"></li>
+<li>运行<code>wordcount</code>实例<br><code>wordcount</code>实例的位置在<code>share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar</code><br>执行下面的命令(新建了hadoop目录为/output)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar wordcount /input /output/wordcount.out</span><br></pre></td></tr></table></figure>
+可以在NodeManager的LiveNode中找到对应Node的地址, 查看该Node的状态<br><img src="/blog/.io//CentOS 64 位-2018-11-14-00-21-22.png" alt="CentOS 64 位-2018-11-14-00-21-22.png"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh</span><br><span class="line">Starting namenodes on [hserver1]</span><br><span class="line">hserver1: starting namenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-namenode-hserver1.out</span><br><span class="line">localhost: starting datanode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-datanode-hserver1.out</span><br><span class="line">Starting secondary namenodes [hserver1]</span><br><span class="line">hserver1: starting secondarynamenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-secondarynamenode-hserver1.out</span><br><span class="line">starting yarn daemons</span><br><span class="line">starting resourcemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-gt-resourcemanager-hserver1.out</span><br><span class="line">localhost: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver1.out</span><br><span class="line">18/11/13 21:06:17 INFO client.RMProxy: Connecting to ResourceManager at hserver1/127.0.0.1:8032</span><br><span class="line">18/11/13 21:06:17 INFO input.FileInputFormat: Total input files to process : 2</span><br><span class="line">18/11/13 21:06:18 INFO mapreduce.JobSubmitter: number of splits:2</span><br><span class="line">18/11/13 21:06:18 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1542171961373_0001</span><br><span class="line">18/11/13 21:06:19 INFO impl.YarnClientImpl: Submitted application application_1542171961373_0001</span><br><span class="line">18/11/13 21:06:19 INFO mapreduce.Job: The url to track the job: http://hserver1:8088/proxy/application_1542171961373_0001/</span><br><span class="line">18/11/13 21:06:19 INFO mapreduce.Job: Running job: job_1542171961373_0001</span><br><span class="line">18/11/13 21:06:27 INFO mapreduce.Job: Job job_1542171961373_0001 running in uber mode : false</span><br><span class="line">18/11/13 21:06:27 INFO mapreduce.Job:  map 0% reduce 0%</span><br><span class="line">18/11/13 21:06:36 INFO mapreduce.Job:  map 50% reduce 0%</span><br><span class="line">18/11/13 21:06:37 INFO mapreduce.Job:  map 100% reduce 0%</span><br><span class="line">18/11/13 21:06:43 INFO mapreduce.Job:  map 100% reduce 100%</span><br><span class="line">18/11/13 21:06:45 INFO mapreduce.Job: Job job_1542171961373_0001 completed successfully</span><br><span class="line">18/11/13 21:06:45 INFO mapreduce.Job: Counters: 50</span><br><span class="line">	File System Counters</span><br><span class="line">		FILE: Number of bytes read=3766</span><br><span class="line">		FILE: Number of bytes written=480592</span><br><span class="line">		FILE: Number of read operations=0</span><br><span class="line">		FILE: Number of large read operations=0</span><br><span class="line">		FILE: Number of write operations=0</span><br><span class="line">		HDFS: Number of bytes read=2940</span><br><span class="line">		HDFS: Number of bytes written=2633</span><br><span class="line">		HDFS: Number of read operations=9</span><br><span class="line">		HDFS: Number of large read operations=0</span><br><span class="line">		HDFS: Number of write operations=2</span><br><span class="line">	Job Counters </span><br><span class="line">		Killed map tasks=1</span><br><span class="line">		Launched map tasks=3</span><br><span class="line">		Launched reduce tasks=1</span><br><span class="line">		Data-local map tasks=3</span><br><span class="line">		Total time spent by all maps in occupied slots (ms)=14943</span><br><span class="line">		Total time spent by all reduces in occupied slots (ms)=5311</span><br><span class="line">		Total time spent by all map tasks (ms)=14943</span><br><span class="line">		Total time spent by all reduce tasks (ms)=5311</span><br><span class="line">		Total vcore-milliseconds taken by all map tasks=29886</span><br><span class="line">		Total vcore-milliseconds taken by all reduce tasks=10622</span><br><span class="line">		Total megabyte-milliseconds taken by all map tasks=15301632</span><br><span class="line">		Total megabyte-milliseconds taken by all reduce tasks=5438464</span><br><span class="line">	Map-Reduce Framework</span><br><span class="line">		Map input records=16</span><br><span class="line">		Map output records=429</span><br><span class="line">		Map output bytes=4450</span><br><span class="line">		Map output materialized bytes=3772</span><br><span class="line">		Input split bytes=194</span><br><span class="line">		Combine input records=429</span><br><span class="line">		Combine output records=283</span><br><span class="line">		Reduce input groups=283</span><br><span class="line">		Reduce shuffle bytes=3772</span><br><span class="line">		Reduce input records=283</span><br><span class="line">		Reduce output records=283</span><br><span class="line">		Spilled Records=566</span><br><span class="line">		Shuffled Maps =2</span><br><span class="line">		Failed Shuffles=0</span><br><span class="line">		Merged Map outputs=2</span><br><span class="line">		GC time elapsed (ms)=665</span><br><span class="line">		CPU time spent (ms)=1700</span><br><span class="line">		Physical memory (bytes) snapshot=709869568</span><br><span class="line">		Virtual memory (bytes) snapshot=6373437440</span><br><span class="line">		Total committed heap usage (bytes)=494927872</span><br><span class="line">	Shuffle Errors</span><br><span class="line">		BAD_ID=0</span><br><span class="line">		CONNECTION=0</span><br><span class="line">		IO_ERROR=0</span><br><span class="line">		WRONG_LENGTH=0</span><br><span class="line">		WRONG_MAP=0</span><br><span class="line">		WRONG_REDUCE=0</span><br><span class="line">	File Input Format Counters </span><br><span class="line">		Bytes Read=2746</span><br><span class="line">	File Output Format Counters </span><br><span class="line">		Bytes Written=2633</span><br></pre></td></tr></table></figure>
+<img src="/blog/.io//CentOS 64 位-2018-11-14-13-10-52.png" alt="CentOS 64 位-2018-11-14-13-10-52.png"><br>查看运行结果, 可以通过查看输出文件查看结果:</li>
 </ol>
-<p>![CentOS 64 位-2018-11-13-23-56-58.png](CentOS 64 位-2018-11-13-23-56-58.png)<br>4. 运行<code>wordcount</code>实例<br><code>wordcount</code>实例的位置在<code>share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar</code><br>执行下面的命令(新建了hadoop目录为/output)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar wordcount /input /output/wordcount.out</span><br></pre></td></tr></table></figure>
-
-<p>可以在NodeManager的LiveNode中找到对应Node的地址, 查看该Node的状态<br>![CentOS 64 位-2018-11-14-00-21-22.png](CentOS 64 位-2018-11-14-00-21-22.png)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh</span><br><span class="line">Starting namenodes on [hserver1]</span><br><span class="line">hserver1: starting namenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-namenode-hserver1.out</span><br><span class="line">localhost: starting datanode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-datanode-hserver1.out</span><br><span class="line">Starting secondary namenodes [hserver1]</span><br><span class="line">hserver1: starting secondarynamenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-secondarynamenode-hserver1.out</span><br><span class="line">starting yarn daemons</span><br><span class="line">starting resourcemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-gt-resourcemanager-hserver1.out</span><br><span class="line">localhost: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver1.out</span><br><span class="line">18/11/13 21:06:17 INFO client.RMProxy: Connecting to ResourceManager at hserver1/127.0.0.1:8032</span><br><span class="line">18/11/13 21:06:17 INFO input.FileInputFormat: Total input files to process : 2</span><br><span class="line">18/11/13 21:06:18 INFO mapreduce.JobSubmitter: number of splits:2</span><br><span class="line">18/11/13 21:06:18 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1542171961373_0001</span><br><span class="line">18/11/13 21:06:19 INFO impl.YarnClientImpl: Submitted application application_1542171961373_0001</span><br><span class="line">18/11/13 21:06:19 INFO mapreduce.Job: The url to track the job: http://hserver1:8088/proxy/application_1542171961373_0001/</span><br><span class="line">18/11/13 21:06:19 INFO mapreduce.Job: Running job: job_1542171961373_0001</span><br><span class="line">18/11/13 21:06:27 INFO mapreduce.Job: Job job_1542171961373_0001 running in uber mode : false</span><br><span class="line">18/11/13 21:06:27 INFO mapreduce.Job:  map 0% reduce 0%</span><br><span class="line">18/11/13 21:06:36 INFO mapreduce.Job:  map 50% reduce 0%</span><br><span class="line">18/11/13 21:06:37 INFO mapreduce.Job:  map 100% reduce 0%</span><br><span class="line">18/11/13 21:06:43 INFO mapreduce.Job:  map 100% reduce 100%</span><br><span class="line">18/11/13 21:06:45 INFO mapreduce.Job: Job job_1542171961373_0001 completed successfully</span><br><span class="line">18/11/13 21:06:45 INFO mapreduce.Job: Counters: 50</span><br><span class="line">	File System Counters</span><br><span class="line">		FILE: Number of bytes read=3766</span><br><span class="line">		FILE: Number of bytes written=480592</span><br><span class="line">		FILE: Number of read operations=0</span><br><span class="line">		FILE: Number of large read operations=0</span><br><span class="line">		FILE: Number of write operations=0</span><br><span class="line">		HDFS: Number of bytes read=2940</span><br><span class="line">		HDFS: Number of bytes written=2633</span><br><span class="line">		HDFS: Number of read operations=9</span><br><span class="line">		HDFS: Number of large read operations=0</span><br><span class="line">		HDFS: Number of write operations=2</span><br><span class="line">	Job Counters </span><br><span class="line">		Killed map tasks=1</span><br><span class="line">		Launched map tasks=3</span><br><span class="line">		Launched reduce tasks=1</span><br><span class="line">		Data-local map tasks=3</span><br><span class="line">		Total time spent by all maps in occupied slots (ms)=14943</span><br><span class="line">		Total time spent by all reduces in occupied slots (ms)=5311</span><br><span class="line">		Total time spent by all map tasks (ms)=14943</span><br><span class="line">		Total time spent by all reduce tasks (ms)=5311</span><br><span class="line">		Total vcore-milliseconds taken by all map tasks=29886</span><br><span class="line">		Total vcore-milliseconds taken by all reduce tasks=10622</span><br><span class="line">		Total megabyte-milliseconds taken by all map tasks=15301632</span><br><span class="line">		Total megabyte-milliseconds taken by all reduce tasks=5438464</span><br><span class="line">	Map-Reduce Framework</span><br><span class="line">		Map input records=16</span><br><span class="line">		Map output records=429</span><br><span class="line">		Map output bytes=4450</span><br><span class="line">		Map output materialized bytes=3772</span><br><span class="line">		Input split bytes=194</span><br><span class="line">		Combine input records=429</span><br><span class="line">		Combine output records=283</span><br><span class="line">		Reduce input groups=283</span><br><span class="line">		Reduce shuffle bytes=3772</span><br><span class="line">		Reduce input records=283</span><br><span class="line">		Reduce output records=283</span><br><span class="line">		Spilled Records=566</span><br><span class="line">		Shuffled Maps =2</span><br><span class="line">		Failed Shuffles=0</span><br><span class="line">		Merged Map outputs=2</span><br><span class="line">		GC time elapsed (ms)=665</span><br><span class="line">		CPU time spent (ms)=1700</span><br><span class="line">		Physical memory (bytes) snapshot=709869568</span><br><span class="line">		Virtual memory (bytes) snapshot=6373437440</span><br><span class="line">		Total committed heap usage (bytes)=494927872</span><br><span class="line">	Shuffle Errors</span><br><span class="line">		BAD_ID=0</span><br><span class="line">		CONNECTION=0</span><br><span class="line">		IO_ERROR=0</span><br><span class="line">		WRONG_LENGTH=0</span><br><span class="line">		WRONG_MAP=0</span><br><span class="line">		WRONG_REDUCE=0</span><br><span class="line">	File Input Format Counters </span><br><span class="line">		Bytes Read=2746</span><br><span class="line">	File Output Format Counters </span><br><span class="line">		Bytes Written=2633</span><br></pre></td></tr></table></figure>
-
-<p>![CentOS 64 位-2018-11-14-13-10-52.png](CentOS 64 位-2018-11-14-13-10-52.png)<br>查看运行结果, 可以通过查看输出文件查看结果:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@hserver1 hadoop-2.8.5]# sudo ./bin/hdfs dfs -ls /output</span><br><span class="line">Found 1 items</span><br><span class="line">drwxr-xr-x   - root supergroup          0 2018-11-13 21:06 /output/wordcount.out</span><br><span class="line">[root@hserver1 hadoop-2.8.5]# sudo ./bin/hdfs dfs -ls /output/wordcount.out</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   3 root supergroup          0 2018-11-13 21:06 /output/wordcount.out/_SUCCESS</span><br><span class="line">-rw-r--r--   3 root supergroup       2633 2018-11-13 21:06 /output/wordcount.out/part-r-00000</span><br><span class="line">[root@hserver1 hadoop-2.8.5]# sudo ./bin/hdfs dfs -ls /output/wordcount.out/part-r-00000</span><br><span class="line">-rw-r--r--   3 root supergroup       2633 2018-11-13 21:06 /output/wordcount.out/part-r-00000</span><br><span class="line">[root@hserver1 hadoop-2.8.5]# sudo ./bin/hdfs dfs -cat /output/wordcount.out/part-r-00000</span><br><span class="line">"I	1</span><br><span class="line">"The	3</span><br><span class="line">"We	1</span><br><span class="line"><span class="meta">($</span><span class="bash">290)	1</span></span><br><span class="line">-	5</span><br><span class="line">0.5	1</span><br><span class="line">2,000	1</span><br><span class="line">2018.	1</span><br><span class="line">5,	1</span><br><span class="line">5,000	1</span><br><span class="line">50.27	1</span><br><span class="line">Biao,	1</span><br><span class="line">Bijie	1</span><br><span class="line">Bijie,	1</span><br><span class="line">Chen	1</span><br><span class="line">China's	1</span><br><span class="line">Chinese	1</span><br><span class="line">Dafang	1</span><br><span class="line">Farmers	1</span><br><span class="line">Guizhou	2</span><br><span class="line">In	1</span><br><span class="line">June	1</span><br><span class="line">Li	2</span><br><span class="line">Luhua	1</span><br><span class="line">Moreover,	1</span><br><span class="line">... # 省略</span><br></pre></td></tr></table></figure>
-
-<p>更多可以查看<code>part-r-00000</code>中的内容。到这里实例运行算是结束了！！！真的是泪流满面！！！<br>以下是运行过程中遇到的问题<br>错误1: Error: Could not find or load main class jar<br>写错了hadoop, 不是hdfs<br>错误2:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar wordcount /input /output</span><br><span class="line">18/11/13 08:07:17 INFO client.RMProxy: Connecting to ResourceManager at hserver1/127.0.0.1:8032</span><br><span class="line">org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://hserver1:9000/output already exists</span><br><span class="line">	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:146)</span><br><span class="line">	at org.apache.hadoop.mapreduce.JobSubmitter.checkSpecs(JobSubmitter.java:268)</span><br><span class="line">	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:141)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job$11.run(Job.java:1341)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job$11.run(Job.java:1338)</span><br><span class="line">	at java.security.AccessController.doPrivileged(Native Method)</span><br><span class="line">	at javax.security.auth.Subject.doAs(Subject.java:422)</span><br><span class="line">	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1844)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1338)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1359)</span><br><span class="line">	at org.apache.hadoop.examples.WordCount.main(WordCount.java:87)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.apache.hadoop.util.ProgramDriver$ProgramDescription.invoke(ProgramDriver.java:71)</span><br><span class="line">	at org.apache.hadoop.util.ProgramDriver.run(ProgramDriver.java:144)</span><br><span class="line">	at org.apache.hadoop.examples.ExampleDriver.main(ExampleDriver.java:74)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.run(RunJar.java:239)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.main(RunJar.java:153)</span><br></pre></td></tr></table></figure>
-
+<p>更多可以查看<code>part-r-00000</code>中的内容。到这里实例运行算是结束了！！！真的是泪流满面！！！<br>以下是运行过程中遇到的问题<br>错误1: Error: Could not find or load main class jar<br>写错了hadoop, 不是hdfs<br>错误2:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar wordcount /input /output</span><br><span class="line">18/11/13 08:07:17 INFO client.RMProxy: Connecting to ResourceManager at hserver1/127.0.0.1:8032</span><br><span class="line">org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://hserver1:9000/output already exists</span><br><span class="line">	at org.apache.hadoop.mapreduce.lib.output.FileOutputFormat.checkOutputSpecs(FileOutputFormat.java:146)</span><br><span class="line">	at org.apache.hadoop.mapreduce.JobSubmitter.checkSpecs(JobSubmitter.java:268)</span><br><span class="line">	at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(JobSubmitter.java:141)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job$11.run(Job.java:1341)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job$11.run(Job.java:1338)</span><br><span class="line">	at java.security.AccessController.doPrivileged(Native Method)</span><br><span class="line">	at javax.security.auth.Subject.doAs(Subject.java:422)</span><br><span class="line">	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1844)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job.submit(Job.java:1338)</span><br><span class="line">	at org.apache.hadoop.mapreduce.Job.waitForCompletion(Job.java:1359)</span><br><span class="line">	at org.apache.hadoop.examples.WordCount.main(WordCount.java:87)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.apache.hadoop.util.ProgramDriver$ProgramDescription.invoke(ProgramDriver.java:71)</span><br><span class="line">	at org.apache.hadoop.util.ProgramDriver.run(ProgramDriver.java:144)</span><br><span class="line">	at org.apache.hadoop.examples.ExampleDriver.main(ExampleDriver.java:74)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.run(RunJar.java:239)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.main(RunJar.java:153)</span><br></pre></td></tr></table></figure></p>
 <p>log上说是/output已经存在。。。那运行前保证输出文件不存在。<br>错误3:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">18/11/13 08:54:23 INFO mapreduce.Job: Task Id : attempt_1542127670113_0001_m_000000_0, Status : FAILED</span><br><span class="line">Error: java.net.ConnectException: Call From localhost/127.0.0.1 to hserver1:9000 failed on connection exception: java.net.ConnectException: Connection refused;</span><br></pre></td></tr></table></figure>
-
 <p>问题4: 运行一直卡在<code>mapreduce.job: map 100 reduce 0</code><br>内存太小， 实测需要至少2G。另外还需要配置yarn和mapred的cpu-vcores.<br>yarn-site.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- default memory size is 8192(MB), and if you physical mem size less than 8(G), it can't detect automaticly. --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- so we have to spacify the mem size --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>4096<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- single task allocate min mem size --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.scheduler.minimum-allocation-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>1024<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="comment">&lt;!-- default size is 1024 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- single task allocate max mem size --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>4096<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="comment">&lt;!-- default size is 8192 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.resource.cpu-vcores<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>mapred-site.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.cpu.vcores<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.reduce.cpu.vcores<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>错误5: </p>
+<p>mapred-site.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.cpu.vcores<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.reduce.cpu.vcores<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure><br>错误5: </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INFO mapreduce.JobSubmitter: Cleaning up the staging area /tmp/hadoop-yarn/staging/root/.staging/job_1542168958134_0002</span><br><span class="line">java.io.IOException: org.apache.hadoop.yarn.exceptions.InvalidResourceRequestException: Invalid resource request, requested memory &lt; 0, or requested memory &gt; max configured, requestedMemory=1536, maxMemory=1024</span><br></pre></td></tr></table></figure>
-
 <p>原因: yarn配置<code>yarn.scheduler.maximum-allocation-mb</code>太小， 实测需要至少2G。</p>
 <h2 id="Mutli-Node集群搭建"><a href="#Mutli-Node集群搭建" class="headerlink" title="Mutli Node集群搭建"></a>Mutli Node集群搭建</h2><h3 id="准备工作-1"><a href="#准备工作-1" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
 <li><p>在Single Node的基础上搭建Multi Node集群, 先将hserver1虚拟机使用<code>完整克隆</code>复制得到<code>hserver2</code>,<code>hserver3</code>.<br>修改hserver2, hserver3的内存大小为2G.(否则, 我的主机内存是8G, 3个4G的虚拟机不能够同时运行)</p>
 </li>
 <li><p>开启3个虚拟机, 修改hserver2的<code>hostname</code>为<code>hserver2</code>, <code>ip</code>为<code>192.168.48.201</code>. 修改hserver3的<code>hostname</code>为<code>hserver3</code>, <code>ip</code>为<code>192.168.48.202</code>.<br>将<code>hserver2</code>, <code>hserver3</code>添加到<code>/etc/hosts</code>文件中:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 hserver1</span><br><span class="line">::1 hserver1</span><br><span class="line">192.168.48.200 hserver1</span><br><span class="line">192.168.48.201 hserver2</span><br><span class="line">192.168.48.202 hserver3</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
 <p>注意<code>127.0.0.1</code>地址对应的<code>hostname</code>是不同的。完成后可以使用<code>ping hserver1</code>测试是否修改成功。</p>
-<ol start="3">
-<li>免密登陆<br>将hserver1的<code>ssh公钥</code>添加到hserver2, hserver3<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo scp ~/.ssh/id_rsa.pub root@hserver2:~</span><br><span class="line">sudo scp ~/.ssh/id_rsa.pub root@hserver2:~</span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>免密登陆<br>将hserver1的<code>ssh公钥</code>添加到hserver2, hserver3</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo scp ~/.ssh/id_rsa.pub root@hserver2:~</span><br><span class="line">sudo scp ~/.ssh/id_rsa.pub root@hserver2:~</span><br></pre></td></tr></table></figure>
+<p>由于我的是直接克隆得到的, 因此hserver2, hserver3中本来就有了hserver1的公钥</p>
 </li>
 </ol>
-<p>由于我的是直接克隆得到的, 因此hserver2, hserver3中本来就有了hserver1的公钥</p>
 <h3 id="配置hadoop-1"><a href="#配置hadoop-1" class="headerlink" title="配置hadoop"></a>配置hadoop</h3><ol>
 <li><p>指定master, 指定slaves<br><code>master</code>的指定是通过<code>NameNode</code>所在的机器指定。<br>指定<code>slaves</code>编辑<code>etc/hadoop/slaves</code>, 删除<code>localhost</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hserver1</span><br><span class="line">hserver2</span><br><span class="line">hserver3</span><br></pre></td></tr></table></figure>
@@ -545,48 +392,38 @@
 </li>
 <li><p>将hadoop拷贝到hserver2, hserver2</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo scp -r /usr/local/hadoop-2.8.5 root@hserver2:/usr/local/</span><br><span class="line">sudo scp -r /usr/local/hadoop-2.8.5 root@hserver2:/usr/local/</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
 <p>也可以只复制<code>etc</code>部分, 毕竟原来已经有了hadoop…而且只该了<code>etc</code>部分, 全部复制太慢了。</p>
-<h3 id="开启hadoop-1"><a href="#开启hadoop-1" class="headerlink" title="开启hadoop"></a>开启hadoop</h3><ol>
-<li>在NameNode的主机上(hserver1)格式化NameNode<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs namenode -format</span><br><span class="line">18/11/14 01:26:49 INFO namenode.NameNode: STARTUP_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">STARTUP_MSG: Starting NameNode</span><br><span class="line">STARTUP_MSG:   user = root</span><br><span class="line">STARTUP_MSG:   host = hserver1/127.0.0.1</span><br><span class="line">STARTUP_MSG:   args = [-format]</span><br><span class="line">STARTUP_MSG:   version = 2.8.5</span><br><span class="line">STARTUP_MSG:   classpath = ...</span><br><span class="line">************************************************************/</span><br><span class="line">18/11/14 01:26:49 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]</span><br><span class="line">18/11/14 01:26:49 INFO namenode.NameNode: createNameNode [-format]</span><br><span class="line">18/11/14 01:26:55 WARN common.Util: Path /usr/local/hadoop-2.8.5/hdfs/name should be specified as a URI in configuration files. Please update hdfs configuration.</span><br><span class="line">18/11/14 01:26:55 WARN common.Util: Path /usr/local/hadoop-2.8.5/hdfs/name should be specified as a URI in configuration files. Please update hdfs configuration.</span><br><span class="line">Formatting using clusterid: CID-9878c048-fcde-4a68-89ef-d8ea83cf74c1</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSEditLog: Edit logging is async:true</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: KeyProvider: null</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: fsLock is fair: true</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: Detailed lock hold time metrics enabled: false</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.DatanodeManager: dfs.block.invalidate.limit=1000</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.DatanodeManager: dfs.namenode.datanode.registration.ip-hostname-check=true</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: dfs.namenode.startup.delay.block.deletion.sec is set to 000:00:00:00.000</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: The block deletion will start around 2018 Nov 14 01:26:56</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: Computing capacity for map BlocksMap</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: 2.0% max memory 889 MB = 17.8 MB</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: capacity      = 2^21 = 2097152 entries</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: dfs.block.access.token.enable=false</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: defaultReplication         = 3</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: maxReplication             = 512</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: minReplication             = 1</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: maxReplicationStreams      = 2</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: replicationRecheckInterval = 3000</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: encryptDataTransfer        = false</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: maxNumBlocksToLog          = 1000</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: fsOwner             = root (auth:SIMPLE)</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: supergroup          = supergroup</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: isPermissionEnabled = false</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: HA Enabled: false</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: Append Enabled: true</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: Computing capacity for map INodeMap</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: 1.0% max memory 889 MB = 8.9 MB</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: capacity      = 2^20 = 1048576 entries</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSDirectory: ACLs enabled? false</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSDirectory: XAttrs enabled? true</span><br><span class="line">18/11/14 01:26:57 INFO namenode.NameNode: Caching file names occurring more than 10 times</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: Computing capacity for map cachedBlocks</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: 0.25% max memory 889 MB = 2.2 MB</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: capacity      = 2^18 = 262144 entries</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: dfs.namenode.safemode.threshold-pct = 0.9990000128746033</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: dfs.namenode.safemode.min.datanodes = 0</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: dfs.namenode.safemode.extension     = 30000</span><br><span class="line">18/11/14 01:26:57 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.window.num.buckets = 10</span><br><span class="line">18/11/14 01:26:57 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.num.users = 10</span><br><span class="line">18/11/14 01:26:57 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.windows.minutes = 1,5,25</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: Retry cache on namenode is enabled</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: Retry cache will use 0.03 of total heap and retry cache entry expiry time is 600000 millis</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: Computing capacity for map NameNodeRetryCache</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: 0.029999999329447746% max memory 889 MB = 273.1 KB</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: capacity      = 2^15 = 32768 entries</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSImage: Allocated new BlockPoolId: BP-1814272250-127.0.0.1-1542187617617</span><br><span class="line">18/11/14 01:26:57 INFO common.Storage: Storage directory /usr/local/hadoop-2.8.5/hdfs/name has been successfully formatted.</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSImageFormatProtobuf: Saving image file /usr/local/hadoop-2.8.5/hdfs/name/current/fsimage.ckpt_0000000000000000000 using no compression</span><br><span class="line">18/11/14 01:26:58 INFO namenode.FSImageFormatProtobuf: Image file /usr/local/hadoop-2.8.5/hdfs/name/current/fsimage.ckpt_0000000000000000000 of size 320 bytes saved in 0 seconds.</span><br><span class="line">18/11/14 01:26:58 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid &gt;= 0</span><br><span class="line">18/11/14 01:26:58 INFO util.ExitUtil: Exiting with status 0</span><br><span class="line">18/11/14 01:26:58 INFO namenode.NameNode: SHUTDOWN_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at hserver1/127.0.0.1</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-17-28-46.png" alt="hserver1-2018-11-14-17-28-46.png"></p>
-<ol start="2">
+<h3 id="开启hadoop-1"><a href="#开启hadoop-1" class="headerlink" title="开启hadoop"></a>开启hadoop</h3><ol>
+<li><p>在NameNode的主机上(hserver1)格式化NameNode</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs namenode -format</span><br><span class="line">18/11/14 01:26:49 INFO namenode.NameNode: STARTUP_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">STARTUP_MSG: Starting NameNode</span><br><span class="line">STARTUP_MSG:   user = root</span><br><span class="line">STARTUP_MSG:   host = hserver1/127.0.0.1</span><br><span class="line">STARTUP_MSG:   args = [-format]</span><br><span class="line">STARTUP_MSG:   version = 2.8.5</span><br><span class="line">STARTUP_MSG:   classpath = ...</span><br><span class="line">************************************************************/</span><br><span class="line">18/11/14 01:26:49 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]</span><br><span class="line">18/11/14 01:26:49 INFO namenode.NameNode: createNameNode [-format]</span><br><span class="line">18/11/14 01:26:55 WARN common.Util: Path /usr/local/hadoop-2.8.5/hdfs/name should be specified as a URI in configuration files. Please update hdfs configuration.</span><br><span class="line">18/11/14 01:26:55 WARN common.Util: Path /usr/local/hadoop-2.8.5/hdfs/name should be specified as a URI in configuration files. Please update hdfs configuration.</span><br><span class="line">Formatting using clusterid: CID-9878c048-fcde-4a68-89ef-d8ea83cf74c1</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSEditLog: Edit logging is async:true</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: KeyProvider: null</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: fsLock is fair: true</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: Detailed lock hold time metrics enabled: false</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.DatanodeManager: dfs.block.invalidate.limit=1000</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.DatanodeManager: dfs.namenode.datanode.registration.ip-hostname-check=true</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: dfs.namenode.startup.delay.block.deletion.sec is set to 000:00:00:00.000</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: The block deletion will start around 2018 Nov 14 01:26:56</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: Computing capacity for map BlocksMap</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: 2.0% max memory 889 MB = 17.8 MB</span><br><span class="line">18/11/14 01:26:56 INFO util.GSet: capacity      = 2^21 = 2097152 entries</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: dfs.block.access.token.enable=false</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: defaultReplication         = 3</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: maxReplication             = 512</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: minReplication             = 1</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: maxReplicationStreams      = 2</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: replicationRecheckInterval = 3000</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: encryptDataTransfer        = false</span><br><span class="line">18/11/14 01:26:56 INFO blockmanagement.BlockManager: maxNumBlocksToLog          = 1000</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: fsOwner             = root (auth:SIMPLE)</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: supergroup          = supergroup</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: isPermissionEnabled = false</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: HA Enabled: false</span><br><span class="line">18/11/14 01:26:56 INFO namenode.FSNamesystem: Append Enabled: true</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: Computing capacity for map INodeMap</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: 1.0% max memory 889 MB = 8.9 MB</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: capacity      = 2^20 = 1048576 entries</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSDirectory: ACLs enabled? false</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSDirectory: XAttrs enabled? true</span><br><span class="line">18/11/14 01:26:57 INFO namenode.NameNode: Caching file names occurring more than 10 times</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: Computing capacity for map cachedBlocks</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: 0.25% max memory 889 MB = 2.2 MB</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: capacity      = 2^18 = 262144 entries</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: dfs.namenode.safemode.threshold-pct = 0.9990000128746033</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: dfs.namenode.safemode.min.datanodes = 0</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: dfs.namenode.safemode.extension     = 30000</span><br><span class="line">18/11/14 01:26:57 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.window.num.buckets = 10</span><br><span class="line">18/11/14 01:26:57 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.num.users = 10</span><br><span class="line">18/11/14 01:26:57 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.windows.minutes = 1,5,25</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: Retry cache on namenode is enabled</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSNamesystem: Retry cache will use 0.03 of total heap and retry cache entry expiry time is 600000 millis</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: Computing capacity for map NameNodeRetryCache</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: 0.029999999329447746% max memory 889 MB = 273.1 KB</span><br><span class="line">18/11/14 01:26:57 INFO util.GSet: capacity      = 2^15 = 32768 entries</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSImage: Allocated new BlockPoolId: BP-1814272250-127.0.0.1-1542187617617</span><br><span class="line">18/11/14 01:26:57 INFO common.Storage: Storage directory /usr/local/hadoop-2.8.5/hdfs/name has been successfully formatted.</span><br><span class="line">18/11/14 01:26:57 INFO namenode.FSImageFormatProtobuf: Saving image file /usr/local/hadoop-2.8.5/hdfs/name/current/fsimage.ckpt_0000000000000000000 using no compression</span><br><span class="line">18/11/14 01:26:58 INFO namenode.FSImageFormatProtobuf: Image file /usr/local/hadoop-2.8.5/hdfs/name/current/fsimage.ckpt_0000000000000000000 of size 320 bytes saved in 0 seconds.</span><br><span class="line">18/11/14 01:26:58 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid &gt;= 0</span><br><span class="line">18/11/14 01:26:58 INFO util.ExitUtil: Exiting with status 0</span><br><span class="line">18/11/14 01:26:58 INFO namenode.NameNode: SHUTDOWN_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at hserver1/127.0.0.1</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/.io//hserver1-2018-11-14-17-28-46.png" alt="hserver1-2018-11-14-17-28-46.png"></p>
+</li>
 <li><p>在master上(配置有hdfs, hserver1)开启dfs</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./sbin/start-dfs.sh</span><br><span class="line">Starting namenodes on [hserver1]</span><br><span class="line">hserver1: starting namenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-namenode-hserver1.out</span><br><span class="line">hserver3: starting datanode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-datanode-hserver3.out</span><br><span class="line">hserver1: starting datanode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-datanode-hserver1.out</span><br><span class="line">hserver2: starting datanode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-datanode-hserver2.out</span><br><span class="line">Starting secondary namenodes [hserver3]</span><br><span class="line">hserver3: starting secondarynamenode, logging to /usr/local/hadoop-2.8.5/logs/hadoop-root-secondarynamenode-hserver3.out</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在配置有resource manager的主机上(hserver1)开启yarn</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./sbin/start-yarn.sh</span><br><span class="line">starting yarn daemons</span><br><span class="line">starting resourcemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-gt-resourcemanager-hserver1.out</span><br><span class="line">hserver2: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver2.out</span><br><span class="line">hserver3: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver3.out</span><br><span class="line">hserver1: starting nodemanager, logging to /usr/local/hadoop-2.8.5/logs/yarn-root-nodemanager-hserver1.out</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
 <p>使用<code>jps</code>（需要安装 jdk, java development toolkits）查看各个server中运行的进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo jps</span><br><span class="line">4082 DataNode</span><br><span class="line">4419 ResourceManager</span><br><span class="line">3956 NameNode</span><br><span class="line">4523 NodeManager</span><br><span class="line">4940 Jps</span><br></pre></td></tr></table></figure>
-
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-17-43-44.png" alt="hserver1-2018-11-14-17-43-44.png"></p>
+<p><img src="/blog/.io//hserver1-2018-11-14-17-43-44.png" alt="hserver1-2018-11-14-17-43-44.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver2 hadoop-2.8.5]$ sudo jps</span><br><span class="line">4434 Jps</span><br><span class="line">3977 DataNode</span><br><span class="line">4140 NodeManager</span><br></pre></td></tr></table></figure>
-
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/hserver2-2018-11-14-17-45-25.png" alt="hserver2-2018-11-14-17-45-25.png"></p>
+<p><img src="/blog/.io//hserver2-2018-11-14-17-45-25.png" alt="hserver2-2018-11-14-17-45-25.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver3 hadoop-2.8.5]$ sudo jps</span><br><span class="line">4004 NodeManager</span><br><span class="line">3847 SecondaryNameNode</span><br><span class="line">4359 Jps</span><br><span class="line">3756 DataNode</span><br></pre></td></tr></table></figure>
-
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/hserver3-2018-11-14-17-47-41.png" alt="hserver3-2018-11-14-17-47-41.png"></p>
+<p><img src="/blog/.io//hserver3-2018-11-14-17-47-41.png" alt="hserver3-2018-11-14-17-47-41.png"></p>
+</li>
+</ol>
 <h3 id="运行wordcount实例-1"><a href="#运行wordcount实例-1" class="headerlink" title="运行wordcount实例"></a>运行wordcount实例</h3><ol>
 <li><p>先将hserver1中input目录下文件put到dfs的input目录下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs dfs -mkdir /input</span><br><span class="line">[sudo] password for gt: </span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs dfs -mkdir /output</span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs dfs -put input/* /input</span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hdfs dfs -ls /input</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   3 root supergroup         36 2018-11-14 01:56 /input/f1.in</span><br><span class="line">-rw-r--r--   3 root supergroup       2710 2018-11-14 01:56 /input/f2.in</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>运行wordcount实例</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo ./bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar wordcount /input /output/wordcount.out</span><br><span class="line">18/11/14 01:58:47 INFO client.RMProxy: Connecting to ResourceManager at hserver1/127.0.0.1:8032</span><br><span class="line">18/11/14 01:58:49 INFO input.FileInputFormat: Total input files to process : 2</span><br><span class="line">18/11/14 01:58:50 INFO mapreduce.JobSubmitter: number of splits:2</span><br><span class="line">18/11/14 01:58:51 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1542188103773_0001</span><br><span class="line">18/11/14 01:59:02 INFO impl.YarnClientImpl: Submitted application application_1542188103773_0001</span><br><span class="line">18/11/14 01:59:02 INFO mapreduce.Job: The url to track the job: http://hserver1:8088/proxy/application_1542188103773_0001/</span><br><span class="line">18/11/14 01:59:02 INFO mapreduce.Job: Running job: job_1542188103773_0001</span><br><span class="line">18/11/14 02:02:24 INFO mapreduce.Job: Job job_1542188103773_0001 running in uber mode : false</span><br><span class="line">18/11/14 02:02:24 INFO mapreduce.Job:  map 0% reduce 0%</span><br><span class="line">18/11/14 02:07:09 INFO mapreduce.Job:  map 100% reduce 0%</span><br><span class="line">18/11/14 02:07:28 INFO mapreduce.Job:  map 100% reduce 100%</span><br><span class="line">18/11/14 02:07:32 INFO mapreduce.Job: Job job_1542188103773_0001 completed successfully</span><br><span class="line">18/11/14 02:07:35 INFO mapreduce.Job: Counters: 49</span><br><span class="line">	File System Counters</span><br><span class="line">		FILE: Number of bytes read=3766</span><br><span class="line">		FILE: Number of bytes written=480592</span><br><span class="line">		FILE: Number of read operations=0</span><br><span class="line">		FILE: Number of large read operations=0</span><br><span class="line">		FILE: Number of write operations=0</span><br><span class="line">		HDFS: Number of bytes read=2940</span><br><span class="line">		HDFS: Number of bytes written=2633</span><br><span class="line">		HDFS: Number of read operations=9</span><br><span class="line">		HDFS: Number of large read operations=0</span><br><span class="line">		HDFS: Number of write operations=2</span><br><span class="line">	Job Counters </span><br><span class="line">		Launched map tasks=2</span><br><span class="line">		Launched reduce tasks=1</span><br><span class="line">		Data-local map tasks=2</span><br><span class="line">		Total time spent by all maps in occupied slots (ms)=536968</span><br><span class="line">		Total time spent by all reduces in occupied slots (ms)=11662</span><br><span class="line">		Total time spent by all map tasks (ms)=536968</span><br><span class="line">		Total time spent by all reduce tasks (ms)=11662</span><br><span class="line">		Total vcore-milliseconds taken by all map tasks=1073936</span><br><span class="line">		Total vcore-milliseconds taken by all reduce tasks=23324</span><br><span class="line">		Total megabyte-milliseconds taken by all map tasks=549855232</span><br><span class="line">		Total megabyte-milliseconds taken by all reduce tasks=11941888</span><br><span class="line">	Map-Reduce Framework</span><br><span class="line">		Map input records=16</span><br><span class="line">		Map output records=429</span><br><span class="line">		Map output bytes=4450</span><br><span class="line">		Map output materialized bytes=3772</span><br><span class="line">		Input split bytes=194</span><br><span class="line">		Combine input records=429</span><br><span class="line">		Combine output records=283</span><br><span class="line">		Reduce input groups=283</span><br><span class="line">		Reduce shuffle bytes=3772</span><br><span class="line">		Reduce input records=283</span><br><span class="line">		Reduce output records=283</span><br><span class="line">		Spilled Records=566</span><br><span class="line">		Shuffled Maps =2</span><br><span class="line">		Failed Shuffles=0</span><br><span class="line">		Merged Map outputs=2</span><br><span class="line">		GC time elapsed (ms)=43965</span><br><span class="line">		CPU time spent (ms)=54050</span><br><span class="line">		Physical memory (bytes) snapshot=663736320</span><br><span class="line">		Virtual memory (bytes) snapshot=6380019712</span><br><span class="line">		Total committed heap usage (bytes)=470286336</span><br><span class="line">	Shuffle Errors</span><br><span class="line">		BAD_ID=0</span><br><span class="line">		CONNECTION=0</span><br><span class="line">		IO_ERROR=0</span><br><span class="line">		WRONG_LENGTH=0</span><br><span class="line">		WRONG_MAP=0</span><br><span class="line">		WRONG_REDUCE=0</span><br><span class="line">	File Input Format Counters </span><br><span class="line">		Bytes Read=2746</span><br><span class="line">	File Output Format Counters </span><br><span class="line">		Bytes Written=2633</span><br><span class="line">[gt@hserver1 hadoop-2.8.5]$</span><br></pre></td></tr></table></figure>
-
+<p><img src="/blog/.io//hserver1-2018-11-14-18-18-34.png" alt="hserver1-2018-11-14-18-18-34.png"><br><img src="/blog/.io//hserver1-2018-11-14-18-18-40.png" alt="hserver1-2018-11-14-18-18-40.png"></p>
 </li>
-</ol>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-18-18-34.png" alt="hserver1-2018-11-14-18-18-34.png"><br><img src="/blog/2018/09/09/hadoop分布式集群安装/hserver1-2018-11-14-18-18-40.png" alt="hserver1-2018-11-14-18-18-40.png"></p>
-<ol start="3">
-<li>停止hadoop<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo sbin/stop-all.sh</span><br><span class="line">[sudo] password for gt: </span><br><span class="line">This script is Deprecated. Instead use stop-dfs.sh and stop-yarn.sh</span><br><span class="line">Stopping namenodes on [hserver1]</span><br><span class="line">hserver1: stopping namenode</span><br><span class="line">hserver1: stopping datanode</span><br><span class="line">hserver3: stopping datanode</span><br><span class="line">hserver2: stopping datanode</span><br><span class="line">Stopping secondary namenodes [hserver3]</span><br><span class="line">hserver3: stopping secondarynamenode</span><br><span class="line">stopping yarn daemons</span><br><span class="line">stopping resourcemanager</span><br><span class="line">resourcemanager did not stop gracefully after 5 seconds: killing with kill -9</span><br><span class="line">hserver3: no nodemanager to stop</span><br><span class="line">hserver1: stopping nodemanager</span><br><span class="line">hserver2: no nodemanager to stop</span><br><span class="line">hserver1: nodemanager did not stop gracefully after 5 seconds: killing with kill -9</span><br><span class="line">no proxyserver to stop</span><br></pre></td></tr></table></figure>
-
+<li><p>停止hadoop</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[gt@hserver1 hadoop-2.8.5]$ sudo sbin/stop-all.sh</span><br><span class="line">[sudo] password for gt: </span><br><span class="line">This script is Deprecated. Instead use stop-dfs.sh and stop-yarn.sh</span><br><span class="line">Stopping namenodes on [hserver1]</span><br><span class="line">hserver1: stopping namenode</span><br><span class="line">hserver1: stopping datanode</span><br><span class="line">hserver3: stopping datanode</span><br><span class="line">hserver2: stopping datanode</span><br><span class="line">Stopping secondary namenodes [hserver3]</span><br><span class="line">hserver3: stopping secondarynamenode</span><br><span class="line">stopping yarn daemons</span><br><span class="line">stopping resourcemanager</span><br><span class="line">resourcemanager did not stop gracefully after 5 seconds: killing with kill -9</span><br><span class="line">hserver3: no nodemanager to stop</span><br><span class="line">hserver1: stopping nodemanager</span><br><span class="line">hserver2: no nodemanager to stop</span><br><span class="line">hserver1: nodemanager did not stop gracefully after 5 seconds: killing with kill -9</span><br><span class="line">no proxyserver to stop</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
@@ -594,14 +431,13 @@
 <p><strong>问题出现</strong></p>
 <p>在使用 <code>hdfs dfs -put ...</code> 上传文件时出现上述的错误：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs@vm1:/home/gt&gt; hdfs dfs -put ./as_training_simple.utf8 / </span><br><span class="line">2019-12-05 21:46:54,708 WARN ipc.Client: Address change detected. Old: vm1/192.168.56.5:9000 New: vm1/127.0.0.1:9000 put: Call From localhost/127.0.0.1 to vm1:9000 failed on connection exception: java.net.ConnectExce ption: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused</span><br></pre></td></tr></table></figure>
-
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/vm1-hdfs-dfs-refused9000.png" alt="vm1-hdfs-dfs-refused9000.png"></p>
+<p><img src="/blog/.io//vm1-hdfs-dfs-refused9000.png" alt="vm1-hdfs-dfs-refused9000.png"></p>
 <p>但是我用 <code>jps</code> 查看各个组件都己经启动了（包括 NameNode, DataNode）：</p>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/vm1-jps-20191205.png" alt="vm1-jps-20191205.png"> <img src="/blog/2018/09/09/hadoop分布式集群安装/vm2-jps-20191205.png" alt="vm2-jps-20191205.png"></p>
+<p><img src="/blog/.io//vm1-jps-20191205.png" alt="vm1-jps-20191205.png"> <img src="/blog/.io//vm2-jps-20191205.png" alt="vm2-jps-20191205.png"></p>
 <p>然后使用 <code>netstat -nltp</code> 查看确实已经有进程在9000 端口监听：</p>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/vm1-netstat-20191205.png" alt="vm1-netstat-20191205.png"></p>
+<p><img src="/blog/.io//vm1-netstat-20191205.png" alt="vm1-netstat-20191205.png"></p>
 <p>使用 <code>telnet vm1 9000</code>  尝试连接也得到 connection refused :</p>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/vm2-telnet-vm1-9000.png" alt="vm2-telnet-vm1-9000.png"></p>
+<p><img src="/blog/.io//vm2-telnet-vm1-9000.png" alt="vm2-telnet-vm1-9000.png"></p>
 <p><strong>解决思路</strong></p>
 <ol>
 <li><p>可能是 NameNode 没有启动。这种情况可以尝试启动 dfs（<code>start-dfs.sh</code>），或者 重新格式化 NameNode （<code>hdfs namenode -format</code>）后再启动。</p>
@@ -619,18 +455,15 @@
 <p>hadoop 在配置的时候，只有 <code>core-site.xml</code> 中的 <code>fs.defaultFS</code> 有相应的地址，网上搜的是将 <code>hdfs://localhost:9000</code> 修改为 <code>hdfs://&lt;your-ip&gt;:9000</code>, 但是我配置的时候已经是 <code>hdfs://vm1:9000</code>了。于是我改成了 ip 地址 <code>hdfs://192.168.56.5:9000</code>. 重新启动还是一样的。</p>
 <p>那么到底还要再哪里改呢？<strong>/etc/hosts</strong> 文件！我原来的 hosts 文件如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	localhost vm1</span><br><span class="line"># special IPv6 addresses</span><br><span class="line">::1             localhost vm1 ipv6-localhost ipv6-loopback</span><br><span class="line"></span><br><span class="line">fe00::0         ipv6-localnet</span><br><span class="line"></span><br><span class="line">ff00::0         ipv6-mcastprefix</span><br><span class="line">ff02::1         ipv6-allnodes</span><br><span class="line">ff02::2         ipv6-allrouters</span><br><span class="line">ff02::3         ipv6-allhosts</span><br><span class="line">10.0.2.5        vm1 localhost</span><br><span class="line">10.0.2.6        vm2</span><br><span class="line">10.0.2.7        vm3</span><br><span class="line">192.168.56.5    vm1</span><br><span class="line">192.168.56.6    vm2</span><br><span class="line">192.168.56.7    vm3</span><br></pre></td></tr></table></figure>
-
 <p>于是去掉 <code>127.0.0.1</code> 后面的 <code>vm1</code>, 去掉 <code>::1</code> ipv6 地址中的 <code>vm1</code>, 去掉 <code>10.0.2.5</code> 中的 <code>localhost</code>, 重新启动 dfs (start-dfs.sh): </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hdfs@vm1:/home/gt&gt; start-dfs.sh</span><br><span class="line">Starting namenodes on [vm1] vm1: Warning: Permanently added the ECDSA host key for IP address '10.0.2.5' to the list of known hosts.</span><br><span class="line">Starting datanodes</span><br><span class="line">Starting secondary namenodes [vm3]</span><br></pre></td></tr></table></figure>
-
 <p>表示 namenode 和 datanode 都已经启动了。于是尝试 put 文件，可惜还是不行，查看 9000 端口：</p>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/vm1-netstat-10-20191205.png" alt="vm1-netstat-10-20191205.png"></p>
+<p><img src="/blog/.io//vm1-netstat-10-20191205.png" alt="vm1-netstat-10-20191205.png"></p>
 <p>可以看到 9000 前面的本地地址已经修改成了 <code>10.0.2.5</code>, 但是这是 <code>NAT</code> 网卡得到的 IP，各个虚拟机之间不能互相 ping 通。因此这个 ip 也是不行的。</p>
 <p>再修改 hosts 文件，<strong>调整 hosts 文件中映射到 <code>vm1</code> 的 ip 顺序：先映射到 <code>Host-Only 网卡上的ip</code></strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost</span><br><span class="line"></span><br><span class="line"># special IPv6 addresses</span><br><span class="line"># ::1             localhost vm1 ipv6-localhost ipv6-loopback</span><br><span class="line"></span><br><span class="line">fe00::0         ipv6-localnet</span><br><span class="line"></span><br><span class="line">ff00::0         ipv6-mcastprefix</span><br><span class="line">ff02::1         ipv6-allnodes</span><br><span class="line">ff02::2         ipv6-allrouters</span><br><span class="line">ff02::3         ipv6-allhosts</span><br><span class="line">192.168.56.5    vm1  # 这个 ip 要在前面</span><br><span class="line">192.168.56.6    vm2</span><br><span class="line">192.168.56.7    vm3</span><br><span class="line">10.0.2.5        vm1  # NAT ip 要在后面</span><br><span class="line">10.0.2.6        vm2</span><br><span class="line">10.0.2.7        vm3</span><br></pre></td></tr></table></figure>
-
 <p>重新启动 dfs (start-dfs.sh) 后，上传文件到dfs 上已经<strong>成功</strong>了，9000 端口的状态如下：</p>
-<p><img src="/blog/2018/09/09/hadoop分布式集群安装/vm1-netstat-192-20191205.png" alt="vm1-netstat-192-20191205.png"></p>
+<p><img src="/blog/.io//vm1-netstat-192-20191205.png" alt="vm1-netstat-192-20191205.png"></p>
 <p>发现 9000 端口的本地地址已经是 <code>Host-Only</code> 的 ip 地址了。猜想 hosts 文件映射到 <code>主机名</code> 时应该是<code>‘先到先得’</code>的。</p>
 <p><strong>总之，</strong>遇到 9000 Connection Refused 异常，</p>
 <ul>
@@ -657,237 +490,147 @@
 <li>开启hadoop, 关闭hadoop</li>
 <li>运行wordcount实例</li>
 </ul>
-<p>存在的问题: 没有考虑安全问题, 如果将hadoop直接暴露在公网环境下, 存在一种<code>virus</code>通过<code>yarn</code>的<code>8088</code>端口, 提交脚本执行挖矿程序,<br>可以使用一下方法检查:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ls /var/tmp/java # 如果存在则多数是中毒了</span><br><span class="line">sudo crontab -l -u root # 如果存在一个奇怪的定时任务, 那么也是中毒了</span><br></pre></td></tr></table></figure>
-
-<p>对于hadoop, 应该设置专用的user对其控制(开启, 关闭), 在官网上有介绍。当暴露与公网环境后, 需要设置防火墙。</p>
+<p>存在的问题: 没有考虑安全问题, 如果将hadoop直接暴露在公网环境下, 存在一种<code>virus</code>通过<code>yarn</code>的<code>8088</code>端口, 提交脚本执行挖矿程序,<br>可以使用一下方法检查:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ls /var/tmp/java # 如果存在则多数是中毒了</span><br><span class="line">sudo crontab -l -u root # 如果存在一个奇怪的定时任务, 那么也是中毒了</span><br></pre></td></tr></table></figure><br>对于hadoop, 应该设置专用的user对其控制(开启, 关闭), 在官网上有介绍。当暴露与公网环境后, 需要设置防火墙。</p>
 <p>总之, hadoop应该继续深入学习, 包括mapreduce的原理。</p>
 
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/hadoop-分布式-云计算/" rel="tag"># hadoop, 分布式, 云计算</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2018/08/09/Iris数据分析/" rel="next" title="Iris数据分析">
-                <i class="fa fa-chevron-left"></i> Iris数据分析
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/hadoop-%E5%88%86%E5%B8%83%E5%BC%8F-%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag"># hadoop, 分布式, 云计算</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/10/27/mysql-community-v5-7安装总结/" rel="prev" title="mysql-community-v5.7安装总结">
-                mysql-community-v5.7安装总结 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2018/08/09/Iris%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="prev" title="Iris数据分析">
+      <i class="fa fa-chevron-left"></i> Iris数据分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2018/10/27/mysql-community-v5-7%E5%AE%89%E8%A3%85%E6%80%BB%E7%BB%93/" rel="next" title="mysql-community-v5.7安装总结">
+      mysql-community-v5.7安装总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集群规划"><span class="nav-number">1.</span> <span class="nav-text">集群规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Single-Node安装"><span class="nav-number">2.</span> <span class="nav-text">Single Node安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hadoop"><span class="nav-number">2.2.</span> <span class="nav-text">配置hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启hadoop"><span class="nav-number">2.3.</span> <span class="nav-text">开启hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行wordcount实例"><span class="nav-number">2.4.</span> <span class="nav-text">运行wordcount实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutli-Node集群搭建"><span class="nav-number">3.</span> <span class="nav-text">Mutli Node集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作-1"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hadoop-1"><span class="nav-number">3.2.</span> <span class="nav-text">配置hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启hadoop-1"><span class="nav-number">3.3.</span> <span class="nav-text">开启hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行wordcount实例-1"><span class="nav-number">3.4.</span> <span class="nav-text">运行wordcount实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.5.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集群规划"><span class="nav-number">1.</span> <span class="nav-text">集群规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Single-Node安装"><span class="nav-number">2.</span> <span class="nav-text">Single Node安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hadoop"><span class="nav-number">2.2.</span> <span class="nav-text">配置hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启hadoop"><span class="nav-number">2.3.</span> <span class="nav-text">开启hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行wordcount实例"><span class="nav-number">2.4.</span> <span class="nav-text">运行wordcount实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutli-Node集群搭建"><span class="nav-number">3.</span> <span class="nav-text">Mutli Node集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作-1"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hadoop-1"><span class="nav-number">3.2.</span> <span class="nav-text">配置hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启hadoop-1"><span class="nav-number">3.3.</span> <span class="nav-text">开启hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行wordcount实例-1"><span class="nav-number">3.4.</span> <span class="nav-text">运行wordcount实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.5.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -897,135 +640,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -1041,178 +674,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

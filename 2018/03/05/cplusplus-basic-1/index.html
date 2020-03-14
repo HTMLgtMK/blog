@@ -1,130 +1,48 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="C++ basic,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="这里主要记录下我认为重要的点。  宏定义 宏定义目的是防止头文件被重复引用。 当编译器编译头文件时，判断当前宏是否被定义，如果没有定义，则定义宏， 并编译头文件，否则跳过头文件。  1#define __HEADER_H__	//宏定义   #ifndef 和 #pragma once的异同 相同： 都是为了避免同一个文件被include多次。">
-<meta name="keywords" content="C++ basic">
+  <meta name="description" content="这里主要记录下我认为重要的点。  宏定义 宏定义目的是防止头文件被重复引用。 当编译器编译头文件时，判断当前宏是否被定义，如果没有定义，则定义宏， 并编译头文件，否则跳过头文件。  1#define __HEADER_H__	&#x2F;&#x2F;宏定义  #ifndef 和 #pragma once的异同 相同： 都是为了避免同一个文件被include多次。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++基础 注意点(一)">
 <meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/03/05/cplusplus-basic-1/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="这里主要记录下我认为重要的点。  宏定义 宏定义目的是防止头文件被重复引用。 当编译器编译头文件时，判断当前宏是否被定义，如果没有定义，则定义宏， 并编译头文件，否则跳过头文件。  1#define __HEADER_H__	//宏定义   #ifndef 和 #pragma once的异同 相同： 都是为了避免同一个文件被include多次。">
-<meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2019-09-09T05:16:08.270Z">
+<meta property="og:description" content="这里主要记录下我认为重要的点。  宏定义 宏定义目的是防止头文件被重复引用。 当编译器编译头文件时，判断当前宏是否被定义，如果没有定义，则定义宏， 并编译头文件，否则跳过头文件。  1#define __HEADER_H__	&#x2F;&#x2F;宏定义  #ifndef 和 #pragma once的异同 相同： 都是为了避免同一个文件被include多次。">
+<meta property="article:published_time" content="2018-03-05T11:52:01.000Z">
+<meta property="article:modified_time" content="2019-09-09T05:16:08.270Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="C++ basic">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++基础 注意点(一)">
-<meta name="twitter:description" content="这里主要记录下我认为重要的点。  宏定义 宏定义目的是防止头文件被重复引用。 当编译器编译头文件时，判断当前宏是否被定义，如果没有定义，则定义宏， 并编译头文件，否则跳过头文件。  1#define __HEADER_H__	//宏定义   #ifndef 和 #pragma once的异同 相同： 都是为了避免同一个文件被include多次。">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/03/05/cplusplus-basic-1/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/03/05/cplusplus-basic-1/">
-
-
-
-
 
   <title>C++基础 注意点(一) | GT Blog</title>
   
@@ -134,183 +52,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2018/03/05/cplusplus-basic-1/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/03/05/cplusplus-basic-1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">C++基础 注意点(一)</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          C++基础 注意点(一)
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-05T19:52:01+08:00">
-                2018-03-05
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2018-03-05 19:52:01" itemprop="dateCreated datePublished" datetime="2018-03-05T19:52:01+08:00">2018-03-05</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2018/03/05/cplusplus-basic-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/03/05/cplusplus-basic-1/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-09 13:16:08" itemprop="dateModified" datetime="2019-09-09T13:16:08+08:00">2019-09-09</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2018/03/05/cplusplus-basic-1/" class="leancloud_visitors" data-flag-title="C++基础 注意点(一)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -318,46 +192,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>这里主要记录下我认为重要的点。</p>
 <ol>
 <li><p>宏定义<br> 宏定义目的是防止头文件被重复引用。<br> 当编译器编译头文件时，判断当前宏是否被定义，如果没有定义，则定义宏，<br> 并编译头文件，否则跳过头文件。</p>
  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __HEADER_H__	<span class="comment">//宏定义</span></span></span><br></pre></td></tr></table></figure>
-
 <p> <code>#ifndef</code> 和 <code>#pragma once</code>的异同<br> 相同：<br> 都是为了避免同一个文件被<code>include</code>多次。</p>
  <a id="more"></a>
-<pre><code><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __HEADER_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __HEADER_H__</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></code></pre><p> 不同：<br> <code>#ifndef</code>的方式受C/C++语言标准支持。它不光可以保证同一个<strong>文件</strong>不会被包含多次，<br> 也能保证<strong>内容</strong>完全相同的两个文件（或者代码片段）不会被不小心同时包含。<br> 由于编译器每次都需要打开头文件才能判定是否有重复定义，因此在编译大型项目时，<br> <code>#ifndef</code>会使得编译时间相对较长，因此一些编译器逐渐开始支持<code>#pragma once</code>的方式。</p>
+<pre><code> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __HEADER_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __HEADER_H__</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</code></pre><p> 不同：<br> <code>#ifndef</code>的方式受C/C++语言标准支持。它不光可以保证同一个<strong>文件</strong>不会被包含多次，<br> 也能保证<strong>内容</strong>完全相同的两个文件（或者代码片段）不会被不小心同时包含。<br> 由于编译器每次都需要打开头文件才能判定是否有重复定义，因此在编译大型项目时，<br> <code>#ifndef</code>会使得编译时间相对较长，因此一些编译器逐渐开始支持<code>#pragma once</code>的方式。</p>
 <p> <code>#prama once</code>一般有编译器提供保证：同一个<strong>文件</strong>不会被包含多次。但是不能保证不同文件的<br> 相同内容不会被重复引用。但是对于大型项目，这个方式的编译速度会更快。同时，<code>#pragma once</code><br> 兼容性不强。</p>
 </li>
-<li><p>引用头文件<br> 1-1. 使用<code>&lt;&gt;</code>引用系统头文件</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p> 系统会先在<strong>系统库</strong>文件目录下搜索头文件，它<strong>不会</strong>搜索当前工程下的目录。<br> 1-2. 使用<code>&quot;&quot;</code>格式引用自定义头文件</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"my_header.h"</span></span></span><br></pre></td></tr></table></figure>
-
-<p> 编译器会现在当前工程目录下搜索头文件，然后再搜索系统库文件目录。</p>
-</li>
-<li><p>volatile关键字<br> 该关键字表示变量可以被某些意外的因素改变。<br> 当编译器遇到该关键字时，将不会对变量进行优化，从而提供对变量的直接访问。<br> 如果全局变量使用volatile关键字，程序每次访问都是从变量的内存地址访问。</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> var = <span class="number">1</span>;</span><br><span class="line">_asm&#123;</span><br><span class="line">	mov ptr[ebp<span class="number">-4</span>],<span class="number">10</span>h</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>引用头文件<br> 1-1. 使用<code>&lt;&gt;</code>引用系统头文件 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+ 系统会先在<strong>系统库</strong>文件目录下搜索头文件，它<strong>不会</strong>搜索当前工程下的目录。<br> 1-2. 使用<code>&quot;&quot;</code>格式引用自定义头文件 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"my_header.h"</span></span></span><br></pre></td></tr></table></figure>
+ 编译器会现在当前工程目录下搜索头文件，然后再搜索系统库文件目录。</li>
+<li>volatile关键字<br> 该关键字表示变量可以被某些意外的因素改变。<br> 当编译器遇到该关键字时，将不会对变量进行优化，从而提供对变量的直接访问。<br> 如果全局变量使用volatile关键字，程序每次访问都是从变量的内存地址访问。 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> var = <span class="number">1</span>;</span><br><span class="line">_asm&#123;</span><br><span class="line">	mov ptr[ebp<span class="number">-4</span>],<span class="number">10</span>h</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>变量存储类型<br> C++语言中，变量有4种存储类型：<code>extern</code>,<code>static</code>,<code>register</code>,<code>auto</code>。<br> 变量的声明：告知编译器变量的名称和数据类型。<br> 变量的定义：编译器为变量分配存储空间。<br> 4-1. extern存储类型<br> extern关键字只声明不定义变量。通常在一个应用程序中包含多个文件，如果在一个文件中<br> 定义了一个全局变量，可能需要在其他文件中对其访问，可用<code>extern</code>关键字修饰其他文件中<br> 变量的声明，而定义源于前一个文件。<br> eg:<br> 在一个文件中定义了一个全局变量var</p>
  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-
 <p> 在其他文件中使用extern关键字声明全局变量var</p>
  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> var=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-
 <p> 4-2. static存储类型<br> 静态变量类型，分为<strong>全局静态变量</strong>类型和<strong>局部静态变量</strong>类型。</p>
 <ul>
-<li><p>当使用<code>static</code>关键字标识一个局部变量时，该变量被分派在一个持久额存储区域，当函数调用结束时，<br>  变量并不被释放，依然保持其值。<strong>当下一次函数被调用时，将应用之前的变量值。</strong><br>  局部静态变量只被初始化一次，但是它的作用域仍然是函数体内。<br>  可以认为静态变量是一个在函数调用后保持其值的局部变量。</p>
-</li>
+<li>当使用<code>static</code>关键字标识一个局部变量时，该变量被分派在一个持久额存储区域，当函数调用结束时，<br>  变量并不被释放，依然保持其值。<strong>当下一次函数被调用时，将应用之前的变量值。</strong><br>  局部静态变量只被初始化一次，但是它的作用域仍然是函数体内。<br>  可以认为静态变量是一个在函数调用后保持其值的局部变量。</li>
 <li><p>对于全局静态变量，它的作用域局限于本当前定义的文件，<strong>不能被其他文件使用extern关键字访问。</strong><br>  可以认为全局静态变量只是半个全局变量。(不能被其他文件共享)</p>
 <p>eg:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TestStaticVar</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> slocal=<span class="number">10</span>;<span class="comment">//定义一个局部静态变量</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,slocal);</span><br><span class="line">	++slocal;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	TestStaticVar();</span><br><span class="line">	TestStaticVar();</span><br><span class="line">	TestStaticVar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>将输出10,11,12。</p>
 <p>4-3. register存储类型<br>使用<code>register</code>关键字定义变量，变量将被分派到CPU的寄存器中，因此访问速度很快。<br>但是，<strong>register变量只能用于局部变量或作为函数的形式参数，而不能定义全局的register变量。</strong></p>
 <p>4-4. auto存储类型<br>全局变量、静态变量均为静态存储，而普通的局部变量属于动态存储。<br>auto 关键字表示变量将被用动态存储。<strong>默认局部变量均属于auto类型。</strong></p>
@@ -365,37 +224,21 @@
 </ul>
 </li>
 <li><p>实数和0的比较<br> 在比较实数和0时，尽量不要使用”==”,”!=”，而应该使用”&lt;=”,”&gt;=”运算符。</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> eps=<span class="number">0.0000001</span>;<span class="comment">//定义0的精度，相当于数学的无穷小</span></span><br><span class="line">	<span class="keyword">float</span> fvar = <span class="number">0.00001</span>;</span><br><span class="line">	<span class="keyword">if</span>(fvar&gt;=-eps &amp;&amp; fvar&lt;=eps)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"等于0\n"</span>,fvar);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"不等于0\n"</span>,<span class="number">10</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>二维数组<br> 在定义二维数组时，如果需要提供全部元素的初始值，可以省略第一维的长度，<br> 但是不能省略第二维的长度。</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[][<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>结构体的字节对齐问题<br> 编译器在为结构体变量分配变量空间时，保证下一个成员的偏移量为该成员数据类型长度的整数倍。</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ByteAlign</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> memOne;</span><br><span class="line">	<span class="keyword">char</span> memTwo;</span><br><span class="line">	<span class="keyword">int</span> memThree;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p> 使用<code>sizeof</code>函数测试时，发现结构体ByteAlign的变量占用16个字节。<br> 分析：double占用8个字节，char占用1个字节，int占用4个字节。假设从0地址开始，<br> memOne占用0,1,2,3,4,5,6,7。<br> memTwo占用8。<br> 接下来为int型分配空间，需要空出9,10,11。<br> memThree占用12,13,14,15。</p>
-</li>
-<li><p>pair类型<br> <code>pair</code>类型可以使两个相同或不同类型的变量关联在一起。<br> 在使用pair类型时，需要引入utility头文件。<br> 可以pair类型的成员，可以使用成员访问符<code>first</code>和<code>second</code>。</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	pair&lt;<span class="keyword">int</span>,<span class="keyword">char</span>*&gt; <span class="built_in">list</span>(<span class="number">10</span>,<span class="string">"C++"</span>);<span class="comment">//定义pair类型变量list</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">list</span>.first==<span class="number">10</span> &amp;&amp; <span class="built_in">list</span>.second==<span class="string">"C++"</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"I love C++ language!\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>const 关键字修饰指针类型</p>
-<ul>
-<li><p><code>const</code>在类型前，用户不能修改指针常量的数据，但是可以修改指向的地址，指针变量“只读”；</p>
-</li>
-<li><p><code>const</code>在类型后，用户可以修改变量的值，但是不能修改指向的地址，指针变量固定指向地址；</p>
-</li>
-<li><p><code>const</code>在类型前后都有，用户既不能修改指向的地址，也不能修改指向的数据。<br>具体看下面的例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var=<span class="number">10</span>;				<span class="comment">//定义一个整型常量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* pvar=&amp;var;	<span class="comment">//定义一个指针常量，对其初始化</span></span><br><span class="line"><span class="comment">//*pvar=20;				//错误代码，不能修改指针常量的数据</span></span><br><span class="line"><span class="keyword">int</span> num=<span class="number">5</span>;				<span class="comment">//再定义一个整型变量</span></span><br><span class="line">pvar=&amp;num;				<span class="comment">//修改指向的地址</span></span><br></pre></td></tr></table></figure>
-
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">float</span> eps=<span class="number">0.0000001</span>;<span class="comment">//定义0的精度，相当于数学的无穷小</span></span><br><span class="line">	<span class="keyword">float</span> fvar = <span class="number">0.00001</span>;</span><br><span class="line">	<span class="keyword">if</span>(fvar&gt;=-eps &amp;&amp; fvar&lt;=eps)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"等于0\n"</span>,fvar);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"不等于0\n"</span>,<span class="number">10</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>二维数组<br> 在定义二维数组时，如果需要提供全部元素的初始值，可以省略第一维的长度，<br> 但是不能省略第二维的长度。 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[][<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>结构体的字节对齐问题<br> 编译器在为结构体变量分配变量空间时，保证下一个成员的偏移量为该成员数据类型长度的整数倍。 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ByteAlign</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> memOne;</span><br><span class="line">	<span class="keyword">char</span> memTwo;</span><br><span class="line">	<span class="keyword">int</span> memThree;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+ 使用<code>sizeof</code>函数测试时，发现结构体ByteAlign的变量占用16个字节。<br> 分析：double占用8个字节，char占用1个字节，int占用4个字节。假设从0地址开始，<br> memOne占用0,1,2,3,4,5,6,7。<br> memTwo占用8。<br> 接下来为int型分配空间，需要空出9,10,11。<br> memThree占用12,13,14,15。</li>
+<li>pair类型<br> <code>pair</code>类型可以使两个相同或不同类型的变量关联在一起。<br> 在使用pair类型时，需要引入utility头文件。<br> 可以pair类型的成员，可以使用成员访问符<code>first</code>和<code>second</code>。 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	pair&lt;int,char*&gt; list(10,"C++");//定义pair类型变量list</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">list</span>.first==<span class="number">10</span> &amp;&amp; <span class="built_in">list</span>.second==<span class="string">"C++"</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"I love C++ language!\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>const 关键字修饰指针类型<ul>
+<li><code>const</code>在类型前，用户不能修改指针常量的数据，但是可以修改指向的地址，指针变量“只读”；</li>
+<li><code>const</code>在类型后，用户可以修改变量的值，但是不能修改指向的地址，指针变量固定指向地址；</li>
+<li><code>const</code>在类型前后都有，用户既不能修改指向的地址，也不能修改指向的数据。<br>具体看下面的例子：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var=<span class="number">10</span>;				<span class="comment">//定义一个整型常量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* pvar=&amp;var;	<span class="comment">//定义一个指针常量，对其初始化</span></span><br><span class="line"><span class="comment">//*pvar=20;				//错误代码，不能修改指针常量的数据</span></span><br><span class="line"><span class="keyword">int</span> num=<span class="number">5</span>;				<span class="comment">//再定义一个整型变量</span></span><br><span class="line">pvar=&amp;num;				<span class="comment">//修改指向的地址</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ivar=<span class="number">0</span>;				<span class="comment">//定义一个整型常量</span></span><br><span class="line"><span class="keyword">int</span>* <span class="keyword">const</span> pvar=&amp;ivar;	<span class="comment">//定义了一个指向整型的常量指针</span></span><br><span class="line">*par=<span class="number">20</span>;				<span class="comment">//修改指针指向的数据</span></span><br><span class="line"><span class="keyword">int</span> inum=<span class="number">5</span>;				<span class="comment">//定义一个整型变量</span></span><br><span class="line"><span class="comment">//pvar=&amp;inum;			//错误的代码，不能修改常量指针指向的地址</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ivar=<span class="number">10</span>;			<span class="comment">//定义一个整型变量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* <span class="keyword">const</span> pvar=&amp;ivar;<span class="comment">//定义一个常量指针常量</span></span><br><span class="line"><span class="comment">//*pvar=20;				//非法的代码，不能够修改pvar指向的数据</span></span><br><span class="line"><span class="keyword">int</span> inum=<span class="number">10</span>;			<span class="comment">//定义一个整型变量</span></span><br><span class="line"><span class="comment">//pvar=&amp;inum;			//非法的代码，不能够修改pvar指向的地址</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ivar=<span class="number">10</span>;			<span class="comment">//定义一个整型变量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>* <span class="keyword">const</span> pvar=&amp;ivar;<span class="comment">//定义一个常量指针常量</span></span><br><span class="line"><span class="comment">//*pvar=20;				//非法的代码，不能够修改pvar指向的数据</span></span><br><span class="line"><span class="keyword">int</span> inum=<span class="number">10</span>;			<span class="comment">//定义一个整型变量</span></span><br><span class="line"><span class="comment">//pvar=&amp;inum;			//非法的代码，不能够修改pvar指向的地址</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>动态存储类型分配和释放<br><code>new</code>和<code>delete</code>搭配，<code>malloc</code>和<code>free</code>搭配。<br>使用<code>new</code>运算符为数组分配空间时，不能对数组初始化，除非变量是一个对象，<br>并且对象的类型(类)提供了默认的构造函数。<br>此外，在释放使用<code>new</code>运算符为数组分配的空间时，需要使用<code>delete []</code>来释放。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* pvar=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line"><span class="keyword">delete</span> [] pvar;</span><br></pre></td></tr></table></figure>
-
 <p>对类对象类型的数组，必须这样做。</p>
 </li>
 <li><p><strong>运算符的结合性和优先性</strong></p>
@@ -404,206 +247,143 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iret=<span class="number">2</span>;</span><br><span class="line">iret=<span class="number">3</span>*<span class="number">5</span>,iret*<span class="number">4</span>;	<span class="comment">//iret最后的值为15</span></span><br><span class="line"><span class="keyword">int</span> var=(iret=<span class="number">3</span>*<span class="number">5</span>,iret*<span class="number">4</span>);<span class="comment">//var=60,iret=15;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/C-basic/" rel="tag"># C++ basic</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2018/03/04/git-server/" rel="next" title="自己搭建git server">
-                <i class="fa fa-chevron-left"></i> 自己搭建git server
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/C-basic/" rel="tag"># C++ basic</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/03/07/suning-interview-one-experience/" rel="prev" title="苏宁易购一面经历">
-                苏宁易购一面经历 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2018/03/04/git-server/" rel="prev" title="自己搭建git server">
+      <i class="fa fa-chevron-left"></i> 自己搭建git server
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2018/03/07/suning-interview-one-experience/" rel="next" title="苏宁易购一面经历">
+      苏宁易购一面经历 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
 
-          <nav class="site-state motion-element">
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -613,135 +393,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -757,178 +427,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

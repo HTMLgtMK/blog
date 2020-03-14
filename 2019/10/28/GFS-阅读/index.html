@@ -1,137 +1,55 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="GFS,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
-<meta name="keywords" content="GFS">
+  <meta name="description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GFS 阅读">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-%E9%98%85%E8%AF%BB/index.html">
 <meta property="og:site_name" content="GT Blog">
 <meta property="og:description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
-<meta property="og:locale" content="English">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/GFS-Architectture.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/File-Region-State.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/Write-Control-and-data-Flow.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/figure3.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/Table2.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/Table3.png">
-<meta property="og:updated_time" content="2019-10-31T02:04:51.122Z">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//GFS-Architectture.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//File-Region-State.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//Write-Control-and-data-Flow.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//figure3.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//Table2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//Table3.png">
+<meta property="article:published_time" content="2019-10-28T12:23:36.000Z">
+<meta property="article:modified_time" content="2019-10-31T02:04:51.122Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="GFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GFS 阅读">
-<meta name="twitter:description" content="本篇文章主要记录阅读论文 The Google File System 的 Point。 1. Introduction First, component failures are the norm rather than the exception. Therefore, constant monitoring, error detection, fault tolerance, and aut">
-<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/GFS-Architectture.png">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/.io//GFS-Architectture.png">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/28/GFS-%E9%98%85%E8%AF%BB/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2019/10/28/GFS-阅读/">
-
-
-
-
 
   <title>GFS 阅读 | GT Blog</title>
   
@@ -141,191 +59,144 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2019/10/28/GFS-%E9%98%85%E8%AF%BB/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2019/10/28/GFS-阅读/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">GFS 阅读</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          GFS 阅读
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-28T20:23:36+08:00">
-                2019-10-28
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2019-10-28 20:23:36" itemprop="dateCreated datePublished" datetime="2019-10-28T20:23:36+08:00">2019-10-28</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2019/10/28/GFS-阅读/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2019/10/28/GFS-阅读/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-31 10:04:51" itemprop="dateModified" datetime="2019-10-31T10:04:51+08:00">2019-10-31</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2019/10/28/GFS-阅读/" class="leancloud_visitors" data-flag-title="GFS 阅读">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <p>本篇文章主要记录阅读论文 <em>The Google File System</em> 的 Point。</p>
@@ -360,7 +231,7 @@
 <h3 id="2-2-Interface"><a href="#2-2-Interface" class="headerlink" title="2.2 Interface"></a>2.2 Interface</h3><p>GFS provides a familiar file system interface. Files are organized hierarchically in directories and identified by <em>pathnames</em>. We support the usual operations to <em>createa</em>, <em>delete</em>, <em>open</em>, <em>close</em>, <em>read</em>, and <em>write</em> files.</p>
 <p>Moreover, GFS has <em>snapshot</em> and <em>record append</em> operations.</p>
 <h3 id="2-3-Architecture"><a href="#2-3-Architecture" class="headerlink" title="2.3 Architecture"></a>2.3 Architecture</h3><p>A GFS cluster consists of a <em>single master</em> and <em>multiple chunkservers</em> and is accessed by <em>multiple clients</em>, as shown in Figure 1.</p>
-<p><img src="/blog/2019/10/28/GFS-阅读/GFS-Architectture.png" alt="GFS-Architectture.png"></p>
+<p><img src="/blog/.io//GFS-Architectture.png" alt="GFS-Architectture.png"></p>
 <p>Files are divided into fixed-size <em>chunks</em>. Each chunk is identified by an immutable and globally unique 64 bit <em>chunk handle</em> assigned by the master at the time of chunk creation. Chunkservers store chunks on local disks as Linux files. For reliability, each chunk is replicated on multiple chunkservers. </p>
 <p>The master maintains all file system metadata. This includes the namespace, access control information, the mapping from files to chunks, and the current locations of chunks The master periodically communicates with each chunkserver in <em>HeartBeat messages</em> to give it instructions and collect its state</p>
 <p>GFS  Clients interact with the master for metadata operations, but all data-bearing communication goes directly to the chunkservers.</p>
@@ -383,7 +254,7 @@
 <p>The master does not store chunk location information persistently. Instead, it asks each chunkserver about its chunks at master startup and whenever a chunkserver joins the cluster.</p>
 <h4 id="2-6-1-In-Memory-Data-Structures"><a href="#2-6-1-In-Memory-Data-Structures" class="headerlink" title="2.6.1 In-Memory Data Structures"></a>2.6.1 <em>In-Memory</em> Data Structures</h4><h4 id="2-6-2-Chunk-Locations"><a href="#2-6-2-Chunk-Locations" class="headerlink" title="2.6.2 Chunk Locations"></a>2.6.2 Chunk Locations</h4><h4 id="2-6-3-Operation-Log"><a href="#2-6-3-Operation-Log" class="headerlink" title="2.6.3 Operation Log"></a>2.6.3 <em>Operation Log</em></h4><h3 id="2-7-Consistency-Model"><a href="#2-7-Consistency-Model" class="headerlink" title="2.7 Consistency Model"></a>2.7 Consistency Model</h3><p>GFS has a relaxed consistency model.</p>
 <h4 id="2-7-1-Guarantee-by-GFS"><a href="#2-7-1-Guarantee-by-GFS" class="headerlink" title="2.7.1 Guarantee by GFS"></a>2.7.1 <em>Guarantee by GFS</em></h4><p>File namespace mutations (e.g., file creation) are atomic. They are handled exclusively by the master: namespace locking guarantees atomicity and correctness (Section 4.1); the master’s operation log defines a global total order of these operations (Section 2.6.3).</p>
-<p><img src="/blog/2019/10/28/GFS-阅读/File-Region-State.png" alt="File-Region-State.png"></p>
+<p><img src="/blog/.io//File-Region-State.png" alt="File-Region-State.png"></p>
 <p>Data mutations: <em>Writes</em>, <em>Record Appends</em>.</p>
 <p>File region state after mutation:</p>
 <ul>
@@ -400,7 +271,7 @@
 <h3 id="3-1-Leases-and-Mutation-Order"><a href="#3-1-Leases-and-Mutation-Order" class="headerlink" title="3.1 Leases and Mutation Order"></a>3.1 Leases and Mutation Order</h3><p>We use leases to maintain a consistent mutation order across replicas.  The master grants a chunk lease to one of the replicas, which we call the <em>primary</em>. The primary picks a serial order for all mutations to the chunk. All replicas follow this order when applying mutations. Thus, the global mutation order is defined first by the lease grant order chosen by the master, and within a lease by the serial numbers assigned by the primary.</p>
 <p>The lease mechanism is designed to minimize management overhead at the master.  A lease has an initial timeout of 60 seconds.</p>
 <p>The leases machanism illustration:</p>
-<p><img src="/blog/2019/10/28/GFS-阅读/Write-Control-and-data-Flow.png" alt="Write-Control-and-data-Flow.png"></p>
+<p><img src="/blog/.io//Write-Control-and-data-Flow.png" alt="Write-Control-and-data-Flow.png"></p>
 <ol>
 <li>The client asks the master which chunkserver holds the current lease for the chunk and the locations of the other replicas. If no one has a lease, the master grants one to a replica it chooses (not shown).</li>
 <li>The master replies with the identity of the primary and the locations of the other (secondary) replicas. The client caches this data for future mutations. It needs to contact the master again only when the primary becomes unreachable or replies that it no longer holds a lease.</li>
@@ -500,241 +371,154 @@
 <h4 id="6-1-1-Reads"><a href="#6-1-1-Reads" class="headerlink" title="6.1.1 Reads"></a>6.1.1 <em>Reads</em></h4><p>N clients read simultaneously from the file system. Each client reads a randomly selected 4 MB region from a 320 GB file set. This is repeated 256 times so that each client ends up reading 1 GB of data.</p>
 <h4 id="6-1-2-Writes"><a href="#6-1-2-Writes" class="headerlink" title="6.1.2 Writes"></a>6.1.2 <em>Writes</em></h4><p>N clients write simultaneously to N distinct files.  Each client writes 1 GB of data to a new file in a series of 1 MB writes.</p>
 <h4 id="6-1-3-Record-Appends"><a href="#6-1-3-Record-Appends" class="headerlink" title="6.1.3 Record Appends"></a>6.1.3 <em>Record Appends</em></h4><p>N clients append simultaneously to a single file.</p>
-<p><img src="/blog/2019/10/28/GFS-阅读/figure3.png" alt="figure3.png"></p>
+<p><img src="/blog/.io//figure3.png" alt="figure3.png"></p>
 <h3 id="6-2-Real-World-Clusters"><a href="#6-2-Real-World-Clusters" class="headerlink" title="6.2 Real World Clusters"></a>6.2 Real World Clusters</h3><p>Two clusters in use within Google:</p>
 <p>Cluster A is used regularly for research and development by over a hundred engineers. A typical task is initiated by a human user and runs up to several hours. It reads through a few MBs to a few TBs of data, transforms or analyzes the data, and writes the results back to the cluster. </p>
 <p>Cluster B is primarily used for production data processing. The tasks last much longer and continuously generate and process multi-TB datasets with only occasional human intervention. </p>
 <p>A single “”task: many processes on many machines reading and writing many files simultaneously.</p>
-<p><img src="/blog/2019/10/28/GFS-阅读/Table2.png" alt="Table2.png"></p>
-<h4 id="6-2-1-Storage"><a href="#6-2-1-Storage" class="headerlink" title="6.2.1 Storage"></a>6.2.1 <em>Storage</em></h4><h4 id="6-2-2-Metadata"><a href="#6-2-2-Metadata" class="headerlink" title="6.2.2 Metadata"></a>6.2.2 <em>Metadata</em></h4><h4 id="6-2-3-Read-and-Write-Rate"><a href="#6-2-3-Read-and-Write-Rate" class="headerlink" title="6.2.3 Read and Write Rate"></a>6.2.3 <em>Read and Write Rate</em></h4><p><img src="/blog/2019/10/28/GFS-阅读/Table3.png" alt="Table3.png"></p>
+<p><img src="/blog/.io//Table2.png" alt="Table2.png"></p>
+<h4 id="6-2-1-Storage"><a href="#6-2-1-Storage" class="headerlink" title="6.2.1 Storage"></a>6.2.1 <em>Storage</em></h4><h4 id="6-2-2-Metadata"><a href="#6-2-2-Metadata" class="headerlink" title="6.2.2 Metadata"></a>6.2.2 <em>Metadata</em></h4><h4 id="6-2-3-Read-and-Write-Rate"><a href="#6-2-3-Read-and-Write-Rate" class="headerlink" title="6.2.3 Read and Write Rate"></a>6.2.3 <em>Read and Write Rate</em></h4><p><img src="/blog/.io//Table3.png" alt="Table3.png"></p>
 <h4 id="6-2-4-Master-Load"><a href="#6-2-4-Master-Load" class="headerlink" title="6.2.4 Master Load"></a>6.2.4 Master Load</h4><h4 id="6-2-5-Recovery-Time"><a href="#6-2-5-Recovery-Time" class="headerlink" title="6.2.5  Recovery Time"></a>6.2.5  <em>Recovery Time</em></h4><h3 id="6-3-Workload-Breakdown"><a href="#6-3-Workload-Breakdown" class="headerlink" title="6.3 Workload Breakdown"></a>6.3 Workload Breakdown</h3><p>Cluster X is for research and development while cluster Y is for production data processing.</p>
 <h4 id="6-3-1-Methodology-and-Caveats"><a href="#6-3-1-Methodology-and-Caveats" class="headerlink" title="6.3.1 Methodology and Caveats"></a>6.3.1 <em>Methodology and Caveats</em></h4><h4 id="6-3-2-Chunkserver-Workload"><a href="#6-3-2-Chunkserver-Workload" class="headerlink" title="6.3.2 Chunkserver Workload"></a>6.3.2 <em>Chunkserver Workload</em></h4><h4 id="6-3-3-Appends-versus-Writers"><a href="#6-3-3-Appends-versus-Writers" class="headerlink" title="6.3.3 Appends versus Writers"></a>6.3.3 <em>Appends versus Writers</em></h4><h4 id="6-3-4-Master-Workload"><a href="#6-3-4-Master-Workload" class="headerlink" title="6.3.4 Master Workload"></a>6.3.4 <em>Master Workload</em></h4><h2 id="7-EXPERIENCES"><a href="#7-EXPERIENCES" class="headerlink" title="7. EXPERIENCES"></a>7. EXPERIENCES</h2><p>We opt for the centralized approach in order to simplify the design, increase its reliability, and gain flexibility. In particular, a centralized master makes it much easier to implement sophisticated chunk placement and replication policies since the master already has most of the relevant information and controls how it changes. We address fault tolerance by keeping the master state small and fully replicated on other machines. Scalability and high availability (for reads) are currently provided by our shadow master mechanism. Updates to the master state are made persistent by appending to a write-ahead log. Therefore we could adapt a primary-copy scheme like the one in Harp [7] to provide high availability with stronger consistency guarantees than our current scheme.</p>
 <h2 id="8-RELATED-WORK"><a href="#8-RELATED-WORK" class="headerlink" title="8. RELATED WORK"></a>8. RELATED WORK</h2><h2 id="9-CONCLUSIONS"><a href="#9-CONCLUSIONS" class="headerlink" title="9. CONCLUSIONS"></a>9. CONCLUSIONS</h2>
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/GFS/" rel="tag"># GFS</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2019/10/21/HDFS-原理/" rel="next" title="HDFS 原理">
-                <i class="fa fa-chevron-left"></i> HDFS 原理
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/GFS/" rel="tag"># GFS</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/10/31/MapReduce-阅读/" rel="prev" title="MapReduce-阅读">
-                MapReduce-阅读 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2019/10/21/HDFS-%E5%8E%9F%E7%90%86/" rel="prev" title="HDFS 原理">
+      <i class="fa fa-chevron-left"></i> HDFS 原理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2019/10/31/MapReduce-%E9%98%85%E8%AF%BB/" rel="next" title="MapReduce-阅读">
+      MapReduce-阅读 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Design-Overview"><span class="nav-number">2.</span> <span class="nav-text">2. Design Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Detailed-Assumption"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Detailed Assumption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Interface"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Architecture"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Single-Master"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Single Master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Chunk-Size"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Chunk Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-Metadata"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 Metadata</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-In-Memory-Data-Structures"><span class="nav-number">2.6.1.</span> <span class="nav-text">2.6.1 In-Memory Data Structures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-Chunk-Locations"><span class="nav-number">2.6.2.</span> <span class="nav-text">2.6.2 Chunk Locations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-3-Operation-Log"><span class="nav-number">2.6.3.</span> <span class="nav-text">2.6.3 Operation Log</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-Consistency-Model"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 Consistency Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-1-Guarantee-by-GFS"><span class="nav-number">2.7.1.</span> <span class="nav-text">2.7.1 Guarantee by GFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-2-Implications-of-Applications"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.7.2 Implications of Applications</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SYSTEM-INTERACTIONS"><span class="nav-number">3.</span> <span class="nav-text">3. SYSTEM INTERACTIONS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Leases-and-Mutation-Order"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Leases and Mutation Order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Data-Flow"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Data Flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Atomic-Record-Appends"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Atomic Record Appends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Snapshot"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Snapshot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-MASTER-OPERATION"><span class="nav-number">4.</span> <span class="nav-text">4. MASTER OPERATION</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Namespace-Management-and-Locking"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Namespace Management and Locking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Replica-Placement"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Replica Placement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Creation-Re-replication-Rebalancing"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Creation, Re-replication, Rebalancing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Garbage-Collection"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Garbage Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1-Mechanism"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.1 Mechanism</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2-Discussion"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.2 Discussion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Stale-Replica-Detection"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Stale Replica Detection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-FAULT-TOLERANCE-AND-DIAGNOSIS"><span class="nav-number">5.</span> <span class="nav-text">5. FAULT TOLERANCE AND DIAGNOSIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Hign-Availability"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Hign Availability</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-Fast-Recovery"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 Fast Recovery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-Chunk-Replication"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 Chunk Replication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-3-Master-Replication"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 Master Replication</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Data-Integrity"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Data Integrity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Diagnostic-Tools"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Diagnostic Tools</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-MEASUREMENTS"><span class="nav-number">6.</span> <span class="nav-text">6. MEASUREMENTS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Micro-benchmarks"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 Micro-benchmarks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-1-Reads"><span class="nav-number">6.1.1.</span> <span class="nav-text">6.1.1 Reads</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-2-Writes"><span class="nav-number">6.1.2.</span> <span class="nav-text">6.1.2 Writes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-Record-Appends"><span class="nav-number">6.1.3.</span> <span class="nav-text">6.1.3 Record Appends</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Real-World-Clusters"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 Real World Clusters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-1-Storage"><span class="nav-number">6.2.1.</span> <span class="nav-text">6.2.1 Storage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-2-Metadata"><span class="nav-number">6.2.2.</span> <span class="nav-text">6.2.2 Metadata</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-Read-and-Write-Rate"><span class="nav-number">6.2.3.</span> <span class="nav-text">6.2.3 Read and Write Rate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-4-Master-Load"><span class="nav-number">6.2.4.</span> <span class="nav-text">6.2.4 Master Load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-Recovery-Time"><span class="nav-number">6.2.5.</span> <span class="nav-text">6.2.5  Recovery Time</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Workload-Breakdown"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 Workload Breakdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1-Methodology-and-Caveats"><span class="nav-number">6.3.1.</span> <span class="nav-text">6.3.1 Methodology and Caveats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-Chunkserver-Workload"><span class="nav-number">6.3.2.</span> <span class="nav-text">6.3.2 Chunkserver Workload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-3-Appends-versus-Writers"><span class="nav-number">6.3.3.</span> <span class="nav-text">6.3.3 Appends versus Writers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-4-Master-Workload"><span class="nav-number">6.3.4.</span> <span class="nav-text">6.3.4 Master Workload</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-EXPERIENCES"><span class="nav-number">7.</span> <span class="nav-text">7. EXPERIENCES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-RELATED-WORK"><span class="nav-number">8.</span> <span class="nav-text">8. RELATED WORK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-CONCLUSIONS"><span class="nav-number">9.</span> <span class="nav-text">9. CONCLUSIONS</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Design-Overview"><span class="nav-number">2.</span> <span class="nav-text">2. Design Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Detailed-Assumption"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Detailed Assumption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Interface"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Architecture"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Single-Master"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Single Master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Chunk-Size"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Chunk Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-Metadata"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 Metadata</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-In-Memory-Data-Structures"><span class="nav-number">2.6.1.</span> <span class="nav-text">2.6.1 In-Memory Data Structures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-Chunk-Locations"><span class="nav-number">2.6.2.</span> <span class="nav-text">2.6.2 Chunk Locations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-3-Operation-Log"><span class="nav-number">2.6.3.</span> <span class="nav-text">2.6.3 Operation Log</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-Consistency-Model"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 Consistency Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-1-Guarantee-by-GFS"><span class="nav-number">2.7.1.</span> <span class="nav-text">2.7.1 Guarantee by GFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-2-Implications-of-Applications"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.7.2 Implications of Applications</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SYSTEM-INTERACTIONS"><span class="nav-number">3.</span> <span class="nav-text">3. SYSTEM INTERACTIONS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Leases-and-Mutation-Order"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Leases and Mutation Order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Data-Flow"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Data Flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Atomic-Record-Appends"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Atomic Record Appends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Snapshot"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Snapshot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-MASTER-OPERATION"><span class="nav-number">4.</span> <span class="nav-text">4. MASTER OPERATION</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Namespace-Management-and-Locking"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Namespace Management and Locking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Replica-Placement"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Replica Placement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Creation-Re-replication-Rebalancing"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Creation, Re-replication, Rebalancing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Garbage-Collection"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Garbage Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1-Mechanism"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.1 Mechanism</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2-Discussion"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.2 Discussion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Stale-Replica-Detection"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Stale Replica Detection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-FAULT-TOLERANCE-AND-DIAGNOSIS"><span class="nav-number">5.</span> <span class="nav-text">5. FAULT TOLERANCE AND DIAGNOSIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Hign-Availability"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Hign Availability</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-Fast-Recovery"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 Fast Recovery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-Chunk-Replication"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 Chunk Replication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-3-Master-Replication"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 Master Replication</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Data-Integrity"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Data Integrity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Diagnostic-Tools"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Diagnostic Tools</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-MEASUREMENTS"><span class="nav-number">6.</span> <span class="nav-text">6. MEASUREMENTS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Micro-benchmarks"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 Micro-benchmarks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-1-Reads"><span class="nav-number">6.1.1.</span> <span class="nav-text">6.1.1 Reads</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-2-Writes"><span class="nav-number">6.1.2.</span> <span class="nav-text">6.1.2 Writes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-Record-Appends"><span class="nav-number">6.1.3.</span> <span class="nav-text">6.1.3 Record Appends</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Real-World-Clusters"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 Real World Clusters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-1-Storage"><span class="nav-number">6.2.1.</span> <span class="nav-text">6.2.1 Storage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-2-Metadata"><span class="nav-number">6.2.2.</span> <span class="nav-text">6.2.2 Metadata</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-Read-and-Write-Rate"><span class="nav-number">6.2.3.</span> <span class="nav-text">6.2.3 Read and Write Rate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-4-Master-Load"><span class="nav-number">6.2.4.</span> <span class="nav-text">6.2.4 Master Load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-5-Recovery-Time"><span class="nav-number">6.2.5.</span> <span class="nav-text">6.2.5  Recovery Time</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Workload-Breakdown"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 Workload Breakdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1-Methodology-and-Caveats"><span class="nav-number">6.3.1.</span> <span class="nav-text">6.3.1 Methodology and Caveats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-Chunkserver-Workload"><span class="nav-number">6.3.2.</span> <span class="nav-text">6.3.2 Chunkserver Workload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-3-Appends-versus-Writers"><span class="nav-number">6.3.3.</span> <span class="nav-text">6.3.3 Appends versus Writers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-4-Master-Workload"><span class="nav-number">6.3.4.</span> <span class="nav-text">6.3.4 Master Workload</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-EXPERIENCES"><span class="nav-number">7.</span> <span class="nav-text">7. EXPERIENCES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-RELATED-WORK"><span class="nav-number">8.</span> <span class="nav-text">8. RELATED WORK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-CONCLUSIONS"><span class="nav-number">9.</span> <span class="nav-text">9. CONCLUSIONS</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -744,135 +528,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -888,178 +562,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

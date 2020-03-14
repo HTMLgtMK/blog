@@ -1,138 +1,58 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="知识图谱,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="知识图谱， Knowledge Graph，一种以图形式组织的描述现实世界中实体和实体关系的模型。 Web 1.0 -&amp;gt; Web 2.0: 网页的链接 -&amp;gt; 数据的链接。">
-<meta name="keywords" content="知识图谱">
+  <meta name="description" content="知识图谱， Knowledge Graph，一种以图形式组织的描述现实世界中实体和实体关系的模型。 Web 1.0 -&gt; Web 2.0: 网页的链接 -&gt; 数据的链接。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识图谱概览">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2020/01/03/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/index.html">
 <meta property="og:site_name" content="GT Blog">
-<meta property="og:description" content="知识图谱， Knowledge Graph，一种以图形式组织的描述现实世界中实体和实体关系的模型。 Web 1.0 -&amp;gt; Web 2.0: 网页的链接 -&amp;gt; 数据的链接。">
-<meta property="og:locale" content="English">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0-Table1.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/KGE-survey-Fig2.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/KGE-survey-Table3.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/GE-survey-Table5.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/GE-survey-Table7.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/GE-survey-Table8.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/THUNLP-OpenKE-exp1.png">
-<meta property="og:updated_time" content="2020-01-15T02:14:34.514Z">
+<meta property="og:description" content="知识图谱， Knowledge Graph，一种以图形式组织的描述现实世界中实体和实体关系的模型。 Web 1.0 -&gt; Web 2.0: 网页的链接 -&gt; 数据的链接。">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0-Table1.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KGE-survey-Fig2.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//KGE-survey-Table3.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//GE-survey-Table4.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//GE-survey-Table5.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//GE-survey-Table6.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//GE-survey-Table7.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//GE-survey-Table8.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//THUNLP-OpenKE-exp1.png">
+<meta property="article:published_time" content="2020-01-03T02:27:27.000Z">
+<meta property="article:modified_time" content="2020-03-14T09:13:13.760Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="知识图谱">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="知识图谱概览">
-<meta name="twitter:description" content="知识图谱， Knowledge Graph，一种以图形式组织的描述现实世界中实体和实体关系的模型。 Web 1.0 -&amp;gt; Web 2.0: 网页的链接 -&amp;gt; 数据的链接。">
-<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0-Table1.png">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/.io//%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0-Table1.png">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2020/01/03/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2020/01/03/知识图谱概览/">
-
-
-
-
 
   <title>知识图谱概览 | GT Blog</title>
   
@@ -142,183 +62,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2020/01/03/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2020/01/03/知识图谱概览/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">知识图谱概览</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          知识图谱概览
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-03T10:27:27+08:00">
-                2020-01-03
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2020-01-03 10:27:27" itemprop="dateCreated datePublished" datetime="2020-01-03T10:27:27+08:00">2020-01-03</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2020/01/03/知识图谱概览/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2020/01/03/知识图谱概览/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-14 17:13:13" itemprop="dateModified" datetime="2020-03-14T17:13:13+08:00">2020-03-14</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2020/01/03/知识图谱概览/" class="leancloud_visitors" data-flag-title="知识图谱概览">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -326,21 +202,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>知识图谱， Knowledge Graph，一种以图形式组织的描述现实世界中实体和实体关系的模型。</p>
 <p>Web 1.0 -&gt; Web 2.0: 网页的链接 -&gt; 数据的链接。</p>
 <a id="more"></a>
-
 <h2 id="理论及论文"><a href="#理论及论文" class="headerlink" title="理论及论文"></a>理论及论文</h2><h3 id="Survey"><a href="#Survey" class="headerlink" title="Survey"></a>Survey</h3><p>目标：弄清楚如何构建 KG ， 构建技术中哪些部分是关键技术，难点，技术瓶颈是什么。</p>
-<ul>
-<li><a href="http://crad.ict.ac.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=3127" target="_blank" rel="noopener">刘峤, 李杨, 段宏, 等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3): 582-600.</a></li>
-</ul>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0-Table1.png" alt="知识图谱构建技术综述-Table1.png"></p>
-<ul>
-<li><p><a href="http://www.xml-data.org/dzkj-nature/html/201645589.htm" target="_blank" rel="noopener">徐增林, 盛泳潘, 贺丽荣, 等. 知识图谱技术综述[J]. 2016.</a></p>
-<p>关键技术：</p>
+<h4 id="刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><a href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600" class="headerlink" title="刘峤, 李杨, 段宏, 等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3): 582-600."></a><a href="http://crad.ict.ac.cn/CN/article/downloadArticleFile.do?attachType=PDF&amp;id=3127" target="_blank" rel="noopener">刘峤, 李杨, 段宏, 等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3): 582-600.</a></h4><p><img src="/blog/.io//知识图谱构建技术综述-Table1.png" alt="知识图谱构建技术综述-Table1.png"></p>
+<h4 id="徐增林-盛泳潘-贺丽荣-等-知识图谱技术综述-J-2016"><a href="#徐增林-盛泳潘-贺丽荣-等-知识图谱技术综述-J-2016" class="headerlink" title="徐增林, 盛泳潘, 贺丽荣, 等. 知识图谱技术综述[J]. 2016."></a><a href="http://www.xml-data.org/dzkj-nature/html/201645589.htm" target="_blank" rel="noopener">徐增林, 盛泳潘, 贺丽荣, 等. 知识图谱技术综述[J]. 2016.</a></h4><p>关键技术：</p>
 <ul>
 <li><p>知识抽取： 实体抽取，关系抽取，属性抽取</p>
 </li>
@@ -364,7 +231,6 @@
 <li><p>实体对齐（实体匹配，实体解析）：主要是用于消除异构数据中实体冲突、指向不明等不一致性问题，可以从顶层创建一个大规模的统一知识库，从而帮助机器理解多源异质的数据，形成高质量的知识。</p>
 </li>
 <li><!-- !important -->
-
 <p>就是PPT中的知识融合。</p>
 </li>
 <li><p>知识加工</p>
@@ -381,10 +247,7 @@
 <p><strong>图处理算法</strong></p>
 </li>
 </ul>
-</li>
-</ul>
-<p><a href="https://doi.org/10.1109/TKDE.2018.2807452" target="_blank" rel="noopener">HongYun Cai, Vincent W. Zheng, and Kevin Chen-Chuan Chang, “A Comprehensive Survey of Graph Embedding: Problems, Techniques, and Applications,” <em>IEEE Transactions on Knowledge and Data Engineering</em> 30, no. 9 (September 2018): 1616–37, https://doi.org/10.1109/TKDE.2018.2807452.</a>:</p>
-<p><code>Graph embedding</code> 的 survey:</p>
+<h4 id="HongYun-Cai-Vincent-W-Zheng-and-Kevin-Chen-Chuan-Chang-“A-Comprehensive-Survey-of-Graph-Embedding-Problems-Techniques-and-Applications-”-IEEE-Transactions-on-Knowledge-and-Data-Engineering-30-no-9-September-2018-1616–37-https-doi-org-10-1109-TKDE-2018-2807452"><a href="#HongYun-Cai-Vincent-W-Zheng-and-Kevin-Chen-Chuan-Chang-“A-Comprehensive-Survey-of-Graph-Embedding-Problems-Techniques-and-Applications-”-IEEE-Transactions-on-Knowledge-and-Data-Engineering-30-no-9-September-2018-1616–37-https-doi-org-10-1109-TKDE-2018-2807452" class="headerlink" title="HongYun Cai, Vincent W. Zheng, and Kevin Chen-Chuan Chang, “A Comprehensive Survey of Graph Embedding: Problems, Techniques, and Applications,” IEEE Transactions on Knowledge and Data Engineering 30, no. 9 (September 2018): 1616–37, https://doi.org/10.1109/TKDE.2018.2807452.:"></a><a href="https://doi.org/10.1109/TKDE.2018.2807452" target="_blank" rel="noopener">HongYun Cai, Vincent W. Zheng, and Kevin Chen-Chuan Chang, “A Comprehensive Survey of Graph Embedding: Problems, Techniques, and Applications,” <em>IEEE Transactions on Knowledge and Data Engineering</em> 30, no. 9 (September 2018): 1616–37, https://doi.org/10.1109/TKDE.2018.2807452.</a>:</h4><p><code>Graph embedding</code> 的 survey:</p>
 <p>The problem of graph embedding is related to two traditional research problems, i.e., graph analytics [8] and representation learning [9].</p>
 <blockquote>
 <p>Graph embedding aims to represent a graph as low dimensional vectors while the graph structures are preserved.</p>
@@ -394,17 +257,15 @@
 <p>Input graph: four categories, including <em>homogeneous graph graph, graph with auxiliary information and graph constructed from non-relational data</em>.   Different types of embedding input carry different information to be preserved in the embedded space.</p>
 <p> The embedding output is task driven: four types,  including <em>node embedding</em>, <em>edge embedding</em>, <em>hybrid embedding</em> and <em>whole-graph embedding</em>. </p>
 <p>roblem setting -&gt; challenges -&gt; solution techniques.</p>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/KGE-survey-Fig2.png" alt="KGE-survey-Fig2.png"></p>
+<p><img src="/blog/.io//KGE-survey-Fig2.png" alt="KGE-survey-Fig2.png"></p>
 <ul>
 <li>Homotgeneous graph: . All nodes in G belong to a single type and all edges belong to one single type</li>
 <li>Hetegeneous graph: Nodes and/or edges have different types.</li>
-<li>knowledge graph: triple facts: &lt;head entity, relation, tail entity&gt;.</li>
+<li>knowledge graph: triple facts: <head entity, relation, tail entity>.</head></li>
 </ul>
 <p>Hence, knowledge graph can be viewed as an instance of the heterogeneous graph.</p>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/KGE-survey-Table3.png" alt="KGE-survey-Table3.png"></p>
-<center>Table 3. Comparison of Different Types of Auxiliary Information in Graphs</center>
-
-<p><strong>proximity measures</strong>: to quantify the graph property to be preserved in the embedded space. </p>
+<p><img src="/blog/.io//KGE-survey-Table3.png" alt="KGE-survey-Table3.png"></p>
+<p><center>Table 3. Comparison of Different Types of Auxiliary Information in Graphs</center><br><strong>proximity measures</strong>: to quantify the graph property to be preserved in the embedded space. </p>
 <ul>
 <li>the <em>first-order proxoimity</em>:  $s_{i,j}^{(1)}$ between node $v_i$ and node $v_j$ is the weight of the edge $e_{ij}$ , i.e., $A_{i,j}$ .</li>
 <li>the <em>second-order proximity</em>: $s_{i,j}^{(2)}$ between node $v_i$ and $v_j$ is a similarity between $v_i$ ’s neighbourhood $s_i^{(1)}$ and $v_j$ ’s neighborhood $s_j^{1}$.</li>
@@ -412,10 +273,10 @@
 </ul>
 <p>The first-order proximity is the local pairwise similarity between only the nodes connected by edges. </p>
 <p>The second-order proximity compares the similarity of the nodes’ neighbourhood structures. </p>
-<p><strong>Problem Settings</strong></p>
-<ol>
+<h5 id="Problem-Settings"><a href="#Problem-Settings" class="headerlink" title="Problem Settings"></a><strong>Problem Settings</strong></h5><ol>
 <li>Embedding input</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -424,7 +285,8 @@
 <th>Challenges</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Homogeneous graph</td>
 <td></td>
 <td>How to capture the diversity of <strong>connectivity patterns</strong> observed in graphs?</td>
@@ -444,152 +306,95 @@
 <td></td>
 <td>How to construct a graph that encodes the pairwise relations between instances and how to preserve the generated node proximity matrix in the embedded space?</td>
 </tr>
-</tbody></table>
-<ol start="2">
+</tbody>
+</table>
+</div>
+<ol>
 <li><p>Embedding output</p>
 <p>Challenge One: how to <strong>find a suitable type of embedding output</strong> which meets the needs of the specific application task.</p>
-<table>
-<thead>
-<tr>
-<th>Embedding output</th>
-<th>Scenerios</th>
-<th>Challenges</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Node Embedding</td>
-<td></td>
-<td>How to <strong>define the pairwise node proximity*</strong> in various types of input graph and how to encode the proximity in the learnt embeddings?</td>
-</tr>
-<tr>
-<td>Edge Embedding</td>
-<td>KG embedding</td>
-<td>How to <strong>define the edge-level similarity</strong> and how to <strong>model the asymmetric property of the edges</strong>, if any?</td>
-</tr>
-<tr>
-<td>Hybrid Embedding</td>
-<td>node + edge (Substructure)<br> node + community</td>
-<td>How to <strong>generate the target substructure</strong> and how to <strong>embed different types of graph components</strong> in one common space?</td>
-</tr>
-<tr>
-<td>Whole-Graph Embedding</td>
-<td>small graphs</td>
-<td>How to <strong>capture the properties</strong> of a whole graph and how to <strong>make a trade-off between expressiveness and efficiency</strong> ?</td>
-</tr>
-</tbody></table>
+<p>| Embedding output      | Scenerios                                        | Challenges                                                   |<br>| ——————————- | ———————————————————————— | —————————————————————————————— |<br>| Node Embedding        |                                                  | How to <strong>define the pairwise node proximity*</strong> in various types of input graph and how to encode the proximity in the learnt embeddings? |<br>| Edge Embedding        | KG embedding                                     | How to <strong>define the edge-level similarity</strong> and how to <strong>model the asymmetric property of the edges</strong>, if any? |<br>| Hybrid Embedding      | node + edge (Substructure)<br> node + community | How to <strong>generate the target substructure</strong> and how to <strong>embed different types of graph components</strong> in one common space? |<br>| Whole-Graph Embedding | small graphs                                     | How to <strong>capture the properties</strong> of a whole graph and how to <strong>make a trade-off between expressiveness and efficiency</strong> ? |</p>
 </li>
 </ol>
-<p><strong>Graph Embedding Techniques</strong></p>
-<p>The differences between different graph embedding algorithms lie in how they define the graph property to be preserved. </p>
-<ol>
-<li><p>Matrix Factorization</p>
-<ol>
+<h5 id="Graph-Embedding-Techniques"><a href="#Graph-Embedding-Techniques" class="headerlink" title="Graph Embedding Techniques"></a><strong>Graph Embedding Techniques</strong></h5><p>The differences between different graph embedding algorithms lie in how they define the graph property to be preserved. </p>
+<h6 id="Matrix-Factorization"><a href="#Matrix-Factorization" class="headerlink" title="Matrix Factorization"></a>Matrix Factorization</h6><ol>
 <li><p>Graph Laplacian Eigenmaps</p>
 <p>Insight: <em>The graph property to be preserved can be interpreted as pairwise node similarities. Thus, a larger penalty is imposed if two nodes with larger similarity are embedded far apart.</em></p>
 </li>
 </ol>
+<p>   Objective function:</p>
+<pre><code>$y^* = argmin \sum_{i \neq j}( y_i - y_j^2 W_{ij}) = argmin \quad y^TLy \cdots (1)$ 
+</code></pre><p>   $ L = D - W$;  D : the diagonal  matrix, $ D_{ii} = \sum_{j \neq i} W_{ij}$</p>
+<p>   with constraint on: $ y^T D y = 1 $</p>
+<p>   $(1) \Rightarrow y^* = argmin_{y^TDy=1} y^TLy = argmin \frac{y^TLy}{y^TDy} = argmax \frac{y^T W y}{y^T D y}  \cdots (2)$</p>
+<p>   The optimal $y$’s are the eigenvectors corresponding to the maximum eigenvalue of the eigenproblem <script type="math/tex">Wy = \lambda Dy</script>.</p>
+<p>   上面的方法只使用于 embed 一个 node, 对于 new comming nides, one solution is to design a linear function $y = X^T a$ . </p>
+<p>   $(1) \Rightarrow optimal a:  a*= argmin \sum_{i \neq j} | a^TX_i - a^TX_j |^2 W_{ij} = argmin \quad a^T XLX^Ta. \cdots (3)$  </p>
+<p>   with constraint on $a^TXDX^Ta = 1.$</p>
+<p>   $(3) \Rightarrow a* = argmin \frac{a^TXLX^Ta}{a^TXDX^Ta} = argmax \frac{a^TXWX^Ta}{a^TXDX^Ta}. \cdots (4)$</p>
+<p>   The optimal a’s are eigenvectors with the maximum eigenvalues in solving $XWX^Ta = \lambda XDX^Ta$.</p>
+<p>   相关研究：</p>
+<ul>
+<li>T. Hofmann and J. M. Buhmann, “Multidimensional scaling and data clustering,” in NIPS, 1994, pp. 459–466. </li>
+<li>M. Balasubramanian and E. L. Schwartz, “The isomap algorithm and topological stability,” Science, vol. 295, no. 5552, pp. 7–7, 2002</li>
+<li>W. N. A. Jr. and T. D. Morley, “Eigenvalues of the laplacian of a graph,” Linear and Multilinear Algebra, vol. 18, no. 2, pp. 141–145, 1985.</li>
+<li>X. He and P. Niyogi, “Locality preserving projections,” in NIPS, 2003, pp. 153–160</li>
+<li>S. T. Roweis and L. K. Saul, “Nonlinear Dimensionality Reduction by Locally Linear Embedding,” Science, vol. 290, no. 5500, pp. 2323–2326, 2000.</li>
+<li>] R. Jiang, W. Fu, L. Wen, S. Hao, and R. Hong, “Dimensionality reduction on anchorgraph with an efficient locality preserving projection,” Neurocomputing, vol. 187, pp. 109–118, 2016.</li>
+<li>Y. Yang, F. Nie, S. Xiang, Y. Zhuang, and W. Wang, “Local and global regressive mapping for manifold learning with out-ofsample extrapolation,” in AAAI, 2010.</li>
+<li>S. Xiang, F. Nie, C. Zhang, and C. Zhang, “Nonlinear dimensionality reduction with local spline embedding,” IEEE Trans. Knowl. Data Eng., vol. 21, no. 9, pp. 1285–1298, 2009</li>
+<li>D. Cai, X. He, and J. Han, “Spectral regression: a unified subspace learning framework for content-based image retrieval,” in MM, 2007, pp. 403–412.</li>
+<li>X. He and P. Niyogi, “Locality preserving projections,” in NIPS, 2003, pp. 153–160.</li>
+<li>Y.-Y. Lin, T.-L. Liu, and H.-T. Chen, “Semantic manifold learning for image retrieval,” in MM, 2005, pp. 249–258.</li>
+<li>K. Allab, L. Labiod, and M. Nadif, “A semi-nmf-pca unified framework for data clustering,” IEEE Trans. Knowl. Data Eng., vol. 29, no. 1, pp. 2–16, 2017</li>
+<li>L. Vandenberghe and S. Boyd, “Semidefinite programming,” SIAM Rev., vol. 38, no. 1, pp. 49–95, 1996.</li>
+<li><p>K. Q. Weinberger, F. Sha, and L. K. Saul, “Learning a kernel matrix for nonlinear dimensionality reduction,” in ICML, 2004.</p>
+<p><img src="/blog/.io//GE-survey-Table4.png" alt="GE-survey-Table4.png"></p>
 </li>
-</ol>
-<pre><code>Objective function:
-
- $y^* = argmin \sum_{i \neq j}( y_i - y_j^2 W_{ij}) = argmin y^TLy \cdots (1)$ 
-
-$ L = D - W$;  D : the diagonal  matrix, $ D_{ii} = \sum_{j \neq i} W_{ij}$
-
-with constraint on: $ y^T D y = 1 $
-
-$(1) \Rightarrow y^* = argmin_{y^TDy=1} y^TLy = argmin \frac{y^TLy}{y^TDy} = argmax \frac{y^T W y}{y^T D y}  \cdots (2)$
-
-The optimal $y$’s are the eigenvectors corresponding to the maximum eigenvalue of the eigenproblem $$Wy = \lambda Dy$$.
-
-
-
-上面的方法只使用于 embde 一个 node, 对于 new comming nides, one solution is to design a linear function $y = X^T a$ . 
-
-$(1) \Rightarrow optimal a:  a*= argmin \sum_{i \neq j} \| a^TX_i - a^TX_j \|^2 W_{ij} = argmin \quad a^T XLX^Ta. \cdots (3)$  
-
-with constraint on $a^TXDX^Ta = 1.$
-
-$(3) \Rightarrow a* = argmin \frac{a^TXLX^Ta}{a^TXDX^Ta} = argmax \frac{a^TXWX^Ta}{a^TXDX^Ta}. \cdots (4)$
-
-The optimal a’s are eigenvectors with the maximum eigenvalues in solving $XWX^Ta = \lambda XDX^Ta$.
-
-
-
-相关研究：
-
-- T. Hofmann and J. M. Buhmann, “Multidimensional scaling and data clustering,” in NIPS, 1994, pp. 459–466. 
-- M. Balasubramanian and E. L. Schwartz, “The isomap algorithm and topological stability,” Science, vol. 295, no. 5552, pp. 7–7, 2002
-- W. N. A. Jr. and T. D. Morley, “Eigenvalues of the laplacian of a graph,” Linear and Multilinear Algebra, vol. 18, no. 2, pp. 141–145, 1985.
--  X. He and P. Niyogi, “Locality preserving projections,” in NIPS, 2003, pp. 153–160
--  S. T. Roweis and L. K. Saul, “Nonlinear Dimensionality Reduction by Locally Linear Embedding,” Science, vol. 290, no. 5500, pp. 2323–2326, 2000.
-- ] R. Jiang, W. Fu, L. Wen, S. Hao, and R. Hong, “Dimensionality reduction on anchorgraph with an efficient locality preserving projection,” Neurocomputing, vol. 187, pp. 109–118, 2016.
-- Y. Yang, F. Nie, S. Xiang, Y. Zhuang, and W. Wang, “Local and global regressive mapping for manifold learning with out-ofsample extrapolation,” in AAAI, 2010.
--  S. Xiang, F. Nie, C. Zhang, and C. Zhang, “Nonlinear dimensionality reduction with local spline embedding,” IEEE Trans. Knowl. Data Eng., vol. 21, no. 9, pp. 1285–1298, 2009
-- D. Cai, X. He, and J. Han, “Spectral regression: a unified subspace learning framework for content-based image retrieval,” in MM, 2007, pp. 403–412.
-- X. He and P. Niyogi, “Locality preserving projections,” in NIPS, 2003, pp. 153–160.
--  Y.-Y. Lin, T.-L. Liu, and H.-T. Chen, “Semantic manifold learning for image retrieval,” in MM, 2005, pp. 249–258.
--  K. Allab, L. Labiod, and M. Nadif, “A semi-nmf-pca unified framework for data clustering,” IEEE Trans. Knowl. Data Eng., vol. 29, no. 1, pp. 2–16, 2017
--  L. Vandenberghe and S. Boyd, “Semidefinite programming,” SIAM Rev., vol. 38, no. 1, pp. 49–95, 1996.
-- K. Q. Weinberger, F. Sha, and L. K. Saul, “Learning a kernel matrix for nonlinear dimensionality reduction,” in ICML, 2004.
-
-![GE-survey-Table4.png](./知识图谱概览/GE-survey-Table4.png)
-
-- [77] M. Tang, F. Nie, and R. Jain, “Capped lp-norm graph embedding for photo clustering,” in MM, 2016, pp. 431–435.</code></pre><ol start="2">
+<li><p>[77] M. Tang, F. Nie, and R. Jain, “Capped lp-norm graph embedding for photo clustering,” in MM, 2016, pp. 431–435.</p>
+</li>
+</ul>
+<ol>
 <li><p>Node Proximity Matrix Factorization</p>
 <p>Insight: Node proximity can be approximated in a lowdimensional space using matrix factorization. The objective of preserving node proximity is to minimize the loss of approximation.</p>
 <p>objective function: $min | W - YY^{c^T}, \cdots (5)$ </p>
 <p>node embedding: $ Y \in R^{|V| \times d}$, context node embedding: $ Y^{c} \in R^{|V| \times d}$.</p>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/GE-survey-Table5.png" alt="GE-survey-Table5.png"></p>
+<p><img src="/blog/.io//GE-survey-Table5.png" alt="GE-survey-Table5.png"></p>
 <ul>
 <li>[50] G. Nikolentzos, P. Meladianos, and M. Vazirgiannis, “Matching node embeddings for graph similarity,” in AAAI, 2017, pp. 2429–2435.</li>
 <li>[24] A. Ahmed, N. Shervashidze, S. Narayanamurthy, V. Josifovski, and A. J. Smola, “Distributed large-scale natural graph factorization,” in WWW, 2013, pp. 37–48.</li>
 </ul>
 </li>
 </ol>
-<ol start="2">
-<li><p>Deep Learning</p>
-<ol>
+<h6 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h6><ol>
 <li><p>DL  with Random walk</p>
 <p>Insight: <em>The second-order proximity in a graph can be preserved in the embedded space by maximizing the probability of observing the neighbourhood of a node conditioned on its embedding.</em></p>
 </li>
 </ol>
+<p>   DeepWalk <a href="B. Perozzi, R. Al-Rfou, and S. Skiena, &quot;Deepwalk: Online learning
+   of social representations,&quot; in KDD, 2014, pp. 701–710">[17]</a> adopts a neural language model (SkipGram) for graph embedding. DeepWalk first samples a set of paths from the input graph using truncated random walk.   Each path sampled from the graph corresponds to a sentence from the corpus, where a node corresponds to a word. Then SkipGram is applied on the paths to maximize the probability of observing a node’s neighbourhood conditioned on its embedding.</p>
+<p>   The objective function is： </p>
+<script type="math/tex; mode=display">min_y -log P(\{v_{i-w}, \cdots, v_{i-1}, v_{i+1}, \cdots, v_{i+w}\} | y_i), \cdots (8)</script><p>   $w$ is the window size which restricts the size of random walk context. SkipGram removes the ordering constraint, </p>
+<script type="math/tex; mode=display">(8) \Rightarrow min_y -log \sum_{-w \leq j \leq w} P(v_{i+w} | y_i). \cdots (9)</script><p>   $P(v_{i+w} | y_i)$ is defined using softmax function: $P(v_{i+w} | y_i) = \frac{exp(y_{i+j}^T y_i)}{\sum_{k=1}^{|V|}exp(y_k^T y_i)}. \cdots (10)$</p>
+<p>   Note that calculating Eq. 10 is not feasible as the normalization factor  ) is expensive. There are usually two solutions to approximate the full softmax: <em>hierarchical softmax</em> <a href="T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean, &quot;Distributed representations of words and phrases and theircompositionality,&quot; in NIPS, 2013, pp. 3111–3119.">[112]</a> and <em>negative sampling</em> <a href="T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean, &quot;Distributed representations of words and phrases and their compositionality,&quot; in NIPS, 2013, pp. 3111–3119.">[112]</a>.</p>
+<p>   相关研究：</p>
+<ul>
+<li>Z. Jin, R. Liu, Q. Li, D. D. Zeng, Y. Zhan, and L. Wang, “Predicting user’s multi-interests with network embedding in health-related topics,” in IJCNN, 2016, pp. 2568–2575.</li>
+<li>A. Grover and J. Leskovec, “Node2vec: Scalable feature learning for networks,” in KDD, 2016, pp. 855–864.</li>
+<li>Y. Dong, N. V. Chawla, and A. Swami, “metapath2vec: Scalable representation learning for heterogeneous networks,” in KDD, 2017, pp. 135–144.</li>
+<li>Z. Yang, W. W. Cohen, and R. Salakhutdinov, “Revisiting semisupervised learning with graph embeddings,” in ICML, 2016, pp. 40–48.</li>
+<li>H. Zhang, X. Shang, H. Luan, M. Wang, and T. Chua, “Learning from collective intelligence: Feature learning using social images and tags,” TOMCCAP, vol. 13, no. 1, pp. 1:1–1:23, 2016</li>
+<li>J. Li, J. Zhu, and B. Zhang, “Discriminative deep random walk for network classification,” in ACL, 2016.</li>
+<li>Z. Yang, J. Tang, and W. Cohen, “Multi-modal bayesian embeddings for learning social knowledge graphs,” in IJCAI, 2016, pp. 2287–2293.s</li>
+<li>S. Pan, J. Wu, X. Zhu, C. Zhang, and Y. Wang, “Tri-party deep network representation,” in IJCAI, 2016, pp. 1895–1901.</li>
+<li>H. Fang, F. Wu, Z. Zhao, X. Duan, Y. Zhuang, and M. Ester, “Community-based question answering via heterogeneous social network learning,” in AAAI, 2016, pp. 122–128</li>
+<li>Z. Zhao, Q. Yang, D. Cai, X. He, and Y. Zhuang, “Expert finding for community-based question answering via ranking metric network learning,” in IJCAI, 2016, pp. 3000–3006</li>
+<li><p>Z. Liu, V. W. Zheng, Z. Zhao, F. Zhu, K. C. Chang, M. Wu, and J. Ying, “Semantic proximity search on heterogeneous graph by proximity embedding,” in AAAI, 2017, pp. 154–160.</p>
+<p><img src="/blog/.io//GE-survey-Table6.png" alt="GE-survey-Table6.png"></p>
 </li>
-</ol>
-<pre><code>DeepWalk [[17]](B. Perozzi, R. Al-Rfou, and S. Skiena, &quot;Deepwalk: Online learning
-of social representations,&quot; in KDD, 2014, pp. 701–710) adopts a neural language model (SkipGram) for graph embedding. DeepWalk first samples a set of paths from the input graph using truncated random walk.   Each path sampled from the graph corresponds to a sentence from the corpus, where a node corresponds to a word. Then SkipGram is applied on the paths to maximize the probability of observing a node’s neighbourhood conditioned on its embedding.
-
-The objective function is： 
-
-$$ min_y -log P(\{v_{i-w}, \cdots, v_{i-1}, v_{i+1}, \cdots, v_{i+w}\} | y_i), \cdots (8) $$
-
-$w$ is the window size which restricts the size of random walk context. SkipGram removes the ordering constraint, 
-
-$$(8) \Rightarrow min_y -log \sum_{-w \leq j \leq w} P(v_{i+w} | y_i). \cdots (9)$$
-
-$P(v_{i+w} | y_i)$ is defined using softmax function: $P(v_{i+w} | y_i) = \frac{exp(y_{i+j}^T y_i)}{\sum_{k=1}^{|V|}exp(y_k^T y_i)}. \cdots (10)$
-
-Note that calculating Eq. 10 is not feasible as the normalization factor  ) is expensive. There are usually two solutions to approximate the full softmax: *hierarchical softmax* [[112]](T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean, &quot;Distributed representations of words and phrases and theircompositionality,&quot; in NIPS, 2013, pp. 3111–3119.) and *negative sampling* [[112]](T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean, &quot;Distributed representations of words and phrases and their compositionality,&quot; in NIPS, 2013, pp. 3111–3119.).
-
-
-
-相关研究：
-
-- Z. Jin, R. Liu, Q. Li, D. D. Zeng, Y. Zhan, and L. Wang, “Predicting user’s multi-interests with network embedding in health-related topics,” in IJCNN, 2016, pp. 2568–2575.
-- A. Grover and J. Leskovec, “Node2vec: Scalable feature learning for networks,” in KDD, 2016, pp. 855–864.
--  Y. Dong, N. V. Chawla, and A. Swami, “metapath2vec: Scalable representation learning for heterogeneous networks,” in KDD, 2017, pp. 135–144.
--  Z. Yang, W. W. Cohen, and R. Salakhutdinov, “Revisiting semisupervised learning with graph embeddings,” in ICML, 2016, pp. 40–48.
-- H. Zhang, X. Shang, H. Luan, M. Wang, and T. Chua, “Learning from collective intelligence: Feature learning using social images and tags,” TOMCCAP, vol. 13, no. 1, pp. 1:1–1:23, 2016
-- J. Li, J. Zhu, and B. Zhang, “Discriminative deep random walk for network classification,” in ACL, 2016.
--  Z. Yang, J. Tang, and W. Cohen, “Multi-modal bayesian embeddings for learning social knowledge graphs,” in IJCAI, 2016, pp. 2287–2293.s
--  S. Pan, J. Wu, X. Zhu, C. Zhang, and Y. Wang, “Tri-party deep network representation,” in IJCAI, 2016, pp. 1895–1901.
-- H. Fang, F. Wu, Z. Zhao, X. Duan, Y. Zhuang, and M. Ester, “Community-based question answering via heterogeneous social network learning,” in AAAI, 2016, pp. 122–128
-- Z. Zhao, Q. Yang, D. Cai, X. He, and Y. Zhuang, “Expert finding for community-based question answering via ranking metric network learning,” in IJCAI, 2016, pp. 3000–3006
--  Z. Liu, V. W. Zheng, Z. Zhao, F. Zhu, K. C. Chang, M. Wu, and J. Ying, “Semantic proximity search on heterogeneous graph by proximity embedding,” in AAAI, 2017, pp. 154–160.
-
-![GE-survey-Table6.png](./知识图谱概览/GE-survey-Table6.png)
-
--  [34] H. Zhang, X. Shang, H. Luan, M. Wang, and T. Chua, “Learning from collective intelligence: Feature learning using social images and tags,” TOMCCAP, vol. 13, no. 1, pp. 1:1–1:23, 2016.</code></pre><ol start="2">
+<li><p>[34] H. Zhang, X. Shang, H. Luan, M. Wang, and T. Chua, “Learning from collective intelligence: Feature learning using social images and tags,” TOMCCAP, vol. 13, no. 1, pp. 1:1–1:23, 2016.</p>
+</li>
+</ul>
+<ol>
 <li><p>DL without Random walk</p>
 <p>Insight: <em>The multi-layered learning architecture is a robust and effective solution to encode the graph into a low dimensional space.</em></p>
 <ol>
@@ -629,7 +434,7 @@ Note that calculating Eq. 10 is not feasible as the normalization factor  ) is 
 <p>总结表格：</p>
 </li>
 </ol>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/GE-survey-Table7.png" alt="GE-survey-Table7.png"></p>
+<p><img src="/blog/.io//GE-survey-Table7.png" alt="GE-survey-Table7.png"></p>
 <ul>
 <li>[55]  M. Niepert, M. Ahmed, and K. Kutzkov, “Learning convolutional neural networks for graphs,” in ICML, 2016, pp. 2014–2023.</li>
 <li>[119]  M. Henaff, J. Bruna, and Y. LeCun, “Deep convolutional networks on graph-structured data,” CoRR, vol. abs/1506.05163, 2015.</li>
@@ -637,83 +442,59 @@ Note that calculating Eq. 10 is not feasible as the normalization factor  ) is 
 </ul>
 </li>
 </ol>
-<ol start="3">
-<li><p>Edge Reconstruction based Optimization</p>
-<p>Overall Insight: <em>The edges established based on node embedding should be as similar to those in the input graph as possible.</em></p>
+<h6 id="Edge-Reconstruction-based-Optimization"><a href="#Edge-Reconstruction-based-Optimization" class="headerlink" title="Edge Reconstruction based Optimization"></a>Edge Reconstruction based Optimization</h6><p>Overall Insight: <em>The edges established based on node embedding should be as similar to those in the input graph as possible.</em></p>
 <ol>
 <li><p>Maximizing Edge Reconstruction Probability</p>
 <p>Insight: <em>Good node embedding maximizes the probability of generating the observed edges in a graph</em>. </p>
 </li>
 </ol>
-</li>
-</ol>
-<pre><code>*first-order* proximity:
-
-$p^{(1)}(v_i, v_j) = \frac{1}{1+exp(-y_i^T y_j)}. \cdots (13)$
-
-objective function is:
-
-$O^{(1)}_{max} = max \sum_{e_{i,j \in E} log p^{(1)}(v_i, v_j).  \cdots (14)}$
-
-*second-order* proximity:
-
-$p^{(2)}(v_j|v_i) = \frac{exp(y_j^T y_i)}{\sum_{k=1}^{|V|} exp(y_k^T y_i)}. \cdots (15)$
-
-objective function is:
-
-$O^{(2)}_{max} = max \sum_{\{v_i, v_j\} \in P } log p^{(2)}(v_j | v_i). \cdots (16)$</code></pre><ol start="2">
+<p>   <em>first-order</em> proximity:</p>
+<p>   $p^{(1)}(v_i, v_j) = \frac{1}{1+exp(-y_i^T y_j)}. \cdots (13)$</p>
+<p>   objective function is:</p>
+<p>   $O^{(1)}_{max} = max \sum_{e_{i,j \in E} log p^{(1)}(v_i, v_j).  \cdots (14)}$</p>
+<p>   <em>second-order</em> proximity:</p>
+<p>   $p^{(2)}(v_j|v_i) = \frac{exp(y_j^T y_i)}{\sum_{k=1}^{|V|} exp(y_k^T y_i)}. \cdots (15)$</p>
+<p>   objective function is:</p>
+<p>   $O^{(2)}_{max} = max \sum_{\{v_i, v_j\} \in P } log p^{(2)}(v_j | v_i). \cdots (16)$</p>
+<ol>
 <li><p>Minimizing Distance-based Loss</p>
 <p>Insight: <em>The node proximity calculated based on node embedding should be as close to the node proximity calculated based on the observed edges as possible.</em></p>
 </li>
 </ol>
-<pre><code>the empirical probability : 
-
-$\hat p^{(1)}(v_i, v_j) = A_{i,j} / \sum_{e_{i,j} \in E} A_{ij}$
-
-$\hat p^{(2)}(v_j|v_i) = A_{i,j} / d_i, \quad d_i = \sum_{e_{ik} \in E} A_{ik}$
-
-probability of node embedding : Eq. (13)
-
-the objective function ( Adopting KL-divergence as distance function): 
-
-$O^{(1)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(1)(v_i, v_j)}. \cdots (17)$
-
-$O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (17)$</code></pre><ol start="3">
+<p>   the empirical probability : </p>
+<p>   $\hat p^{(1)}(v_i, v_j) = A_{i,j} / \sum_{e_{i,j} \in E} A_{ij}$</p>
+<p>   $\hat p^{(2)}(v_j|v_i) = A_{i,j} / d_i, \quad d_i = \sum_{e_{ik} \in E} A_{ik}$</p>
+<p>   probability of node embedding : Eq. (13)</p>
+<p>   the objective function ( Adopting KL-divergence as distance function): </p>
+<p>   $O^{(1)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(1)(v_i, v_j)}. \cdots (17)$</p>
+<p>   $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (17)$</p>
+<ol>
 <li><p>Minimizing Distance-based Ranking Loss</p>
 <p>Insight: <em>A node’s embedding is more similar to the embedding of relevant nodes than that of any other irrelevant node.</em></p>
 <p>$s(v_i, v_j)$: similarity score for node $v_i$ and $v_j$.</p>
 <p>$V_i^+$: the set of nodes relevant to $v_i$.</p>
 <p>$V_i^-$: the set of nodes irrelevant to $v_i$.</p>
 <p>The margin-based ranking loss: </p>
-<p>$O_{rank} = min \sum_{v_i^+ \in V_i^+} \sum_{v_i^- \in V_i^-} max{0, \gamma - s(v_i, v_i^+) + s(v_i, v_i^-)}$</p>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/GE-survey-Table8.png" alt="GE-survey-Table8.png"></p>
+<p>$O_{rank} = min \sum_{v_i^+ \in V_i^+} \sum_{v_i^- \in V_i^-} max\{0, \gamma - s(v_i, v_i^+) + s(v_i, v_i^-)\}$</p>
 </li>
 </ol>
+<p><img src="/blog/.io//GE-survey-Table8.png" alt="GE-survey-Table8.png"></p>
 <ul>
 <li>[41] M. Ochi, Y. Nakashio, Y. Yamashita, I. Sakata, K. Asatani, M. Ruttley, and J. Mori, “Representation learning for geospatial areas using large-scale mobility data from smart card,” in UbiComp, 2016, pp. 1381–1389</li>
 <li>[42] M. Ochi, Y. Nakashio, M. Ruttley, J. Mori, and I. Sakata, “Geospatial area embedding based on the movement purpose hypothesis using large-scale mobility data from smart card,” IJCNS, vol. 9, pp. 519–534, 2016</li>
 <li>[92]  A. Bordes, S. Chopra, and J. Weston, “Question answering with subgraph embeddings,” in EMNLP, 2014, pp. 615–620</li>
 </ul>
-<ol start="4">
-<li><p>Graph Kernel</p>
-<p>Insight: <em>The whole graph structure can be represented as a<br>vector containing the counts of elementary substructures that are decomposed from it.</em></p>
-</li>
-</ol>
-<p>   Graph kernel is an instance of <em>R-convolution kernels</em> [[136]]( D. Haussler, “Convolution kernels on discrete structures,” Technical Report UCS-CRL-99-10, 1999), which is a generic way of defining kernels on discrete compound objects by recursively decomposing structured objects into “atomic” substructures and comparing all pairs of them [[93]](P. Yanardag and S. Vishwanathan, “Deep graph kernels,” in KDD, 2015, pp. 1365–1374.).</p>
+<h6 id="Graph-Kernel"><a href="#Graph-Kernel" class="headerlink" title="Graph Kernel"></a>Graph Kernel</h6><p>Insight: <em>The whole graph structure can be represented as a<br>vector containing the counts of elementary substructures that are decomposed from it.</em></p>
+<p>Graph kernel is an instance of <em>R-convolution kernels</em> <a href="D. Haussler, &quot;Convolution kernels on discrete structures,&quot; Technical Report UCS-CRL-99-10, 1999">[136]</a>, which is a generic way of defining kernels on discrete compound objects by recursively decomposing structured objects into “atomic” substructures and comparing all pairs of them <a href="P. Yanardag and S. Vishwanathan, &quot;Deep graph kernels,&quot; in KDD, 2015, pp. 1365–1374.">[93]</a>.</p>
 <ol>
-<li>Graphlet: A graphlet is an induced and non-isomorphic subgraph of <em>size-k</em> [93]. Suppose graph $G$ is decomposed into a set of graphlets ${G_1, G_2, \cdots , G_d}$. Then G is embedded as a d-dimensional vector (denoted as $y_G$) of normalized counts. The $i$-th dimension of $y_G$ is the frequency of the graphlet $G_i$ occurring in $G$.</li>
-</ol>
-<ol start="2">
+<li><p>Graphlet: A graphlet is an induced and non-isomorphic subgraph of <em>size-k</em> [93]. Suppose graph $G$ is decomposed into a set of graphlets ${G_1, G_2, \cdots , G_d}$. Then G is embedded as a d-dimensional vector (denoted as $y_G$) of normalized counts. The $i$-th dimension of $y_G$ is the frequency of the graphlet $G_i$ occurring in $G$.</p>
+</li>
 <li><p>Subtree Patterns</p>
 <p>In this kernel, a graph is decomposed as its subtree patterns.</p>
 </li>
-</ol>
-<ol start="3">
 <li><p>Random Walks:</p>
 <p>In the third type of graph kernels, a graph is decomposed into random walks or paths and represented as the counts of occurrence of random walks [137] or paths [138] in it. </p>
 </li>
-</ol>
-<ol start="5">
 <li><p>Generative Model</p>
 <ol>
 <li>Embed Graph Into The Latent Semantic Space</li>
@@ -723,6 +504,7 @@ $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (1
 <li><p>Hybrid Techniques and Others</p>
 </li>
 </ol>
+<h4 id="Quan-Wang-et-al-“Knowledge-Graph-Embedding-A-Survey-of-Approaches-and-Applications-”-IEEE-Transactions-on-Knowledge-and-Data-Engineering-29-no-12-December-1-2017-2724–43-https-doi-org-10-1109-TKDE-2017-2754499"><a href="#Quan-Wang-et-al-“Knowledge-Graph-Embedding-A-Survey-of-Approaches-and-Applications-”-IEEE-Transactions-on-Knowledge-and-Data-Engineering-29-no-12-December-1-2017-2724–43-https-doi-org-10-1109-TKDE-2017-2754499" class="headerlink" title="Quan Wang et al., “Knowledge Graph Embedding: A Survey of Approaches and Applications,” IEEE Transactions on Knowledge and Data Engineering 29, no. 12 (December 1, 2017): 2724–43, https://doi.org/10.1109/TKDE.2017.2754499."></a><a href="http://ieeexplore.ieee.org/document/8047276/" target="_blank" rel="noopener">Quan Wang et al., “Knowledge Graph Embedding: A Survey of Approaches and Applications,” <em>IEEE Transactions on Knowledge and Data Engineering</em> 29, no. 12 (December 1, 2017): 2724–43, https://doi.org/10.1109/TKDE.2017.2754499</a>.</h4><p>…</p>
 <h3 id="Information-Extraction"><a href="#Information-Extraction" class="headerlink" title="Information Extraction"></a>Information Extraction</h3><ul>
 <li>NERC<ul>
 <li><a href="https://arxiv.org/abs/1910.11470" target="_blank" rel="noopener">Yadav V, Bethard S. A survey on recent advances in named entity recognition from deep learning models[J]. arXiv preprint arXiv:1910.11470, 2019.</a> :</li>
@@ -744,11 +526,10 @@ $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (1
 <h3 id="Knowledge-Representation-amp-Embedding"><a href="#Knowledge-Representation-amp-Embedding" class="headerlink" title="Knowledge Representation &amp; Embedding"></a>Knowledge Representation &amp; Embedding</h3><p><strong>注：</strong>  <em>Network Representation</em>, <em>Network Embedding</em>, <em>Graph representation</em>, <em>Graph Embedding</em>, 以及 <code>Knowledge Graph Representation</code>, <code>Graph Embedding</code> 这些概念，虽然许多文献不会特意区分，但是有一些细微的区别。</p>
 <p>个人见解：<em>Representaion</em> 的范围比 <em>Embedding</em>  广一点。比如 KG 中的 representation 包含 <code>RDF</code>, <code>OWL</code>, <code>Distribute Representation</code>等， 而 embedding 只是 <em>distribute repesentation</em> 的一种特例。</p>
 <h4 id="基准测试"><a href="#基准测试" class="headerlink" title="基准测试"></a>基准测试</h4><p>清华大学 OpenKE 的实现的基准测试结果(<code>Hit@10</code>, 测试方法详见项目的 GitHub 主页)：</p>
-<p><img src="/blog/2020/01/03/知识图谱概览/./%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%A6%82%E8%A7%88/THUNLP-OpenKE-exp1.png" alt="THUNLP-OpenKE-exp1.png"></p>
+<p><img src="/blog/.io//THUNLP-OpenKE-exp1.png" alt="THUNLP-OpenKE-exp1.png"></p>
 <p>表格左边两栏是 <strong>THUN</strong> 的实现的 <code>Hit@10</code> 结果，最后两栏是相关方法的 paper 中给出的 <code>Hit@10</code> 结果。最好的结果是 <code>RotatE(+adv)</code>。</p>
 <h3 id="Store-amp-Retrieve"><a href="#Store-amp-Retrieve" class="headerlink" title="Store &amp; Retrieve"></a>Store &amp; Retrieve</h3><h3 id="Knowledge-Reasoning"><a href="#Knowledge-Reasoning" class="headerlink" title="Knowledge Reasoning"></a>Knowledge Reasoning</h3><h3 id="Knowledge-Base-Question-amp-Answer"><a href="#Knowledge-Base-Question-amp-Answer" class="headerlink" title="Knowledge Base Question &amp; Answer"></a>Knowledge Base Question &amp; Answer</h3><h3 id="Knowledge-Completion-amp-Error-Detection"><a href="#Knowledge-Completion-amp-Error-Detection" class="headerlink" title="Knowledge Completion &amp; Error Detection"></a>Knowledge Completion &amp; Error Detection</h3><ul>
-<li><p><a href="http://www.semantic-web-journal.net/system/files/swj1167.pdf" target="_blank" rel="noopener">Paulheim H. Knowledge graph refinement: A survey of approaches and evaluation methods[J]. Semantic web, 2017, 8(3): 489-508.</a></p>
-</li>
+<li><a href="http://www.semantic-web-journal.net/system/files/swj1167.pdf" target="_blank" rel="noopener">Paulheim H. Knowledge graph refinement: A survey of approaches and evaluation methods[J]. Semantic web, 2017, 8(3): 489-508.</a></li>
 <li><h3 id="Knowledge-Graph-Evaluation"><a href="#Knowledge-Graph-Evaluation" class="headerlink" title="Knowledge Graph Evaluation"></a>Knowledge Graph Evaluation</h3></li>
 </ul>
 <ul>
@@ -756,7 +537,8 @@ $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (1
 <li><code>Mean reciprocal rank</code></li>
 <li><code>Hit@10</code></li>
 </ul>
-<h2 id="图谱及数据集"><a href="#图谱及数据集" class="headerlink" title="图谱及数据集"></a>图谱及数据集</h2><ul>
+<h2 id="图谱及数据集"><a href="#图谱及数据集" class="headerlink" title="图谱及数据集"></a>图谱及数据集</h2><p>数据集可以在国内网站 <a href="http://www.openkg.cn/dataset" target="_blank" rel="noopener">openkg.cn</a> 上找到很多。</p>
+<ul>
 <li>数据集<ul>
 <li>FB15k</li>
 <li>WN18</li>
@@ -767,234 +549,154 @@ $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (1
 <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>Toolkits.</p>
 <h3 id="知识表示学习"><a href="#知识表示学习" class="headerlink" title="知识表示学习"></a>知识表示学习</h3><ul>
 <li><a href="https://www.jiqizhixin.com/articles/2017-11-04-2" target="_blank" rel="noopener">清华大学 <code>OpenKE</code> 知识表示平台</a></li>
-<li></li>
 </ul>
+<h2 id="方向1：用于-实体消歧-Entity-Disambiguation-的-知识表示学习"><a href="#方向1：用于-实体消歧-Entity-Disambiguation-的-知识表示学习" class="headerlink" title="方向1：用于 实体消歧(Entity  Disambiguation) 的 知识表示学习"></a>方向1：用于 实体消歧(Entity  Disambiguation) 的 知识表示学习</h2><ol>
+<li>实体消歧（任务）</li>
+<li>知识表示（方法）</li>
+</ol>
+<h2 id="方向2：-用于-实体对齐-Entity-Alignment-的-知识表示学习"><a href="#方向2：-用于-实体对齐-Entity-Alignment-的-知识表示学习" class="headerlink" title="方向2： 用于 实体对齐(Entity Alignment) 的 知识表示学习"></a>方向2： 用于 实体对齐(Entity Alignment) 的 知识表示学习</h2><ol>
+<li>实体对齐（任务）：</li>
+<li>知识表示（方法）： Translational Distance/ Semantic Matching / Graph Neural Network</li>
+</ol>
 
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/知识图谱/" rel="tag"># 知识图谱</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2020/01/02/知识图谱-知识表示学习/" rel="next" title="知识图谱-知识表示学习">
-                <i class="fa fa-chevron-left"></i> 知识图谱-知识表示学习
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag"># 知识图谱</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2020/01/11/GPDB-特性实践/" rel="prev" title="GPDB-特性实践">
-                GPDB-特性实践 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/01/02/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0/" rel="prev" title="知识图谱-知识表示学习">
+      <i class="fa fa-chevron-left"></i> 知识图谱-知识表示学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/01/11/GPDB-%E7%89%B9%E6%80%A7%E5%AE%9E%E8%B7%B5/" rel="next" title="GPDB-特性实践">
+      GPDB-特性实践 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论及论文"><span class="nav-number">1.</span> <span class="nav-text">理论及论文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Survey"><span class="nav-number">1.1.</span> <span class="nav-text">Survey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Information-Extraction"><span class="nav-number">1.2.</span> <span class="nav-text">Information Extraction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Fusion"><span class="nav-number">1.3.</span> <span class="nav-text">Knowledge Fusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Representation-amp-Embedding"><span class="nav-number">1.4.</span> <span class="nav-text">Knowledge Representation &amp; Embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基准测试"><span class="nav-number">1.4.1.</span> <span class="nav-text">基准测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Store-amp-Retrieve"><span class="nav-number">1.5.</span> <span class="nav-text">Store &amp; Retrieve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Reasoning"><span class="nav-number">1.6.</span> <span class="nav-text">Knowledge Reasoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Base-Question-amp-Answer"><span class="nav-number">1.7.</span> <span class="nav-text">Knowledge Base Question &amp; Answer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Completion-amp-Error-Detection"><span class="nav-number">1.8.</span> <span class="nav-text">Knowledge Completion &amp; Error Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Graph-Evaluation"><span class="nav-number">1.9.</span> <span class="nav-text">Knowledge Graph Evaluation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图谱及数据集"><span class="nav-number">2.</span> <span class="nav-text">图谱及数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">3.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识表示学习"><span class="nav-number">3.1.</span> <span class="nav-text">知识表示学习</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论及论文"><span class="nav-number">1.</span> <span class="nav-text">理论及论文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Survey"><span class="nav-number">1.1.</span> <span class="nav-text">Survey</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#刘峤-李杨-段宏-等-知识图谱构建技术综述-J-计算机研究与发展-2016-53-3-582-600"><span class="nav-number">1.1.1.</span> <span class="nav-text">刘峤, 李杨, 段宏, 等. 知识图谱构建技术综述[J]. 计算机研究与发展, 2016, 53(3): 582-600.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#徐增林-盛泳潘-贺丽荣-等-知识图谱技术综述-J-2016"><span class="nav-number">1.1.2.</span> <span class="nav-text">徐增林, 盛泳潘, 贺丽荣, 等. 知识图谱技术综述[J]. 2016.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HongYun-Cai-Vincent-W-Zheng-and-Kevin-Chen-Chuan-Chang-“A-Comprehensive-Survey-of-Graph-Embedding-Problems-Techniques-and-Applications-”-IEEE-Transactions-on-Knowledge-and-Data-Engineering-30-no-9-September-2018-1616–37-https-doi-org-10-1109-TKDE-2018-2807452"><span class="nav-number">1.1.3.</span> <span class="nav-text">HongYun Cai, Vincent W. Zheng, and Kevin Chen-Chuan Chang, “A Comprehensive Survey of Graph Embedding: Problems, Techniques, and Applications,” IEEE Transactions on Knowledge and Data Engineering 30, no. 9 (September 2018): 1616–37, https:&#x2F;&#x2F;doi.org&#x2F;10.1109&#x2F;TKDE.2018.2807452.:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem-Settings"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Problem Settings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Graph-Embedding-Techniques"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Graph Embedding Techniques</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Matrix-Factorization"><span class="nav-number">1.1.3.2.1.</span> <span class="nav-text">Matrix Factorization</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Deep-Learning"><span class="nav-number">1.1.3.2.2.</span> <span class="nav-text">Deep Learning</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Edge-Reconstruction-based-Optimization"><span class="nav-number">1.1.3.2.3.</span> <span class="nav-text">Edge Reconstruction based Optimization</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Graph-Kernel"><span class="nav-number">1.1.3.2.4.</span> <span class="nav-text">Graph Kernel</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quan-Wang-et-al-“Knowledge-Graph-Embedding-A-Survey-of-Approaches-and-Applications-”-IEEE-Transactions-on-Knowledge-and-Data-Engineering-29-no-12-December-1-2017-2724–43-https-doi-org-10-1109-TKDE-2017-2754499"><span class="nav-number">1.1.4.</span> <span class="nav-text">Quan Wang et al., “Knowledge Graph Embedding: A Survey of Approaches and Applications,” IEEE Transactions on Knowledge and Data Engineering 29, no. 12 (December 1, 2017): 2724–43, https:&#x2F;&#x2F;doi.org&#x2F;10.1109&#x2F;TKDE.2017.2754499.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Information-Extraction"><span class="nav-number">1.2.</span> <span class="nav-text">Information Extraction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Fusion"><span class="nav-number">1.3.</span> <span class="nav-text">Knowledge Fusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Representation-amp-Embedding"><span class="nav-number">1.4.</span> <span class="nav-text">Knowledge Representation &amp; Embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基准测试"><span class="nav-number">1.4.1.</span> <span class="nav-text">基准测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Store-amp-Retrieve"><span class="nav-number">1.5.</span> <span class="nav-text">Store &amp; Retrieve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Reasoning"><span class="nav-number">1.6.</span> <span class="nav-text">Knowledge Reasoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Base-Question-amp-Answer"><span class="nav-number">1.7.</span> <span class="nav-text">Knowledge Base Question &amp; Answer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Completion-amp-Error-Detection"><span class="nav-number">1.8.</span> <span class="nav-text">Knowledge Completion &amp; Error Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Graph-Evaluation"><span class="nav-number">1.9.</span> <span class="nav-text">Knowledge Graph Evaluation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图谱及数据集"><span class="nav-number">2.</span> <span class="nav-text">图谱及数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">3.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识表示学习"><span class="nav-number">3.1.</span> <span class="nav-text">知识表示学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方向1：用于-实体消歧-Entity-Disambiguation-的-知识表示学习"><span class="nav-number">4.</span> <span class="nav-text">方向1：用于 实体消歧(Entity  Disambiguation) 的 知识表示学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方向2：-用于-实体对齐-Entity-Alignment-的-知识表示学习"><span class="nav-number">5.</span> <span class="nav-text">方向2： 用于 实体对齐(Entity Alignment) 的 知识表示学习</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -1004,135 +706,25 @@ $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (1
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -1148,178 +740,10 @@ $O^{(2)}_{min} = min -\sum_{e_{ij} \in E} A_{ij} log p^{(2)(v_j|v_j)}. \cdots (1
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 

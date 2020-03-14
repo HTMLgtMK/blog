@@ -1,143 +1,61 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="English">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="English">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"htmlgtmk.github.io","root":"/blog/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="mysql5.7 安装,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="这两天在做移动网络技术的作业时, 需要用到MySQL, 因此就打算在自己的Deepin机器上装个MysSQL.但是中间出现了许多问题, 在此记录以下.环境: 4.15.0-29deepin-genericMySQL版本: mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64) using  EditLine wrapper 出现的问题服务器拒绝连接">
-<meta name="keywords" content="mysql5.7 安装">
+  <meta name="description" content="这两天在做移动网络技术的作业时, 需要用到MySQL, 因此就打算在自己的Deepin机器上装个MysSQL.但是中间出现了许多问题, 在此记录以下.环境: 4.15.0-29deepin-genericMySQL版本: mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64) using  EditLine wrapper 出现的问题服务器拒绝连接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql-community-v5.7安装总结">
-<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/index.html">
+<meta property="og:url" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7%E5%AE%89%E8%A3%85%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="GT Blog">
 <meta property="og:description" content="这两天在做移动网络技术的作业时, 需要用到MySQL, 因此就打算在自己的Deepin机器上装个MysSQL.但是中间出现了许多问题, 在此记录以下.环境: 4.15.0-29deepin-genericMySQL版本: mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64) using  EditLine wrapper 出现的问题服务器拒绝连接">
-<meta property="og:locale" content="English">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027191256.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/9150e4e5ly1fsekqpgq1jj206o06odfs.jpg">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027191256.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/0ce9841846c24dd4bf80b7445eb18252.jpeg">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/9150e4e5ly1ftsrdtznmgj206o06oglj.jpg">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_deepin-terminal_20181027204051.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027204810.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_deepin-terminal_20181027205334.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/836c2261a7f147e88dc017598b04b219.jpeg">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027211728.png">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/9150e4e5ly1flmlwi1e27g206o06ojre.gif">
-<meta property="og:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/2016671011584723.png">
-<meta property="og:updated_time" content="2019-09-09T05:16:08.294Z">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_select-area_20181027191256.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//9150e4e5ly1fsekqpgq1jj206o06odfs.jpg">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_select-area_20181027191256.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//0ce9841846c24dd4bf80b7445eb18252.jpeg">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//9150e4e5ly1ftsrdtznmgj206o06oglj.jpg">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_deepin-terminal_20181027204051.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_select-area_20181027204810.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_deepin-terminal_20181027205334.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//836c2261a7f147e88dc017598b04b219.jpeg">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_select-area_20181027211728.png">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//9150e4e5ly1flmlwi1e27g206o06ojre.gif">
+<meta property="og:image" content="http://htmlgtmk.github.io/blog/.io//2016671011584723.png">
+<meta property="article:published_time" content="2018-10-27T11:01:59.000Z">
+<meta property="article:modified_time" content="2019-09-09T05:16:08.294Z">
+<meta property="article:author" content="GT">
+<meta property="article:tag" content="mysql5.7 安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql-community-v5.7安装总结">
-<meta name="twitter:description" content="这两天在做移动网络技术的作业时, 需要用到MySQL, 因此就打算在自己的Deepin机器上装个MysSQL.但是中间出现了许多问题, 在此记录以下.环境: 4.15.0-29deepin-genericMySQL版本: mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64) using  EditLine wrapper 出现的问题服务器拒绝连接">
-<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027191256.png">
+<meta name="twitter:image" content="http://htmlgtmk.github.io/blog/.io//DeepinScreenshot_select-area_20181027191256.png">
+
+<link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7%E5%AE%89%E8%A3%85%E6%80%BB%E7%BB%93/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7安装总结/">
-
-
-
-
 
   <title>mysql-community-v5.7安装总结 | GT Blog</title>
   
@@ -147,183 +65,139 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="English">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    <div class="custom-logo-site-title">
+  <div class="site-meta">
+
+    <div>
       <a href="/blog/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">GT Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="English">
+    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/2018/10/27/mysql-community-v5-7%E5%AE%89%E8%A3%85%E6%80%BB%E7%BB%93/">
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlgtmk.github.io/blog/blog/2018/10/27/mysql-community-v5-7安装总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
       <meta itemprop="name" content="GT">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="GT Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">mysql-community-v5.7安装总结</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          mysql-community-v5.7安装总结
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-27T19:01:59+08:00">
-                2018-10-27
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 2018-10-27 19:01:59" itemprop="dateCreated datePublished" datetime="2018-10-27T19:01:59+08:00">2018-10-27</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <a href="/blog/2018/10/27/mysql-community-v5-7安装总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/10/27/mysql-community-v5-7安装总结/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-09 13:16:08" itemprop="dateModified" datetime="2019-09-09T13:16:08+08:00">2019-09-09</time>
               </span>
-            
-          
-
-          
-          
-             <span id="/blog/2018/10/27/mysql-community-v5-7安装总结/" class="leancloud_visitors" data-flag-title="mysql-community-v5.7安装总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -331,31 +205,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <p>这两天在做移动网络技术的作业时, 需要用到MySQL, 因此就打算在自己的Deepin机器上装个MysSQL.<br>但是中间出现了许多问题, 在此记录以下.<br>环境: 4.15.0-29deepin-generic<br>MySQL版本: mysql  Ver 14.14 Distrib 5.7.21, for Linux (x86_64) using  EditLine wrapper</p>
 <h2 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h2><h3 id="服务器拒绝连接"><a href="#服务器拒绝连接" class="headerlink" title="服务器拒绝连接"></a>服务器拒绝连接</h3><a id="more"></a>
 <ol>
-<li>问题<br>首先使用命令<code>sudo apt-get  install mysql-server</code>安装了mysql-server, 整个过程没有出现问题.<br>使用命令<code>systemctl status mysql</code>查看mysql-server运行状态发现已经在运行中了, 行, 那开始连接数据库吧.<br>使用下面的命令连接:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br></pre></td></tr></table></figure>
-
+<li><p>问题<br>首先使用命令<code>sudo apt-get  install mysql-server</code>安装了mysql-server, 整个过程没有出现问题.<br>使用命令<code>systemctl status mysql</code>查看mysql-server运行状态发现已经在运行中了, 行, 那开始连接数据库吧.<br>使用下面的命令连接:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br></pre></td></tr></table></figure>
+<p>结果如图:<br><img src="/blog/.io//DeepinScreenshot_select-area_20181027191256.png" alt="DeepinScreenshot_select-area_20181027191256.png"><br><code>ERROR 1698 (28000): Access denied for user &#39;root&#39;@&#39;localhost&#39;</code> 表示mysqld服务器拒绝本次连接.<br>根据经验, 这个情况一般是输入的密码错误, 但是刚安装的Mysql数据库的root密码是什么呢…查了资料后, 初次安装的root密码为空, 那表示我并没有输入错误啊,md…<br>我开始怀疑自己, 是不是之前什么时候安装过Mysql, 然后机器上还有上次未清理干净的文件在起着作用…<br><img src="/blog/.io//9150e4e5ly1fsekqpgq1jj206o06odfs.jpg" alt="9150e4e5ly1fsekqpgq1jj206o06odfs.jpg"><br>于是, 我决定使用大法修改root的密码, 步骤如下:</p>
+<ol>
+<li><p>关闭mysql.service</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop mysql.service</span><br></pre></td></tr></table></figure>
+<p>但是, 关了之后后面重启服务又出了问题, 后面再说.</p>
+</li>
+<li><p>加上参数skip-grant-table开启mysqld_safe</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqld_safe --skip-grant-table --skip-networking &amp;</span><br></pre></td></tr></table></figure>
+<p>这里也可以直接修改<code>/etc/mysql/my.cnf</code>, 添加如下内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-grant-table</span><br></pre></td></tr></table></figure>
+<p>然后再<code>systemctl start mysql</code>即可.</p>
 </li>
 </ol>
-<p>结果如图:<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027191256.png" alt="DeepinScreenshot_select-area_20181027191256.png"><br><code>ERROR 1698 (28000): Access denied for user &#39;root&#39;@&#39;localhost&#39;</code> 表示mysqld服务器拒绝本次连接.<br>根据经验, 这个情况一般是输入的密码错误, 但是刚安装的Mysql数据库的root密码是什么呢…查了资料后, 初次安装的root密码为空, 那表示我并没有输入错误啊,md…<br>我开始怀疑自己, 是不是之前什么时候安装过Mysql, 然后机器上还有上次未清理干净的文件在起着作用…<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/9150e4e5ly1fsekqpgq1jj206o06odfs.jpg" alt="9150e4e5ly1fsekqpgq1jj206o06odfs.jpg"><br>于是, 我决定使用大法修改root的密码, 步骤如下:<br>    1. 关闭mysql.service<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop mysql.service</span><br></pre></td></tr></table></figure></p>
-<pre><code>但是, 关了之后后面重启服务又出了问题, 后面再说.
-
-2. 加上参数skip-grant-table开启mysqld_safe
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqld_safe --skip-grant-table --skip-networking &amp;</span><br></pre></td></tr></table></figure>
-
-这里也可以直接修改`/etc/mysql/my.cnf`, 添加如下内容:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-grant-table</span><br></pre></td></tr></table></figure>
-
-然后再`systemctl start mysql`即可.
-
-
-3. 使用mysql clinet连接
+</li>
+</ol>
+<pre><code>3. 使用mysql clinet连接
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br><span class="line">Enter password:</span><br></pre></td></tr></table></figure>
-
 直接按enter键后就连接成功了.
 
 4. 修改root用户的密码
@@ -364,274 +235,176 @@
 
 5. 退出然后去掉参数重新启动
 如果是使用命令行, 则直接找到进程号(`ps -aux | grep mysql`), `kill -9 pid`即可.
-如果是使用重启mysql服务的方式, 则直接`systemctl restart mysql`即可.</code></pre><p>到这里, 我修改了root用户的密码, 那我使用刚修改的密码登录应该就是可以成功登录了.于是:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br></pre></td></tr></table></figure>
-
-<p>结果如图:<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027191256.png" alt="DeepinScreenshot_select-area_20181027191256.png"><br>md…历史在重演…<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/0ce9841846c24dd4bf80b7445eb18252.jpeg" alt="0ce9841846c24dd4bf80b7445eb18252.jpeg"></p>
-<p>难道是用上面的方法没有修改成功???=_=, 于是又看到安装时的提示使用<code>mysqladmin</code>或者<code>mysql_secure_installation</code>设置密码.<br>然后又是一顿操作, 结果可想而知, 历史在重演…<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/9150e4e5ly1ftsrdtznmgj206o06oglj.jpg" alt="9150e4e5ly1ftsrdtznmgj206o06oglj.jpg"></p>
-<ol start="2">
-<li>解决<br>在懵逼多时后, 终于google到相关答案了…原来, 这个和MySQL的安全策略有关, 在skip-grant-table参数下进入mysql可以看到如下内容:<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_deepin-terminal_20181027204051.png" alt="DeepinScreenshot_deepin-terminal_20181027204051.png"><br>注意到<code>plugin</code>项目下<code>root</code>和其他项不同, 难道是这个???<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027204810.png" alt="DeepinScreenshot_select-area_20181027204810.png"><br>还真的是, <code>auth_socket</code>不支持密码登录, 它只匹配与当前用户创建的<code>unix socket</code>然后比对用户名是否相同…<br>于是, <code>mysql.server</code>是使用<code>root</code>权限开启的, 而<code>mysql -h localhost -u root -p</code>是在当前用户<code>gt</code>下执行的, root != gt, 因此连接被拒绝.<br>那么, 使用<code>sudo mysql -h localhost -u root -p</code>应该可以连接, 尝试一下:<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_deepin-terminal_20181027205334.png" alt="DeepinScreenshot_deepin-terminal_20181027205334.png"><br>连接成功了!!!好激动!<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/836c2261a7f147e88dc017598b04b219.jpeg" alt="836c2261a7f147e88dc017598b04b219.jpeg"><br>但是, 如果是普通程序需要调用<code>mysql</code>, 那就麻烦了.<br><code>mysql_native_password</code>是支持密码登录的(是否强密码策略未深究~), 理论上修改<code>root</code>用户<code>plugin</code>成<code>mysql_native_password</code>就可以了, 尝试:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE user SET plugin='mysql_native_password' WHERE User='root';</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-</li>
+如果是使用重启mysql服务的方式, 则直接`systemctl restart mysql`即可.
+</code></pre><p>到这里, 我修改了root用户的密码, 那我使用刚修改的密码登录应该就是可以成功登录了.于是:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br></pre></td></tr></table></figure><br>结果如图:<br><img src="/blog/.io//DeepinScreenshot_select-area_20181027191256.png" alt="DeepinScreenshot_select-area_20181027191256.png"><br>md…历史在重演…<br><img src="/blog/.io//0ce9841846c24dd4bf80b7445eb18252.jpeg" alt="0ce9841846c24dd4bf80b7445eb18252.jpeg"></p>
+<p>难道是用上面的方法没有修改成功???=_=, 于是又看到安装时的提示使用<code>mysqladmin</code>或者<code>mysql_secure_installation</code>设置密码.<br>然后又是一顿操作, 结果可想而知, 历史在重演…<br><img src="/blog/.io//9150e4e5ly1ftsrdtznmgj206o06oglj.jpg" alt="9150e4e5ly1ftsrdtznmgj206o06oglj.jpg"></p>
+<ol>
+<li>解决<br>在懵逼多时后, 终于google到相关答案了…原来, 这个和MySQL的安全策略有关, 在skip-grant-table参数下进入mysql可以看到如下内容:<br><img src="/blog/.io//DeepinScreenshot_deepin-terminal_20181027204051.png" alt="DeepinScreenshot_deepin-terminal_20181027204051.png"><br>注意到<code>plugin</code>项目下<code>root</code>和其他项不同, 难道是这个???<br><img src="/blog/.io//DeepinScreenshot_select-area_20181027204810.png" alt="DeepinScreenshot_select-area_20181027204810.png"><br>还真的是, <code>auth_socket</code>不支持密码登录, 它只匹配与当前用户创建的<code>unix socket</code>然后比对用户名是否相同…<br>于是, <code>mysql.server</code>是使用<code>root</code>权限开启的, 而<code>mysql -h localhost -u root -p</code>是在当前用户<code>gt</code>下执行的, root != gt, 因此连接被拒绝.<br>那么, 使用<code>sudo mysql -h localhost -u root -p</code>应该可以连接, 尝试一下:<br><img src="/blog/.io//DeepinScreenshot_deepin-terminal_20181027205334.png" alt="DeepinScreenshot_deepin-terminal_20181027205334.png"><br>连接成功了!!!好激动!<br><img src="/blog/.io//836c2261a7f147e88dc017598b04b219.jpeg" alt="836c2261a7f147e88dc017598b04b219.jpeg"><br>但是, 如果是普通程序需要调用<code>mysql</code>, 那就麻烦了.<br><code>mysql_native_password</code>是支持密码登录的(是否强密码策略未深究~), 理论上修改<code>root</code>用户<code>plugin</code>成<code>mysql_native_password</code>就可以了, 尝试:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE user SET plugin='mysql_native_password' WHERE User='root';</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+退出, 去掉<code>sudo</code>运行果然可以!!!<br>当然, 我觉得这样的设计挺不错的, 完全可以新建一个用户, 并赋予部分权限.<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER 'user_name' IDENTIFIED WITH mysql_native_password BY 'my_password'; # 创建新用户</span><br><span class="line">GRANT ALL PRIVILEGES ON db_name@* TO `user_name`@`host` IDENTIFIED BY `password`; # 赋予权限</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+然而, 这里又双叒叕出问题了…<code>Error: plugin mysql_native_password are not loaded</code>, md, 什么情况…<br>最终查了资料没弄清楚, 不过问题倒是解决了…先把<code>root</code>用户<code>plugin</code>修改成<code>mysql_native_password</code>, 再退出登录, 在该模式下创建新用户成功,<br>最后将<code>root</code>的<code>plugin</code>修改回去…<br>(存在的疑问: GRANT用户权限后, 在user表中出现了多个相同的用户, bug? 后来考虑是由于每个相同user的privileges不同, 每个不同privileges的user作为一行.)<br><br><br>到这里, 这个问题终于算是结束了!</li>
 </ol>
-<p>退出, 去掉<code>sudo</code>运行果然可以!!!<br>当然, 我觉得这样的设计挺不错的, 完全可以新建一个用户, 并赋予部分权限.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER 'user_name' IDENTIFIED WITH mysql_native_password BY 'my_password'; # 创建新用户</span><br><span class="line">GRANT ALL PRIVILEGES ON db_name@* TO `user_name`@`host` IDENTIFIED BY `password`; # 赋予权限</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<p>然而, 这里又双叒叕出问题了…<code>Error: plugin mysql_native_password are not loaded</code>, md, 什么情况…<br>最终查了资料没弄清楚, 不过问题倒是解决了…先把<code>root</code>用户<code>plugin</code>修改成<code>mysql_native_password</code>, 再退出登录, 在该模式下创建新用户成功,<br>最后将<code>root</code>的<code>plugin</code>修改回去…<br>(存在的疑问: GRANT用户权限后, 在user表中出现了多个相同的用户, bug? 后来考虑是由于每个相同user的privileges不同, 每个不同privileges的user作为一行.)<br><br><br>到这里, 这个问题终于算是结束了!</p>
 <h3 id="不能连接socket"><a href="#不能连接socket" class="headerlink" title="不能连接socket"></a>不能连接socket</h3><ol>
-<li><p>问题<br>当使用<code>mysql -h localhost -u gt -p</code>进行连接时, 出现如下问题:<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/DeepinScreenshot_select-area_20181027211728.png" alt="DeepinScreenshot_select-area_20181027211728.png"></p>
+<li><p>问题<br>当使用<code>mysql -h localhost -u gt -p</code>进行连接时, 出现如下问题:<br><img src="/blog/.io//DeepinScreenshot_select-area_20181027211728.png" alt="DeepinScreenshot_select-area_20181027211728.png"></p>
 <blockquote>
 <blockquote>
-<p>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/run/mysqld/mysqld.sock’ (2)<br>(模拟还原的场景), 连接错误, 提示不能通过socket连接到本地MySQL server, 查了以下<code>/var/run/mysqld</code>也确实不存在<code>mysqld.sock</code>文件, 甚至连<code>mysqld</code>目录都不存在…<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/9150e4e5ly1flmlwi1e27g206o06ojre.gif" alt="9150e4e5ly1flmlwi1e27g206o06ojre.gif"></p>
+<p>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/run/mysqld/mysqld.sock’ (2)<br>(模拟还原的场景), 连接错误, 提示不能通过socket连接到本地MySQL server, 查了以下<code>/var/run/mysqld</code>也确实不存在<code>mysqld.sock</code>文件, 甚至连<code>mysqld</code>目录都不存在…<br><img src="/blog/.io//9150e4e5ly1flmlwi1e27g206o06ojre.gif" alt="9150e4e5ly1flmlwi1e27g206o06ojre.gif"></p>
 </blockquote>
 </blockquote>
 </li>
 <li><p>解决<br>思考后, 发现可能是<code>mysql.server</code>服务并没有启动, 或者是什么时候宕掉了. <code>ps -aux | grep mysql</code>果然没有发现相关进程的运行.<br>所以, 重新开启<code>mysql.server</code>服务即可:<code>sudo systemctl start mysql</code>(如果可以的话:) )</p>
 </li>
 </ol>
-<h3 id="使用二进制文件安装mysql"><a href="#使用二进制文件安装mysql" class="headerlink" title="使用二进制文件安装mysql"></a>使用二进制文件安装mysql</h3><p>由于前面密码错误的原因, 考虑是不是这个版本的问题, 于是从官网上下载了最新的二进制tar.gz安装包安装.<br>这个下载的安装包是<code>mariadb</code>的, 反正差不多. 解压到<code>/usr/local</code>中, 重命名目录名为<code>mysql</code>(否则后面需要修改<code>mysql.server</code>, <code>my.cnf</code>内容).<br>创建新用户mysql:mysql, 修改<code>data</code>为目录所属人, 执行程序:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup /usr/local/mysql/bin/mysqld_safe --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --user=mysql &amp;</span><br></pre></td></tr></table></figure>
-
-<p>然后可以使用<code>mysql -h localhost -u root -p</code>连接, 至于结果, 很诡异, 能登录进去, 而且, 每次登录进去就会创建一个新用户…后来也没有弄清楚是什么情况就删掉了…<br><br><br>下面是彻底删除<code>apt-get</code>安装的程序的总结:</p>
+<h3 id="使用二进制文件安装mysql"><a href="#使用二进制文件安装mysql" class="headerlink" title="使用二进制文件安装mysql"></a>使用二进制文件安装mysql</h3><p>由于前面密码错误的原因, 考虑是不是这个版本的问题, 于是从官网上下载了最新的二进制tar.gz安装包安装.<br>这个下载的安装包是<code>mariadb</code>的, 反正差不多. 解压到<code>/usr/local</code>中, 重命名目录名为<code>mysql</code>(否则后面需要修改<code>mysql.server</code>, <code>my.cnf</code>内容).<br>创建新用户mysql:mysql, 修改<code>data</code>为目录所属人, 执行程序:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup /usr/local/mysql/bin/mysqld_safe --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --user=mysql &amp;</span><br></pre></td></tr></table></figure><br>然后可以使用<code>mysql -h localhost -u root -p</code>连接, 至于结果, 很诡异, 能登录进去, 而且, 每次登录进去就会创建一个新用户…后来也没有弄清楚是什么情况就删掉了…<br><br><br>下面是彻底删除<code>apt-get</code>安装的程序的总结:</p>
 <ol>
-<li>先使用<code>apt-get purge</code>删除<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge mysql*</span><br><span class="line">sudo apt-get purge mariadb*</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+<li><p>先使用<code>apt-get purge</code>删除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge mysql*</span><br><span class="line">sudo apt-get purge mariadb*</span><br></pre></td></tr></table></figure>
 <p><code>remove</code>只是卸载了程序, 但是配置等文件还在. <code>purge</code>可以同时删除配置文件等数据.<br>另外, 使用了通配符<code>*</code>, 我们安装的时候可能是<code>apt-get install mysql-server</code>, 但是同时会安装许多dependencies, 使用通配符可以搞定.<br>如果安装过mariadb, 两句都要执行试试.</p>
-<ol start="2">
-<li>再使用<code>dpkg -S</code>查找是否还有其他什么文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -S mariadb*</span><br><span class="line">sudo dpkg -S mysql*</span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>再使用<code>dpkg -S</code>查找是否还有其他什么文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -S mariadb*</span><br><span class="line">sudo dpkg -S mysql*</span><br></pre></td></tr></table></figure>
+<p>这样可以查看哪些<code>dependencies</code>被安装, 而没有卸载. 使用<code>sudo dpkg -r package_name</code>单独卸载.</p>
 </li>
 </ol>
-<p>这样可以查看哪些<code>dependencies</code>被安装, 而没有卸载. 使用<code>sudo dpkg -r package_name</code>单独卸载.</p>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>现在的技术和思想真的是进步的飞快, 这次也是被密码错误狠狠的打了一个耳光.<br>要进步, 要不断的学习.<br><img src="/blog/2018/10/27/mysql-community-v5-7安装总结/2016671011584723.png" alt="2016671011584723.png"></p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>现在的技术和思想真的是进步的飞快, 这次也是被密码错误狠狠的打了一个耳光.<br>要进步, 要不断的学习.<br><img src="/blog/.io//2016671011584723.png" alt="2016671011584723.png"></p>
 
-      
     </div>
+
     
     
     
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/mysql5-7-安装/" rel="tag"># mysql5.7 安装</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2018/09/09/hadoop分布式集群安装/" rel="next" title="hadoop 分布式集群安装">
-                <i class="fa fa-chevron-left"></i> hadoop 分布式集群安装
-              </a>
-            
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/mysql5-7-%E5%AE%89%E8%A3%85/" rel="tag"># mysql5.7 安装</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/03/15/小米Android实习面试/" rel="prev" title="小米Android实习面试">
-                小米Android实习面试 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2018/09/09/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/" rel="prev" title="hadoop 分布式集群安装">
+      <i class="fa fa-chevron-left"></i> hadoop 分布式集群安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2019/03/15/%E5%B0%8F%E7%B1%B3Android%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/" rel="next" title="小米Android实习面试">
+      小米Android实习面试 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">GT</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/HTMLgtMK" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:GT_GameEmail@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#出现的问题"><span class="nav-number">1.</span> <span class="nav-text">出现的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器拒绝连接"><span class="nav-number">1.1.</span> <span class="nav-text">服务器拒绝连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不能连接socket"><span class="nav-number">1.2.</span> <span class="nav-text">不能连接socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用二进制文件安装mysql"><span class="nav-number">1.3.</span> <span class="nav-text">使用二进制文件安装mysql</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">2.</span> <span class="nav-text">感想</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#出现的问题"><span class="nav-number">1.</span> <span class="nav-text">出现的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器拒绝连接"><span class="nav-number">1.1.</span> <span class="nav-text">服务器拒绝连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不能连接socket"><span class="nav-number">1.2.</span> <span class="nav-text">不能连接socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用二进制文件安装mysql"><span class="nav-number">1.3.</span> <span class="nav-text">使用二进制文件安装mysql</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">2.</span> <span class="nav-text">感想</span></a></li></ol></div>
+      </div>
       <!--/noindex-->
-      
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">GT</span>
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
 
         
 
@@ -641,135 +414,25 @@
 
 
 
-        
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
   </div>
 
   
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/blog/js/utils.js"></script>
 
-
-
+<script src="/blog/js/motion.js"></script>
 
 
+<script src="/blog/js/schemes/muse.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/blog/js/next-boot.js"></script>
 
 
 
@@ -785,178 +448,10 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz',
-        appKey: 'q2ffoDAS8DlUhqHabJjDu0EW',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
 
 
 
 
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("S09XyILBg3oSbx3sz5jNPP6l-gzGzoHsz", "q2ffoDAS8DlUhqHabJjDu0EW");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/blog/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/blog/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
 
   
 
