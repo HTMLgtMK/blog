@@ -1,7 +1,7 @@
 ---
 title: openstack基础
 date: 2018-06-22 18:45:39
-tags:openstak 基础
+tags: openstak 基础
 ---
 
 ## OpenStack基础
